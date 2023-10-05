@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - given-names: Lee Bissessar
+title: "SimuNEX"
+date-released: 2023
+url: "https://github.com/intelligent-systems-lab-org/SimuNEX"
