@@ -28,29 +28,29 @@ SimuNEX is a high-fidelity dynamic simulation framework designed as a modular pl
 <table>
   <tr>
     <td align="center">
-      <img src="docs/assets/examples/QuadcopterUnity.PNG" width="180" />
+      <img src="docs/assets/examples/QuadcopterUnity.PNG" width="300" />
       <br />
       <i>Quadcopter</i>
     </td>
     <td align="center">
-      <img src="docs/assets/examples/AUVUnity.PNG" width="180" />
+      <img src="docs/assets/examples/AUVUnity.PNG" width="300" />
       <br />
       <i>AUV</i>
     </td>
     <td align="center">
-      <img src="docs/assets/examples/RoverUnity.PNG" width="180" />
+      <img src="docs/assets/examples/RoverUnity.PNG" width="300" />
       <br />
       <i>Mars Rover</i>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="docs/assets/examples/QuadrupedUnity.png" width="180" />
+      <img src="docs/assets/examples/QuadrupedUnity.png" width="300" />
       <br />
       <i>Quadruped Robot</i>
     </td>
     <td align="center">
-      <img src="docs/assets/examples/RocketUnity.PNG" width="180" />
+      <img src="docs/assets/examples/RocketUnity.PNG" width="300" />
       <br />
       <i>Multi-stage Rocket</i>
     </td>
