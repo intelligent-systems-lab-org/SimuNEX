@@ -31,16 +31,22 @@ SimuNEX is a high-fidelity dynamic simulation framework designed as a modular pl
       <img src="docs/assets/examples/QuadcopterUnity.PNG" width="300" />
       <br />
       <i>Quadcopter</i>
+      <br />
+      <br />
     </td>
     <td align="center">
       <img src="docs/assets/examples/AUVUnity.PNG" width="300" />
       <br />
       <i>AUV</i>
+      <br />
+      <br />
     </td>
     <td align="center">
       <img src="docs/assets/examples/RoverUnity.PNG" width="300" />
       <br />
       <i>Mars Rover</i>
+      <br />
+      3D Model by <a href="https://mars.nasa.gov/resources/25042/">NASA.</a>
     </td>
   </tr>
   <tr>
@@ -48,16 +54,20 @@ SimuNEX is a high-fidelity dynamic simulation framework designed as a modular pl
       <img src="docs/assets/examples/QuadrupedUnity.png" width="300" />
       <br />
       <i>Quadruped Robot</i>
+      <br />
+      <br />
+      <br />
     </td>
     <td align="center">
       <img src="docs/assets/examples/RocketUnity.PNG" width="300" />
       <br />
       <i>Multi-stage Rocket</i>
+      <br />
+      3D Model by <a href="https://sketchfab.com/3d-models/falcon-9-spacex-394f7cf52d124bbd9db69f24d1ff2f08">Stanley Creative.</a>
     </td>
     <td align="center"></td> <!-- Empty space -->
   </tr>
 </table>
-
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
