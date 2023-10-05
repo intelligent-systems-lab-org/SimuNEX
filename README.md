@@ -45,7 +45,7 @@ SimuNEX is a high-fidelity dynamic simulation framework designed as a modular pl
   </tr>
   <tr>
     <td align="center">
-      <img src="docs/assets/examples/QuadrupedUnity.PNG" width="180" />
+      <img src="docs/assets/examples/QuadrupedUnity.png" width="180" />
       <br />
       <i>Quadruped Robot</i>
     </td>
