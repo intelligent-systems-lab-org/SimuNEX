@@ -26,8 +26,8 @@ SimuNEX is a high-fidelity dynamic simulation framework designed as a modular pl
 
 ## License
 
-SimuNEX © 2023 by [Lee Bissessar](https://github.com/leebissessar5), [Intelligent Systems Lab (ISL)](https://intelsyslab.com/) is licensed under a
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa]
+SimuNEX © 2023 by [Lee Bissessar](https://github.com/leebissessar5), [Intelligent Systems Lab (ISL)](https://intelsyslab.com/) is licensed under the
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.][cc-by-nc-sa] Under the license, you must give credit to ISL, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests that ISL endorses you or your use.
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
