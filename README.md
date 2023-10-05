@@ -25,13 +25,38 @@
 SimuNEX is a high-fidelity dynamic simulation framework designed as a modular platform to simulate dynamic systems across various domains. It serves as a powerful tool for researchers, engineering students, and members of the Intelligent Systems Lab, offering a versatile environment for simulating complex systems and phenomena.
 
 ## Examples
-<p float="left">
-  <img src="docs/assets/examples/QuadcopterUnity.PNG" width="100" />
-  <img src="docs/assets/examples/AUVUnity.PNG" width="100" />
-  <img src="docs/assets/examples/RoverUnity.PNG" width="100" />
-  <img src="docs/assets/examples/QuadrupedUnity.PNG" width="100" />
-  <img src="docs/assets/examples/RocketUnity.PNG" width="100" />
-</p>
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/assets/examples/QuadcopterUnity.PNG" width="180" />
+      <br />
+      <i>Quadcopter</i>
+    </td>
+    <td align="center">
+      <img src="docs/assets/examples/AUVUnity.PNG" width="180" />
+      <br />
+      <i>AUV</i>
+    </td>
+    <td align="center">
+      <img src="docs/assets/examples/RoverUnity.PNG" width="180" />
+      <br />
+      <i>Mars Rover</i>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/assets/examples/QuadrupedUnity.PNG" width="180" />
+      <br />
+      <i>Quadruped Robot</i>
+    </td>
+    <td align="center">
+      <img src="docs/assets/examples/RocketUnity.PNG" width="180" />
+      <br />
+      <i>Multi-stage Rocket</i>
+    </td>
+    <td align="center"></td> <!-- Empty space -->
+  </tr>
+</table>
 
 
 ## License
