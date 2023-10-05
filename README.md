@@ -1,7 +1,8 @@
 # SimuNEX
-A modular high-fidelity dynamic simulation framework.
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+[![Unity Version](https://img.shields.io/badge/Unity-2022.3.10f1-blue.svg)](https://unity.com/)
 
-Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+A modular high-fidelity dynamic simulation framework.
 
 SimuNEX © 2023 by [Lee Bissessar](https://github.com/leebissessar5), [Intelligent Systems Lab (ISL)](https://intelsyslab.com/) is licensed under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
