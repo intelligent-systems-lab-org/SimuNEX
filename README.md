@@ -1,4 +1,5 @@
-# SimuNEX
+![SimuNEX header image](docs/assets/SimuNEX.png)
+
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3.10f1-blue.svg)](https://unity.com/)
 
