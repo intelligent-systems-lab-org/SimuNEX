@@ -193,6 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226935558}
   - component: {fileID: 226935559}
+  - component: {fileID: 226935560}
   m_Layer: 0
   m_Name: Front Right
   m_TagString: Untagged
@@ -239,6 +240,21 @@ CapsuleCollider:
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &226935560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226935557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30fddf0a77945b4d86f56d35ae73c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinnerObject: {fileID: 0}
+  spinAxis: 0
+  _speed: 0
 --- !u!1 &244034798
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 581825618}
   - component: {fileID: 581825619}
+  - component: {fileID: 581825620}
   m_Layer: 0
   m_Name: Back Left
   m_TagString: Untagged
@@ -481,6 +498,21 @@ CapsuleCollider:
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &581825620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581825617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30fddf0a77945b4d86f56d35ae73c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinnerObject: {fileID: 0}
+  spinAxis: 0
+  _speed: 0
 --- !u!1 &1045187102
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1309764830}
   - component: {fileID: 1309764831}
+  - component: {fileID: 1309764832}
   m_Layer: 0
   m_Name: Front Left
   m_TagString: Untagged
@@ -572,6 +605,21 @@ CapsuleCollider:
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1309764832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309764829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30fddf0a77945b4d86f56d35ae73c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinnerObject: {fileID: 0}
+  spinAxis: 0
+  _speed: 0
 --- !u!1 &1379312312
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1379312313}
   - component: {fileID: 1379312314}
+  - component: {fileID: 1379312315}
   m_Layer: 0
   m_Name: Back Right
   m_TagString: Untagged
@@ -628,6 +677,21 @@ CapsuleCollider:
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1379312315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379312312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30fddf0a77945b4d86f56d35ae73c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinnerObject: {fileID: 0}
+  spinAxis: 0
+  _speed: 0
 --- !u!1 &1797216156
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +960,7 @@ GameObject:
   - component: {fileID: 4178696953798720225}
   - component: {fileID: 4178696953798720226}
   m_Layer: 0
-  m_Name: Mesh
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
