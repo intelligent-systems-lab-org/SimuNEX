@@ -1,4 +1,4 @@
-name: Release using conventional commits (test branch)
+name: Release using conventional commits (main branch)
 
 on:
   push:
