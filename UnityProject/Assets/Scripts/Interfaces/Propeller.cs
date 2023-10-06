@@ -2,11 +2,29 @@ using UnityEngine;
 
 public class Propeller : MonoBehaviour
 {
+    /// <summary>
+    /// Radians to Degrees conversion factor.
+    /// </summary>
     private float rad2deg = Mathf.Rad2Deg;
+
+    /// <summary>
+    /// Location of the propeller mesh.
+    /// </summary>
     public Transform spinnerObject;
+
+    /// <summary>
+    /// Propeller axis of rotation.
+    /// </summary>
     public SpinAxis spinAxis;
+
+    /// <summary>
+    /// Propeller speed value.
+    /// </summary>
     public float _speed = 0;
 
+    /// <summary>
+    /// Obtains the normal vector of rotation.
+    /// </summary>
     public Vector3 spinnerNormal
     {
         get
@@ -37,6 +55,9 @@ public class Propeller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Propeller mesh should be an immediate child of the GameObject this script would be attached to.
+    /// </summary>
     private void OnEnable()
     {
         spinnerObject = GetComponentsInChildren<Transform>()[1];
@@ -44,8 +65,9 @@ public class Propeller : MonoBehaviour
 
     private void Update()
     {
+        // Handle rotation animation
         spinnerObject.localRotation = Quaternion.Slerp(spinnerObject.localRotation,
-            Quaternion.Euler(spinnerObject.localRotation.eulerAngles + (rad2deg * spinnerNormal * _speed * Time.fixedDeltaTime)), 0.5f);
+            Quaternion.Euler(spinnerObject.localRotation.eulerAngles + (rad2deg * spinnerNormal * _speed * Time.deltaTime)), 0.5f);
     }
 }
 
