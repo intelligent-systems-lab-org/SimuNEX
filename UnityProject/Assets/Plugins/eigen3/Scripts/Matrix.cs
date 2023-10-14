@@ -1,47 +1,28 @@
 using System;
-using System.Runtime.InteropServices;
 
 public class Matrix : IDisposable
 {
     private IntPtr _matrixPtr;
 
-    [DllImport("EigenWrapper.dll")]
-    private static extern IntPtr CreateMatrix(int rows, int cols, float[] data);
-
-    [DllImport("EigenWrapper.dll")]
-    private static extern void DeleteMatrix(IntPtr matrixPtr);
-
-    [DllImport("EigenWrapper.dll")]
-    private static extern void MultiplyMatrices(IntPtr matrix1, IntPtr matrix2, float[] result);
-
-    [DllImport("EigenWrapper.dll")]
-    private static extern int GetRowCount(IntPtr matrixPtr);
-
-    [DllImport("EigenWrapper.dll")]
-    private static extern int GetColumnCount(IntPtr matrixPtr);
-
-    [DllImport("EigenWrapper.dll")]
-    private static extern float GetElement(IntPtr matrixPtr, int row, int col);
-
     public Matrix(int rows, int cols, float[] data)
     {
-        _matrixPtr = CreateMatrix(rows, cols, data);
+        _matrixPtr = Eigen3.CreateMatrix(rows, cols, data);
     }
 
     public Matrix Multiply(Matrix other)
     {
         float[] resultData = new float[RowCount * other.ColCount];
-        MultiplyMatrices(_matrixPtr, other._matrixPtr, resultData);
+        Eigen3.MultiplyMatrices(_matrixPtr, other._matrixPtr, resultData);
         return new Matrix(RowCount, other.ColCount, resultData);
     }
 
-    public int RowCount => GetRowCount(_matrixPtr);
-    public int ColCount => GetColumnCount(_matrixPtr);
-    public float this[int row, int col] => GetElement(_matrixPtr, row, col);
+    public int RowCount => Eigen3.GetRowCount(_matrixPtr);
+    public int ColCount => Eigen3.GetColumnCount(_matrixPtr);
+    public float this[int row, int col] => Eigen3.GetElement(_matrixPtr, row, col);
 
     public void Dispose()
     {
-        DeleteMatrix(_matrixPtr);
+        Eigen3.DeleteMatrix(_matrixPtr);
         _matrixPtr = IntPtr.Zero;
     }
 }
