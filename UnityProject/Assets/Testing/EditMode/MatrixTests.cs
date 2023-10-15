@@ -35,6 +35,45 @@ public class MatrixTests
     }
 
     [Test]
+    public void TestToArrayRowMajorOrder()
+    {
+        // Initialize a 2x2 matrix with row-major order data
+        var matrix = new Matrix(2, 2, new float[] { 1, 2, 3, 4 }, true);
+
+        // Convert the matrix to an array in row-major order
+        float[] rowMajorArray = matrix.ToArray(true);
+
+        // Expected row-major order array
+        float[] expectedRowMajor = new float[] { 1, 2, 3, 4 };
+
+        // Assert that the array matches the expected values
+        for (int i = 0; i < expectedRowMajor.Length; i++)
+        {
+            Assert.AreEqual(expectedRowMajor[i], rowMajorArray[i]);
+        }
+    }
+
+    [Test]
+    public void TestToArrayColumnMajorOrder()
+    {
+        // Initialize a 2x2 matrix with row-major order data (just for variety)
+        var matrix = new Matrix(2, 2, new float[] { 1, 2, 3, 4 }, true);
+
+        // Convert the matrix to an array in column-major order
+        float[] colMajorArray = matrix.ToArray();
+
+        // Expected column-major order array
+        float[] expectedColMajor = new float[] { 1, 3, 2, 4 };
+
+        // Assert that the array matches the expected values
+        for (int i = 0; i < expectedColMajor.Length; i++)
+        {
+            Assert.AreEqual(expectedColMajor[i], colMajorArray[i]);
+        }
+    }
+
+
+    [Test]
     public void TestMatrixMultiply()
     {
         var matrixA = new Matrix(2, 3, new float[] { 2, 4, 3, 5, 6, 1 });
