@@ -19,6 +19,22 @@ public class MatrixTests
     }
 
     [Test]
+    public void TestMatrixInitializationRowMajorOrder()
+    {
+        var matrix = new Matrix(2, 2, new float[] { 1, 2, 3, 4 }, true);
+
+        // test counts
+        Assert.AreEqual(2, matrix.RowCount);
+        Assert.AreEqual(2, matrix.ColCount);
+
+        // test positions
+        Assert.AreEqual(1, matrix[0, 0]);
+        Assert.AreEqual(2, matrix[0, 1]);
+        Assert.AreEqual(3, matrix[1, 0]);
+        Assert.AreEqual(4, matrix[1, 1]);
+    }
+
+    [Test]
     public void TestMatrixMultiply()
     {
         var matrixA = new Matrix(2, 3, new float[] { 2, 4, 3, 5, 6, 1 });
