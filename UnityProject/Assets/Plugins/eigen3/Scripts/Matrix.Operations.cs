@@ -13,6 +13,36 @@ public partial class Matrix
     }
 
     /// <summary>
+    /// Multiplies the matrix by a scalar.
+    /// </summary>
+    /// <param name="scalar">The scalar to multiply by.</param>
+    /// <returns>Matrix product of this * scalar.</returns>
+    public Matrix Multiply(float scalar)
+    {
+        int rows = RowCount;
+        int cols = ColCount;
+        float[] resultData = new float[rows * cols];
+        Eigen3.MultiplyByScalar(_matrixPtr, scalar, resultData);
+        return new Matrix(rows, cols, resultData);
+    }
+
+    /// <summary>
+    /// Multiply by a scalar.
+    /// </summary>
+    /// <param name="matrix">The matrix.</param>
+    /// <param name="scalar">The scalar to multiply by.</param>
+    /// <returns>Matrix product of matrix * scalar.</returns>
+    public static Matrix operator *(Matrix matrix, float scalar) => matrix.Multiply(scalar);
+
+    /// <summary>
+    /// Multiply scalar by matrix.
+    /// </summary>
+    /// <param name="scalar">The scalar to multiply by.</param>
+    /// <param name="matrix">The matrix.</param>
+    /// <returns>Matrix product of scalar * matrix.</returns>
+    public static Matrix operator *(float scalar, Matrix matrix) => matrix.Multiply(scalar);
+
+    /// <summary>
     /// Add the matrix by other.
     /// </summary>
     /// <param name="other">The right operand.</param>
@@ -78,5 +108,4 @@ public partial class Matrix
     /// <param name="other">Another matrix to compare with.</param>
     /// <returns>true if the matrices are not equal; otherwise, false.</returns>
     public bool IsNotEqual(Matrix other) => !IsEqual(other);
-
 }
