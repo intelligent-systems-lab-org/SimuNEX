@@ -64,4 +64,19 @@ public partial class Matrix
     /// Transposes the matrix in place.
     /// </summary>
     public void Transpose() => Eigen3.TransposeInPlace(_matrixPtr);
+
+    /// <summary>
+    /// Determines if the current matrix is equal to the provided matrix.
+    /// </summary>
+    /// <param name="other">Another matrix to compare with.</param>
+    /// <returns>true if the matrices are equal; otherwise, false.</returns>
+    public bool IsEqual(Matrix other) => Eigen3.AreMatricesEqual(_matrixPtr, other._matrixPtr);
+
+    /// <summary>
+    /// Determines if the current matrix is not equal to the provided matrix.
+    /// </summary>
+    /// <param name="other">Another matrix to compare with.</param>
+    /// <returns>true if the matrices are not equal; otherwise, false.</returns>
+    public bool IsNotEqual(Matrix other) => !IsEqual(other);
+
 }

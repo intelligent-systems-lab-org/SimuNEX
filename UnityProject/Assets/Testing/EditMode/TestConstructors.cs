@@ -41,10 +41,10 @@ namespace Eigen3MatrixTests
         {
             // Initialize a 3x3 matrix using a 2D array
             float[,] initData = {
-        { 1, 2, 3 },
-        { 4, 5, 6 },
-        { 7, 8, 9 }
-    };
+                { 1, 2, 3 },
+                { 4, 5, 6 },
+                { 7, 8, 9 }
+            };
             var matrix = new Matrix(initData);
 
             // Assert counts
@@ -68,9 +68,9 @@ namespace Eigen3MatrixTests
         {
             // Initialize a 2x3 matrix using a 2D array
             float[,] initData = {
-            { 1, 2, 3 },
-            { 4, 5, 6 }
-        };
+                { 1, 2, 3 },
+                { 4, 5, 6 }
+            };
             var matrix = new Matrix(initData);
 
             // Assert counts
@@ -116,15 +116,20 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(3, matrix.ColCount);
 
             // test positions
-            Assert.AreEqual(1, matrix[0, 0]);
-            Assert.AreEqual(0, matrix[0, 1]);
-            Assert.AreEqual(0, matrix[0, 2]);
-            Assert.AreEqual(0, matrix[1, 0]);
-            Assert.AreEqual(1, matrix[1, 1]);
-            Assert.AreEqual(0, matrix[1, 2]);
-            Assert.AreEqual(0, matrix[2, 0]);
-            Assert.AreEqual(0, matrix[2, 1]);
-            Assert.AreEqual(1, matrix[2, 2]);
+            for (int i = 0; i < matrix.RowCount; ++i)
+            {
+                for (int j = 0; j < matrix.ColCount; ++j)
+                {
+                    if (i == j)
+                    {
+                        Assert.AreEqual(1, matrix[i, j]);
+                    }
+                    else
+                    {
+                        Assert.AreEqual(0, matrix[i, j]);
+                    }
+                }
+            }
         }
 
         [Test]

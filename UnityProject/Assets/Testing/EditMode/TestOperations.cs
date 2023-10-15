@@ -61,7 +61,7 @@ namespace Eigen3MatrixTests
         {
             var matrixA = new Matrix(new float[,] {
                 { 2, 4, 3 },
-                { 5, 6, 1}
+                { 5, 6, 1 }
             });
             var matrixB = new Matrix(new float[,] {
                 { 1, 2, 3 },
@@ -106,5 +106,66 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(6, matrix[2, 1]);
         }
 
+        [Test]
+        public void TestIsEqual_SameData_ReturnsTrue()
+        {
+            // Arrange
+            float[] data = { 1, 2, 3, 4 };
+            Matrix matrix1 = new Matrix(2, 2, data);
+            Matrix matrix2 = new Matrix(2, 2, data);
+
+            // Act
+            bool result = matrix1.IsEqual(matrix2);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void TestIsEqual_DifferentData_ReturnsFalse()
+        {
+            // Arrange
+            float[] data1 = { 1, 2, 3, 4 };
+            float[] data2 = { 5, 6, 7, 8 };
+            Matrix matrix1 = new Matrix(2, 2, data1);
+            Matrix matrix2 = new Matrix(2, 2, data2);
+
+            // Act
+            bool result = matrix1.IsEqual(matrix2);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void TestIsNotEqual_SameData_ReturnsFalse()
+        {
+            // Arrange
+            float[] data = { 1, 2, 3, 4 };
+            Matrix matrix1 = new Matrix(2, 2, data);
+            Matrix matrix2 = new Matrix(2, 2, data);
+
+            // Act
+            bool result = matrix1.IsNotEqual(matrix2);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void TestIsNotEqual_DifferentData_ReturnsTrue()
+        {
+            // Arrange
+            float[] data1 = { 1, 2, 3, 4 };
+            float[] data2 = { 5, 6, 7, 8 };
+            Matrix matrix1 = new Matrix(2, 2, data1);
+            Matrix matrix2 = new Matrix(2, 2, data2);
+
+            // Act
+            bool result = matrix1.IsNotEqual(matrix2);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
     }
 }
