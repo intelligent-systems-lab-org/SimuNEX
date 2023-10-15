@@ -3,7 +3,6 @@ using UnityEngine;
 /// <summary>
 /// Defines a force that can be applied to a RigidBody.
 /// </summary>
-[RequireComponent(typeof(RigidBody))]
 public abstract class Force : MonoBehaviour
 {
     protected RigidBody rb;
@@ -11,7 +10,14 @@ public abstract class Force : MonoBehaviour
     private void OnEnable()
     {
         rb = GetComponent<RigidBody>();
-        rb.AttachForce(this);
+        if (rb != null)
+        {
+            rb.AttachForce(this);
+        }
+        else
+        {
+            Debug.LogError("RigidBody component not found!", this);
+        }
     }
 
     private void OnDisable()

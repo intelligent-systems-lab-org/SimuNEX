@@ -4,10 +4,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class RigidBody : Dynamics
 {
+    /// <summary>
+    /// Handles physics simulation.
+    /// </summary>
     public Rigidbody body;
 
+    /// <summary>
+    /// Active forces that are attached to the <see cref="RigidBody"/>
+    /// </summary>
     private List<Force> forces = new();
+
+    /// <summary>
+    /// Accumulated forces in the current timestep.
+    /// </summary>
     private Vector3 _forces;
+
+    /// <summary>
+    /// Accumulated torques in the current timestep.
+    /// </summary>
     private Vector3 _torques;
 
     private void Start()
@@ -15,19 +29,21 @@ public class RigidBody : Dynamics
         Initialize();
     }
 
-    private void Update()
-    {
-    }
-
     private void FixedUpdate()
     {
-        foreach (Force force in forces)
+        if (forces != null && forces.Count > 0)
         {
-            force.ApplyForce();
+            foreach (Force force in forces)
+            {
+                force.ApplyForce();
+            }
         }
         Step();
     }
 
+    /// <summary>
+    /// Configures the system at the start of the physics simulation.
+    /// </summary>
     protected void Initialize()
     {
         _forces = Vector3.zero;
@@ -35,16 +51,29 @@ public class RigidBody : Dynamics
         body = GetComponent<Rigidbody>();
     }
 
+    /// <summary>
+    /// Attaches a force to the <see cref="RigidBody"/>.
+    /// </summary>
+    /// <param name="force">Force to be attached.</param>
     public void AttachForce(Force force)
     {
         forces.Add(force);
     }
 
+    /// <summary>
+    /// Removes a force to the <see cref="RigidBody"/>.
+    /// </summary>
+    /// <param name="force">Force to be removed.</param>
     public void RemoveForce(Force force)
     {
         forces.Remove(force);
     }
 
+    /// <summary>
+    /// Adds translational force to the current timestep.
+    /// </summary>
+    /// <param name="f">3D force to be applied.</param>
+    /// <param name="CF">Coordinate frame in which the force acts.</param>
     public void AddLinearForce(Vector3 f, CoordinateFrame CF = CoordinateFrame.BCF)
     {
         _forces += CF switch
@@ -54,6 +83,11 @@ public class RigidBody : Dynamics
         };
     }
 
+    /// <summary>
+    /// Adds torque to the current timestep.
+    /// </summary>
+    /// <param name="tau">3D torque to be applied.</param>
+    /// <param name="CF">Coordinate frame in which the torque acts.</param>
     public void AddTorque(Vector3 tau, CoordinateFrame CF = CoordinateFrame.BCF)
     {
         _torques += CF switch
@@ -63,12 +97,24 @@ public class RigidBody : Dynamics
         };
     }
 
+    /// <summary>
+    /// Adds force (linear and angular) to the current timestep.
+    /// </summary>
+    /// <param name="f">3D force to be applied.</param>
+    /// <param name="tau">3D torque to be applied.</param>
+    /// <param name="CF">Coordinate frame in which the forces acts.</param>
     public void AddForce(Vector3 f, Vector3 tau, CoordinateFrame CF = CoordinateFrame.BCF)
     {
         AddLinearForce(f, CF);
         AddTorque(tau, CF);
     }
 
+    /// <summary>
+    /// Applies a linear force at a position.
+    /// </summary>
+    /// <param name="f">The 3D force to be applied.</param>
+    /// <param name="pos">The position at which the force acts.</param>
+    /// <param name="CF">Coordinate frame in which the force acts.</param>
     public void AddLinearForceAtPosition(Vector3 f, Vector3 pos, CoordinateFrame CF = CoordinateFrame.BCF)
     {
         AddLinearForce(f, CF);
@@ -79,6 +125,8 @@ public class RigidBody : Dynamics
     {
         body.AddForce(_forces);
         body.AddTorque(_torques);
+
+        // Reset forces before the next timestep
         _forces = Vector3.zero;
         _torques = Vector3.zero;
     }

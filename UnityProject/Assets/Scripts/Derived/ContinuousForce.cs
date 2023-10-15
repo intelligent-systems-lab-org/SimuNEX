@@ -5,11 +5,18 @@ using UnityEngine;
 /// </summary>
 public class ContinuousForce : Force
 {
+    /// <summary>
+    /// 3D force to apply.
+    /// </summary>
     [SerializeField] public Vector3 forces;
+
+    /// <summary>
+    /// 3D torque to apply.
+    /// </summary>
     [SerializeField] public Vector3 torques;
 
     /// <summary>
-    /// Reference frame to apply the force
+    /// Reference frame to apply the force.
     /// </summary>
     public CoordinateFrame referenceFrame;
 
