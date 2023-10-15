@@ -49,5 +49,65 @@ namespace Eigen3MatrixTests
             var expectedString = "1\t2\t3\n4\t5\t6\n7\t8\t9";
             Assert.AreEqual(expectedString, matrix.ToString());
         }
+
+        [Test]
+        public void TestMatrixTo2DArray_3x3()
+        {
+            var matrix = new Matrix(3, 3, new float[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            float[,] result = matrix.To2DArray();
+
+            // Check dimensions
+            Assert.AreEqual(3, result.GetLength(0));
+            Assert.AreEqual(3, result.GetLength(1));
+
+            // Check data
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Assert.AreEqual(matrix[i, j], result[i, j]);
+                }
+            }
+        }
+
+        [Test]
+        public void TestMatrixTo2DArray_2x3()
+        {
+            var matrix = new Matrix(2, 3, new float[] { 1, 2, 3, 4, 5, 6 });
+            float[,] result = matrix.To2DArray();
+
+            // Check dimensions
+            Assert.AreEqual(2, result.GetLength(0));
+            Assert.AreEqual(3, result.GetLength(1));
+
+            // Check data
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Assert.AreEqual(matrix[i, j], result[i, j]);
+                }
+            }
+        }
+
+        [Test]
+        public void TestMatrixTo2DArray_3x2()
+        {
+            var matrix = new Matrix(3, 2, new float[] { 1, 2, 3, 4, 5, 6 });
+            float[,] result = matrix.To2DArray();
+
+            // Check dimensions
+            Assert.AreEqual(3, result.GetLength(0));
+            Assert.AreEqual(2, result.GetLength(1));
+
+            // Check data
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    Assert.AreEqual(matrix[i, j], result[i, j]);
+                }
+            }
+        }
     }
 }

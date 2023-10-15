@@ -56,4 +56,21 @@ public partial class Matrix
         }
         return sb.ToString();
     }
+
+    /// <summary>
+    /// Converts the matrix to a 2D array.
+    /// </summary>
+    /// <returns>A 2D array representation of the matrix.</returns>
+    public float[,] To2DArray()
+    {
+        float[,] data = new float[RowCount, ColCount];
+        for (int i = 0; i < RowCount; i++)
+        {
+            for (int j = 0; j < ColCount; j++)
+            {
+                data[i, j] = this[i, j];
+            }
+        }
+        return data;
+    }
 }
