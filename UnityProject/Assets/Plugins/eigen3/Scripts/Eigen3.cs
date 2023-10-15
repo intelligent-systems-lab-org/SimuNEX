@@ -39,7 +39,7 @@ internal static class Eigen3
     public static extern void TransposeInPlace(IntPtr matrixPtr);
 
     [DllImport(EigenWrapperDll)]
-    public static extern void CreateIdentityMatrix(int size);
+    public static extern IntPtr CreateIdentityMatrix(int size);
 
     [DllImport(EigenWrapperDll)]
     public static extern void AreMatricesEqual(IntPtr matrixPtr1, IntPtr matrixPtr2);

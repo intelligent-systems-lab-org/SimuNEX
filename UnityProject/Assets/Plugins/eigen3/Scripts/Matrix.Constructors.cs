@@ -8,6 +8,15 @@ public partial class Matrix : IDisposable
     private IntPtr _matrixPtr;
 
     /// <summary>
+    /// Private constructor to initialize matrix from a pointer.
+    /// </summary>
+    /// <param name="ptr">Pointer to the Eigen matrix.</param>
+    private Matrix(IntPtr ptr)
+    {
+        _matrixPtr = ptr;
+    }
+
+    /// <summary>
     /// Creates an Eigen matrix from a 1D array.
     /// </summary>
     /// <param name="rows">Number of rows.</param>
@@ -55,6 +64,15 @@ public partial class Matrix : IDisposable
         _matrixPtr = Eigen3.CreateMatrix(rows, cols, data);
     }
 
+    /// <summary>
+    /// Creates an identity matrix of given size.
+    /// </summary>
+    /// <param name="size">Size of the matrix (number of rows/columns).</param>
+    public static Matrix Eye(int size)
+    {
+        var ptr = Eigen3.CreateIdentityMatrix(size);
+        return new Matrix(ptr);
+    }
 
     /// <summary>
     /// Releases the unmanaged resources used by the Matrix and optionally releases the managed resources.

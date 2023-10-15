@@ -107,6 +107,27 @@ namespace Eigen3MatrixTests
         }
 
         [Test]
+        public void TestIdentity()
+        {
+            var matrix = Matrix.Eye(3);
+
+            // test counts
+            Assert.AreEqual(3, matrix.RowCount);
+            Assert.AreEqual(3, matrix.ColCount);
+
+            // test positions
+            Assert.AreEqual(1, matrix[0, 0]);
+            Assert.AreEqual(0, matrix[0, 1]);
+            Assert.AreEqual(0, matrix[0, 2]);
+            Assert.AreEqual(0, matrix[1, 0]);
+            Assert.AreEqual(1, matrix[1, 1]);
+            Assert.AreEqual(0, matrix[1, 2]);
+            Assert.AreEqual(0, matrix[2, 0]);
+            Assert.AreEqual(0, matrix[2, 1]);
+            Assert.AreEqual(1, matrix[2, 2]);
+        }
+
+        [Test]
         public void TestMatrixDispose()
         {
             var matrix = new Matrix(2, 2, new float[] { 1, 2, 3, 4 });
