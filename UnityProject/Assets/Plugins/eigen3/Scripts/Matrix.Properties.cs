@@ -30,7 +30,7 @@ public partial class Matrix
         {
             float[] resultData = new float[RowCount * ColCount];
             Eigen3.Transpose(_matrixPtr, resultData);
-            return new Matrix(RowCount, ColCount, resultData);
+            return new Matrix(ColCount, RowCount, resultData);
         }
     }
 }
