@@ -118,7 +118,7 @@ public class RigidBody : Dynamics
     public void AddLinearForceAtPosition(Vector3 f, Vector3 pos, CoordinateFrame CF = CoordinateFrame.BCF)
     {
         AddLinearForce(f, CF);
-        AddTorque(Vector3.Cross(pos, f), CF);
+        AddTorque(Vector3.Cross(f, pos), CF);
     }
 
     protected override void Step()
