@@ -25,5 +25,26 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(3, transposedMatrix[2, 0]);
             Assert.AreEqual(6, transposedMatrix[2, 1]);
         }
+
+        [Test]
+        public void TestMatrixInverseProperty()
+        {
+            var originalMatrix = new Matrix(new float[,] {
+                { 1, 2 },
+                { 3, 4 }
+            });
+            var inverse = originalMatrix.Inverse;
+
+            // test counts
+            Assert.AreEqual(2, inverse.RowCount);
+            Assert.AreEqual(2, inverse.ColCount);
+
+            // test positions
+            float tol = 1e-5f;
+            Assert.AreEqual(-2.0f, inverse[0, 0], tol);
+            Assert.AreEqual(1.0f, inverse[0, 1], tol);
+            Assert.AreEqual(1.5f, inverse[1, 0], tol);
+            Assert.AreEqual(-0.5f, inverse[1, 1], tol);
+        }
     }
 }

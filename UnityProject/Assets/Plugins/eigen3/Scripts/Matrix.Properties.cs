@@ -33,4 +33,17 @@ public partial class Matrix
             return new Matrix(ColCount, RowCount, resultData);
         }
     }
+
+    /// <summary>
+    /// Returns the inverse of the matrix.
+    /// </summary>
+    public Matrix Inverse
+    {
+        get
+        {
+            float[] resultData = new float[RowCount * ColCount];
+            Eigen3.GetInverse(_matrixPtr, resultData);
+            return new Matrix(ColCount, RowCount, resultData);
+        }
+    }
 }
