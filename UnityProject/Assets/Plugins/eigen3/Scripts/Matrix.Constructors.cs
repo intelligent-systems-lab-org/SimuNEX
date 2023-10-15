@@ -1,5 +1,8 @@
 using System;
 
+/// <summary>
+/// Matrix class that utilizes the eigen3 C++ library.
+/// </summary>
 public partial class Matrix : IDisposable
 {
     /// <summary>

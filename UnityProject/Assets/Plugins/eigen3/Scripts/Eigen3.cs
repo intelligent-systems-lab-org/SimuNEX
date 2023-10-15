@@ -1,6 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
 
+/// <summary>
+/// eigen3 wrapper functions.
+/// </summary>
 internal static class Eigen3
 {
     private const string EigenWrapperDll = "EigenWrapper.dll";
