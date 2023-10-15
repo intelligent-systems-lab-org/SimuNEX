@@ -12,6 +12,12 @@ internal static class Eigen3
     public static extern void DeleteMatrix(IntPtr matrixPtr);
 
     [DllImport(EigenWrapperDll)]
+    public static extern void AddMatrices(IntPtr matrix1, IntPtr matrix2, float[] result);
+
+    [DllImport(EigenWrapperDll)]
+    public static extern void SubtractMatrices(IntPtr matrix1, IntPtr matrix2, float[] result);
+
+    [DllImport(EigenWrapperDll)]
     public static extern void MultiplyMatrices(IntPtr matrix1, IntPtr matrix2, float[] result);
 
     [DllImport(EigenWrapperDll)]
@@ -31,4 +37,13 @@ internal static class Eigen3
 
     [DllImport(EigenWrapperDll)]
     public static extern void TransposeInPlace(IntPtr matrixPtr);
+
+    [DllImport(EigenWrapperDll)]
+    public static extern void CreateIdentityMatrix(int size);
+
+    [DllImport(EigenWrapperDll)]
+    public static extern void AreMatricesEqual(IntPtr matrixPtr1, IntPtr matrixPtr2);
+
+    [DllImport(EigenWrapperDll)]
+    public static extern void GetInverse(IntPtr matrixPtr, float[] result);
 }

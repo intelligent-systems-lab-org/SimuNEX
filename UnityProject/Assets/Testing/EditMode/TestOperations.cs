@@ -5,18 +5,69 @@ namespace Eigen3MatrixTests
     public class TestOperations
     {
         [Test]
+        public void TestMatrixAdd()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4 },
+                { 5, 6 },
+            }
+            );
+            var matrixB = new Matrix(new float[,] {
+                { 1, 2 },
+                { 4, 5 },
+            });
+
+            var matrixC = matrixA.Add(matrixB);
+
+            // test counts
+            Assert.AreEqual(2, matrixC.RowCount);
+            Assert.AreEqual(2, matrixC.ColCount);
+
+            // test positions
+            Assert.AreEqual(2 + 1, matrixC[0, 0]);
+            Assert.AreEqual(4 + 2, matrixC[0, 1]);
+            Assert.AreEqual(5 + 4, matrixC[1, 0]);
+            Assert.AreEqual(6 + 5, matrixC[1, 1]);
+        }
+
+        [Test]
+        public void TestMatrixSubtract()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4 },
+                { 5, 6 },
+            }
+            );
+            var matrixB = new Matrix(new float[,] {
+                { 1, 2 },
+                { 4, 5 },
+            });
+
+            var matrixC = matrixA.Subtract(matrixB);
+
+            // test counts
+            Assert.AreEqual(2, matrixC.RowCount);
+            Assert.AreEqual(2, matrixC.ColCount);
+
+            // test positions
+            Assert.AreEqual(2 - 1, matrixC[0, 0]);
+            Assert.AreEqual(4 - 2, matrixC[0, 1]);
+            Assert.AreEqual(5 - 4, matrixC[1, 0]);
+            Assert.AreEqual(6 - 5, matrixC[1, 1]);
+        }
+
+        [Test]
         public void TestMatrixMultiply()
         {
             var matrixA = new Matrix(new float[,] {
-            { 2, 4, 3 },
-            { 5, 6, 1}
-        }
-            );
+                { 2, 4, 3 },
+                { 5, 6, 1}
+            });
             var matrixB = new Matrix(new float[,] {
-            { 1, 2, 3 },
-            { 4, 5, 6 },
-            { 7, 8, 9 }
-        });
+                { 1, 2, 3 },
+                { 4, 5, 6 },
+                { 7, 8, 9 }
+            });
 
             var matrixC = matrixA.Multiply(matrixB);
 
@@ -36,9 +87,9 @@ namespace Eigen3MatrixTests
         [Test]
         public void TestMatrixTranspose()
         {
-            var matrix = new Matrix(new float[,] { 
-                { 1, 2, 3 }, 
-                { 4, 5, 6 } 
+            var matrix = new Matrix(new float[,] {
+                { 1, 2, 3 },
+                { 4, 5, 6 }
             });
             matrix.Transpose();
 
