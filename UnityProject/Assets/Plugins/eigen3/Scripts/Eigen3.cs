@@ -6,7 +6,7 @@ internal static class Eigen3
     private const string EigenWrapperDll = "EigenWrapper.dll";
 
     [DllImport(EigenWrapperDll)]
-    public static extern IntPtr CreateMatrix(int rows, int cols, float[] data, bool rowMajor);
+    public static extern IntPtr CreateMatrix(int rows, int cols, float[] data, bool rowMajor = false);
 
     [DllImport(EigenWrapperDll)]
     public static extern void DeleteMatrix(IntPtr matrixPtr);
