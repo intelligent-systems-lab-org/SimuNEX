@@ -104,9 +104,9 @@ public class MatrixTests
     {
         // Initialize a 2x3 matrix using a 2D array
         float[,] initData = {
-        { 1, 2, 3 },
-        { 4, 5, 6 }
-    };
+            { 1, 2, 3 },
+            { 4, 5, 6 }
+        };
         var matrix = new Matrix(initData);
 
         // Assert counts
@@ -125,8 +125,16 @@ public class MatrixTests
     [Test]
     public void TestMatrixMultiply()
     {
-        var matrixA = new Matrix(2, 3, new float[] { 2, 4, 3, 5, 6, 1 });
-        var matrixB = new Matrix(3, 3, new float[] { 1, 4, 7, 2, 5, 8, 3, 6, 9 });
+        var matrixA = new Matrix(new float[,] {
+            { 2, 4, 3 },
+            { 5, 6, 1}
+        }
+        );
+        var matrixB = new Matrix(new float[,] {
+            { 1, 2, 3 },
+            { 4, 5, 6 },
+            { 7, 8, 9 }
+        });
 
         var matrixC = matrixA.Multiply(matrixB);
 
@@ -135,19 +143,19 @@ public class MatrixTests
         Assert.AreEqual(3, matrixC.ColCount);
 
         // test positions
-        Assert.AreEqual(2 * 1 + 3 * 4 + 6 * 7, matrixC[0, 0]);
-        Assert.AreEqual(2 * 2 + 3 * 5 + 6 * 8, matrixC[0, 1]);
-        Assert.AreEqual(2 * 3 + 3 * 6 + 6 * 9, matrixC[0, 2]);
-        Assert.AreEqual(4 * 1 + 5 * 4 + 1 * 7, matrixC[1, 0]);
-        Assert.AreEqual(4 * 2 + 5 * 5 + 1 * 8, matrixC[1, 1]);
-        Assert.AreEqual(4 * 3 + 5 * 6 + 1 * 9, matrixC[1, 2]);
+        Assert.AreEqual(2 * 1 + 4 * 4 + 3 * 7, matrixC[0, 0]);
+        Assert.AreEqual(2 * 2 + 4 * 5 + 3 * 8, matrixC[0, 1]);
+        Assert.AreEqual(2 * 3 + 4 * 6 + 3 * 9, matrixC[0, 2]);
+        Assert.AreEqual(5 * 1 + 6 * 4 + 1 * 7, matrixC[1, 0]);
+        Assert.AreEqual(5 * 2 + 6 * 5 + 1 * 8, matrixC[1, 1]);
+        Assert.AreEqual(5 * 3 + 6 * 6 + 1 * 9, matrixC[1, 2]);
     }
 
     [Test]
     public void TestMatrixToString()
     {
-        var matrix = new Matrix(2, 2, new float[] { 1, 2, 3, 4 });
-        var expectedString = "1\t3\n2\t4";
+        var matrix = new Matrix(3, 3, new float[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, true);
+        var expectedString = "1\t2\t3\n4\t5\t6\n7\t8\t9";
         Assert.AreEqual(expectedString, matrix.ToString());
     }
 
