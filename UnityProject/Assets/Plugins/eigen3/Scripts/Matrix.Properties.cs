@@ -20,4 +20,17 @@ public partial class Matrix
         get => Eigen3.GetElement(_matrixPtr, row, col);
         set => Eigen3.SetElement(_matrixPtr, row, col, value);
     }
+
+    /// <summary>
+    /// Returns the transposed matrix.
+    /// </summary>
+    public Matrix Transposed
+    {
+        get
+        {
+            float[] resultData = new float[RowCount * ColCount];
+            Eigen3.Transpose(_matrixPtr, resultData);
+            return new Matrix(RowCount, ColCount, resultData);
+        }
+    }
 }

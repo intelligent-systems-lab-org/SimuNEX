@@ -43,6 +43,20 @@ public partial class Matrix : IDisposable
     }
 
     /// <summary>
+    /// Copy constructor for Matrix.
+    /// </summary>
+    /// <param name="other">Another matrix to copy from.</param>
+    public Matrix(Matrix other)
+    {
+        int rows = other.RowCount;
+        int cols = other.ColCount;
+        float[] data = other.ToArray();
+
+        _matrixPtr = Eigen3.CreateMatrix(rows, cols, data);
+    }
+
+
+    /// <summary>
     /// Releases the unmanaged resources used by the Matrix and optionally releases the managed resources.
     /// </summary>
     public void Dispose()

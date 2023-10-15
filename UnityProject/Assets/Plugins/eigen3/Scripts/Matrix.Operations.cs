@@ -21,19 +21,6 @@ public partial class Matrix
     public static Matrix operator *(Matrix left, Matrix right) => left.Multiply(right);
 
     /// <summary>
-    /// Returns the transposed matrix.
-    /// </summary>
-    public Matrix Transposed
-    {
-        get
-        {
-            float[] resultData = new float[RowCount * ColCount];
-            Eigen3.Transpose(_matrixPtr, resultData);
-            return new Matrix(RowCount, ColCount, resultData);
-        }
-    }
-
-    /// <summary>
     /// Transposes the matrix in place.
     /// </summary>
     public void Transpose() => Eigen3.TransposeInPlace(_matrixPtr);
