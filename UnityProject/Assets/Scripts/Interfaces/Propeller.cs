@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class Propeller : MotorLoad
+public abstract class Propeller : MotorLoad
 {
-    /// <summary>
-    /// Radians to Degrees conversion factor.
-    /// </summary>
-    private float rad2deg = Mathf.Rad2Deg;
-
     private void Update()
     {
+        // Scale Time.deltaTime based on _speed
+        float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
+
         // Handle rotation animation
-        spinnerObject.localRotation = Quaternion.Slerp(spinnerObject.localRotation,
-            Quaternion.Euler(spinnerObject.localRotation.eulerAngles + (rad2deg * spinnerNormal * _speed * Time.deltaTime)), 0.5f);
+        Quaternion increment = Quaternion.Euler(rad2deg * normal * _speed * scaledDeltaTime);
+        spinnerObject.localRotation *= increment;
     }
+
 }
