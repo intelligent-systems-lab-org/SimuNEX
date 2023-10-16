@@ -38,12 +38,12 @@ public abstract class MotorLoad : MonoBehaviour
     /// </summary>
     public RigidBody rb;
 
-    protected abstract void Initialize(RigidBody rb);
+    protected abstract void Initialize();
 
     public void Activate(Func<float> motorFunction)
     {
         this.motorFunction = motorFunction;
-        Initialize(rb);
+        Initialize();
         rb.AttachForce(force);
     }
 

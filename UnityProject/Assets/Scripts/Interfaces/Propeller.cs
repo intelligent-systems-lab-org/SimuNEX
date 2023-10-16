@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Propeller : MotorLoad
@@ -8,7 +9,7 @@ public abstract class Propeller : MotorLoad
     /// <param name="speed">Current propeller speed.</param>
     /// <param name="parameters">Parameters specific to the propeller.</param>
     /// <returns>An array of float values where the first element is force and the second is torque.</returns>
-    protected delegate float[] PropellerFunction(float speed, float[] parameters);
+    public delegate float[] PropellerFunction(Func<float> speed, Func<float>[] parameters);
 
     private void Update()
     {
