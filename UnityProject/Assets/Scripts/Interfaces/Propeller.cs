@@ -15,7 +15,6 @@ public abstract class Propeller : MotorLoad
         Quaternion increment = Quaternion.Euler(rad2deg * spinnerNormal * _speed * scaledDeltaTime);
         spinnerObject.localRotation *= increment;
     }
-
 }
 
 /// <summary>
