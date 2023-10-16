@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Generalizable class for motor loads such as <see cref="Propeller"/>.
+/// </summary>
 public abstract class MotorLoad : MonoBehaviour
 {
     /// <summary>
@@ -38,8 +41,15 @@ public abstract class MotorLoad : MonoBehaviour
     /// </summary>
     public RigidBody rb;
 
+    /// <summary>
+    /// Set up forces, properties, etc. for simulation.
+    /// </summary>
     protected abstract void Initialize();
 
+    /// <summary>
+    /// Attaches a <see cref="Force"/> to the <see cref="RigidBody"/>.
+    /// </summary>
+    /// <param name="motorFunction"></param>
     public void Activate(Func<float> motorFunction)
     {
         this.motorFunction = motorFunction;
@@ -47,6 +57,9 @@ public abstract class MotorLoad : MonoBehaviour
         rb.AttachForce(force);
     }
 
+    /// <summary>
+    /// Detaches associated <see cref="Force"/> from the <see cref="RigidBody"/>.
+    /// </summary>
     public void Deactivate()
     {
         motorFunction = null;
@@ -57,6 +70,11 @@ public abstract class MotorLoad : MonoBehaviour
     {
         FindSpinnerTransforms();
         Activate(motorFunction);
+    }
+
+    private void OnDisable()
+    {
+        Deactivate();
     }
 
     /// <summary>

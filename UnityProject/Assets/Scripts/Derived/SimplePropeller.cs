@@ -13,31 +13,30 @@ public class SimplePropeller : Propeller
     {
         force = new SimplePropellerForce(this);
     }
+}
 
-    public class SimplePropellerForce : Force
+/// <summary>
+/// Implements the PropellerFunction for <see cref="SimplePropeller"/>
+/// </summary>
+public class SimplePropellerForce : PropellerForce
+{
+    /// <summary>
+    /// Set up propeller specific parameters.
+    /// </summary>
+    /// <param name="propeller"><see cref="SimplePropeller"/> object that the force is being applied to.</param>
+    public SimplePropellerForce(SimplePropeller propeller) : base(propeller)
     {
-        Func<float> thrustCoefficient;
-        Func<float> torqueCoefficient;
-        Func<Vector3> normal;
-        Func<float> propellerSpeed;
-        Func<Transform> transformCallback;
-
-        public SimplePropellerForce(SimplePropeller propeller)
+        parameters = new Func<float>[2]
         {
-            normal = () => propeller.normal;
-            rb = propeller.rb;
-            transformCallback = () => propeller.transform;
-            thrustCoefficient = () => propeller.thrustCoefficient;
-            torqueCoefficient = () => propeller.torqueCoefficient;
-            propellerSpeed = () => propeller.motorOutput;
-        }
+                () => propeller.thrustCoefficient,
+                () => propeller.torqueCoefficient
+        };
+    }
 
-        public override void ApplyForce()
-        {
-            float speed = propellerSpeed();
-            Transform transform = transformCallback();
-            rb.AddLinearForceAtPosition(normal() * thrustCoefficient() * speed * speed, transform.position);
-            rb.AddTorque(normal() * torqueCoefficient() * Mathf.Abs(speed) * speed);
-        }
+    public override float[] PropellerFunction(Func<float> speed, Func<float>[] parameters)
+    {
+        float thrust = parameters[0]() * speed() * speed();
+        float torque = parameters[1]() * speed() * Mathf.Abs(speed());
+        return new float[] { thrust, torque };
     }
 }
