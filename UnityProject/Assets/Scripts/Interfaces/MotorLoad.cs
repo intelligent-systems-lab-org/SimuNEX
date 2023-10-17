@@ -100,8 +100,12 @@ public abstract class MotorLoad : MonoBehaviour
     {
         get
         {
+            if (motorFunction != null)
+            {
+                _speed = motorFunction();
+            }
             // Use input speed if motor is not connected
-            return motorFunction == null ? _speed : motorFunction();
+            return _speed;
         }
     }
 
