@@ -1,0 +1,16 @@
+{
+    "name": "SimuNEX",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e69e5b0eedcadc743a87e1fc2c3972ed"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

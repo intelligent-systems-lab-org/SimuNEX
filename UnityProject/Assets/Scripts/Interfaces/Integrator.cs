@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -6,9 +7,25 @@ using UnityEngine;
 public abstract class Integrator
 {
     /// <summary>
-    /// Step size.
+    /// The step size. Defaults to <see cref="Time.fixedDeltaTime"/>.
     /// </summary>
     protected float h = Time.fixedDeltaTime;
+
+    /// <summary>
+    /// The step size for numerical integration.
+    /// </summary>
+    public float StepSize
+    {
+        get { return h; }
+        set
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentException("Step size must be positive");
+            }
+            h = value;
+        }
+    }
 
     /// <summary>
     /// Numerically integrates the <see cref="StateSpace.Derivatives(Matrix, Matrix)"/> function.
@@ -20,7 +37,7 @@ public abstract class Integrator
 /// <summary>
 /// Contains <see cref="Integrator"/> functions.
 /// </summary>
-internal static class Integrators
+public static class Integrators
 {
     /// <summary>
     /// Implements the forward Euler method.
@@ -57,7 +74,6 @@ internal static class Integrators
             Matrix k2 = h * ss.Derivatives(ss.states + 0.5f * k1, ss.inputs);
             Matrix k3 = h * ss.Derivatives(ss.states + 0.5f * k2, ss.inputs);
             Matrix k4 = h * ss.Derivatives(ss.states + k3, ss.inputs);
-
             ss.states += (1f / 6f) * (k1 + 2f * k2 + 2f * k3 + k4);
         }
     }
