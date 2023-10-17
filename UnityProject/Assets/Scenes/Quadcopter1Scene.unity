@@ -217,6 +217,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &338259067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4399440864242875326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorLoad: {fileID: 0}
+  voltage: 131
+  timeConstant: 0.2
+  DCGain: 1
 --- !u!1 &398337935
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +325,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &603227612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4399440864242875324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorLoad: {fileID: 0}
+  voltage: -131
+  timeConstant: 0.2
+  DCGain: 1
 --- !u!1 &1797216156
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +495,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4611565566311275956, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006704097243447935, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067777713250505834, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639197954146903318, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: m_Name
       value: Quadcopter
@@ -470,8 +518,72 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2077389215443267492, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 338259067}
+    - targetCorrespondingSourceObject: {fileID: 4223507230879152533, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4399440864242875333}
+    - targetCorrespondingSourceObject: {fileID: 5758165993973612182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 603227612}
+    - targetCorrespondingSourceObject: {fileID: 2561734333488696745, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4399440864242875330}
   m_SourcePrefab: {fileID: 100100000, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+--- !u!1 &4399440864242875323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2561734333488696745, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+  m_PrefabInstance: {fileID: 4399440864242875322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4399440864242875324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5758165993973612182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+  m_PrefabInstance: {fileID: 4399440864242875322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4399440864242875325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4223507230879152533, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+  m_PrefabInstance: {fileID: 4399440864242875322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4399440864242875326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2077389215443267492, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+  m_PrefabInstance: {fileID: 4399440864242875322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4399440864242875330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4399440864242875323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorLoad: {fileID: 0}
+  voltage: 131
+  timeConstant: 0.2
+  DCGain: 1
+--- !u!114 &4399440864242875333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4399440864242875325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorLoad: {fileID: 0}
+  voltage: -131
+  timeConstant: 0.2
+  DCGain: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
