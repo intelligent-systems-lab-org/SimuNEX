@@ -5,8 +5,18 @@ using static StateSpace;
 
 namespace IntegratorTests
 {
+    /// <summary>
+    /// Provides utility functions and delegates for integration tests related to <see cref="StateSpace"/> simulations.
+    /// </summary>
     public class Helpers
     {
+        /// <summary>
+        /// Creates a <see cref="StateSpace"/> instance with the specified parameters.
+        /// </summary>
+        /// <param name="derivativeFunction">The derivative function to be used in the StateSpace.</param>
+        /// <param name="initialConditions">The initial conditions as a matrix.</param>
+        /// <param name="integrator">The integrator to be used in the StateSpace.</param>
+        /// <returns>A <see cref="StateSpace"/> instance.</returns>
         public StateSpace CreateStateSpace(DerivativeFunction derivativeFunction, Matrix initialConditions, Integrator integrator)
         {
             StateSpace ss = new StateSpace();
@@ -14,8 +24,22 @@ namespace IntegratorTests
             return ss;
         }
 
+        /// <summary>
+        /// Delegate for solution functions used in simulations.
+        /// </summary>
+        /// <param name="time">The current time of the simulation.</param>
+        /// <returns>The value of the solution function at the given time.</returns>
         public delegate float SolutionFunction(float time);
 
+        /// <summary>
+        /// Runs a simulation test for a given StateSpace, comparing the results against a solution function.
+        /// </summary>
+        /// <param name="ss">The StateSpace instance to be tested.</param>
+        /// <param name="stepSize">The step size for the simulation.</param>
+        /// <param name="maxSimulationTime">The maximum simulation time.</param>
+        /// <param name="solution">The solution function to compare against.</param>
+        /// <param name="log">Optional parameter to enable or disable logging.</param>
+        /// <param name="tolerance">Optional parameter to specify the acceptable difference between the solution and the simulation.</param>
         public void RunSimulationTest
         (
             StateSpace ss,
