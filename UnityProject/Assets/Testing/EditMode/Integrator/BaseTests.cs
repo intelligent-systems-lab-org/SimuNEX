@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace IntegratorTests
 {
-    public struct TestConfig
+    public class TestConfig
     {
         public float StepSize;
         public float MaxSimulationTime;
         public bool Log;
         public float Tolerance;
 
-        public TestConfig(float stepSize, float maxSimulationTime, bool log, float tolerance)
+        public TestConfig(float stepSize = 0.02f, float maxSimulationTime = 1f, bool log = false, float tolerance = 5e-2f)
         {
             StepSize = stepSize;
             MaxSimulationTime = maxSimulationTime;
