@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace IntegratorTests
 {
-    public class TestEuler
+    public class TestRK4
     {
         Helpers helpers = new();
 
@@ -14,7 +14,7 @@ namespace IntegratorTests
             (
                 (states, inputs) => states,
                 new Matrix(1, 1, new float[] { 1f }),
-                new Integrators.ForwardEuler()
+                new Integrators.RK4()
             );
             helpers.RunSimulationTest(ss, 1f, Mathf.Exp);
         }
@@ -26,7 +26,7 @@ namespace IntegratorTests
             (
                 (states, inputs) => new Matrix(1, 1, new float[] { 5f }),
                 new Matrix(1, 1, new float[] { 0f }),
-                new Integrators.ForwardEuler()
+                new Integrators.RK4()
             );
             helpers.RunSimulationTest(ss, 1f, (float time) => 5f * time);
         }
@@ -44,7 +44,7 @@ namespace IntegratorTests
                     return new Matrix(2, 1, new float[] { y2, -y1 });
                 },
                 new Matrix(2, 1, new float[] { 0f, 1f }),
-                new Integrators.ForwardEuler()
+                new Integrators.RK4()
             );
             helpers.RunSimulationTest(ss, 1f, Mathf.Sin);
         }
