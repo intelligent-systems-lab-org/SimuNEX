@@ -43,7 +43,6 @@ namespace IntegratorTests
         public void RunSimulationTest
         (
             StateSpace ss,
-            float stepSize,
             float maxSimulationTime,
             SolutionFunction solution,
             bool log = false,
@@ -53,17 +52,17 @@ namespace IntegratorTests
             float currentTime = 0f;
 
             // Calculate the number of decimal places to round to based on the stepSize
-            int decimalPlaces = Mathf.CeilToInt(-Mathf.Log10(stepSize));
+            int decimalPlaces = Mathf.CeilToInt(-Mathf.Log10(ss.integrator.StepSize));
 
             while (currentTime < maxSimulationTime)
             {
                 ss.Compute();
-                currentTime = (float)Math.Round(currentTime + stepSize, decimalPlaces);
+                currentTime = (float)Math.Round(currentTime + ss.integrator.StepSize, decimalPlaces);
 
                 float expected = solution(currentTime);
                 if (log)
                 {
-                    Debug.Log($"Using step size of {stepSize}, at current time {currentTime}, Expected: {expected}, Actual: {ss.states[0, 0]}");
+                    Debug.Log($"Using step size of {ss.integrator.StepSize}, at current time {currentTime}, Expected: {expected}, Actual: {ss.states[0, 0]}");
                 }
                 Assert.IsTrue(Mathf.Abs(expected - ss.states[0, 0]) < tolerance);
             }
