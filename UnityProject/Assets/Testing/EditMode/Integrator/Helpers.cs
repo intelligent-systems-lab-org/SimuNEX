@@ -19,7 +19,7 @@ namespace IntegratorTests
         /// <returns>A <see cref="StateSpace"/> instance.</returns>
         public StateSpace CreateStateSpace(DerivativeFunction derivativeFunction, Matrix initialConditions, Integrator integrator)
         {
-            StateSpace ss = new StateSpace();
+            StateSpace ss = new();
             ss.Initialize(initialConditions.RowCount, 0, initialConditions, derivativeFunction, integrator);
             return ss;
         }
@@ -43,28 +43,27 @@ namespace IntegratorTests
         public void RunSimulationTest
         (
             StateSpace ss,
-            float maxSimulationTime,
             SolutionFunction solution,
-            bool log = false,
-            float tolerance = 5e-2f
+            TestConfig testConfig
         )
         {
+            ss.integrator.stepSize = testConfig.StepSize;
             float currentTime = 0f;
 
             // Calculate the number of decimal places to round to based on the stepSize
-            int decimalPlaces = Mathf.CeilToInt(-Mathf.Log10(ss.integrator.StepSize));
+            int decimalPlaces = Mathf.CeilToInt(-Mathf.Log10(ss.integrator.stepSize));
 
-            while (currentTime < maxSimulationTime)
+            while (currentTime < testConfig.MaxSimulationTime)
             {
                 ss.Compute();
-                currentTime = (float)Math.Round(currentTime + ss.integrator.StepSize, decimalPlaces);
+                currentTime = (float)Math.Round(currentTime + ss.integrator.stepSize, decimalPlaces);
 
                 float expected = solution(currentTime);
-                if (log)
+                if (testConfig.Log)
                 {
-                    Debug.Log($"Using step size of {ss.integrator.StepSize}, at current time {currentTime}, Expected: {expected}, Actual: {ss.states[0, 0]}");
+                    Debug.Log($"Using step size of {ss.integrator.stepSize}, at current time {currentTime}, Expected: {expected}, Actual: {ss.states[0, 0]}");
                 }
-                Assert.IsTrue(Mathf.Abs(expected - ss.states[0, 0]) < tolerance);
+                Assert.IsTrue(Mathf.Abs(expected - ss.states[0, 0]) < testConfig.Tolerance);
             }
         }
     }

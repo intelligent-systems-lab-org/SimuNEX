@@ -14,7 +14,7 @@ public abstract class Integrator
     /// <summary>
     /// The step size for numerical integration.
     /// </summary>
-    public float StepSize
+    public float stepSize
     {
         get { return h; }
         set
