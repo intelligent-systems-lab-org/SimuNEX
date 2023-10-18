@@ -463,6 +463,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4611565566311275956, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006704097243447935, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067777713250505834, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639197954146903318, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: _speed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: m_Name
       value: Quadcopter

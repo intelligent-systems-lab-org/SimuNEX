@@ -4,7 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "eigen3"
+        "eigen3",
+        "SimuNEX"
     ],
     "includePlatforms": [
         "Editor"

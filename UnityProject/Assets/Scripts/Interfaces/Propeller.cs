@@ -15,7 +15,6 @@ public abstract class Propeller : MotorLoad
         Quaternion increment = Quaternion.Euler(rad2deg * spinnerNormal * _speed * scaledDeltaTime);
         spinnerObject.localRotation *= increment;
     }
-
 }
 
 /// <summary>
@@ -58,10 +57,11 @@ public abstract class PropellerForce : Force
 
     public override void ApplyForce()
     {
+        var _normal = normal();
         Transform transform = transformCallback();
         outputs = PropellerFunction(propellerSpeed, parameters);
-        rb.AddLinearForceAtPosition(normal() * outputs[0], transform.position);
-        rb.AddTorque(normal() * outputs[1]);
+        rb.AddLinearForceAtPosition(_normal * outputs[0], transform.position);
+        rb.AddTorque(_normal * outputs[1]);
     }
 
     /// <summary>
