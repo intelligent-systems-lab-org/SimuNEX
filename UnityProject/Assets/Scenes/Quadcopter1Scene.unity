@@ -492,7 +492,7 @@ PrefabInstance:
       addedObject: {fileID: 4399440864242875328}
     - targetCorrespondingSourceObject: {fileID: 4223507230879152533, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4399440864242875337}
+      addedObject: {fileID: 4399440864242875339}
     - targetCorrespondingSourceObject: {fileID: 5758165993973612182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4399440864242875327}
@@ -534,8 +534,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motorLoad: {fileID: 0}
   voltage: -131
-  timeConstant: 0.2
-  DCGain: 1
+  R: 20
+  Kb: 1
+  Kt: 10
+  Jm: 1
+  Dm: 0
 --- !u!114 &4399440864242875328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,8 +553,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motorLoad: {fileID: 0}
   voltage: 131
-  timeConstant: 0.2
-  DCGain: 1
+  R: 20
+  Kb: 1
+  Kt: 10
+  Jm: 1
+  Dm: 0
 --- !u!114 &4399440864242875334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,9 +572,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motorLoad: {fileID: 0}
   voltage: 131
-  timeConstant: 0.2
-  DCGain: 1
---- !u!114 &4399440864242875337
+  R: 20
+  Kb: 1
+  Kt: 10
+  Jm: 1
+  Dm: 0
+--- !u!114 &4399440864242875339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -582,8 +591,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motorLoad: {fileID: 0}
   voltage: -131
-  timeConstant: 0.2
-  DCGain: 1
+  R: 20
+  Kb: 1
+  Kt: 10
+  Jm: 1
+  Dm: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using static StateSpaceTypes;
 
 /// <summary>
 /// Implements a DC motor modeled by a 1st-order transfer function.
@@ -10,47 +11,42 @@ public class DCMotor : Motor
     /// </summary>
     public float voltage = 0;
 
-    /// <summary>
-    /// The time constant of the DC motor. It represents the speed 
-    /// at which the motor responds to changes in voltage.
-    /// </summary>
-    public float timeConstant = 0.2f;
+    // Motor parameters
+    public float armatureResistance = 20f;
+    public float backEMFConstant = 1f;
+    public float torqueConstant = 10f;
+    public float momentOfInertia = 1f;
+    public float viscousDamping = 0;
 
     /// <summary>
-    /// The DC gain of the motor. It represents the steady-state 
-    /// change in output for a given change in input voltage.
+    /// <see cref="FirstOrderTF"/> which defines the transfer function.
     /// </summary>
-    public float DCGain = 1f;
-
-    /// <summary>
-    /// <see cref="StateSpace"/> which defines the transfer function.
-    /// </summary>
-    private StateSpace stateSpace = new();
+    private FirstOrderTF stateSpace;
 
     protected override void Initialize()
     {
         parameters = new Func<float>[]
         {
-            () => timeConstant,
-            () => DCGain
+            () => armatureResistance, 
+            () => backEMFConstant, 
+            () => torqueConstant, 
+            () => momentOfInertia, 
+            () => viscousDamping
         };
+
+        // Convert physical parameters to 1st order TF parameters
+        float timeConstant = parameters[3]() * 1 / (parameters[4]() + (parameters[1]() * parameters[2]() / parameters[0]()));
+        float DCGain = timeConstant * parameters[2]() / (parameters[0]() * parameters[3]());
 
         inputs = new Func<float>[] { () => voltage };
 
-        stateSpace.Initialize
-        (
-            1,
-            inputs.Length,
-            new Matrix(inputs.Length, 1, new float[1] { 0f }),
-            (states, inputs) => (1 / parameters[0]()) * (parameters[1]() * inputs - states),
-            new Integrators.RK4()
-        );
+        stateSpace = new FirstOrderTF(() => timeConstant, () => DCGain, voltage);
 
         MF = (inputs, parameters) =>
         {
-            stateSpace.inputs[0, 0] = inputs[0]();
+            stateSpace.Input = inputs[0]();
             stateSpace.Compute();
-            return stateSpace.states[0, 0];
+            return stateSpace.Output;
         };
     }
 }
