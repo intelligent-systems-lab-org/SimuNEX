@@ -49,10 +49,13 @@ public class StateSpace
         stateSize = numStates;
         _inputs = new Matrix(inputSize, 1, new float[inputSize]);
 
-        if (initialConditions.RowCount != stateSize)
+        if (initialConditions.RowCount != stateSize || initialConditions.ColCount != 1)
         {
-            throw new ArgumentException("The number of rows in initialConditions must match the provided numStates.");
+            throw new ArgumentException(@"
+                The initialConditions matrix must have the same number of rows 
+                as numStates and exactly one column.");
         }
+
         _states = initialConditions;
         DerivativeFcn = derivativeFunction;
         _integrator = integrator ?? new Integrators.ForwardEuler();

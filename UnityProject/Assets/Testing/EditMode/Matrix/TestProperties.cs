@@ -5,6 +5,19 @@ namespace Eigen3MatrixTests
     public class TestProperties
     {
         [Test]
+        public void TestMatrixIndexerGetSet()
+        {
+            var matrix = new Matrix(3, 3, new float[9]);
+            matrix[0, 0] = 1.0f;
+            matrix[1, 1] = 2.0f;
+            matrix[2, 2] = 3.0f;
+
+            Assert.AreEqual(1.0f, matrix[0, 0]);
+            Assert.AreEqual(2.0f, matrix[1, 1]);
+            Assert.AreEqual(3.0f, matrix[2, 2]);
+        }
+
+        [Test]
         public void TestMatrixTransposeProperty()
         {
             var originalMatrix = new Matrix(new float[,] {

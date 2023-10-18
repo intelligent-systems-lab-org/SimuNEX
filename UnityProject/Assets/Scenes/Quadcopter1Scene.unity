@@ -492,7 +492,7 @@ PrefabInstance:
       addedObject: {fileID: 4399440864242875328}
     - targetCorrespondingSourceObject: {fileID: 4223507230879152533, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4399440864242875337}
+      addedObject: {fileID: 4399440864242875339}
     - targetCorrespondingSourceObject: {fileID: 5758165993973612182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4399440864242875327}
@@ -529,11 +529,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4399440864242875324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab3ebe89f77df9049916fae85558d57b, type: 3}
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   motorLoad: {fileID: 0}
   voltage: -131
+  timeConstant: 0.2
+  DCGain: 1
 --- !u!114 &4399440864242875328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,11 +545,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4399440864242875326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab3ebe89f77df9049916fae85558d57b, type: 3}
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   motorLoad: {fileID: 0}
   voltage: 131
+  timeConstant: 0.2
+  DCGain: 1
 --- !u!114 &4399440864242875334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,12 +561,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4399440864242875323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab3ebe89f77df9049916fae85558d57b, type: 3}
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   motorLoad: {fileID: 0}
   voltage: 131
---- !u!114 &4399440864242875337
+  timeConstant: 0.2
+  DCGain: 1
+--- !u!114 &4399440864242875339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -571,11 +577,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4399440864242875325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab3ebe89f77df9049916fae85558d57b, type: 3}
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   motorLoad: {fileID: 0}
   voltage: -131
+  timeConstant: 0.2
+  DCGain: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

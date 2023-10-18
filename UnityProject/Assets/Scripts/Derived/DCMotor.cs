@@ -10,7 +10,6 @@ public class DCMotor : Motor
     /// </summary>
     public float voltage = 0;
 
-
     public float timeConstant = 0.2f;
     public float DCGain = 1f;
 
@@ -33,12 +32,12 @@ public class DCMotor : Motor
         (
             1,
             1,
-            new Matrix(1, 0, new float[1] { 0f }),
+            new Matrix(1, 1, new float[1] { 0f }),
             (states, inputs) => (1 / parameters[0]()) * (parameters[1]() * inputs - states),
             new Integrators.RK4()
         );
 
-        
+        // Offending function
         MF = (inputs, parameters) =>
         {
             stateSpace.inputs[0, 0] = inputs[0]();
