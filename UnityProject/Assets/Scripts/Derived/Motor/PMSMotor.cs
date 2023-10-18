@@ -6,12 +6,12 @@ public class PMSMotor : Motor
     /// <summary>
     /// The q-axis input voltage for the PMSM.
     /// </summary>
-    public float voltage_q = 0;
+    public float qAxisVoltage = 0;
 
     /// <summary>
     /// The d-axis input voltage for the PMSM.
     /// </summary>
-    public float voltage_d = 0;
+    public float dAxisVoltage = 0;
 
     /// <summary>
     /// The stator winding resistance in ohms.
@@ -62,8 +62,8 @@ public class PMSMotor : Motor
 
         inputs = new Func<float>[]
         {
-            () => voltage_q,
-            () => voltage_d
+            () => qAxisVoltage,
+            () => dAxisVoltage
         };
 
         stateSpace = new LinearStateSpace
