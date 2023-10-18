@@ -44,7 +44,7 @@ public class PMSMotor : Motor
     public float loadDamping = 0.0021f;
 
     /// <summary>
-    /// <see cref="StateSpace"/> which defines the transfer function.
+    /// <see cref="LinearStateSpace"/> which defines the transfer function.
     /// </summary>
     private LinearStateSpace stateSpace;
 
@@ -101,7 +101,7 @@ public class PMSMotor : Motor
             stateSpace.inputs[0, 0] = inputs[0]();
             stateSpace.inputs[1, 0] = inputs[1]();
             stateSpace.Compute();
-            return stateSpace.Outputs[2, 0];
+            return stateSpace.outputs[2, 0];
         };
     }
 }

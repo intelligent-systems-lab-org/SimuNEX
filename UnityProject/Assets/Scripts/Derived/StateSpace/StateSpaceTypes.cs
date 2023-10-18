@@ -105,7 +105,7 @@ public static class StateSpaceTypes
         /// <summary>
         /// The system's output values.
         /// </summary>
-        public Matrix Outputs
+        public Matrix outputs
         {
             get
             {

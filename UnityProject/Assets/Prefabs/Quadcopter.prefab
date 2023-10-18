@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 2169389962855501919}
   - component: {fileID: 6761387330696549861}
   - component: {fileID: 4611565566311275956}
+  - component: {fileID: 6021764900706643723}
   m_Layer: 0
   m_Name: Back Left
   m_TagString: Untagged
@@ -238,10 +239,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinnerObject: {fileID: 0}
   spinAxis: 0
-  _speed: -131
+  _speed: 0
   rb: {fileID: 5995511627637507719}
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
+--- !u!114 &6021764900706643723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077389215443267492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorLoad: {fileID: 0}
+  voltage_q: 115
+  voltage_d: 0
+  resistance: 2.875
+  inductance: 0.085
+  poles: 2
+  flux: 0.175
+  loadInertia: 0.0008
+  loadDamping: 0.0021
 --- !u!1 &2561734333488696745
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +275,7 @@ GameObject:
   - component: {fileID: 7812500579648459483}
   - component: {fileID: 5360095315424139242}
   - component: {fileID: 8639197954146903318}
+  - component: {fileID: 3973374556152204403}
   m_Layer: 0
   m_Name: Front Right
   m_TagString: Untagged
@@ -313,10 +336,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinnerObject: {fileID: 0}
   spinAxis: 0
-  _speed: -131
+  _speed: 0
   rb: {fileID: 5995511627637507719}
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
+--- !u!114 &3973374556152204403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561734333488696745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorLoad: {fileID: 0}
+  voltage_q: 115
+  voltage_d: 0
+  resistance: 2.875
+  inductance: 0.085
+  poles: 2
+  flux: 0.175
+  loadInertia: 0.0008
+  loadDamping: 0.0021
 --- !u!1 &4223507230879152533
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +372,7 @@ GameObject:
   - component: {fileID: 7477596436177550668}
   - component: {fileID: 7321828578574833083}
   - component: {fileID: 6067777713250505834}
+  - component: {fileID: 2793746195393461794}
   m_Layer: 0
   m_Name: Back Right
   m_TagString: Untagged
@@ -388,10 +433,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinnerObject: {fileID: 0}
   spinAxis: 0
-  _speed: 131
+  _speed: 0
   rb: {fileID: 5995511627637507719}
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
+--- !u!114 &2793746195393461794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223507230879152533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorLoad: {fileID: 0}
+  voltage_q: -115
+  voltage_d: 0
+  resistance: 2.875
+  inductance: 0.085
+  poles: 2
+  flux: 0.175
+  loadInertia: 0.0008
+  loadDamping: 0.0021
 --- !u!1 &5282863310284906046
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +579,7 @@ GameObject:
   - component: {fileID: 2062207294124337303}
   - component: {fileID: 2631671444239399540}
   - component: {fileID: 5006704097243447935}
+  - component: {fileID: 4508766184105450138}
   m_Layer: 0
   m_Name: Front Left
   m_TagString: Untagged
@@ -573,10 +640,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinnerObject: {fileID: 0}
   spinAxis: 0
-  _speed: 131
+  _speed: 0
   rb: {fileID: 5995511627637507719}
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
+--- !u!114 &4508766184105450138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758165993973612182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorLoad: {fileID: 0}
+  voltage_q: -115
+  voltage_d: 0
+  resistance: 2.875
+  inductance: 0.085
+  poles: 2
+  flux: 0.175
+  loadInertia: 0.0008
+  loadDamping: 0.0021
 --- !u!1 &7395394338273631591
 GameObject:
   m_ObjectHideFlags: 0
