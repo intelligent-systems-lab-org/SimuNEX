@@ -31,7 +31,7 @@ public static class StateSpaceTypes
             DCGain = dcGain;
 
             // Initialize with 1 state (output) and 1 input
-            Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }));
+            Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), integrator: new Integrators.RK4());
             // The derivative function for a 1st-order TF
             DerivativeFcn = (states, inputs) => (1 / TimeConstant()) * (DCGain() * inputs - states);
         }
@@ -48,6 +48,72 @@ public static class StateSpaceTypes
         {
             get => _inputs[0, 0];
             set => _inputs[0, 0] = value;
+        }
+    }
+
+    /// <summary>
+    /// Models state spaces given by A*states + B*inputs.
+    /// </summary>
+    public class LinearStateSpace : StateSpace
+    {
+        /// <summary>
+        /// System matrix.
+        /// </summary>
+        public Func<Matrix> A;
+
+        /// <summary>
+        /// Input matrix.
+        /// </summary>
+        public Func<Matrix> B;
+
+        /// <summary>
+        /// Output matrix.
+        /// </summary>
+        public Func<Matrix> C;
+
+        /// <summary>
+        /// Direct feedthrough matrix.
+        /// </summary>
+        public Func<Matrix> D;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LinearStateSpace"/> class.
+        /// </summary>
+        /// <param name="A">System matrix.</param>
+        /// <param name="B">Input matrix.</param>
+        /// <param name="C">Output matrix.</param>
+        /// <param name="D">Direct feedthrough matrix.</param>
+        /// <param name="initialConditions">Initial state values.</param>
+        public LinearStateSpace(Func<Matrix> A, Func<Matrix> B, Func<Matrix> C = null, Func<Matrix> D = null, float[] initialConditions = null)
+        {
+            this.A = A;
+            this.B = B;
+            // If C is null, default to identity matrix of size A's row count
+            this.C = C ?? (() => Matrix.Eye(A().RowCount));
+            this.D = D;
+
+            int stateCount = A().RowCount;
+            int inputCount = B().ColCount;
+
+            // If initialConditions is null, default to a zero-filled array
+            float[] initialValues = initialConditions ?? new float[stateCount];
+
+            Initialize(stateCount, inputCount, new Matrix(stateCount, 1, initialValues), integrator: new Integrators.RK4());
+            DerivativeFcn = (states, inputs) => A() * states + B() * inputs;
+        }
+
+        /// <summary>
+        /// The system's output values.
+        /// </summary>
+        public Matrix Outputs
+        {
+            get
+            {
+                if (D == null)
+                    return C() * _states;
+                else
+                    return C() * _states + D() * _inputs;
+            }
         }
     }
 }

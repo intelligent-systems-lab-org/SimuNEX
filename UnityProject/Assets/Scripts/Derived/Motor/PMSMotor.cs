@@ -1,4 +1,5 @@
 using System;
+using static StateSpaceTypes;
 
 public class PMSMotor : Motor
 {
@@ -45,7 +46,7 @@ public class PMSMotor : Motor
     /// <summary>
     /// <see cref="StateSpace"/> which defines the transfer function.
     /// </summary>
-    private StateSpace stateSpace = new();
+    private LinearStateSpace stateSpace;
 
     protected override void Initialize()
     {
@@ -65,44 +66,42 @@ public class PMSMotor : Motor
             () => voltage_d
         };
 
-        stateSpace.Initialize
+        stateSpace = new LinearStateSpace
         (
-            3,
-            inputs.Length,
-            new Matrix(3, 1, new float[3]),
-            integrator: new Integrators.RK4()
-        );
+            A: () =>
+            {
+                float R = parameters[0]();
+                float L = parameters[1]();
+                float P = parameters[2]();
+                float wb = parameters[3]();
+                float J = parameters[4]();
+                float D = parameters[5]();
 
-        stateSpace.DerivativeFcn = (states, inputs) =>
-        {
-            float R = parameters[0]();
-            float L = parameters[1]();
-            float P = parameters[2]();
-            float wb = parameters[3]();
-            float J = parameters[4]();
-            float D = parameters[5]();
-
-            Matrix A = new(new float[,]
-           {
+                return new(new float[,]
+               {
                     { -R/L,        0,  wb*P/L },
                     { 0,          -R/L,  0    },
                     { 1.5f*P*wb/L, 0,  -D/J   }
-           });
-            Matrix B = new(new float[,]
+               });
+            },
+            B: () =>
             {
+                float L = parameters[1]();
+                return new(new float[,]
+                {
                     { 1/L, 0  },
                     { 0,  1/L },
                     { 0,   0  }
-            });
-            return A * states + B * inputs;
-        };
+                });
+            }
+        );
 
         MF = (inputs, parameters) =>
         {
             stateSpace.inputs[0, 0] = inputs[0]();
             stateSpace.inputs[1, 0] = inputs[1]();
             stateSpace.Compute();
-            return stateSpace.states[2, 0];
+            return stateSpace.Outputs[2, 0];
         };
     }
 }

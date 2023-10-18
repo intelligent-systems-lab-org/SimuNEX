@@ -40,7 +40,7 @@ public class DCMotor : Motor
 
         inputs = new Func<float>[] { () => voltage };
 
-        stateSpace = new FirstOrderTF(() => timeConstant, () => DCGain, voltage);
+        stateSpace = new FirstOrderTF(() => timeConstant, () => DCGain);
 
         MF = (inputs, parameters) =>
         {
