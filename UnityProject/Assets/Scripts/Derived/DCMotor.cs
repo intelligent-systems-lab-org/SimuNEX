@@ -1,11 +1,22 @@
 using System;
 
+/// <summary>
+/// Implements a DC motor modeled by a 1st-order transfer function.
+/// </summary>
 public class DCMotor : Motor
 {
+    /// <summary>
+    /// The input voltage.
+    /// </summary>
     public float voltage = 0;
+
+
     public float timeConstant = 0.2f;
     public float DCGain = 1f;
 
+    /// <summary>
+    /// <see cref="StateSpace"/> which defines the transfer function.
+    /// </summary>
     private StateSpace stateSpace = new();
 
     protected override void Initialize()

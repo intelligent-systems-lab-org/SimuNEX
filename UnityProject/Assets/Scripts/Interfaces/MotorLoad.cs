@@ -49,10 +49,8 @@ public abstract class MotorLoad : MonoBehaviour
     /// <summary>
     /// Attaches a <see cref="Force"/> to the <see cref="RigidBody"/>.
     /// </summary>
-    /// <param name="motorFunction"></param>
-    public void Activate(Func<float> motorFunction)
+    public void Activate()
     {
-        this.motorFunction = motorFunction;
         Initialize();
         rb.AttachForce(force);
     }
@@ -62,14 +60,13 @@ public abstract class MotorLoad : MonoBehaviour
     /// </summary>
     public void Deactivate()
     {
-        motorFunction = null;
         rb.RemoveForce(force);
     }
 
     private void OnEnable()
     {
         FindSpinnerTransforms();
-        Activate(motorFunction);
+        Activate();
     }
 
     private void OnDisable()
@@ -91,6 +88,23 @@ public abstract class MotorLoad : MonoBehaviour
         {
             Debug.LogError("No spinner object found!", this);
         }
+    }
+
+    /// <summary>
+    /// Attaches a <see cref="Motor"/>.
+    /// </summary>
+    /// <param name="motorFunction">Motor function associated with the <see cref="Motor"/> object.</param>
+    public void AttachMotor(Func<float> motorFunction)
+    {
+        this.motorFunction = motorFunction;
+    }
+
+    /// <summary>
+    /// Detaches a <see cref="Motor"/>
+    /// </summary>
+    public void DetachMotor()
+    {
+        motorFunction = null;
     }
 
     /// <summary>

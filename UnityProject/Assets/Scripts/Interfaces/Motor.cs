@@ -41,11 +41,11 @@ public abstract class Motor : MonoBehaviour
 
     private void OnEnable()
     {
-        motorLoad.Activate(() => inputs[0]());
+        motorLoad.AttachMotor(() => MF(inputs, parameters));
     }
 
     private void OnDisable()
     {
-        motorLoad.Deactivate();
+        motorLoad.DetachMotor();
     }
 }

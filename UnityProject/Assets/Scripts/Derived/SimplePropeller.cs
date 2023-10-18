@@ -35,8 +35,9 @@ public class SimplePropellerForce : PropellerForce
 
     public override float[] PropellerFunction(Func<float> speed, Func<float>[] parameters)
     {
-        float thrust = parameters[0]() * speed() * speed();
-        float torque = parameters[1]() * speed() * Mathf.Abs(speed());
+        float _speed = speed();
+        float thrust = parameters[0]() * _speed * _speed;
+        float torque = parameters[1]() * _speed * Mathf.Abs(_speed);
         return new float[] { thrust, torque };
     }
 }
