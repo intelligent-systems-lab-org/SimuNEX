@@ -37,6 +37,9 @@ public abstract class Motor : MonoBehaviour
         Initialize();
     }
 
+    /// <summary>
+    /// Sets up properties and defines the <see cref="MotorFunction"/> for simulation.
+    /// </summary>
     protected abstract void Initialize();
 
     private void OnEnable()
