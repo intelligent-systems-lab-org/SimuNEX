@@ -35,12 +35,11 @@ public class DCMotor : Motor
         };
 
         // Convert physical parameters to 1st order TF parameters
-        float timeConstant = parameters[3]() * 1 / (parameters[4]() + (parameters[1]() * parameters[2]() / parameters[0]()));
-        float DCGain = timeConstant * parameters[2]() / (parameters[0]() * parameters[3]());
+        float timeConstant() => parameters[3]() * 1 / (parameters[4]() + (parameters[1]() * parameters[2]() / parameters[0]()));
+        float DCGain() => timeConstant() * parameters[2]() / (parameters[0]() * parameters[3]());
 
         inputs = new Func<float>[] { () => voltage };
-
-        stateSpace = new FirstOrderTF(() => timeConstant, () => DCGain);
+        stateSpace = new FirstOrderTF(timeConstant, DCGain);
 
         MF = (inputs, parameters) =>
         {

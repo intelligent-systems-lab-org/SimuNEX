@@ -309,6 +309,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1683798760 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5995511627637507719, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+  m_PrefabInstance: {fileID: 4399440864242875322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf81ca003b170f94eae27668e22b6877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1797216156
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,10 +474,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 883555845070066623, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1683798760}
+    - target: {fileID: 932807715222619118, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: inputs.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193765062419722906, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1683798760}
+    - target: {fileID: 6935648613651933530, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1683798760}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: m_Name
       value: Quadcopter
       objectReference: {fileID: 0}
+    - target: {fileID: 9086012869280095152, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1683798760}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

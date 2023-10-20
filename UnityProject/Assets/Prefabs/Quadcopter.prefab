@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 2169389962855501919}
   - component: {fileID: 6761387330696549861}
   - component: {fileID: 1193765062419722906}
-  - component: {fileID: 2589005441935537332}
+  - component: {fileID: 2913999746823657335}
   m_Layer: 0
   m_Name: Back Left
   m_TagString: Untagged
@@ -243,7 +243,7 @@ MonoBehaviour:
   rb: {fileID: 5995511627637507719}
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
---- !u!114 &2589005441935537332
+--- !u!114 &2913999746823657335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,17 +252,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2077389215443267492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
   motorLoad: {fileID: 1193765062419722906}
-  voltage: 131
-  armatureResistance: 20
-  backEMFConstant: 1
-  torqueConstant: 10
-  momentOfInertia: 1
-  viscousDamping: 0
+  qAxisVoltage: 115
+  dAxisVoltage: 0
+  resistance: 2.875
+  inductance: 0.085
+  poles: 2
+  flux: 0.175
+  loadInertia: 0.0008
+  loadDamping: 0.0021
 --- !u!1 &2561734333488696745
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +276,7 @@ GameObject:
   - component: {fileID: 7812500579648459483}
   - component: {fileID: 5360095315424139242}
   - component: {fileID: 883555845070066623}
-  - component: {fileID: 6892280527156527476}
+  - component: {fileID: 8127114455230120342}
   m_Layer: 0
   m_Name: Front Right
   m_TagString: Untagged
@@ -339,7 +341,7 @@ MonoBehaviour:
   rb: {fileID: 5995511627637507719}
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
---- !u!114 &6892280527156527476
+--- !u!114 &8127114455230120342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,17 +350,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2561734333488696745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
   motorLoad: {fileID: 883555845070066623}
-  voltage: 131
-  armatureResistance: 20
-  backEMFConstant: 1
-  torqueConstant: 10
-  momentOfInertia: 1
-  viscousDamping: 0
+  qAxisVoltage: 115
+  dAxisVoltage: 0
+  resistance: 2.875
+  inductance: 0.085
+  poles: 2
+  flux: 0.175
+  loadInertia: 0.0008
+  loadDamping: 0.0021
 --- !u!1 &4223507230879152533
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +374,7 @@ GameObject:
   - component: {fileID: 7477596436177550668}
   - component: {fileID: 7321828578574833083}
   - component: {fileID: 6935648613651933530}
-  - component: {fileID: 1437576488471212461}
+  - component: {fileID: 3066688993045212712}
   m_Layer: 0
   m_Name: Back Right
   m_TagString: Untagged
@@ -435,7 +439,7 @@ MonoBehaviour:
   rb: {fileID: 5995511627637507719}
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
---- !u!114 &1437576488471212461
+--- !u!114 &3066688993045212712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -444,17 +448,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4223507230879152533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
   motorLoad: {fileID: 6935648613651933530}
-  voltage: -131
-  armatureResistance: 20
-  backEMFConstant: 1
-  torqueConstant: 10
-  momentOfInertia: 1
-  viscousDamping: 0
+  qAxisVoltage: -115
+  dAxisVoltage: 0
+  resistance: 2.875
+  inductance: 0.085
+  poles: 2
+  flux: 0.175
+  loadInertia: 0.0008
+  loadDamping: 0.0021
 --- !u!1 &5282863310284906046
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +582,7 @@ GameObject:
   - component: {fileID: 2062207294124337303}
   - component: {fileID: 2631671444239399540}
   - component: {fileID: 9086012869280095152}
-  - component: {fileID: 1407953319864930064}
+  - component: {fileID: 1119702125733965455}
   m_Layer: 0
   m_Name: Front Left
   m_TagString: Untagged
@@ -641,7 +647,7 @@ MonoBehaviour:
   rb: {fileID: 5995511627637507719}
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
---- !u!114 &1407953319864930064
+--- !u!114 &1119702125733965455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -650,17 +656,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5758165993973612182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
   motorLoad: {fileID: 9086012869280095152}
-  voltage: -131
-  armatureResistance: 20
-  backEMFConstant: 1
-  torqueConstant: 10
-  momentOfInertia: 1
-  viscousDamping: 0
+  qAxisVoltage: -115
+  dAxisVoltage: 0
+  resistance: 2.875
+  inductance: 0.085
+  poles: 2
+  flux: 0.175
+  loadInertia: 0.0008
+  loadDamping: 0.0021
 --- !u!1 &7395394338273631591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,7 +1050,7 @@ GameObject:
   - component: {fileID: 48441827604248401}
   - component: {fileID: 8214148604704887133}
   - component: {fileID: 5995511627637507719}
-  - component: {fileID: 4640739477904295636}
+  - component: {fileID: 932807715222619118}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1106,7 +1114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 8214148604704887133}
---- !u!114 &4640739477904295636
+--- !u!114 &932807715222619118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1119,7 +1127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuators:
-  - {fileID: 2589005441935537332}
-  - {fileID: 1437576488471212461}
-  - {fileID: 1407953319864930064}
-  - {fileID: 6892280527156527476}
+  - {fileID: 2913999746823657335}
+  - {fileID: 3066688993045212712}
+  - {fileID: 1119702125733965455}
+  - {fileID: 8127114455230120342}
+  inputs: []
