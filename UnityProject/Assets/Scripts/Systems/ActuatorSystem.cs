@@ -30,20 +30,26 @@ public class ActuatorSystem : MonoBehaviour
 
     private void OnValidate()
     {
-        rb = GetComponent<RigidBody>();
-        actuators = new List<Actuator>(GetComponentsInChildren<Actuator>());
-
-        foreach (Actuator actuator in actuators)
-        {
-            actuator.rb = rb;
-        }
+        UpdateActuatorList();
     }
 
     private void Awake()
     {
-        NumInputs= 0;
+        UpdateActuatorList();
+    }
+
+    /// <summary>
+    /// Obtains the current list of attached <see cref="Actuator"/> objects.
+    /// </summary>
+    public void UpdateActuatorList()
+    {
+        rb = GetComponent<RigidBody>();
+        actuators = new List<Actuator>(GetComponentsInChildren<Actuator>());
+
+        NumInputs = 0;
         foreach (Actuator actuator in actuators)
         {
+            actuator.rb = rb;
             NumInputs += actuator.inputSize;
         }
         inputs = new float[NumInputs];

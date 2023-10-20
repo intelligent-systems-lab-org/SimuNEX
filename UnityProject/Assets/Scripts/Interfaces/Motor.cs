@@ -26,7 +26,7 @@ public abstract class Motor : Actuator
     private void OnValidate()
     {
         motorLoad = GetComponent<MotorLoad>();
-        motorLoad.rb = rb;
+        if (motorLoad != null) motorLoad.rb = rb;
         Initialize();
     }
 
@@ -37,11 +37,11 @@ public abstract class Motor : Actuator
 
     private void OnEnable()
     {
-        motorLoad.AttachMotor(() => MF(inputs, parameters));
+        if (motorLoad != null) motorLoad.AttachMotor(() => MF(inputs, parameters));
     }
 
     private void OnDisable()
     {
-        motorLoad.DetachMotor();
+        if (motorLoad != null) motorLoad.DetachMotor();
     }
 }
