@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 /// <summary>
 /// Interface for implementing motors.
 /// </summary>
-public abstract class Motor : MonoBehaviour
+public abstract class Motor : Actuator
 {
     /// <summary>
     /// <see cref="MotorLoad"/> object that is attached to the motor.
@@ -33,7 +32,7 @@ public abstract class Motor : MonoBehaviour
 
     private void Awake()
     {
-        motorLoad= GetComponent<MotorLoad>();
+        motorLoad = GetComponent<MotorLoad>();
         Initialize();
     }
 
