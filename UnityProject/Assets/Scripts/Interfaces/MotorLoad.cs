@@ -65,8 +65,12 @@ public abstract class MotorLoad : MonoBehaviour
 
     private void OnEnable()
     {
-        FindSpinnerTransforms();
         Activate();
+    }
+
+    private void OnValidate()
+    {
+        FindSpinnerTransforms();
     }
 
     private void OnDisable()

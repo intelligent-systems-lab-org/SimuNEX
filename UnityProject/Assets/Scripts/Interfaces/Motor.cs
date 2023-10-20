@@ -10,16 +10,6 @@ public abstract class Motor : Actuator
     /// </summary>
     public MotorLoad motorLoad;
 
-    /// <summary>
-    /// Inputs to the motor.
-    /// </summary>
-    protected Func<float>[] inputs;
-
-    /// <summary>
-    /// Parameters specific to the motor.
-    /// </summary>
-    protected Func<float>[] parameters;
-
     protected MotorFunction MF = null;
 
     /// <summary>
@@ -30,7 +20,7 @@ public abstract class Motor : Actuator
     /// <returns>The output angular velocity.</returns>
     public delegate float MotorFunction(Func<float>[] inputs, Func<float>[] parameters);
 
-    private void Awake()
+    private void OnValidate()
     {
         motorLoad = GetComponent<MotorLoad>();
         Initialize();

@@ -47,7 +47,11 @@ public class RigidBody : Dynamics
     protected void Initialize()
     {
         _forces = Vector3.zero;
-        _torques = Vector3.zero;
+        _torques = Vector3.zero;  
+    }
+
+    private void OnValidate()
+    {
         body = GetComponent<Rigidbody>();
     }
 

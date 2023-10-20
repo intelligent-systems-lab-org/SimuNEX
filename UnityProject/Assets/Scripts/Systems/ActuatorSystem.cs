@@ -1,26 +1,28 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ActuatorSystem : MonoBehaviour
 {
-    public List<Actuator> actuators = new();
+    public List<Actuator> actuators;
     private Dynamics dynamics;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnValidate()
     {
         dynamics = GetComponent<Dynamics>();
         actuators = new List<Actuator>(GetComponentsInChildren<Actuator>());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
 
 public class Actuator : MonoBehaviour
 {
+    /// <summary>
+    /// Inputs to the actuator.
+    /// </summary>
+    protected Func<float>[] inputs;
 
+    /// <summary>
+    /// Parameters specific to the actuator.
+    /// </summary>
+    protected Func<float>[] parameters;
 }
