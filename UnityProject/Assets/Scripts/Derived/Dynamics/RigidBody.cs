@@ -31,13 +31,6 @@ public class RigidBody : Dynamics
 
     private void FixedUpdate()
     {
-        if (forces != null && forces.Count > 0)
-        {
-            foreach (Force force in forces)
-            {
-                force.ApplyForce();
-            }
-        }
         Step();
     }
 
@@ -127,6 +120,13 @@ public class RigidBody : Dynamics
 
     protected override void Step()
     {
+        if (forces != null && forces.Count > 0)
+        {
+            foreach (Force force in forces)
+            {
+                force.ApplyForce();
+            }
+        }
         body.AddForce(_forces);
         body.AddTorque(_torques);
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -7,22 +8,73 @@ using UnityEngine;
 /// </summary>
 public class ActuatorSystem : MonoBehaviour
 {
+    /// <summary>
+    /// Connected <see cref="Actuator"/> objects.
+    /// </summary>
     public List<Actuator> actuators;
+
+    /// <summary>
+    /// All <see cref="Actuator"/> inputs concatenated in a array.
+    /// </summary>
     public float[] inputs;
+
+    /// <summary>
+    /// Attached <see cref="RigidBody"/>.
+    /// </summary>
     private RigidBody rb;
+
+    /// <summary>
+    /// Total number of inputs.
+    /// </summary>
+    private int NumInputs;
 
     private void OnValidate()
     {
         rb = GetComponent<RigidBody>();
         actuators = new List<Actuator>(GetComponentsInChildren<Actuator>());
-        int inputSize = 0;
 
         foreach (Actuator actuator in actuators)
         {
             actuator.rb = rb;
-            inputSize += actuator.inputSize;
         }
-        inputs = new float[inputSize];
+    }
+
+    private void Awake()
+    {
+        NumInputs= 0;
+        foreach (Actuator actuator in actuators)
+        {
+            NumInputs += actuator.inputSize;
+        }
+        inputs = new float[NumInputs];
+    }
+
+    /// <summary>
+    /// Sets the <see cref="Actuator"/> inputs to the assigned values.
+    /// </summary>
+    public void SetInputs()
+    {
+        int idx = 0;
+        foreach (Actuator actuator in actuators)
+        {
+            float[] slice = inputs.Skip(idx).Take(actuator.inputSize).ToArray();
+            actuator.SetInput(slice);
+            idx += actuator.inputSize;
+        }
+    }
+
+    /// <summary>
+    /// Gets the current <see cref="Actuator"/> input values.
+    /// </summary>
+    public void GetInputs()
+    {
+        int idx = 0;
+        foreach (Actuator actuator in actuators)
+        {
+            float[] currentActuatorInputs = actuator.GetInput();
+            Array.Copy(currentActuatorInputs, 0, inputs, idx, currentActuatorInputs.Length);
+            idx += currentActuatorInputs.Length;
+        }
     }
 }
 
@@ -46,8 +98,23 @@ public abstract class Actuator : MonoBehaviour
     /// </summary>
     protected Func<float>[] parameters;
 
+    /// <summary>
+    /// Number of inputs specific to the <see cref="Actuator"/>.
+    /// </summary>
     public int inputSize
     {
-        get => (inputs == null)? 0 : inputs.Length;
+        get => (inputs == null) ? 0 : inputs.Length;
     }
+
+    /// <summary>
+    /// Gets all inputs specific to the <see cref="Actuator"/>.
+    /// </summary>
+    /// <returns></returns>
+    public abstract float[] GetInput();
+
+    /// <summary>
+    /// Sets all inputs specific to the <see cref="Actuator"/>.
+    /// </summary>
+    /// <param name="value"></param>
+    public abstract void SetInput(float[] value);
 }

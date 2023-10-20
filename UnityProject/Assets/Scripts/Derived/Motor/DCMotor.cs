@@ -23,6 +23,9 @@ public class DCMotor : Motor
     /// </summary>
     private FirstOrderTF stateSpace;
 
+    public override float[] GetInput() => new float[] { voltage };
+    public override void SetInput(float[] value) => voltage = value[0];
+
     protected override void Initialize()
     {
         parameters = new Func<float>[]

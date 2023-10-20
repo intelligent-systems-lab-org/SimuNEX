@@ -10,6 +10,9 @@ public class IdentityMotor : Motor
     /// </summary>
     public float voltage = 0;
 
+    public override float[] GetInput() => new float[] { voltage };
+    public override void SetInput(float[] value) => voltage = value[0];
+
     protected override void Initialize()
     {
         inputs = new Func<float>[1] { () => voltage };

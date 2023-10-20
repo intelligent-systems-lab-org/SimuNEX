@@ -48,6 +48,14 @@ public class PMSMotor : Motor
     /// </summary>
     private LinearStateSpace stateSpace;
 
+    public override float[] GetInput() => new float[] { qAxisVoltage, dAxisVoltage };
+
+    public override void SetInput(float[] value)
+    {
+        qAxisVoltage = value[0];
+        dAxisVoltage = value[1];
+    }
+
     protected override void Initialize()
     {
         parameters = new Func<float>[]
