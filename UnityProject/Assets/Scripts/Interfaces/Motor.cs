@@ -10,6 +10,9 @@ public abstract class Motor : Actuator
     /// </summary>
     public MotorLoad motorLoad;
 
+    /// <summary>
+    /// The <see cref="MotorFunction"/> associated with the motor.
+    /// </summary>
     protected MotorFunction MF = null;
 
     /// <summary>
@@ -23,6 +26,7 @@ public abstract class Motor : Actuator
     private void OnValidate()
     {
         motorLoad = GetComponent<MotorLoad>();
+        motorLoad.rb = rb;
         Initialize();
     }
 

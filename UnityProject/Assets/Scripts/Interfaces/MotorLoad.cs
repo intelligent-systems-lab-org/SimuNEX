@@ -37,7 +37,7 @@ public abstract class MotorLoad : MonoBehaviour
     protected Func<float> motorFunction = null;
 
     /// <summary>
-    /// Attached RigidBody to apply forces to.
+    /// Attached <see cref="RigidBody"/> to apply forces to.
     /// </summary>
     public RigidBody rb;
 
@@ -104,7 +104,7 @@ public abstract class MotorLoad : MonoBehaviour
     }
 
     /// <summary>
-    /// Detaches a <see cref="Motor"/>
+    /// Detaches a <see cref="Motor"/>.
     /// </summary>
     public void DetachMotor()
     {

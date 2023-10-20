@@ -5,17 +5,27 @@ using UnityEngine;
 public class ActuatorSystem : MonoBehaviour
 {
     public List<Actuator> actuators;
-    private Dynamics dynamics;
+    private RigidBody rb;
 
     private void OnValidate()
     {
-        dynamics = GetComponent<Dynamics>();
+        rb = GetComponent<RigidBody>();
         actuators = new List<Actuator>(GetComponentsInChildren<Actuator>());
+
+        foreach (Actuator actuator in actuators)
+        {
+            actuator.rb = rb;
+        }
     }
 }
 
 public class Actuator : MonoBehaviour
 {
+    /// <summary>
+    /// <see cref="RigidBody"/> object motor is attached to.
+    /// </summary>
+    public RigidBody rb;
+
     /// <summary>
     /// Inputs to the actuator.
     /// </summary>

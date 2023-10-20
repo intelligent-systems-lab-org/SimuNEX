@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &235180492 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6021764900706643723, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-  m_PrefabInstance: {fileID: 4399440864242875322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &244034798
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,17 +217,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &335579944 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3973374556152204403, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-  m_PrefabInstance: {fileID: 4399440864242875322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &398337935
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,50 +309,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1597109456 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2793746195393461794, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-  m_PrefabInstance: {fileID: 4399440864242875322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1683798758 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-  m_PrefabInstance: {fileID: 4399440864242875322}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1683798763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683798758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1691c3dbc2e659d4c8a019d249bebc2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actuators:
-  - {fileID: 235180492}
-  - {fileID: 1597109456}
-  - {fileID: 1693086893}
-  - {fileID: 335579944}
---- !u!114 &1693086893 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4508766184105450138, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-  m_PrefabInstance: {fileID: 4399440864242875322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3660d1c2f2980994db88132a3c4d98d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1797216156
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,38 +463,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2793746195393461794, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: qAxisVoltage
-      value: -115
-      objectReference: {fileID: 0}
-    - target: {fileID: 3973374556152204403, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: qAxisVoltage
-      value: 115
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508766184105450138, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: qAxisVoltage
-      value: -115
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611565566311275956, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: _speed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5006704097243447935, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: _speed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6021764900706643723, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: qAxisVoltage
-      value: 115
-      objectReference: {fileID: 0}
-    - target: {fileID: 6067777713250505834, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: _speed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639197954146903318, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: _speed
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: m_Name
       value: Quadcopter
@@ -568,10 +470,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1683798763}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
