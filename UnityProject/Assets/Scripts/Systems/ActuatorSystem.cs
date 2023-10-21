@@ -58,7 +58,7 @@ public class ActuatorSystem : MonoBehaviour
     /// <summary>
     /// Sets the <see cref="Actuator"/> inputs to the assigned values.
     /// </summary>
-    public void SetInputs()
+    public void SetActuatorInputs()
     {
         int idx = 0;
         foreach (Actuator actuator in actuators)
@@ -72,7 +72,7 @@ public class ActuatorSystem : MonoBehaviour
     /// <summary>
     /// Gets the current <see cref="Actuator"/> input values.
     /// </summary>
-    public void GetInputs()
+    public void GetActuatorInputs()
     {
         int idx = 0;
         foreach (Actuator actuator in actuators)
@@ -90,7 +90,7 @@ public class ActuatorSystem : MonoBehaviour
 public abstract class Actuator : MonoBehaviour
 {
     /// <summary>
-    /// <see cref="RigidBody"/> object motor is attached to.
+    /// <see cref="RigidBody"/> object actuator is attached to.
     /// </summary>
     public RigidBody rb;
 
@@ -115,12 +115,12 @@ public abstract class Actuator : MonoBehaviour
     /// <summary>
     /// Gets all inputs specific to the <see cref="Actuator"/>.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The current input values.</returns>
     public abstract float[] GetInput();
 
     /// <summary>
     /// Sets all inputs specific to the <see cref="Actuator"/>.
     /// </summary>
-    /// <param name="value"></param>
+    /// <param name="value">The input values to set.</param>
     public abstract void SetInput(float[] value);
 }

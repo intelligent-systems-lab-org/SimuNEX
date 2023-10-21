@@ -41,12 +41,12 @@ public class ActuatorSystemTests
         float[] initialInputs = new float[] { 1.0f, 2.0f, 3.0f };
         actuatorSystem.inputs = initialInputs;
 
-        actuatorSystem.SetInputs();
+        actuatorSystem.SetActuatorInputs();
 
         // Update the scene for 1 frame
         yield return null;
 
-        actuatorSystem.GetInputs();
+        actuatorSystem.GetActuatorInputs();
         float[] retrievedInputs = actuatorSystem.inputs;
 
         Assert.AreEqual(initialInputs.Length, retrievedInputs.Length);
