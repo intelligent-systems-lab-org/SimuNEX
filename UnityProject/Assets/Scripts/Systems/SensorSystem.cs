@@ -72,7 +72,7 @@ public class SensorSystem : MonoBehaviour
 /// <summary>
 /// Interface for implementing sensor-based systems.
 /// </summary>
-public abstract class Sensor
+public abstract class Sensor : MonoBehaviour
 {
     /// <summary>
     /// <see cref="RigidBody"/> object sensor is attached to.
@@ -96,6 +96,11 @@ public abstract class Sensor
     {
         get => (outputs == null) ? 0 : outputs.Length;
     }
+
+    /// <summary>
+    /// Sets up properties and defines the sensor's function for simulation.
+    /// </summary>
+    protected abstract void Initialize();
 
     /// <summary>
     /// Gets all outputs specific to the <see cref="Sensor"/>.

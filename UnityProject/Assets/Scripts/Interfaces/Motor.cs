@@ -30,11 +30,6 @@ public abstract class Motor : Actuator
         Initialize();
     }
 
-    /// <summary>
-    /// Sets up properties and defines the <see cref="MotorFunction"/> for simulation.
-    /// </summary>
-    protected abstract void Initialize();
-
     private void OnEnable()
     {
         if (motorLoad != null) motorLoad.AttachMotor(() => MF(inputs, parameters));

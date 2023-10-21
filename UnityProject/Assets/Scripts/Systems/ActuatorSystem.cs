@@ -113,6 +113,11 @@ public abstract class Actuator : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets up properties and defines the actuator's function for simulation.
+    /// </summary>
+    protected abstract void Initialize();
+
+    /// <summary>
     /// Gets all inputs specific to the <see cref="Actuator"/>.
     /// </summary>
     /// <returns>The current input values.</returns>

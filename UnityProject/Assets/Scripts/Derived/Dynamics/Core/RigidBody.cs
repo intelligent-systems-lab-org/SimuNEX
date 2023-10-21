@@ -134,6 +134,26 @@ public class RigidBody : Dynamics
         _forces = Vector3.zero;
         _torques = Vector3.zero;
     }
+
+    /// <summary>
+    /// Linear velocity of the <see cref="RigidBody"/>.
+    /// </summary>
+    public Vector3 velocity => body.velocity;
+
+    /// <summary>
+    /// Angular velocity of the <see cref="RigidBody"/>.
+    /// </summary>
+    public Vector3 angularVelocity => body.angularVelocity;
+
+    /// <summary>
+    /// Angular position of the <see cref="RigidBody"/> expressed as a <see cref="Quaternion"/>.
+    /// </summary>
+    public Quaternion angularPosition => body.rotation;
+
+    /// <summary>
+    /// Linear position of the <see cref="RigidBody"/>.
+    /// </summary>
+    public Vector3 position => body.position;
 }
 
 /// <summary>
