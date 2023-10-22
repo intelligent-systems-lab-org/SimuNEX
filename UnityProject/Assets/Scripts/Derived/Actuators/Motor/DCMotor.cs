@@ -24,6 +24,7 @@ public class DCMotor : Motor
     private FirstOrderTF stateSpace;
 
     public override float[] GetInput() => new float[] { voltage };
+
     public override void SetInput(float[] value) => voltage = value[0];
 
     protected override void Initialize()
@@ -43,12 +44,12 @@ public class DCMotor : Motor
 
         inputs = new Func<float>[] { () => voltage };
         stateSpace = new FirstOrderTF(timeConstant, DCGain);
+    }
 
-        MF = (inputs, parameters) =>
-        {
-            stateSpace.Input = inputs[0]();
-            stateSpace.Compute();
-            return stateSpace.Output;
-        };
+    public override float MotorFunction(Func<float>[] inputs, Func<float>[] parameters)
+    {
+        stateSpace.Input = inputs[0]();
+        stateSpace.Compute();
+        return stateSpace.Output;
     }
 }

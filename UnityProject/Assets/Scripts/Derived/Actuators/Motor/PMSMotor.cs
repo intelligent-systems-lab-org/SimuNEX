@@ -103,13 +103,13 @@ public class PMSMotor : Motor
                 });
             }
         );
+    }
 
-        MF = (inputs, parameters) =>
-        {
-            stateSpace.inputs[0, 0] = inputs[0]();
-            stateSpace.inputs[1, 0] = inputs[1]();
-            stateSpace.Compute();
-            return stateSpace.outputs[2, 0];
-        };
+    public override float MotorFunction(Func<float>[] inputs, Func<float>[] parameters)
+    {
+        stateSpace.inputs[0, 0] = inputs[0]();
+        stateSpace.inputs[1, 0] = inputs[1]();
+        stateSpace.Compute();
+        return stateSpace.outputs[2, 0];
     }
 }

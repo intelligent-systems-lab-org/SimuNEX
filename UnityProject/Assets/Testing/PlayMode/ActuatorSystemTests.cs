@@ -14,15 +14,15 @@ public class ActuatorSystemTests
         testObject = new GameObject();
 
         GameObject motorObject1 = new("Motor1");
-        IdentityMotor motor1 = motorObject1.AddComponent<IdentityMotor>();
+        IdentityActuator motor1 = motorObject1.AddComponent<IdentityActuator>();
         motor1.transform.SetParent(testObject.transform);
 
         GameObject motorObject2 = new("Motor2");
-        IdentityMotor motor2 = motorObject2.AddComponent<IdentityMotor>();
+        IdentityActuator motor2 = motorObject2.AddComponent<IdentityActuator>();
         motor2.transform.SetParent(testObject.transform);
 
         GameObject motorObject3 = new("Motor3");
-        IdentityMotor motor3 = motorObject3.AddComponent<IdentityMotor>();
+        IdentityActuator motor3 = motorObject3.AddComponent<IdentityActuator>();
         motor3.transform.SetParent(testObject.transform);
 
         actuatorSystem = testObject.AddComponent<ActuatorSystem>();

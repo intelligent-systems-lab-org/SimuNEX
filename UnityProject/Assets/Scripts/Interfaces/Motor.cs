@@ -11,17 +11,12 @@ public abstract class Motor : Actuator
     public MotorLoad motorLoad;
 
     /// <summary>
-    /// The <see cref="MotorFunction"/> associated with the motor.
-    /// </summary>
-    protected MotorFunction MF = null;
-
-    /// <summary>
     /// The motor function (MF) that computes output values based on the provided inputs and parameters.
     /// </summary>
     /// <param name="inputs">Input values to the motors (e.g., voltage).</param>
     /// <param name="parameters">Parameters specific to the motor (e.g., back EMF constant).</param>
     /// <returns>The output angular velocity.</returns>
-    public delegate float MotorFunction(Func<float>[] inputs, Func<float>[] parameters);
+    public abstract float MotorFunction(Func<float>[] inputs, Func<float>[] parameters);
 
     private void OnValidate()
     {
@@ -32,7 +27,7 @@ public abstract class Motor : Actuator
 
     private void OnEnable()
     {
-        if (motorLoad != null) motorLoad.AttachMotor(() => MF(inputs, parameters));
+        if (motorLoad != null) motorLoad.AttachMotor(() => MotorFunction(inputs, parameters));
     }
 
     private void OnDisable()
