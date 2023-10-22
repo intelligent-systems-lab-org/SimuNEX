@@ -24,10 +24,29 @@ public partial class Matrix : IDisposable
     /// </summary>
     /// <param name="rows">Number of rows.</param>
     /// <param name="cols">Number of columns.</param>
-    /// <param name="data">Input array.</param>
+    /// <param name="data">Input array. 
+    /// If not given, creates a zero matrix by the specified size.</param>
     /// <param name="rowMajor">Assume order in row-major if true. Column-major by default.</param>
-    public Matrix(int rows, int cols, float[] data, bool rowMajor = false)
+    /// <exception cref="ArgumentException">If rows or cols is zero, 
+    /// or the length of the data array is not equal to rows * cols.</exception>
+    public Matrix(int rows, int cols, float[] data = null, bool rowMajor = false)
     {
+        if (rows <= 0 || cols <= 0)
+        {
+            throw new ArgumentException("Number of rows and columns must be greater than 0.");
+        }
+
+        if (data == null)
+        {
+            data = new float[rows * cols];
+        }
+
+        if (rows * cols != data.Length)
+        {
+            throw new ArgumentException($"The provided data array has a length of {data.Length}, " +
+                $"but it should be {rows * cols} based on the specified number of rows and columns.");
+        }
+
         _matrixPtr = Eigen3.CreateMatrix(rows, cols, data, rowMajor);
     }
 

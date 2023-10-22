@@ -183,7 +183,7 @@ namespace Eigen3MatrixTests
         }
 
         [Test]
-        public void TestMatrixMultiplyByScalarOperator()
+        public void TestMatrixMultiplyByRightScalarOperator()
         {
             var matrixA = new Matrix(new float[,] {
                 { 2, 4 },
@@ -192,6 +192,28 @@ namespace Eigen3MatrixTests
 
             float scalar = 3.0f;
             var result = matrixA * scalar;
+
+            // test counts
+            Assert.AreEqual(2, result.RowCount);
+            Assert.AreEqual(2, result.ColCount);
+
+            // test positions
+            Assert.AreEqual(2 * 3, result[0, 0]);
+            Assert.AreEqual(4 * 3, result[0, 1]);
+            Assert.AreEqual(5 * 3, result[1, 0]);
+            Assert.AreEqual(6 * 3, result[1, 1]);
+        }
+
+        [Test]
+        public void TestMatrixMultiplyByLeftScalarOperator()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4 },
+                { 5, 6 },
+            });
+
+            float scalar = 3.0f;
+            var result = scalar * matrixA;
 
             // test counts
             Assert.AreEqual(2, result.RowCount);

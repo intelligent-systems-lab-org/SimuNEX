@@ -47,7 +47,7 @@ public class StateSpace
     {
         inputSize = numInputs;
         stateSize = numStates;
-        _inputs = new Matrix(inputSize, 1, new float[inputSize]);
+        _inputs = (numInputs > 0)? new Matrix(inputSize, 1, new float[inputSize]) : null;
 
         if (initialConditions.RowCount != stateSize || initialConditions.ColCount != 1)
         {
