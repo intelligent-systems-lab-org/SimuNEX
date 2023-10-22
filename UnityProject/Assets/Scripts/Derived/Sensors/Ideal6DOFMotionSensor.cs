@@ -5,9 +5,6 @@ using System;
 /// </summary>
 public class Ideal6DOFMotionSensor : Sensor
 {
-    /// <summary>
-    /// Initializes sensor function.
-    /// </summary>
     protected override void Initialize()
     {
         outputs = new Func<float>[]

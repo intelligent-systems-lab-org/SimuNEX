@@ -97,12 +97,12 @@ public abstract class Actuator : MonoBehaviour
     /// <summary>
     /// Inputs to the actuator.
     /// </summary>
-    protected Func<float>[] inputs;
+    public Func<float>[] inputs;
 
     /// <summary>
     /// Parameters specific to the actuator.
     /// </summary>
-    protected Func<float>[] parameters;
+    public Func<float>[] parameters;
 
     /// <summary>
     /// Number of inputs specific to the <see cref="Actuator"/>.

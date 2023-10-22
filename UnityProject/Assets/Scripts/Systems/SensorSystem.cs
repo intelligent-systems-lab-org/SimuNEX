@@ -87,7 +87,7 @@ public abstract class Sensor : MonoBehaviour
     /// <summary>
     /// Parameters specific to the sensor.
     /// </summary>
-    protected Func<float>[] parameters;
+    public Func<float>[] parameters;
 
     /// <summary>
     /// Number of outputs specific to the <see cref="Sensor"/>.
