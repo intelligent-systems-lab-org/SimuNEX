@@ -1,4 +1,5 @@
 using System;
+using static Integrators;
 
 public class StateSpace
 {
@@ -58,7 +59,7 @@ public class StateSpace
 
         _states = initialConditions;
         DerivativeFcn = derivativeFunction;
-        _integrator = integrator ?? new Integrators.ForwardEuler();
+        _integrator = integrator ?? new ForwardEuler();
     }
 
 
@@ -129,5 +130,23 @@ public class StateSpace
     public void Compute()
     {
         _integrator.Step(this);
+    }
+
+    /// <summary>
+    /// Creates an <see cref="Integrator"/> from the chosen <see cref="IntegrationMethod"/>.
+    /// </summary>
+    /// <param name="integrationMethod">The <see cref="IntegrationMethod"/> of choice.</param>
+    /// <returns>The <see cref="Integrator"/> that uses the desired <see cref="IntegrationMethod"/>.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Throws when an unsupported method is passed.</exception>
+    public static Integrator CreateIntegrator(IntegrationMethod integrationMethod = IntegrationMethod.Euler)
+    {
+        return integrationMethod switch
+        {
+            IntegrationMethod.Euler => new ForwardEuler(),
+            IntegrationMethod.Heun => new Heun(),
+            IntegrationMethod.RK4 => new RK4(),
+            _ => throw new ArgumentOutOfRangeException(nameof(integrationMethod),
+                $"Not expected integration method: {integrationMethod}"),
+        };
     }
 }

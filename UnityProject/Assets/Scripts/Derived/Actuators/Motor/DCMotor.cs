@@ -7,6 +7,11 @@ using static StateSpaceTypes;
 public class DCMotor : Motor
 {
     /// <summary>
+    /// The integration method.
+    /// </summary>
+    public IntegrationMethod integrator;
+
+    /// <summary>
     /// The input voltage.
     /// </summary>
     public float voltage = 0;
@@ -43,7 +48,7 @@ public class DCMotor : Motor
         float DCGain() => timeConstant() * parameters[2]() / (parameters[0]() * parameters[3]());
 
         inputs = new Func<float>[] { () => voltage };
-        stateSpace = new FirstOrderTF(timeConstant, DCGain);
+        stateSpace = new FirstOrderTF(timeConstant, DCGain, integrationMethod: integrator);
     }
 
     public override float MotorFunction(Func<float>[] inputs, Func<float>[] parameters)

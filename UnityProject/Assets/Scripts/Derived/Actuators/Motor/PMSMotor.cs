@@ -4,6 +4,11 @@ using static StateSpaceTypes;
 public class PMSMotor : Motor
 {
     /// <summary>
+    /// The integration method.
+    /// </summary>
+    public IntegrationMethod integrator;
+
+    /// <summary>
     /// The q-axis input voltage for the PMSM.
     /// </summary>
     public float qAxisVoltage = 0;
@@ -44,7 +49,7 @@ public class PMSMotor : Motor
     public float loadDamping = 0.0021f;
 
     /// <summary>
-    /// <see cref="LinearStateSpace"/> which defines the transfer function.
+    /// <see cref="LinearStateSpace"/> which defines the motor dynamics in terms of a linear state space.
     /// </summary>
     private LinearStateSpace stateSpace;
 
@@ -101,7 +106,8 @@ public class PMSMotor : Motor
                     { 0,  1/L },
                     { 0,   0  }
                 });
-            }
+            },
+            integrationMethod: integrator
         );
     }
 

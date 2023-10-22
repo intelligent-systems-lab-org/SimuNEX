@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
   motorLoad: {fileID: 1193765062419722906}
+  integrator: 2
   qAxisVoltage: 115
   dAxisVoltage: 0
   resistance: 2.875
@@ -355,6 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
   motorLoad: {fileID: 883555845070066623}
+  integrator: 2
   qAxisVoltage: 115
   dAxisVoltage: 0
   resistance: 2.875
@@ -498,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
   motorLoad: {fileID: 6935648613651933530}
+  integrator: 2
   qAxisVoltage: -115
   dAxisVoltage: 0
   resistance: 2.875
@@ -706,6 +709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
   motorLoad: {fileID: 9086012869280095152}
+  integrator: 2
   qAxisVoltage: -115
   dAxisVoltage: 0
   resistance: 2.875

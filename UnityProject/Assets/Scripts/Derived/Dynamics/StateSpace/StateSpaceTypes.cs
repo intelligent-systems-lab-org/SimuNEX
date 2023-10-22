@@ -25,13 +25,19 @@ public static class StateSpaceTypes
         /// <param name="timeConstant">A function that returns the time constant of the system.</param>
         /// <param name="dcGain">A function that returns the DC gain of the system.</param>
         /// <param name="initialState">The initial state value.</param>
-        public FirstOrderTF(Func<float> timeConstant, Func<float> dcGain, float initialState = 0)
+        public FirstOrderTF
+        (
+            Func<float> timeConstant, 
+            Func<float> dcGain, 
+            float initialState = 0, 
+            IntegrationMethod integrationMethod = IntegrationMethod.Euler
+        )
         {
             TimeConstant = timeConstant;
             DCGain = dcGain;
 
             // Initialize with 1 state (output) and 1 input
-            Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), integrator: new Integrators.RK4());
+            Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), integrator: CreateIntegrator(integrationMethod));
             // The derivative function for a 1st-order TF
             DerivativeFcn = (states, inputs) => (1 / TimeConstant()) * (DCGain() * inputs - states);
         }
@@ -84,7 +90,15 @@ public static class StateSpaceTypes
         /// <param name="C">Output matrix.</param>
         /// <param name="D">Direct feedthrough matrix.</param>
         /// <param name="initialConditions">Initial state values.</param>
-        public LinearStateSpace(Func<Matrix> A, Func<Matrix> B, Func<Matrix> C = null, Func<Matrix> D = null, float[] initialConditions = null)
+        public LinearStateSpace
+        (
+            Func<Matrix> A, 
+            Func<Matrix> B, 
+            Func<Matrix> C = null, 
+            Func<Matrix> D = null, 
+            float[] initialConditions = null,
+            IntegrationMethod integrationMethod = IntegrationMethod.Euler
+        )
         {
             this.A = A;
             this.B = B;
@@ -98,7 +112,7 @@ public static class StateSpaceTypes
             // If initialConditions is null, default to a zero-filled array
             float[] initialValues = initialConditions ?? new float[stateCount];
 
-            Initialize(stateCount, inputCount, new Matrix(stateCount, 1, initialValues), integrator: new Integrators.RK4());
+            Initialize(stateCount, inputCount, new Matrix(stateCount, 1, initialValues), integrator: CreateIntegrator(integrationMethod));
             DerivativeFcn = (states, inputs) => A() * states + B() * inputs;
         }
 
