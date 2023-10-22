@@ -23,6 +23,18 @@ public abstract class Integrator
             {
                 throw new ArgumentException("Step size must be positive");
             }
+
+            if (value < 0.0025f)
+            {
+                throw new ArgumentException("Step size must be at least 0.0025 to maintain reasonable performance");
+            }
+
+            float remainder = value % 0.005f;
+            if (Math.Abs(remainder) > float.Epsilon)
+            {
+                throw new ArgumentException("Step size must be a multiple of 0.005");
+            }
+
             h = value;
         }
     }
