@@ -6,15 +6,42 @@ using System;
 public class IdentityActuator : Actuator
 {
     /// <summary>
-    /// The input voltage.
+    /// The input value.
     /// </summary>
     public float input = 0;
+
+    /// <summary>
+    /// <see cref="Load"/> object that is attached to the actuator.
+    /// </summary>
+    public Load load;
 
     public override float[] GetInput() => new float[] { input };
     public override void SetInput(float[] value) => input = value[0];
 
+    private void OnValidate()
+    {
+        Initialize();
+    }
+
+    private void Awake()
+    {
+        Initialize();
+    }
+
     protected override void Initialize()
     {
+        load = GetComponent<Load>();
+        if (load != null) load.rb = rb;
         inputs = new Func<float>[1] { () => input };
+    }
+
+    private void OnEnable()
+    {
+        if (load != null) load.AttachActuator(inputs[0]);
+    }
+
+    private void OnDisable()
+    {
+        if (load != null) load.DetachActuator();
     }
 }
