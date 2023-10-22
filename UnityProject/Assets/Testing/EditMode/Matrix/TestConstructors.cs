@@ -134,6 +134,16 @@ namespace Eigen3MatrixTests
         }
 
         [Test]
+        public void TestMatrixInitializationNullFrom2DArray()
+        {
+            float[,] initData = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var matrix = new Matrix(initData);
+            });
+        }
+
+        [Test]
         public void TestMatrixCopy()
         {
             var originalMatrix = new Matrix(2, 2, new float[] { 1, 2, 3, 4 });

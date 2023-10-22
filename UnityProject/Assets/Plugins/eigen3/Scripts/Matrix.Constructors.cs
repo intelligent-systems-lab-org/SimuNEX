@@ -36,10 +36,7 @@ public partial class Matrix : IDisposable
             throw new ArgumentException("Number of rows and columns must be greater than 0.");
         }
 
-        if (data == null)
-        {
-            data = new float[rows * cols];
-        }
+        data ??= new float[rows * cols];
 
         if (rows * cols != data.Length)
         {
@@ -56,6 +53,11 @@ public partial class Matrix : IDisposable
     /// <param name="data">2D array representing the matrix.</param>
     public Matrix(float[,] data)
     {
+        if (data == null)
+        {
+            throw new ArgumentNullException(nameof(data), "Input 2D array cannot be null.");
+        }
+
         int rows = data.GetLength(0);
         int cols = data.GetLength(1);
 
@@ -69,7 +71,6 @@ public partial class Matrix : IDisposable
                 flatData[j * rows + i] = data[i, j];
             }
         }
-
         _matrixPtr = Eigen3.CreateMatrix(rows, cols, flatData);
     }
 
@@ -97,7 +98,7 @@ public partial class Matrix : IDisposable
     }
 
     /// <summary>
-    /// Releases the unmanaged resources used by the Matrix and optionally releases the managed resources.
+    /// Releases the unmanaged resources used by the <see cref="Matrix"/> and optionally releases the managed resources.
     /// </summary>
     public void Dispose()
     {
