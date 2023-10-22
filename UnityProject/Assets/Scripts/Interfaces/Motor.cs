@@ -20,25 +20,37 @@ public abstract class Motor : Actuator
 
     private void OnValidate()
     {
-        motorLoad = GetComponent<MotorLoad>();
-        if (motorLoad != null) motorLoad.rb = rb;
+        if (TryGetComponent(out motorLoad))
+        {
+            motorLoad.rb = rb;
+        }
+
         Initialize();
     }
 
     private void Awake()
     {
-        motorLoad = GetComponent<MotorLoad>();
-        if (motorLoad != null) motorLoad.rb = rb;
+        if (TryGetComponent(out motorLoad))
+        {
+            motorLoad.rb = rb;
+        }
+
         Initialize();
     }
 
     private void OnEnable()
     {
-        if (motorLoad != null) motorLoad.AttachActuator(() => MotorFunction(inputs, parameters));
+        if (motorLoad != null)
+        {
+            motorLoad.AttachActuator(() => MotorFunction(inputs, parameters));
+        }
     }
 
     private void OnDisable()
     {
-        if (motorLoad != null) motorLoad.DetachActuator();
+        if (motorLoad != null)
+        {
+            motorLoad.DetachActuator();
+        }
     }
 }

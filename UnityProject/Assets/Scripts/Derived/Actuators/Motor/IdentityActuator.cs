@@ -30,18 +30,27 @@ public class IdentityActuator : Actuator
 
     protected override void Initialize()
     {
-        load = GetComponent<Load>();
-        if (load != null) load.rb = rb;
+        if (TryGetComponent(out load))
+        {
+            load.rb = rb;
+        }
+
         inputs = new Func<float>[1] { () => input };
     }
 
     private void OnEnable()
     {
-        if (load != null) load.AttachActuator(inputs[0]);
+        if (load != null)
+        {
+            load.AttachActuator(inputs[0]);
+        }
     }
 
     private void OnDisable()
     {
-        if (load != null) load.DetachActuator();
+        if (load != null)
+        {
+            load.DetachActuator();
+        }
     }
 }
