@@ -8,5 +8,5 @@ public abstract class Dynamics : MonoBehaviour
     /// <summary>
     /// Applys the accumulated inputs to the system.
     /// </summary>
-    protected abstract void Step();
+    public abstract void Step();
 }

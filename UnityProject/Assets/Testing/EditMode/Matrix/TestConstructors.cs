@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace Eigen3MatrixTests
 {
@@ -18,6 +19,52 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(2, matrix[1, 0]);
             Assert.AreEqual(3, matrix[0, 1]);
             Assert.AreEqual(4, matrix[1, 1]);
+        }
+
+        [Test]
+        public void TestMatrixInitializationWithNullData()
+        {
+            // Passing null for data, which defaults to zero matrix
+            var matrix = new Matrix(2, 2);
+
+            // test counts
+            Assert.AreEqual(2, matrix.RowCount);
+            Assert.AreEqual(2, matrix.ColCount);
+
+            // test all positions are zeros
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    Assert.AreEqual(0, matrix[i, j]);
+                }
+            }
+        }
+
+        [Test]
+        public void TestMatrixInitializationWithMismatchedDataSize()
+        {
+            // Expecting an exception due to mismatched data size
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var matrix = new Matrix(3, 3, new float[] { 1, 2, 3, 4 });
+            });
+        }
+
+        [Test]
+        public void TestMatrixInitializationWithZeroRowsOrCols()
+        {
+            // Expecting an exception due to zero rows
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var matrix = new Matrix(0, 2, new float[] { 1, 2 });
+            });
+
+            // Expecting an exception due to zero columns
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var matrix = new Matrix(2, 0, new float[] { 1, 2 });
+            });
         }
 
         [Test]
@@ -84,6 +131,16 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(4, matrix[1, 0]);
             Assert.AreEqual(5, matrix[1, 1]);
             Assert.AreEqual(6, matrix[1, 2]);
+        }
+
+        [Test]
+        public void TestMatrixInitializationNullFrom2DArray()
+        {
+            float[,] initData = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var matrix = new Matrix(initData);
+            });
         }
 
         [Test]

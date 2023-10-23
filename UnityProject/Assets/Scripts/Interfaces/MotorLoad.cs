@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 /// <summary>
 /// Generalizable class for motor loads such as <see cref="Propeller"/>.
 /// </summary>
-public abstract class MotorLoad : MonoBehaviour
+public abstract class MotorLoad : Load
 {
     /// <summary>
     /// Radians to Degrees conversion factor.
@@ -32,16 +31,6 @@ public abstract class MotorLoad : MonoBehaviour
     protected Force force;
 
     /// <summary>
-    /// Function of motor attached to load.
-    /// </summary>
-    protected Func<float> motorFunction = null;
-
-    /// <summary>
-    /// Attached RigidBody to apply forces to.
-    /// </summary>
-    public RigidBody rb;
-
-    /// <summary>
     /// Set up forces, properties, etc. for simulation.
     /// </summary>
     protected abstract void Initialize();
@@ -65,8 +54,12 @@ public abstract class MotorLoad : MonoBehaviour
 
     private void OnEnable()
     {
-        FindSpinnerTransforms();
         Activate();
+    }
+
+    private void OnValidate()
+    {
+        FindSpinnerTransforms();
     }
 
     private void OnDisable()
@@ -91,32 +84,15 @@ public abstract class MotorLoad : MonoBehaviour
     }
 
     /// <summary>
-    /// Attaches a <see cref="Motor"/>.
-    /// </summary>
-    /// <param name="motorFunction">Motor function associated with the <see cref="Motor"/> object.</param>
-    public void AttachMotor(Func<float> motorFunction)
-    {
-        this.motorFunction = motorFunction;
-    }
-
-    /// <summary>
-    /// Detaches a <see cref="Motor"/>
-    /// </summary>
-    public void DetachMotor()
-    {
-        motorFunction = null;
-    }
-
-    /// <summary>
     /// Updates speed based on the motor output.
     /// </summary>
     public float motorOutput
     {
         get
         {
-            if (motorFunction != null)
+            if (actuatorFunction != null)
             {
-                _speed = motorFunction();
+                _speed = actuatorFunction();
             }
             // Use input speed if motor is not connected
             return _speed;

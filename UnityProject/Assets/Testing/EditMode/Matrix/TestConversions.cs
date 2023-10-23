@@ -26,7 +26,7 @@ namespace Eigen3MatrixTests
         [Test]
         public void TestToArrayColumnMajorOrder()
         {
-            // Initialize a 2x2 matrix with row-major order data (just for variety)
+            // Initialize a 2x2 matrix with row-major order data
             var matrix = new Matrix(2, 2, new float[] { 1, 2, 3, 4 }, true);
 
             // Convert the matrix to an array in column-major order

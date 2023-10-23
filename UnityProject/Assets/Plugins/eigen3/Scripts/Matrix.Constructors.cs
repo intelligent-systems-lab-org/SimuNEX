@@ -24,10 +24,26 @@ public partial class Matrix : IDisposable
     /// </summary>
     /// <param name="rows">Number of rows.</param>
     /// <param name="cols">Number of columns.</param>
-    /// <param name="data">Input array.</param>
+    /// <param name="data">Input array. 
+    /// If not given, creates a zero matrix by the specified size.</param>
     /// <param name="rowMajor">Assume order in row-major if true. Column-major by default.</param>
-    public Matrix(int rows, int cols, float[] data, bool rowMajor = false)
+    /// <exception cref="ArgumentException">If rows or cols is zero, 
+    /// or the length of the data array is not equal to rows * cols.</exception>
+    public Matrix(int rows, int cols, float[] data = null, bool rowMajor = false)
     {
+        if (rows <= 0 || cols <= 0)
+        {
+            throw new ArgumentException("Number of rows and columns must be greater than 0.");
+        }
+
+        data ??= new float[rows * cols];
+
+        if (rows * cols != data.Length)
+        {
+            throw new ArgumentException($"The provided data array has a length of {data.Length}, " +
+                $"but it should be {rows * cols} based on the specified number of rows and columns.");
+        }
+
         _matrixPtr = Eigen3.CreateMatrix(rows, cols, data, rowMajor);
     }
 
@@ -37,6 +53,11 @@ public partial class Matrix : IDisposable
     /// <param name="data">2D array representing the matrix.</param>
     public Matrix(float[,] data)
     {
+        if (data == null)
+        {
+            throw new ArgumentNullException(nameof(data), "Input 2D array cannot be null.");
+        }
+
         int rows = data.GetLength(0);
         int cols = data.GetLength(1);
 
@@ -50,7 +71,6 @@ public partial class Matrix : IDisposable
                 flatData[j * rows + i] = data[i, j];
             }
         }
-
         _matrixPtr = Eigen3.CreateMatrix(rows, cols, flatData);
     }
 
@@ -78,7 +98,7 @@ public partial class Matrix : IDisposable
     }
 
     /// <summary>
-    /// Releases the unmanaged resources used by the Matrix and optionally releases the managed resources.
+    /// Releases the unmanaged resources used by the <see cref="Matrix"/> and optionally releases the managed resources.
     /// </summary>
     public void Dispose()
     {

@@ -30,6 +30,31 @@ namespace Eigen3MatrixTests
         }
 
         [Test]
+        public void TestMatrixAddOperator()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4 },
+                { 5, 6 },
+            });
+            var matrixB = new Matrix(new float[,] {
+                { 1, 2 },
+                { 4, 5 },
+            });
+
+            var matrixC = matrixA + matrixB;
+
+            // test counts
+            Assert.AreEqual(2, matrixC.RowCount);
+            Assert.AreEqual(2, matrixC.ColCount);
+
+            // test positions
+            Assert.AreEqual(2 + 1, matrixC[0, 0]);
+            Assert.AreEqual(4 + 2, matrixC[0, 1]);
+            Assert.AreEqual(5 + 4, matrixC[1, 0]);
+            Assert.AreEqual(6 + 5, matrixC[1, 1]);
+        }
+
+        [Test]
         public void TestMatrixSubtract()
         {
             var matrixA = new Matrix(new float[,] {
@@ -42,6 +67,31 @@ namespace Eigen3MatrixTests
             });
 
             var matrixC = matrixA.Subtract(matrixB);
+
+            // test counts
+            Assert.AreEqual(2, matrixC.RowCount);
+            Assert.AreEqual(2, matrixC.ColCount);
+
+            // test positions
+            Assert.AreEqual(2 - 1, matrixC[0, 0]);
+            Assert.AreEqual(4 - 2, matrixC[0, 1]);
+            Assert.AreEqual(5 - 4, matrixC[1, 0]);
+            Assert.AreEqual(6 - 5, matrixC[1, 1]);
+        }
+
+        [Test]
+        public void TestMatrixSubtractOperator()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4 },
+                { 5, 6 },
+            });
+            var matrixB = new Matrix(new float[,] {
+                { 1, 2 },
+                { 4, 5 },
+            });
+
+            var matrixC = matrixA - matrixB;
 
             // test counts
             Assert.AreEqual(2, matrixC.RowCount);
@@ -83,6 +133,34 @@ namespace Eigen3MatrixTests
         }
 
         [Test]
+        public void TestMatrixMultiplyOperator()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4, 3 },
+                { 5, 6, 1 }
+            });
+            var matrixB = new Matrix(new float[,] {
+                { 1, 2, 3 },
+                { 4, 5, 6 },
+                { 7, 8, 9 }
+            });
+
+            var matrixC = matrixA * matrixB;
+
+            // test counts
+            Assert.AreEqual(2, matrixC.RowCount);
+            Assert.AreEqual(3, matrixC.ColCount);
+
+            // test positions
+            Assert.AreEqual(2 * 1 + 4 * 4 + 3 * 7, matrixC[0, 0]);
+            Assert.AreEqual(2 * 2 + 4 * 5 + 3 * 8, matrixC[0, 1]);
+            Assert.AreEqual(2 * 3 + 4 * 6 + 3 * 9, matrixC[0, 2]);
+            Assert.AreEqual(5 * 1 + 6 * 4 + 1 * 7, matrixC[1, 0]);
+            Assert.AreEqual(5 * 2 + 6 * 5 + 1 * 8, matrixC[1, 1]);
+            Assert.AreEqual(5 * 3 + 6 * 6 + 1 * 9, matrixC[1, 2]);
+        }
+
+        [Test]
         public void TestMatrixMultiplyByScalar()
         {
             var matrixA = new Matrix(new float[,] {
@@ -92,6 +170,50 @@ namespace Eigen3MatrixTests
 
             float scalar = 3.0f;
             var result = matrixA.Multiply(scalar);
+
+            // test counts
+            Assert.AreEqual(2, result.RowCount);
+            Assert.AreEqual(2, result.ColCount);
+
+            // test positions
+            Assert.AreEqual(2 * 3, result[0, 0]);
+            Assert.AreEqual(4 * 3, result[0, 1]);
+            Assert.AreEqual(5 * 3, result[1, 0]);
+            Assert.AreEqual(6 * 3, result[1, 1]);
+        }
+
+        [Test]
+        public void TestMatrixMultiplyByRightScalarOperator()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4 },
+                { 5, 6 },
+            });
+
+            float scalar = 3.0f;
+            var result = matrixA * scalar;
+
+            // test counts
+            Assert.AreEqual(2, result.RowCount);
+            Assert.AreEqual(2, result.ColCount);
+
+            // test positions
+            Assert.AreEqual(2 * 3, result[0, 0]);
+            Assert.AreEqual(4 * 3, result[0, 1]);
+            Assert.AreEqual(5 * 3, result[1, 0]);
+            Assert.AreEqual(6 * 3, result[1, 1]);
+        }
+
+        [Test]
+        public void TestMatrixMultiplyByLeftScalarOperator()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4 },
+                { 5, 6 },
+            });
+
+            float scalar = 3.0f;
+            var result = scalar * matrixA;
 
             // test counts
             Assert.AreEqual(2, result.RowCount);
