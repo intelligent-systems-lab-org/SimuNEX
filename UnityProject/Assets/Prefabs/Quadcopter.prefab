@@ -1082,6 +1082,8 @@ GameObject:
   - component: {fileID: 5995511627637507719}
   - component: {fileID: 932807715222619118}
   - component: {fileID: 7244151605623391754}
+  - component: {fileID: 8113885178577293394}
+  - component: {fileID: 5559455877385619540}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1183,6 +1185,34 @@ MonoBehaviour:
   - {fileID: 9020256483454760767}
   - {fileID: 4971806525275137639}
   outputs: []
+--- !u!114 &8113885178577293394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea4d0a9b68240b4c84d18e2e95c0722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outputNodeName: SimuNEXROS2Listener
+  inputNodeName: SimuNEXROS2Talker
+  publisherName: SystemOutputs
+  subscriberName: SystemInputs
+--- !u!114 &5559455877385619540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feab04ad06492965492b3edc6423aa53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9065567134502762451
 GameObject:
   m_ObjectHideFlags: 0
