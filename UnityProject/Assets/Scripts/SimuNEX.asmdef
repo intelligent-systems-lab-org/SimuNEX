@@ -2,7 +2,8 @@
     "name": "SimuNEX",
     "rootNamespace": "",
     "references": [
-        "GUID:e69e5b0eedcadc743a87e1fc2c3972ed"
+        "GUID:e69e5b0eedcadc743a87e1fc2c3972ed",
+        "GUID:31750105ceed356459820dc46bae7f1a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -375,6 +375,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1328465329030591502}
   - component: {fileID: 4883061469072057648}
+  - component: {fileID: 3011489618110827443}
+  - component: {fileID: 271912348052366067}
+  - component: {fileID: 9020256483454760767}
+  - component: {fileID: 4971806525275137639}
   m_Layer: 0
   m_Name: Sensors
   m_TagString: Untagged
@@ -410,6 +414,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
+--- !u!114 &3011489618110827443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294940295777016579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5995511627637507719}
+  motor: {fileID: 2913999746823657335}
+  integrator: 0
+--- !u!114 &271912348052366067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294940295777016579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5995511627637507719}
+  motor: {fileID: 3066688993045212712}
+  integrator: 0
+--- !u!114 &9020256483454760767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294940295777016579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5995511627637507719}
+  motor: {fileID: 1119702125733965455}
+  integrator: 0
+--- !u!114 &4971806525275137639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294940295777016579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5995511627637507719}
+  motor: {fileID: 8127114455230120342}
+  integrator: 0
 --- !u!1 &4223507230879152533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1081,7 @@ GameObject:
   - component: {fileID: 8214148604704887133}
   - component: {fileID: 5995511627637507719}
   - component: {fileID: 932807715222619118}
-  - component: {fileID: 6078981892498475206}
+  - component: {fileID: 7244151605623391754}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1100,7 +1164,7 @@ MonoBehaviour:
   - {fileID: 1119702125733965455}
   - {fileID: 8127114455230120342}
   inputs: []
---- !u!114 &6078981892498475206
+--- !u!114 &7244151605623391754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1114,6 +1178,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensors:
   - {fileID: 4883061469072057648}
+  - {fileID: 3011489618110827443}
+  - {fileID: 271912348052366067}
+  - {fileID: 9020256483454760767}
+  - {fileID: 4971806525275137639}
   outputs: []
 --- !u!1 &9065567134502762451
 GameObject:
