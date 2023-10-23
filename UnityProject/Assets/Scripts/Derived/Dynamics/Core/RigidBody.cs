@@ -118,7 +118,7 @@ public class RigidBody : Dynamics
         AddTorque(Vector3.Cross(f, pos), CF);
     }
 
-    protected override void Step()
+    public override void Step()
     {
         if (forces != null && forces.Count > 0)
         {
