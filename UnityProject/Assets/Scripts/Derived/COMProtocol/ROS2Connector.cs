@@ -1,5 +1,6 @@
 using ROS2;
 using std_msgs.msg;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(ROS2UnityComponent))]
@@ -29,10 +30,7 @@ public class ROS2Connector : COMProtocol
         {
             inputSubscriber ??= inputNode.CreateSubscription<Float32MultiArray>(subscriberName, msg =>
             {
-                for (int i = 0; i < msg.Data.Length; ++i)
-                {
-                    data[i] = msg.Data[i];
-                }
+                Array.Copy(msg.Data, data, msg.Data.Length);
             });
         }
     }
