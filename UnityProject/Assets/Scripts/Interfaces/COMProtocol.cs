@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Interface for communication protocols (eg., TCP/IP, UDP, RTPS, MQTT, Simplex, etc).
+/// </summary>
 public abstract class COMProtocol : MonoBehaviour
 {
     /// <summary>
@@ -7,7 +10,7 @@ public abstract class COMProtocol : MonoBehaviour
     /// </summary>
     public abstract void Initialize();
 
-    private void OnValidate()
+    private void Awake()
     {
         Initialize();
     }
