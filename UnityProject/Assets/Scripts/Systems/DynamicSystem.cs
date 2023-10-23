@@ -47,7 +47,7 @@ public class DynamicSystem : MonoBehaviour
         actuatorSystem.inputs = receivedData;
         actuatorSystem.SetActuatorInputs();
 
-        if (dynamics!= null)
+        if (dynamics != null)
         {
             dynamics.Step();
         }

@@ -10,18 +10,18 @@ public class Ideal6DOFMotionSensor : Sensor
         outputs = new Func<float>[]
         {
             () => rb.velocity.x, 
-            () => rb.velocity.y, 
-            () => rb.velocity.z,
+            () => rb.velocity.z, 
+            () => rb.velocity.y,
             () => rb.angularVelocity.x, 
-            () => rb.angularVelocity.y, 
-            () => rb.angularVelocity.z,
+            () => rb.angularVelocity.z, 
+            () => rb.angularVelocity.y,
+            () => rb.angularPosition.w, 
             () => rb.angularPosition.x, 
-            () => rb.angularPosition.y, 
             () => rb.angularPosition.z, 
-            () => rb.angularPosition.w,
+            () => rb.angularPosition.y,
             () => rb.position.x, 
-            () => rb.position.y, 
-            () => rb.position.z
+            () => rb.position.z, 
+            () => rb.position.y
         };
     }
 
@@ -39,10 +39,10 @@ public class Ideal6DOFMotionSensor : Sensor
     {
         return new float[]
         {
-            rb.velocity.x, rb.velocity.y, rb.velocity.z,
-            rb.angularVelocity.x, rb.angularVelocity.y, rb.angularVelocity.z,
-            rb.angularPosition.x, rb.angularPosition.y, rb.angularPosition.z, rb.angularPosition.w,
-            rb.position.x, rb.position.y, rb.position.z
+            rb.velocity.x, rb.velocity.z, rb.velocity.y,
+            rb.angularVelocity.x, rb.angularVelocity.z, rb.angularVelocity.y,
+            rb.angularPosition.w, rb.angularPosition.x, rb.angularPosition.z, rb.angularPosition.y,
+            rb.position.x, rb.position.z, rb.position.y
         };
     }
 }
