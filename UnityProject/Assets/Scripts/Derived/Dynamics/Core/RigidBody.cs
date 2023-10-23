@@ -29,11 +29,6 @@ public class RigidBody : Dynamics
         Initialize();
     }
 
-    private void FixedUpdate()
-    {
-        Step();
-    }
-
     /// <summary>
     /// Configures the system at the start of the physics simulation.
     /// </summary>
