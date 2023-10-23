@@ -1,3 +1,38 @@
+# [0.3.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.2.0...v0.3.0) (2023-10-23)
+
+
+### Bug Fixes
+
+* **communication:** fix link errors with the ROS2ForUnity plugin. ([adf27b6](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/adf27b6f2b3568d406d6dcd9898f3785097fce7f))
+* **quadcopter:** remove FixedUpdate in RigidBody. ([bd69ad0](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/bd69ad0ec8bfe3fa5e4e4d112fe79ed87e6f2185))
+* **quadcopter:** use xzy for 6DOF motion measurement. ([2ddd35c](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/2ddd35c468d353b61db14e270b6f16a0d9c9b1af))
+
+
+### Features
+
+* **communication:** add ActuatorSystem ([f57e01f](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f57e01f216c4d0fd9e1d7716e2e0776a2fc984d9))
+* **communication:** add tests for ActuatorSystem. ([ccfdbbb](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/ccfdbbbbd92c3563e5c9f01e1afb4957645902d5))
+* **communication:** derive actuator input sizes. ([f6fccca](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f6fccca61b6c80db8d7a4eb5f59257ec12795cfa))
+* **communication:** implement basic sensor. ([66ae8f3](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/66ae8f3d5f5d373b19a75b45a41d7d5d5084f30e))
+* **communication:** implement ROS2 subscriber and publisher functions ([6ffd5f1](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/6ffd5f1bb18bd69371efdabbc2ebd03508dd8e92))
+* **communication:** implement sensor interface ([02665b0](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/02665b06e8132a9f320381a4fc62eee88866a1e4))
+* **communication:** install ROS2 support for COMProtocol. ([38b2c4a](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/38b2c4aa67e4d40076f4d87092f51c890b4a08a9))
+* **communication:** set/get actuator inputs through ActuatorSystem. ([0bc407d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/0bc407d514261cd90a087d0b704ee545016d95df))
+* **communication:** use OnValidate() instead of Awake(). ([d30ab35](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/d30ab35c7c4bdda8fdb7ee7094ee379c2d4b59fa))
+* **dynamics:** Change Step() to public. ([f4708ea](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f4708ea4377c5d71dd809ab3b5e92438629e8bd7))
+* **dynamics:** implement DynamicSystem interface. ([301acb3](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/301acb360d62a51c8060a79ba2cdc886401c30ba))
+* **eigen3:** add exceptions to Matrix constructor. ([3b75001](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/3b75001c64820ff71082d7323c9efa29423f92d8))
+* **eigen3:** add operator coverage tests ([84f209b](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/84f209b82d2a874cbd4df3135d80678d66240d14))
+* **eigen3:** complete coverage tests for Matrix.Constructors. ([cb279ca](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/cb279ca77b30bd70c72036b3a89d23f851a94763))
+* **motor:** add constraints to Integrator step size. ([441cc66](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/441cc66f979835d979b7a0060a38c576a786c992))
+* **motor:** add ideal motor sensor ([9ee2ed8](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/9ee2ed8ef2b76617ad38d1e60ed8cd1f37c6b93c))
+* **motor:** add motor position for IdealMotorSensor. ([8fb5211](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/8fb521155a26bad1c7d585e9e5486b326fc3e67a))
+* **motor:** add option to select integration method from editor. ([683c5b6](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/683c5b62d8e329fa10b82dc6b668d3639a521b66))
+* **motor:** automate MotorLoad with Motor connections. ([b0eb91c](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b0eb91cff979e4325e9ae6df39e881bd8be7207e))
+* **motor:** MotorFunction is now abstract instead of a delegate. ([2daaf62](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/2daaf62c9a14dca903f44a147a9866eb696ad609))
+
+
+
 # [0.2.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.1.0...v0.2.0) (2023-10-18)
 
 
@@ -24,7 +59,7 @@
 
 
 
-# [0.1.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.0.2...v0.1.0) (2023-10-16)
+# [0.1.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/413fab6935a115814d6cdd9509521718879a87a8...v0.1.0) (2023-10-16)
 
 
 ### Bug Fixes
@@ -56,14 +91,6 @@
 * **quadcopter:** implement propeller function ([9994438](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/99944386d3f25399b8ef2738f7f91f7d7d4cc98d))
 * **quadcopter:** implement simplepropeller ([d3dec6b](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/d3dec6b8a5f22f13249c71a411e3a38b901a7f2d))
 * **test:** add unit tests and code coverage ([b58212d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b58212d2aea6110398927e233be7053fff2b7759))
-
-
-
-## [0.0.2](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.0.1...v0.0.2) (2023-10-06)
-
-
-
-## 0.0.1 (2023-10-06)
 
 
 
