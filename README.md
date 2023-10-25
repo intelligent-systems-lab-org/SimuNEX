@@ -24,6 +24,13 @@
 # SimuNEX
 SimuNEX is a high-fidelity dynamic simulation framework designed as a modular platform to simulate dynamic systems across various domains. It serves as a powerful tool for researchers, engineering students, and members of the Intelligent Systems Lab, offering a versatile environment for simulating complex systems and phenomena.
 
+## Getting Started
+1. **Install Unity**: The project is currently developed in [Unity](https://unity.com/) 2022.3.10f1 but it may be compatible with other versions.
+2. **Clone Repository**: Use your preferred Git client to clone the repository from its GitHub page.
+3. **Open in Unity Editor**: This is done by adding the `\UnityProject` folder in the Unity Editor. You're now all set to start building and simulating dynamic systems!
+
+For any additional details, configurations, or advanced setups, refer to the [documentation](#documentation).
+
 # Features 
 SimuNEX is in its early stages of development and is only usable through the Unity Editor, offering interfaces for building dynamic systems similar to an API. Currently, the following features are available:
 
@@ -81,13 +88,20 @@ SimuNEX is in its early stages of development and is only usable through the Uni
 </table>
 
 ## Documentation
-Currently a work in progress.
+Currently a work in progress. Will be implemented with GitHub Pages.
+
+### ROS on Windows
+ ROS 2 was tested on Windows, the ROSOnWindows binary was installed, which can be found [here](https://ms-iot.github.io/ROSOnWindows/GettingStarted/SetupRos2.html). This binary is provided by Microsoft's IoT team and is designed to simplify the installation process for ROS 2 on Windows. Credit should be given to the ms-iot team for their work on the binary, and their repository can be found [here](https://github.com/ms-iot/rosonwindows/).
 
 ## Plugins
-| Name          | Version | Purpose | URL |
-|---------------|---------|---------|--------------------------|
-| ROS2ForUnity  | 1.1.0   | Communication using ROS 2 on Foxy installations  | [link](https://github.com/RobotecAI/ros2-for-unity) |
-| Eigen         | 3.4.0   | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
+| Name          | Version | Supported OS | Purpose | URL |
+|---------------|---------|--------------|---------|--------------------------|
+| ROS2ForUnity  | 1.1.0   | Windows, Linux | Communication using ROS 2[^1]  | [link](https://github.com/RobotecAI/ros2-for-unity) |
+| Eigen         | 3.4.0   | Custom C# bindings only currently support Windows[^2] | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
+
+[^1]: Currently on Foxy installations only.
+
+[^2]: Separately maintained in another repository. See [here](https://github.com/intelligent-systems-lab-org/eigen).
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
