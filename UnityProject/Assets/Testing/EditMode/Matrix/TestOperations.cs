@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace Eigen3MatrixTests
 {
@@ -27,6 +28,26 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(4 + 2, matrixC[0, 1]);
             Assert.AreEqual(5 + 4, matrixC[1, 0]);
             Assert.AreEqual(6 + 5, matrixC[1, 1]);
+        }
+
+        [Test]
+        public void TestMatrixAdd_DifferentDimensions_ThrowsException()
+        {
+            // Create two matrices with different dimensions
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4, 7 },
+                { 5, 6, 8 },
+            });
+                    var matrixB = new Matrix(new float[,] {
+                { 1, 2 },
+                { 4, 5 },
+            });
+
+            // Expecting an InvalidOperationException
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                var matrixC = matrixA.Add(matrixB);
+            });
         }
 
         [Test]
@@ -80,6 +101,26 @@ namespace Eigen3MatrixTests
         }
 
         [Test]
+        public void TestMatrixSubtract_DifferentDimensions_ThrowsException()
+        {
+            // Create two matrices with different dimensions
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4, 7 },
+                { 5, 6, 8 },
+            });
+            var matrixB = new Matrix(new float[,] {
+                { 1, 2 },
+                { 4, 5 },
+            });
+
+            // Expecting an InvalidOperationException
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                var matrixC = matrixA.Subtract(matrixB);
+            });
+        }
+
+        [Test]
         public void TestMatrixSubtractOperator()
         {
             var matrixA = new Matrix(new float[,] {
@@ -130,6 +171,25 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(5 * 1 + 6 * 4 + 1 * 7, matrixC[1, 0]);
             Assert.AreEqual(5 * 2 + 6 * 5 + 1 * 8, matrixC[1, 1]);
             Assert.AreEqual(5 * 3 + 6 * 6 + 1 * 9, matrixC[1, 2]);
+        }
+
+        [Test]
+        public void TestMatrixMultiplyWithIncompatibleDimensions_ThrowsException()
+        {
+            var matrixA = new Matrix(new float[,] {
+                { 2, 4, 3 },
+                { 5, 6, 1 }
+            });
+            var matrixB = new Matrix(new float[,] {
+                { 1, 2 },
+                { 3, 4 }
+            });
+
+            // Expecting an InvalidOperationException
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                var matrixC = matrixA.Multiply(matrixB);
+            });
         }
 
         [Test]
