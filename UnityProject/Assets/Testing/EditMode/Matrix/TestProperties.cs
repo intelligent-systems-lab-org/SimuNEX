@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace Eigen3MatrixTests
 {
@@ -15,6 +16,31 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(1.0f, matrix[0, 0]);
             Assert.AreEqual(2.0f, matrix[1, 1]);
             Assert.AreEqual(3.0f, matrix[2, 2]);
+        }
+
+        [Test]
+        public void TestMatrixIndexerGetSetInvalidIndices_ThrowsException()
+        {
+            var matrix = new Matrix(2, 2);
+            
+            matrix[1, 1] = 2.0f;
+
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                matrix[-1, 0] = 1.0f;
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                matrix[0, -1] = 2.0f;
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                var elem = matrix[-1, 0];
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                var elem = matrix[0, -1];
+            });
         }
 
         [Test]
@@ -58,6 +84,34 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(1.0f, inverse[0, 1], tol);
             Assert.AreEqual(1.5f, inverse[1, 0], tol);
             Assert.AreEqual(-0.5f, inverse[1, 1], tol);
+        }
+
+        [Test]
+        public void TestMatrixInversePropertyNonSquare_ThrowsException()
+        {
+            var originalMatrix = new Matrix(new float[,] {
+                { 1, 2, 0 },
+                { 3, 4, 1 }
+            });
+            
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                var inverse = originalMatrix.Inverse;
+            });
+        }
+
+        [Test]
+        public void TestMatrixInversePropertySingular_ThrowsException()
+        {
+            var originalMatrix = new Matrix(new float[,] {
+                { 1, 2 },
+                { 1, 2 }
+            });
+
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                var inverse = originalMatrix.Inverse;
+            });
         }
     }
 }

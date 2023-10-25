@@ -48,6 +48,9 @@ internal static class Eigen3
     public static extern bool AreMatricesEqual(IntPtr matrixPtr1, IntPtr matrixPtr2);
 
     [DllImport(EigenWrapperDll)]
+    public static extern float GetDeterminant(IntPtr matrixPtr);
+
+    [DllImport(EigenWrapperDll)]
     public static extern void GetInverse(IntPtr matrixPtr, float[] result);
 
     [DllImport(EigenWrapperDll)]
