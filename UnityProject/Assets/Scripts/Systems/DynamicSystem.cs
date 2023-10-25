@@ -1,30 +1,34 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ActuatorSystem))]
-[RequireComponent(typeof(SensorSystem))]
-[RequireComponent(typeof(COMSystem))]
+/// <summary>
+/// Serves as an orchestrator for simulating SimuNEX models, managing the interactions 
+/// between dynamics, actuators, sensors, and communication systems.
+/// </summary>
 public class DynamicSystem : MonoBehaviour
 {
     /// <summary>
-    /// <see cref="Dynamics"/> object attached for simulation.
+    /// Dynamics object that represents the model's dynamic behavior.
     /// </summary>
     Dynamics dynamics;
 
     /// <summary>
-    /// Connected supervisory actuator system.
+    /// Represents the actuation system controlling the dynamics.
     /// </summary>
     ActuatorSystem actuatorSystem;
 
     /// <summary>
-    /// Connected supervisory sensor system.
+    /// Represents the sensing system reading states or outputs from the dynamics.
     /// </summary>
     SensorSystem sensorSystem;
 
     /// <summary>
-    /// Enables communication for passing data in and out of SimuNEX.
+    /// Represents the communication interface for the dynamic system.
     /// </summary>
     COMSystem comSystem;
 
+    /// <summary>
+    /// Data received from the communication system to be passed to actuators.
+    /// </summary>
     public float[] receivedData;
 
     void Awake()
@@ -39,14 +43,61 @@ public class DynamicSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
+        HandleSensors();
+        HandleCommunication();
+        HandleActuators();
+        HandleDynamics();
+    }
+
+    /// <summary>
+    /// Handles sensor outputs and sends them if a communication system is available.
+    /// </summary>
+    private void HandleSensors()
+    {
+        if (sensorSystem == null) return;
+
         sensorSystem.GetSensorOutputs();
 
-        comSystem.Send(sensorSystem.outputs);
+        if (comSystem != null)
+        {
+            comSystem.Send(sensorSystem.outputs);
+        }
+    }
+
+    /// <summary>
+    /// Handles data reception from the communication system.
+    /// </summary>
+    private void HandleCommunication()
+    {
+        if (comSystem == null) return;
+
         comSystem.Receive(receivedData);
+    }
 
-        actuatorSystem.inputs = receivedData;
+    /// <summary>
+    /// Sets actuator inputs either from received data or directly from the actuator system.
+    /// </summary>
+    private void HandleActuators()
+    {
+        if (actuatorSystem == null) return;
+
+        if (comSystem != null)
+        {
+            actuatorSystem.inputs = receivedData;
+        }
+        else
+        {
+            actuatorSystem.GetActuatorInputs();
+        }
+
         actuatorSystem.SetActuatorInputs();
+    }
 
+    /// <summary>
+    /// Steps through the dynamics simulation.
+    /// </summary>
+    private void HandleDynamics()
+    {
         if (dynamics != null)
         {
             dynamics.Step();

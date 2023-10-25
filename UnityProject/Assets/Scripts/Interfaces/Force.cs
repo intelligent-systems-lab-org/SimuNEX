@@ -5,12 +5,14 @@ using UnityEngine;
 /// </summary>
 public abstract class Force : MonoBehaviour
 {
+    /// <summary>
+    /// Associated <see cref="RigidBody"/> to apply forces to.
+    /// </summary>
     protected RigidBody rb;
 
     private void OnEnable()
     {
-        rb = GetComponent<RigidBody>();
-        if (rb != null)
+        if (TryGetComponent(out rb))
         {
             rb.AttachForce(this);
         }

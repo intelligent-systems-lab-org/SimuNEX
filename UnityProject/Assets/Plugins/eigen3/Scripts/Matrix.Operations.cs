@@ -1,3 +1,5 @@
+using System;
+
 public partial class Matrix
 {
     /// <summary>
@@ -5,8 +7,15 @@ public partial class Matrix
     /// </summary>
     /// <param name="other">The right operand.</param>
     /// <returns>Matrix product of this * other.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when the matrix dimensions are incompatible for multiplication.</exception>
     public Matrix Multiply(Matrix other)
     {
+        if (ColCount != other.RowCount)
+        {
+            throw new InvalidOperationException(@"The number of rows of the second matrix 
+                must match the number of columns of the first matrix.");
+        }
+
         float[] resultData = new float[RowCount * other.ColCount];
         Eigen3.MultiplyMatrices(_matrixPtr, other._matrixPtr, resultData);
         return new Matrix(RowCount, other.ColCount, resultData);
@@ -47,8 +56,14 @@ public partial class Matrix
     /// </summary>
     /// <param name="other">The right operand.</param>
     /// <returns>Matrix sum of this + other.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when matrix dimensions do not match.</exception>
     public Matrix Add(Matrix other)
     {
+        if (RowCount != other.RowCount || ColCount != other.ColCount)
+        {
+            throw new InvalidOperationException("The dimensions of both matrices must match.");
+        }
+
         float[] resultData = new float[RowCount * ColCount];
         Eigen3.AddMatrices(_matrixPtr, other._matrixPtr, resultData);
         return new Matrix(RowCount, ColCount, resultData);
@@ -67,8 +82,14 @@ public partial class Matrix
     /// </summary>
     /// <param name="other">The right operand.</param>
     /// <returns>Matrix difference of this - other.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when matrix dimensions do not match.</exception>
     public Matrix Subtract(Matrix other)
     {
+        if (RowCount != other.RowCount || ColCount != other.ColCount)
+        {
+            throw new InvalidOperationException("The dimensions of both matrices must match.");
+        }
+
         float[] resultData = new float[RowCount * ColCount];
         Eigen3.SubtractMatrices(_matrixPtr, other._matrixPtr, resultData);
         return new Matrix(RowCount, ColCount, resultData);

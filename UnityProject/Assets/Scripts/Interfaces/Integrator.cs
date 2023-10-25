@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// Interface for implementing numerical integrators for <see cref="StateSpace"/>.
+/// Interface for implementing numerical stepper integrators for <see cref="StateSpace"/>.
 /// </summary>
 public abstract class Integrator
 {
@@ -26,7 +26,8 @@ public abstract class Integrator
 
             if (value < 0.0025f)
             {
-                throw new ArgumentException("Step size must be at least 0.0025 to maintain reasonable performance");
+                throw new ArgumentException(@"Step size must be at least 0.0025 
+                    to maintain reasonable performance");
             }
 
             float remainder = value % 0.005f;

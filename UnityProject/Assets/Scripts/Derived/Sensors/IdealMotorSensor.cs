@@ -22,18 +22,6 @@ public class IdealMotorSensor : Sensor
     /// </summary>
     public IntegrationMethod integrator;
 
-    public override float[] GetOutput()
-    {
-        if (readPosition)
-        {
-            return new float[] { outputs[0](), outputs[1]() };
-        }
-        else
-        {
-            return new float[] { outputs[0]() };
-        }
-    }
-
     protected override void Initialize()
     {
         stateSpace = new();
@@ -42,24 +30,28 @@ public class IdealMotorSensor : Sensor
 
         if (readPosition)
         {
-            outputs = new Func<float>[]
+            outputs = () =>
             {
-                () => motor.MotorFunction(motor.inputs, motor.parameters),
-                () =>
+                if (motor.inputs != null)
                 {
                     float speed = motor.MotorFunction(motor.inputs, motor.parameters);
                     stateSpace.inputs[0, 0] = speed;
                     stateSpace.Compute();
                     float integratedPosition = stateSpace.states[0, 0] % 2 * MathF.PI;
-                    return integratedPosition;
+                    return new float[] { speed, integratedPosition };
                 }
+                return new float[2];
             };
         }
         else
         {
-            outputs = new Func<float>[]
+            outputs = () =>
             {
-                () => motor.MotorFunction(motor.inputs, motor.parameters)
+                if (motor.inputs != null)
+                {
+                    return new float[] { motor.MotorFunction(motor.inputs, motor.parameters) };
+                }
+                return new float[1];
             };
         }
         

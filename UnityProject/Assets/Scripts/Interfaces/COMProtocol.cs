@@ -16,13 +16,13 @@ public abstract class COMProtocol : MonoBehaviour
     }
 
     /// <summary>
-    /// Sends data.
+    /// Sends data using the talker.
     /// </summary>
     /// <param name="data">The data to be sent.</param>
     public abstract void Send(float[] data);
 
     /// <summary>
-    /// Receives data.
+    /// Receives data using the listener.
     /// </summary>
     /// <param name="data">The data to be received.</param>
     public abstract void Receive(float[] data);

@@ -82,19 +82,19 @@ public abstract class Sensor : MonoBehaviour
     /// <summary>
     /// Inputs to the sensor.
     /// </summary>
-    protected Func<float>[] outputs;
+    protected Func<float[]> outputs;
 
     /// <summary>
     /// Parameters specific to the sensor.
     /// </summary>
-    public Func<float>[] parameters;
+    public Func<float[]> parameters;
 
     /// <summary>
     /// Number of outputs specific to the <see cref="Sensor"/>.
     /// </summary>
     public int outputSize
     {
-        get => (outputs == null) ? 0 : outputs.Length;
+        get => (outputs == null) ? 0 : outputs().Length;
     }
 
     /// <summary>
@@ -106,5 +106,5 @@ public abstract class Sensor : MonoBehaviour
     /// Gets all outputs specific to the <see cref="Sensor"/>.
     /// </summary>
     /// <returns>The current sensor readings.</returns>
-    public abstract float[] GetOutput();
+    public float[] GetOutput() => outputs();
 }
