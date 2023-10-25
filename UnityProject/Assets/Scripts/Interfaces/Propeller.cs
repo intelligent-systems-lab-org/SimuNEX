@@ -30,7 +30,7 @@ public abstract class PropellerForce : Force
     /// <summary>
     /// Parameters specific to the propeller.
     /// </summary>
-    protected Func<float>[] parameters;
+    protected Func<float[]> parameters;
 
     /// <summary>
     /// Axis of propeller rotation.
@@ -53,7 +53,7 @@ public abstract class PropellerForce : Force
     /// <param name="speed">Current propeller speed.</param>
     /// <param name="parameters">Parameters specific to the propeller.</param>
     /// <returns>An array of float values where the first element is force and the second is torque.</returns>
-    public abstract float[] PropellerFunction(Func<float> speed, Func<float>[] parameters);
+    public abstract float[] PropellerFunction(Func<float> speed, Func<float[]> parameters);
 
     public override void ApplyForce()
     {
