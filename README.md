@@ -97,11 +97,11 @@ Currently a work in progress. Will be implemented with GitHub Pages.
 | Name          | Version | Supported OS | Purpose | URL |
 |---------------|---------|--------------|---------|--------------------------|
 | ROS2ForUnity  | 1.1.0   | Windows, Linux | Communication using ROS 2[^1]  | [link](https://github.com/RobotecAI/ros2-for-unity) |
-| Eigen         | 3.4.0   | Custom C# bindings only currently support Windows[^2] | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
+| Eigen         | 3.4.0   | Windows[^2] | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
 
 [^1]: Currently on Foxy installations only.
 
-[^2]: Separately maintained in another repository. See [here](https://github.com/intelligent-systems-lab-org/eigen).
+[^2]: Custom C# bindings that only currently support Windows. Separately maintained in another repository. See [here](https://github.com/intelligent-systems-lab-org/eigen).
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
