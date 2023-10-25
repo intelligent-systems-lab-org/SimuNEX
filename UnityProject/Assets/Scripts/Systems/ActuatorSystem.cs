@@ -97,19 +97,19 @@ public abstract class Actuator : MonoBehaviour
     /// <summary>
     /// Inputs to the actuator.
     /// </summary>
-    public Func<float>[] inputs;
+    public Func<float[]> inputs;
 
     /// <summary>
     /// Parameters specific to the actuator.
     /// </summary>
-    public Func<float>[] parameters;
+    public Func<float[]> parameters;
 
     /// <summary>
     /// Number of inputs specific to the <see cref="Actuator"/>.
     /// </summary>
     public int inputSize
     {
-        get => (inputs == null) ? 0 : inputs.Length;
+        get => (inputs == null) ? 0 : inputs().Length;
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public abstract class Actuator : MonoBehaviour
     /// Gets all inputs specific to the <see cref="Actuator"/>.
     /// </summary>
     /// <returns>The current input values.</returns>
-    public abstract float[] GetInput();
+    public float[] GetInput() => inputs();
 
     /// <summary>
     /// Sets all inputs specific to the <see cref="Actuator"/>.

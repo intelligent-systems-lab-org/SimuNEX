@@ -28,32 +28,35 @@ public class DCMotor : Motor
     /// </summary>
     private FirstOrderTF stateSpace;
 
-    public override float[] GetInput() => new float[] { voltage };
-
     public override void SetInput(float[] value) => voltage = value[0];
 
     protected override void Initialize()
     {
-        parameters = new Func<float>[]
+        parameters = () => new float[]
         {
-            () => armatureResistance, 
-            () => backEMFConstant, 
-            () => torqueConstant, 
-            () => momentOfInertia, 
-            () => viscousDamping
+            armatureResistance, backEMFConstant, torqueConstant, momentOfInertia, viscousDamping
         };
 
         // Convert physical parameters to 1st order TF parameters
-        float timeConstant() => parameters[3]() * 1 / (parameters[4]() + (parameters[1]() * parameters[2]() / parameters[0]()));
-        float DCGain() => timeConstant() * parameters[2]() / (parameters[0]() * parameters[3]());
 
-        inputs = new Func<float>[] { () => voltage };
+        float timeConstant()
+        {
+            float[] param = parameters();
+            return param[3] * 1 / (param[4] + (param[1] * param[2] / param[0])); 
+        };
+        float DCGain() 
+        {
+            float[] param = parameters();
+            return timeConstant() * param[2] / (param[0] * param[3]); 
+        };
+
+        inputs = () => new float[] { voltage };
         stateSpace = new FirstOrderTF(timeConstant, DCGain, integrationMethod: integrator);
     }
 
-    public override float MotorFunction(Func<float>[] inputs, Func<float>[] parameters)
+    public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
     {
-        stateSpace.Input = inputs[0]();
+        stateSpace.Input = inputs()[0];
         stateSpace.Compute();
         return stateSpace.Output;
     }

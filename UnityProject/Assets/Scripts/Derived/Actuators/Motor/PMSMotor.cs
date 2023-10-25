@@ -53,8 +53,6 @@ public class PMSMotor : Motor
     /// </summary>
     private LinearStateSpace stateSpace;
 
-    public override float[] GetInput() => new float[] { qAxisVoltage, dAxisVoltage };
-
     public override void SetInput(float[] value)
     {
         qAxisVoltage = value[0];
@@ -63,32 +61,24 @@ public class PMSMotor : Motor
 
     protected override void Initialize()
     {
-        parameters = new Func<float>[]
+        parameters = () => new float[]
         {
-            () => resistance,
-            () => inductance,
-            () => poles,
-            () => flux,
-            () => loadInertia,
-            () => loadDamping
+            resistance, inductance, poles, flux, loadInertia, loadDamping
         };
 
-        inputs = new Func<float>[]
-        {
-            () => qAxisVoltage,
-            () => dAxisVoltage
-        };
+        inputs = () => new float[] { qAxisVoltage, dAxisVoltage };
 
         stateSpace = new LinearStateSpace
         (
             A: () =>
             {
-                float R = parameters[0]();
-                float L = parameters[1]();
-                float P = parameters[2]();
-                float wb = parameters[3]();
-                float J = parameters[4]();
-                float D = parameters[5]();
+                float[] param = parameters();
+                float R = param[0];
+                float L = param[1];
+                float P = param[2];
+                float wb = param[3];
+                float J = param[4];
+                float D = param[5];
 
                 return new(new float[,]
                {
@@ -99,7 +89,7 @@ public class PMSMotor : Motor
             },
             B: () =>
             {
-                float L = parameters[1]();
+                float L = parameters()[1];
                 return new(new float[,]
                 {
                     { 1/L, 0  },
@@ -111,10 +101,10 @@ public class PMSMotor : Motor
         );
     }
 
-    public override float MotorFunction(Func<float>[] inputs, Func<float>[] parameters)
+    public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
     {
-        stateSpace.inputs[0, 0] = inputs[0]();
-        stateSpace.inputs[1, 0] = inputs[1]();
+        stateSpace.inputs[0, 0] = inputs()[0];
+        stateSpace.inputs[1, 0] = inputs()[1];
         stateSpace.Compute();
         return stateSpace.outputs[2, 0];
     }

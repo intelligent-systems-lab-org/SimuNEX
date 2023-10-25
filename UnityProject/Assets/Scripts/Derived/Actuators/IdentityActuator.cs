@@ -15,7 +15,6 @@ public class IdentityActuator : Actuator
     /// </summary>
     public Load load;
 
-    public override float[] GetInput() => new float[] { input };
     public override void SetInput(float[] value) => input = value[0];
 
     private void OnValidate()
@@ -35,14 +34,14 @@ public class IdentityActuator : Actuator
             load.rb = rb;
         }
 
-        inputs = new Func<float>[1] { () => input };
+        inputs = () => new float[1] { input };
     }
 
     private void OnEnable()
     {
         if (load != null)
         {
-            load.AttachActuator(inputs[0]);
+            load.AttachActuator(() => inputs()[0]);
         }
     }
 

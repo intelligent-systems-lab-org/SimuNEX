@@ -16,7 +16,7 @@ public abstract class Motor : Actuator
     /// <param name="inputs">Input values to the motors (e.g., voltage).</param>
     /// <param name="parameters">Parameters specific to the motor (e.g., back EMF constant).</param>
     /// <returns>The output angular velocity.</returns>
-    public abstract float MotorFunction(Func<float>[] inputs, Func<float>[] parameters);
+    public abstract float MotorFunction(Func<float[]> inputs, Func<float[]> parameters);
 
     private void OnValidate()
     {
