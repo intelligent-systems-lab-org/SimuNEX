@@ -24,6 +24,17 @@
 # SimuNEX
 SimuNEX is a high-fidelity dynamic simulation framework designed as a modular platform to simulate dynamic systems across various domains. It serves as a powerful tool for researchers, engineering students, and members of the Intelligent Systems Lab, offering a versatile environment for simulating complex systems and phenomena.
 
+# Features 
+SimuNEX is in its early stages of development and is only usable through the Unity Editor, offering interfaces for building dynamic systems similar to an API. Currently, the following features are available:
+
+- Simulation of single rigid body systems like quadcopters or other aerial vehicles.
+- A generic interface that can be used to incorporate different actuators, sensors, and communication components into the system.
+- Functional interfaces have been established for actuators such as motors and loads like propellers.
+- Support for ROS 2 integration ensures compatibility with current robotics systems.
+- Interfaces have also been created for modeling state-space systems, which are widely employed in control theory.
+- Various integrating techniques including Euler, Heun, and RK4 stepper integrators are implemented for accurate simulation of dynamical systems.
+- A high performance matrix library built on top of eigen3 is incorporated to handle different state-spaces and functionals within the system efficiently.
+
 ## Examples
 <table>
   <tr>
@@ -68,6 +79,15 @@ SimuNEX is a high-fidelity dynamic simulation framework designed as a modular pl
     <td align="center"></td> <!-- Empty space -->
   </tr>
 </table>
+
+## Documentation
+Currently a work in progress.
+
+## Plugins
+| Name          | Version | Purpose | URL |
+|---------------|---------|---------|--------------------------|
+| ROS2ForUnity  | 1.1.0   | Communication using ROS 2 on Foxy installations  | [link](https://github.com/RobotecAI/ros2-for-unity) |
+| Eigen         | 3.4.0   | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
