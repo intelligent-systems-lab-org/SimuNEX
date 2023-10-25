@@ -42,6 +42,8 @@ SimuNEX is in its early stages of development and is only usable through the Uni
 - Various integrating techniques including Euler, Heun, and RK4 stepper integrators are implemented for accurate simulation of dynamical systems.
 - A high performance matrix library built on top of eigen3 is incorporated to handle different state-spaces and functionals within the system efficiently.
 
+For upcoming plans and features, please check out the ongoing [projects](https://github.com/intelligent-systems-lab-org/SimuNEX/projects).
+
 ## Examples
 <table>
   <tr>
@@ -87,11 +89,10 @@ SimuNEX is in its early stages of development and is only usable through the Uni
   </tr>
 </table>
 
-## Documentation
+# Documentation
 Currently a work in progress. Will be implemented with GitHub Pages.
 
-### ROS on Windows
- ROS 2 was tested on Windows, the ROSOnWindows binary was installed, which can be found [here](https://ms-iot.github.io/ROSOnWindows/GettingStarted/SetupRos2.html). This binary is provided by Microsoft's IoT team and is designed to simplify the installation process for ROS 2 on Windows. Credit should be given to the ms-iot team for their work on the binary, and their repository can be found [here](https://github.com/ms-iot/rosonwindows/).
+
 
 ## Plugins
 | Name          | Version | Supported OS | Purpose | URL |
@@ -103,7 +104,10 @@ Currently a work in progress. Will be implemented with GitHub Pages.
 
 [^2]: Custom C# bindings that only currently support Windows. Separately maintained in another repository. See [here](https://github.com/intelligent-systems-lab-org/eigen).
 
-## License
+### ROS on Windows
+ ROS 2 was tested on Windows, the ROSOnWindows binary was installed, which can be found [here](https://ms-iot.github.io/ROSOnWindows/GettingStarted/SetupRos2.html). This binary is provided by Microsoft's IoT team and is designed to simplify the installation process for ROS 2 on Windows. Credit should be given to the ms-iot team for their work on the binary, and their repository can be found [here](https://github.com/ms-iot/rosonwindows/).
+
+# License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
 [cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
