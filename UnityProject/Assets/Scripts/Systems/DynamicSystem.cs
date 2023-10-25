@@ -1,8 +1,8 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ActuatorSystem))]
-[RequireComponent(typeof(SensorSystem))]
-[RequireComponent(typeof(COMSystem))]
+/// <summary>
+/// Principal component for simulating SimuNEX models.
+/// </summary>
 public class DynamicSystem : MonoBehaviour
 {
     /// <summary>
@@ -39,13 +39,33 @@ public class DynamicSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        sensorSystem.GetSensorOutputs();
+        if (sensorSystem != null )
+        {
+            sensorSystem.GetSensorOutputs();
 
-        comSystem.Send(sensorSystem.outputs);
-        comSystem.Receive(receivedData);
+            if (comSystem != null )
+            {
+                comSystem.Send(sensorSystem.outputs);
+            }
+        }
 
-        actuatorSystem.inputs = receivedData;
-        actuatorSystem.SetActuatorInputs();
+        if (comSystem != null)
+        { 
+            comSystem.Receive(receivedData);
+        }
+
+        if (actuatorSystem != null)
+        {
+            if (comSystem != null)
+            {
+                actuatorSystem.inputs = receivedData;
+            }
+            else
+            {
+                actuatorSystem.GetActuatorInputs();
+            }
+            actuatorSystem.SetActuatorInputs();
+        }
 
         if (dynamics != null)
         {
