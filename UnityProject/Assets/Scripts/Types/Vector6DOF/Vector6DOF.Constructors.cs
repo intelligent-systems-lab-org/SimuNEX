@@ -80,7 +80,7 @@ public partial class Vector6DOF
         var enumerable = values.ToArray();
         if (enumerable.Length != 6)
         {
-            throw new ArgumentException("The enumerable must contain exactly 6 elements.", nameof(values));
+            throw new ArgumentException("The enumerable must contain exactly 6 elements.");
         }
         linear = new Vector3(enumerable[0], enumerable[1], enumerable[2]);
         angular = new Vector3(enumerable[3], enumerable[4], enumerable[5]);
