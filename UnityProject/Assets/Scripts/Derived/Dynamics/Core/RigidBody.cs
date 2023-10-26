@@ -18,7 +18,13 @@ public class RigidBody : Dynamics
     /// <summary>
     /// Accumulated forces in the current timestep.
     /// </summary>
-    private Vector6DOF _forces;
+    private Vector6DOF _forces = Vector6DOF.zero;
+
+    /// <summary>
+    /// Velocity at the current timestep.
+    /// </summary>
+    [SerializeField]
+    private Vector6DOF _velocity;
 
     private void Start()
     {
@@ -125,6 +131,8 @@ public class RigidBody : Dynamics
 
     public override void Step()
     {
+        _velocity = new Vector6DOF(body.velocity, body.angularVelocity);
+
         if (forces != null && forces.Count > 0)
         {
             foreach (Force force in forces)
@@ -140,14 +148,9 @@ public class RigidBody : Dynamics
     }
 
     /// <summary>
-    /// Linear velocity of the <see cref="RigidBody"/>.
+    /// 6DOF velocity of the <see cref="Rigidbody"/>.
     /// </summary>
-    public Vector3 velocity => body.velocity;
-
-    /// <summary>
-    /// Angular velocity of the <see cref="RigidBody"/>.
-    /// </summary>
-    public Vector3 angularVelocity => body.angularVelocity;
+    public Vector6DOF velocity => new Vector6DOF(body.velocity, body.angularVelocity);
 
     /// <summary>
     /// Angular position of the <see cref="RigidBody"/> expressed as a <see cref="Quaternion"/>.
