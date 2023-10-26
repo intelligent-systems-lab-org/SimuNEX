@@ -313,8 +313,8 @@ namespace Eigen3MatrixTests
         {
             // Arrange
             float[] data = { 1, 2, 3, 4 };
-            Matrix matrix1 = new Matrix(2, 2, data);
-            Matrix matrix2 = new Matrix(2, 2, data);
+            Matrix matrix1 = new(2, 2, data);
+            Matrix matrix2 = new(2, 2, data);
 
             // Act
             bool result = matrix1.IsEqual(matrix2);
@@ -329,8 +329,8 @@ namespace Eigen3MatrixTests
             // Arrange
             float[] data1 = { 1, 2, 3, 4 };
             float[] data2 = { 5, 6, 7, 8 };
-            Matrix matrix1 = new Matrix(2, 2, data1);
-            Matrix matrix2 = new Matrix(2, 2, data2);
+            Matrix matrix1 = new(2, 2, data1);
+            Matrix matrix2 = new(2, 2, data2);
 
             // Act
             bool result = matrix1.IsEqual(matrix2);
@@ -344,8 +344,8 @@ namespace Eigen3MatrixTests
         {
             // Arrange
             float[] data = { 1, 2, 3, 4 };
-            Matrix matrix1 = new Matrix(2, 2, data);
-            Matrix matrix2 = new Matrix(2, 2, data);
+            Matrix matrix1 = new(2, 2, data);
+            Matrix matrix2 = new(2, 2, data);
 
             // Act
             bool result = matrix1.IsNotEqual(matrix2);
@@ -360,8 +360,8 @@ namespace Eigen3MatrixTests
             // Arrange
             float[] data1 = { 1, 2, 3, 4 };
             float[] data2 = { 5, 6, 7, 8 };
-            Matrix matrix1 = new Matrix(2, 2, data1);
-            Matrix matrix2 = new Matrix(2, 2, data2);
+            Matrix matrix1 = new(2, 2, data1);
+            Matrix matrix2 = new(2, 2, data2);
 
             // Act
             bool result = matrix1.IsNotEqual(matrix2);
