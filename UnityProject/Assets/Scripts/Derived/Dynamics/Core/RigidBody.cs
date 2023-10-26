@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +36,19 @@ public class RigidBody : Dynamics
     private void OnValidate()
     {
         body = GetComponent<Rigidbody>();
+    }
+
+    public float mass
+    {
+        get => body.mass;
+        protected set
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException();
+            }
+            body.mass = mass;
+        }
     }
 
     /// <summary>
