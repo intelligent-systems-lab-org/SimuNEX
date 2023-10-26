@@ -38,7 +38,10 @@ public class DynamicSystem : MonoBehaviour
         sensorSystem = GetComponent<SensorSystem>();
         comSystem = GetComponent<COMSystem>();
 
-        receivedData = new float[actuatorSystem.inputs.Length];
+        if (actuatorSystem != null )
+        {
+            receivedData = new float[actuatorSystem.inputs.Length];
+        }
     }
 
     private void FixedUpdate()

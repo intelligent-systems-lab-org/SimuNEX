@@ -714,8 +714,7 @@ MonoBehaviour:
   - {fileID: 4146009039103073561}
   - {fileID: 5770232218007748386}
   - {fileID: 5148425547582346767}
-  inputs:
-  - 0
+  inputs: []
 --- !u!4 &1861602371530809919
 Transform:
   m_ObjectHideFlags: 0
