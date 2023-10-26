@@ -8,12 +8,8 @@ public class ContinuousForce : Force
     /// <summary>
     /// 3D force to apply.
     /// </summary>
-    [SerializeField] public Vector3 forces;
+    [SerializeField] public Vector6DOF forces;
 
-    /// <summary>
-    /// 3D torque to apply.
-    /// </summary>
-    [SerializeField] public Vector3 torques;
 
     /// <summary>
     /// Reference frame to apply the force.
@@ -22,6 +18,6 @@ public class ContinuousForce : Force
 
     public override void ApplyForce()
     {
-        rb.AddForce(forces, torques, referenceFrame);
+        rb.AddForce(forces, referenceFrame);
     }
 }

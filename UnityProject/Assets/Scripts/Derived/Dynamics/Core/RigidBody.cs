@@ -17,12 +17,7 @@ public class RigidBody : Dynamics
     /// <summary>
     /// Accumulated forces in the current timestep.
     /// </summary>
-    private Vector3 _forces;
-
-    /// <summary>
-    /// Accumulated torques in the current timestep.
-    /// </summary>
-    private Vector3 _torques;
+    private Vector6DOF _forces;
 
     private void Start()
     {
@@ -34,8 +29,7 @@ public class RigidBody : Dynamics
     /// </summary>
     protected override void Initialize()
     {
-        _forces = Vector3.zero;
-        _torques = Vector3.zero;  
+        _forces = Vector6DOF.zero; 
     }
 
     private void OnValidate()
@@ -68,7 +62,7 @@ public class RigidBody : Dynamics
     /// <param name="CF">Coordinate frame in which the force acts.</param>
     public void AddLinearForce(Vector3 f, CoordinateFrame CF = CoordinateFrame.BCF)
     {
-        _forces += CF switch
+        _forces.linear += CF switch
         {
             CoordinateFrame.ICF => f,
             _ => transform.InverseTransformDirection(f)
@@ -82,7 +76,7 @@ public class RigidBody : Dynamics
     /// <param name="CF">Coordinate frame in which the torque acts.</param>
     public void AddTorque(Vector3 tau, CoordinateFrame CF = CoordinateFrame.BCF)
     {
-        _torques += CF switch
+        _forces.linear += CF switch
         {
             CoordinateFrame.ICF => tau,
             _ => transform.InverseTransformDirection(tau)
@@ -96,8 +90,11 @@ public class RigidBody : Dynamics
     /// <param name="CF">Coordinate frame in which the forces acts.</param>
     public void AddForce(Vector6DOF F, CoordinateFrame CF = CoordinateFrame.BCF)
     {
-        AddLinearForce(F.linear, CF);
-        AddTorque(F.angular, CF);
+        _forces += CF switch
+        {
+            CoordinateFrame.ICF => F,
+            _ => F.ToBodyFrame(transform)
+        };
     }
 
     /// <summary>
@@ -121,12 +118,11 @@ public class RigidBody : Dynamics
                 force.ApplyForce();
             }
         }
-        body.AddForce(_forces);
-        body.AddTorque(_torques);
+        body.AddForce(_forces.linear);
+        body.AddTorque(_forces.angular);
 
         // Reset forces before the next timestep
-        _forces = Vector3.zero;
-        _torques = Vector3.zero;
+        _forces = Vector6DOF.zero;
     }
 
     /// <summary>
