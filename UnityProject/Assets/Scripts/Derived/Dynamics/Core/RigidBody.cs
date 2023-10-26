@@ -36,6 +36,9 @@ public class RigidBody : Dynamics
     /// </summary>
     protected override void Initialize()
     {
+        body.useGravity = false;
+        body.drag = 0;
+        body.angularDrag = 0;
         _forces = Vector6DOF.zero; 
     }
 
