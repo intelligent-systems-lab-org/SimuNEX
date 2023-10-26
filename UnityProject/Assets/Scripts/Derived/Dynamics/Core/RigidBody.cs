@@ -32,7 +32,7 @@ public class RigidBody : Dynamics
     /// <summary>
     /// Configures the system at the start of the physics simulation.
     /// </summary>
-    protected void Initialize()
+    protected override void Initialize()
     {
         _forces = Vector3.zero;
         _torques = Vector3.zero;  
@@ -92,13 +92,12 @@ public class RigidBody : Dynamics
     /// <summary>
     /// Adds force (linear and angular) to the current timestep.
     /// </summary>
-    /// <param name="f">3D force to be applied.</param>
-    /// <param name="tau">3D torque to be applied.</param>
+    /// <param name="F">6DOF force to be applied.</param>
     /// <param name="CF">Coordinate frame in which the forces acts.</param>
-    public void AddForce(Vector3 f, Vector3 tau, CoordinateFrame CF = CoordinateFrame.BCF)
+    public void AddForce(Vector6DOF F, CoordinateFrame CF = CoordinateFrame.BCF)
     {
-        AddLinearForce(f, CF);
-        AddTorque(tau, CF);
+        AddLinearForce(F.linear, CF);
+        AddTorque(F.angular, CF);
     }
 
     /// <summary>
@@ -149,20 +148,4 @@ public class RigidBody : Dynamics
     /// Linear position of the <see cref="RigidBody"/>.
     /// </summary>
     public Vector3 position => body.position;
-}
-
-/// <summary>
-/// Represents the coordinate frame used for a vector in a 6DOF space.
-/// </summary>
-public enum CoordinateFrame
-{
-    /// <summary>
-    /// Body-Centered Frame (BCF) represents the coordinate frame relative to the body or local frame.
-    /// </summary>
-    BCF,
-
-    /// <summary>
-    /// Inertial Coordinate Frame (ICF) represents the coordinate frame fixed in an inertial reference frame.
-    /// </summary>
-    ICF
 }
