@@ -122,7 +122,7 @@ public class RigidBody : Dynamics
     /// <param name="CF">Coordinate frame in which the torque acts.</param>
     public void AddTorque(Vector3 tau, CoordinateFrame CF = CoordinateFrame.BCF)
     {
-        _forces.linear += CF switch
+        _forces.angular += CF switch
         {
             CoordinateFrame.ICF => tau,
             _ => transform.InverseTransformDirection(tau)
