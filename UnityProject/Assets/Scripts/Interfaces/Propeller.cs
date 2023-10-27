@@ -38,9 +38,9 @@ public abstract class PropellerForce : Force
     protected Func<Vector3> normal;
 
     /// <summary>
-    /// <see cref="Transform"/> of the propeller.
+    /// <see cref="Vector3"/> of the propeller.
     /// </summary>
-    protected Func<Transform> transformCallback;
+    protected Func<Vector3> positionCallback;
 
     /// <summary>
     /// Propeller thrust and torques stored in an array.
@@ -58,9 +58,8 @@ public abstract class PropellerForce : Force
     public override void ApplyForce()
     {
         var _normal = normal();
-        Transform transform = transformCallback();
         outputs = PropellerFunction(propellerSpeed, parameters);
-        rb.AddLinearForceAtPosition(_normal * outputs[0], transform.position);
+        rb.AddLinearForceAtPosition(_normal * outputs[0], positionCallback());
         rb.AddTorque(_normal * outputs[1]);
     }
 
@@ -72,7 +71,7 @@ public abstract class PropellerForce : Force
     {
         normal = () => propeller.normal;
         rb = propeller.rb;
-        transformCallback = () => propeller.transform;
+        positionCallback = () => rb.transform.InverseTransformPoint(propeller.transform.position);
         propellerSpeed = () => propeller.motorOutput;
     }
 }
