@@ -12,7 +12,7 @@ public abstract class Propeller : MotorLoad
         float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
 
         // Handle rotation animation
-        Quaternion increment = Quaternion.Euler(rad2deg * spinnerNormal * _speed * scaledDeltaTime);
+        Quaternion increment = Quaternion.Euler(_speed * rad2deg * scaledDeltaTime * spinnerNormal);
         spinnerObject.localRotation *= increment;
     }
 }
