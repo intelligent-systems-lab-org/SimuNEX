@@ -105,54 +105,29 @@ public class RigidBody : Dynamics
     /// Adds translational force to the current timestep.
     /// </summary>
     /// <param name="f">3D force to be applied.</param>
-    /// <param name="CF">Coordinate frame in which the force acts.</param>
-    public void AddLinearForce(Vector3 f, CoordinateFrame CF = CoordinateFrame.BCF)
-    {
-        _forces.linear += CF switch
-        {
-            CoordinateFrame.ICF => f,
-            _ => transform.InverseTransformDirection(f)
-        };
-    }
+    public void AddLinearForce(Vector3 f) => _forces.linear += f;
 
     /// <summary>
     /// Adds torque to the current timestep.
     /// </summary>
     /// <param name="tau">3D torque to be applied.</param>
-    /// <param name="CF">Coordinate frame in which the torque acts.</param>
-    public void AddTorque(Vector3 tau, CoordinateFrame CF = CoordinateFrame.BCF)
-    {
-        _forces.angular += CF switch
-        {
-            CoordinateFrame.ICF => tau,
-            _ => transform.InverseTransformDirection(tau)
-        };
-    }
+    public void AddTorque(Vector3 tau) => _forces.angular += tau;
 
     /// <summary>
     /// Adds force (linear and angular) to the current timestep.
     /// </summary>
     /// <param name="F">6DOF force to be applied.</param>
-    /// <param name="CF">Coordinate frame in which the forces acts.</param>
-    public void AddForce(Vector6DOF F, CoordinateFrame CF = CoordinateFrame.BCF)
-    {
-        _forces += CF switch
-        {
-            CoordinateFrame.ICF => F,
-            _ => F.ToBodyFrame(transform)
-        };
-    }
+    public void AddForce(Vector6DOF F) => _forces += F;
 
     /// <summary>
     /// Applies a linear force at a position.
     /// </summary>
     /// <param name="f">The 3D force to be applied.</param>
     /// <param name="pos">The position at which the force acts.</param>
-    /// <param name="CF">Coordinate frame in which the force acts.</param>
-    public void AddLinearForceAtPosition(Vector3 f, Vector3 pos, CoordinateFrame CF = CoordinateFrame.BCF)
+    public void AddLinearForceAtPosition(Vector3 f, Vector3 pos)
     {
-        AddLinearForce(f, CF);
-        AddTorque(Vector3.Cross(f, pos), CF);
+        AddLinearForce(f);
+        AddTorque(Vector3.Cross(f, pos));
     }
 
     public override void Step()

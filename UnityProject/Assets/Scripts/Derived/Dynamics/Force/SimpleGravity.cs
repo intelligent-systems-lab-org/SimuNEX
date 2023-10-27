@@ -22,7 +22,7 @@ public class SimpleGravity : Force
     public override void ApplyForce()
     {
         Vector3 gravityForce = rb.mass * g * Vector3.down;
-        rb.AddLinearForceAtPosition(gravityForce, centerOfGravity, CoordinateFrame.ICF);
+        rb.AddLinearForceAtPosition(gravityForce, centerOfGravity);
     }
 
     /// <summary>

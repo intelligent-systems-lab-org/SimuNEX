@@ -22,7 +22,7 @@ public class SimpleBuoyancy : Force
     public override void ApplyForce()
     {
         Vector3 bouyantForce = buoyantForce * new Vector3(0, 1, 0);
-        rb.AddLinearForceAtPosition(bouyantForce, centerOfBuoyancy, CoordinateFrame.ICF);
+        rb.AddLinearForceAtPosition(bouyantForce, centerOfBuoyancy);
     }
 }
 
