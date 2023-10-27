@@ -43,6 +43,12 @@ public class RigidBody : Dynamics
     [SerializeField]
     protected float _potentialEnergy;
 
+    /// <summary>
+    /// Average power at the current timestep.
+    /// </summary>
+    [SerializeField]
+    protected float _power;
+
     private void Start()
     {
         Initialize();
@@ -152,8 +158,9 @@ public class RigidBody : Dynamics
     public override void Step()
     {
         _velocity = new Vector6DOF(body.velocity, body.angularVelocity);
-        _kineticEnergy = UpdateKineticEnergy();
-        _potentialEnergy = UpdatePotentialEnergy();
+        _kineticEnergy = kineticEnergy;
+        _potentialEnergy = potentialEnergy;
+        _power = power;
 
         if (forces != null && forces.Count > 0)
         {
@@ -162,10 +169,12 @@ public class RigidBody : Dynamics
                 force.ApplyForce();
             }
         }
+
         body.AddForce(_forces.linear);
         body.AddTorque(_forces.angular);
 
         appliedForce = _forces;
+
         // Reset forces before the next timestep
         _forces = Vector6DOF.zero;
     }
@@ -189,17 +198,20 @@ public class RigidBody : Dynamics
     /// Updates the kinetic energy of the <see cref="RigidBody"/>.
     /// </summary>
     /// <returns>The value of the kinetic energy.</returns>
-    public virtual float UpdateKineticEnergy()
+    public virtual float kineticEnergy
     {
-        float linearKE = 0.5f * mass * _velocity.linear.sqrMagnitude;
+        get 
+        {
+            float linearKE = 0.5f * mass * _velocity.linear.sqrMagnitude;
 
-        float rotationalKE = 0.5f * (
-            body.inertiaTensor.x * _velocity.angular.x * _velocity.angular.x +
-            body.inertiaTensor.y * _velocity.angular.y * _velocity.angular.y +
-            body.inertiaTensor.z * _velocity.angular.z * _velocity.angular.z
-        );
+            float rotationalKE = 0.5f * (
+                body.inertiaTensor.x * _velocity.angular.x * _velocity.angular.x +
+                body.inertiaTensor.y * _velocity.angular.y * _velocity.angular.y +
+                body.inertiaTensor.z * _velocity.angular.z * _velocity.angular.z
+            );
 
-        return linearKE + rotationalKE;
+            return linearKE + rotationalKE;
+        }
     }
 
     /// <summary>
@@ -207,15 +219,25 @@ public class RigidBody : Dynamics
     /// Returns 0 if gravity or spring forces are absent.
     /// </summary>
     /// <returns>The value of the potential energy.</returns>
-    public float UpdatePotentialEnergy()
+    public float potentialEnergy
     {
-        if (TryGetComponent<SimpleGravity>(out var simpleGravity))
+        get
         {
-            return simpleGravity.weight * transform.position.y;
-        }
-        else
-        {
-            return 0; 
+            if (TryGetComponent<SimpleGravity>(out var simpleGravity))
+            {
+                return simpleGravity.weight * transform.position.y;
+            }
+            else
+            {
+                return 0; 
+            }
         }
     }
+
+    /// <summary>
+    /// Average power of the <see cref="RigidBody"/>.
+    /// </summary>
+    public float power
+        => Vector3.Dot(appliedForce.linear, _velocity.linear) + 
+        Vector3.Dot(appliedForce.angular, _velocity.angular);
 }
