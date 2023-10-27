@@ -13,30 +13,35 @@ public class RigidBody : Dynamics
     /// <summary>
     /// Active forces that are attached to the <see cref="RigidBody"/>
     /// </summary>
-    private List<Force> forces = new();
+    protected List<Force> forces = new();
 
     /// <summary>
     /// Accumulated forces in the current timestep.
     /// </summary>
-    private Vector6DOF _forces = Vector6DOF.zero;
+    protected Vector6DOF _forces = Vector6DOF.zero;
+
+    /// <summary>
+    /// Applied forces in the current timestep.
+    /// </summary>
+    public Vector6DOF appliedForce;
 
     /// <summary>
     /// Velocity at the current timestep.
     /// </summary>
     [SerializeField]
-    private Vector6DOF _velocity;
+    protected Vector6DOF _velocity;
 
     /// <summary>
     /// Kinetic energy at the current timestep.
     /// </summary>
     [SerializeField]
-    private float _kineticEnergy;
+    protected float _kineticEnergy;
 
     /// <summary>
     /// Potential energy at the current timestep. Depends on the presence of gravity and spring forces.
     /// </summary>
     [SerializeField]
-    private float _potentialEnergy;
+    protected float _potentialEnergy;
 
     private void Start()
     {
@@ -160,6 +165,7 @@ public class RigidBody : Dynamics
         body.AddForce(_forces.linear);
         body.AddTorque(_forces.angular);
 
+        appliedForce = _forces;
         // Reset forces before the next timestep
         _forces = Vector6DOF.zero;
     }
