@@ -21,12 +21,12 @@ public class RigidBody : Dynamics
     protected Vector6DOF _forces = Vector6DOF.zero;
 
     /// <summary>
-    /// Applied forces in the current timestep.
+    /// Applied forces in the BCF in the current timestep.
     /// </summary>
     public Vector6DOF appliedForce;
 
     /// <summary>
-    /// Velocity at the current timestep.
+    /// Velocity in the BCF at the current timestep.
     /// </summary>
     [SerializeField]
     protected Vector6DOF _velocity;
@@ -157,7 +157,7 @@ public class RigidBody : Dynamics
 
     public override void Step()
     {
-        _velocity = new Vector6DOF(body.velocity, body.angularVelocity);
+        _velocity = new Vector6DOF(body.velocity, body.angularVelocity).ToBodyFrame(transform);
         _kineticEnergy = kineticEnergy;
         _potentialEnergy = potentialEnergy;
         _power = power;
