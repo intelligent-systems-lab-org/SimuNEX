@@ -27,6 +27,12 @@ public class RigidBody : Dynamics
     private Vector6DOF _velocity;
 
     /// <summary>
+    /// Kinetic energy at the current timestep.
+    /// </summary>
+    [SerializeField]
+    private float _kineticEnergy;
+
+    /// <summary>
     /// Potential energy at the current timestep. Depends on the presence of gravity and spring forces.
     /// </summary>
     [SerializeField]
@@ -141,6 +147,7 @@ public class RigidBody : Dynamics
     public override void Step()
     {
         _velocity = new Vector6DOF(body.velocity, body.angularVelocity);
+        _kineticEnergy = UpdateKineticEnergy();
         _potentialEnergy = UpdatePotentialEnergy();
 
         if (forces != null && forces.Count > 0)
@@ -173,9 +180,27 @@ public class RigidBody : Dynamics
     public Vector3 position => body.position;
 
     /// <summary>
+    /// Updates the kinetic energy of the <see cref="RigidBody"/>.
+    /// </summary>
+    /// <returns>The value of the kinetic energy.</returns>
+    public virtual float UpdateKineticEnergy()
+    {
+        float linearKE = 0.5f * mass * _velocity.linear.sqrMagnitude;
+
+        float rotationalKE = 0.5f * (
+            body.inertiaTensor.x * _velocity.angular.x * _velocity.angular.x +
+            body.inertiaTensor.y * _velocity.angular.y * _velocity.angular.y +
+            body.inertiaTensor.z * _velocity.angular.z * _velocity.angular.z
+        );
+
+        return linearKE + rotationalKE;
+    }
+
+    /// <summary>
     /// Updates the potential energy property of the <see cref="RigidBody"/>. 
     /// Returns 0 if gravity or spring forces are absent.
     /// </summary>
+    /// <returns>The value of the potential energy.</returns>
     public float UpdatePotentialEnergy()
     {
         if (TryGetComponent<SimpleGravity>(out var simpleGravity))
