@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Interface for describing dynamic systems.
 /// </summary>
+[RequireComponent(typeof(DynamicSystem))]
 public abstract class Dynamics : MonoBehaviour
 {
     /// <summary>
