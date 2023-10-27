@@ -26,6 +26,12 @@ public class RigidBody : Dynamics
     [SerializeField]
     private Vector6DOF _velocity;
 
+    /// <summary>
+    /// Potential energy at the current timestep. Depends on the presence of gravity and spring forces.
+    /// </summary>
+    [SerializeField]
+    private float _potentialEnergy;
+
     private void Start()
     {
         Initialize();
@@ -36,15 +42,15 @@ public class RigidBody : Dynamics
     /// </summary>
     protected override void Initialize()
     {
-        body.useGravity = false;
-        body.drag = 0;
-        body.angularDrag = 0;
         _forces = Vector6DOF.zero; 
     }
 
     private void OnValidate()
     {
         body = GetComponent<Rigidbody>();
+        body.useGravity = false;
+        body.drag = 0;
+        body.angularDrag = 0;
     }
 
     public float mass
@@ -135,6 +141,7 @@ public class RigidBody : Dynamics
     public override void Step()
     {
         _velocity = new Vector6DOF(body.velocity, body.angularVelocity);
+        _potentialEnergy = UpdatePotentialEnergy();
 
         if (forces != null && forces.Count > 0)
         {
@@ -153,7 +160,7 @@ public class RigidBody : Dynamics
     /// <summary>
     /// 6DOF velocity of the <see cref="Rigidbody"/>.
     /// </summary>
-    public Vector6DOF velocity => new Vector6DOF(body.velocity, body.angularVelocity);
+    public Vector6DOF velocity => new(body.velocity, body.angularVelocity);
 
     /// <summary>
     /// Angular position of the <see cref="RigidBody"/> expressed as a <see cref="Quaternion"/>.
@@ -164,4 +171,20 @@ public class RigidBody : Dynamics
     /// Linear position of the <see cref="RigidBody"/>.
     /// </summary>
     public Vector3 position => body.position;
+
+    /// <summary>
+    /// Updates the potential energy property of the <see cref="RigidBody"/>. 
+    /// Returns 0 if gravity or spring forces are absent.
+    /// </summary>
+    public float UpdatePotentialEnergy()
+    {
+        if (TryGetComponent<SimpleGravity>(out var simpleGravity))
+        {
+            return simpleGravity.weight * transform.position.y;
+        }
+        else
+        {
+            return 0; 
+        }
+    }
 }
