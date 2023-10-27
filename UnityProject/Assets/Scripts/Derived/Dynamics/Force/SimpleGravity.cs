@@ -17,7 +17,7 @@ public class SimpleGravity : Force
     public Vector3 centerOfGravity = Vector3.zero;
 
     /// <summary>
-    /// Apply the gravity force to the specified dynamics object.
+    /// Apply the gravity force to the specified <see cref="RigidBody"/> object.
     /// </summary>
     public override void ApplyForce()
     {
@@ -26,7 +26,7 @@ public class SimpleGravity : Force
     }
 
     /// <summary>
-    /// Calculate the weight of the specified <see cref="Dynamics"/> object.
+    /// Calculate the weight of the specified <see cref="RigidBody"/> object.
     /// </summary>
     /// <returns>The weight of the dynamics object.</returns>
     public float weight => rb.mass * g;
