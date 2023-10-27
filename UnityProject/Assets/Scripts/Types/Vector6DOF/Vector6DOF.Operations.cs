@@ -173,11 +173,19 @@ public partial class Vector6DOF
     }
 
     /// <summary>
-    /// Converts the <see cref="Vector6DOF"/> to the body frame defined by the specified <see cref="Transform"/>.
+    /// Converts the <see cref="Vector6DOF"/> defined in the BCF to the ICF.
     /// </summary>
-    /// <param name="transform">The <see cref="Transform"/> defining the body frame.</param>
-    /// <returns>A new <see cref="Vector6DOF"/> transformed to the body frame.</returns>
-    public Vector6DOF ToBodyFrame(Transform transform) =>
+    /// <param name="transform">The <see cref="Transform"/> defining the BCF.</param>
+    /// <returns>A new <see cref="Vector6DOF"/> transformed to the ICF.</returns>
+    public Vector6DOF ToICF(Transform transform) =>
+        new(transform.TransformDirection(linear), transform.TransformDirection(angular));
+
+    /// <summary>
+    /// Converts the <see cref="Vector6DOF"/> defined in the ICF to BCF.
+    /// </summary>
+    /// <param name="transform">The <see cref="Transform"/> defining the BCF.</param>
+    /// <returns>A new <see cref="Vector6DOF"/> transformed to the ICF.</returns>
+    public Vector6DOF ToBCF(Transform transform) =>
         new(transform.InverseTransformDirection(linear), transform.InverseTransformDirection(angular));
 
     /// <summary>

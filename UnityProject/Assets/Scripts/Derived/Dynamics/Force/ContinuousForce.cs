@@ -17,7 +17,7 @@ public class ContinuousForce : Force
     {
         if (referenceFrame == CoordinateFrame.BCF)
         {
-            rb.AddForce(forces.ToBodyFrame(transform));
+            rb.AddForce(forces.ToICF(transform));
         }
         else
         {

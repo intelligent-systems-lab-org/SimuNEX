@@ -127,12 +127,12 @@ public class RigidBody : Dynamics
     public void AddLinearForceAtPosition(Vector3 f, Vector3 pos)
     {
         AddLinearForce(f);
-        AddTorque(Vector3.Cross(f, pos));
+        AddTorque(Vector3.Cross(f, transform.InverseTransformPoint(pos)));
     }
 
     public override void Step()
     {
-        _velocity = new Vector6DOF(body.velocity, body.angularVelocity).ToBodyFrame(transform);
+        _velocity = new Vector6DOF(body.velocity, body.angularVelocity).ToBCF(transform);
         _kineticEnergy = kineticEnergy;
         _potentialEnergy = potentialEnergy;
         _power = power;

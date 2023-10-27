@@ -59,18 +59,43 @@ namespace Vector6DOFTests
         }
 
         [Test]
-        public void ToBodyFrame_Transform_ReturnsVector6DOFInBodyFrame()
+        public void ToBCF_Transform_ReturnsVector6DOFInBodyFrame()
         {
             // Arrange
             Transform transform = new GameObject().transform;
-            transform.position = new Vector3(1f, 2f, 3f);
-            transform.rotation = Quaternion.Euler(45f, 90f, 180f);
+            transform.SetPositionAndRotation(new Vector3(1f, 2f, 3f), Quaternion.Euler(45f, 90f, 180f));
 
             Vector6DOF v = new(new Vector3(1f, 2f, 3f), new Vector3(4f, 5f, 6f));
-            Vector6DOF expected = new(transform.InverseTransformDirection(v.linear), transform.InverseTransformDirection(v.angular));
+            Vector6DOF expected = new
+            (
+                transform.InverseTransformDirection(v.linear), 
+                transform.InverseTransformDirection(v.angular)
+            );
 
             // Act
-            Vector6DOF result = v.ToBodyFrame(transform);
+            Vector6DOF result = v.ToBCF(transform);
+
+            // Assert
+            Assert.AreEqual(expected.linear, result.linear);
+            Assert.AreEqual(expected.angular, result.angular);
+        }
+
+                [Test]
+        public void ToICF_Transform_ReturnsVector6DOFInInertialFrame()
+        {
+            // Arrange
+            Transform transform = new GameObject().transform;
+            transform.SetPositionAndRotation(new Vector3(1f, 2f, 3f), Quaternion.Euler(45f, 90f, 180f));
+
+            Vector6DOF v = new(new Vector3(1f, 2f, 3f), new Vector3(4f, 5f, 6f));
+            Vector6DOF expected = new
+            (
+                transform.TransformDirection(v.linear), 
+                transform.TransformDirection(v.angular)
+            );
+
+            // Act
+            Vector6DOF result = v.ToICF(transform);
 
             // Assert
             Assert.AreEqual(expected.linear, result.linear);
