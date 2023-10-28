@@ -33,7 +33,7 @@ public class SimpleBuoyancy : Force
             {
                 
                 Transform potentialCOB = transform.Find("COB");
-                if(potentialCOB != null)
+                if (potentialCOB != null)
                 {
                     centerOfBuoyancy = potentialCOB;
                 }
@@ -43,11 +43,8 @@ public class SimpleBuoyancy : Force
     /// <summary>
     /// Apply the bouyant force to the specified <see cref="RigidBody"/> object.
     /// </summary>
-    public override void ApplyForce()
-    {
-        Vector3 bouyantForce = buoyantForce * new Vector3(0, 1, 0);
-        rb.AddLinearForceAtPosition(bouyantForce, centerOfBuoyancy.position);
-    }
+    public override void ApplyForce() 
+        => rb.AddLinearForceAtPosition(Vector3.up * buoyantForce, centerOfBuoyancy.position);
 }
 
 #if UNITY_EDITOR

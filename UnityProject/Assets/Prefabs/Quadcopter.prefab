@@ -327,7 +327,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 2
-  voltage: 131
+  voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
@@ -428,7 +428,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 2
-  voltage: 131
+  voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
@@ -598,6 +598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
   readPosition: 0
+  readTorque: 0
   motor: {fileID: 3591390733453324182}
   integrator: 0
 --- !u!114 &271912348052366067
@@ -614,6 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
   readPosition: 0
+  readTorque: 0
   motor: {fileID: 2373451612687255671}
   integrator: 0
 --- !u!114 &9020256483454760767
@@ -630,6 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
   readPosition: 0
+  readTorque: 0
   motor: {fileID: 5290145487412587084}
   integrator: 0
 --- !u!114 &4971806525275137639
@@ -646,6 +649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
   readPosition: 0
+  readTorque: 0
   motor: {fileID: 6776586109098935137}
   integrator: 0
 --- !u!1 &3847828993541165224
@@ -673,7 +677,7 @@ Transform:
   m_GameObject: {fileID: 3847828993541165224}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -756,7 +760,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 2
-  voltage: -131
+  voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
@@ -791,7 +795,7 @@ GameObject:
   - component: {fileID: 3390207559000174152}
   - component: {fileID: 6345850984631652555}
   - component: {fileID: 339675311697843413}
-  - component: {fileID: 3141702394289422878}
+  - component: {fileID: 3898326472561222565}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -869,8 +873,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3141702394289422878
-SphereCollider:
+--- !u!65 &3898326472561222565
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -888,8 +892,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.15
-  m_Center: {x: 0, y: -0.05, z: 0}
+  m_Size: {x: 0.2, y: 0.24, z: 0.2}
+  m_Center: {x: 0, y: -0.07921926, z: 0}
 --- !u!1 &5758165993973612182
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +971,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 2
-  voltage: -131
+  voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10

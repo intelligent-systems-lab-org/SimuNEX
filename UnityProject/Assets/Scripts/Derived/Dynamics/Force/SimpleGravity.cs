@@ -33,7 +33,7 @@ public class SimpleGravity : Force
             {
                 
                 Transform potentialCOG = transform.Find("COG");
-                if(potentialCOG != null)
+                if (potentialCOG != null)
                 {
                     centerOfGravity = potentialCOG;
                 }
@@ -45,7 +45,7 @@ public class SimpleGravity : Force
     /// </summary>
     public override void ApplyForce()
     {
-        Vector3 gravityForce = rb.mass * acceleration * Vector3.down;
+        Vector3 gravityForce = Vector3.down * weight;
         rb.AddLinearForceAtPosition(gravityForce, centerOfGravity.position);
     }
 
