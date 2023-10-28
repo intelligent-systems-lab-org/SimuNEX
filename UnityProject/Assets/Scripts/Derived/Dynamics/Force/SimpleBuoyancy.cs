@@ -14,7 +14,7 @@ public class SimpleBuoyancy : Force
     /// <summary>
     /// The center of buoyancy.
     /// </summary>
-    public Vector3 centerOfBuoyancy = Vector3.zero;
+    public Transform centerOfBuoyancy;
 
     /// <summary>
     /// Apply the bouyant force to the specified <see cref="RigidBody"/> object.
@@ -22,7 +22,7 @@ public class SimpleBuoyancy : Force
     public override void ApplyForce()
     {
         Vector3 bouyantForce = buoyantForce * new Vector3(0, 1, 0);
-        rb.AddLinearForceAtPosition(bouyantForce, centerOfBuoyancy);
+        rb.AddLinearForceAtPosition(bouyantForce, centerOfBuoyancy.position);
     }
 }
 

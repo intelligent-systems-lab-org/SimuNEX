@@ -9,27 +9,27 @@ public class SimpleGravity : Force
     /// <summary>
     /// The acceleration due to gravity.
     /// </summary>
-    public float g = 9.81f;
+    public float acceleration = 9.81f;
 
     /// <summary>
     /// The center of gravity.
     /// </summary>
-    public Vector3 centerOfGravity = Vector3.zero;
+    public Transform centerOfGravity;
 
     /// <summary>
     /// Apply the gravity force to the specified <see cref="RigidBody"/> object.
     /// </summary>
     public override void ApplyForce()
     {
-        Vector3 gravityForce = rb.mass * g * Vector3.down;
-        rb.AddLinearForceAtPosition(gravityForce, centerOfGravity);
+        Vector3 gravityForce = rb.mass * acceleration * Vector3.down;
+        rb.AddLinearForceAtPosition(gravityForce, centerOfGravity.position);
     }
 
     /// <summary>
     /// Calculate the weight of the specified <see cref="RigidBody"/> object.
     /// </summary>
     /// <returns>The weight of the dynamics object.</returns>
-    public float weight => rb.mass * g;
+    public float weight => rb.mass * acceleration;
 }
 
 #if UNITY_EDITOR

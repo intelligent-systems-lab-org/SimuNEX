@@ -71,7 +71,7 @@ public abstract class PropellerForce : Force
     {
         normal = () => propeller.normal;
         rb = propeller.rb;
-        positionCallback = () => rb.transform.InverseTransformPoint(propeller.transform.position);
+        positionCallback = () => propeller.transform.position;
         propellerSpeed = () => propeller.motorOutput;
     }
 }
