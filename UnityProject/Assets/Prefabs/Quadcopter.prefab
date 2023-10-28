@@ -320,15 +320,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 5995511627637507719}
   motorLoad: {fileID: 5639305362122881889}
+  upperSaturation: Infinity
+  lowerSaturation: -Infinity
+  armatureInertia: 0.5
+  armatureDamping: 0
   integrator: 2
   voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
-  momentOfInertia: 1
-  viscousDamping: 0
 --- !u!114 &5639305362122881889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,10 +343,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f90396f51e946b4a9003cb80687ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 5995511627637507719}
   spinnerObject: {fileID: 448836474674124421}
   spinAxis: 0
   _speed: 0
+  loadInertia: 0.5
+  loadDamping: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
 --- !u!1 &2561734333488696745
@@ -417,15 +421,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 5995511627637507719}
   motorLoad: {fileID: 4390935632489885428}
+  upperSaturation: Infinity
+  lowerSaturation: -Infinity
+  armatureInertia: 0.5
+  armatureDamping: 0
   integrator: 2
   voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
-  momentOfInertia: 1
-  viscousDamping: 0
 --- !u!114 &4390935632489885428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,10 +444,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f90396f51e946b4a9003cb80687ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 5995511627637507719}
   spinnerObject: {fileID: 4175366051938078750}
   spinAxis: 0
   _speed: 0
+  loadInertia: 0.5
+  loadDamping: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
 --- !u!1 &2818866878331278515
@@ -575,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4f6052c56cb194ea732f9bebd47ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 0}
 --- !u!114 &3011489618110827443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 0}
   readPosition: 0
   motor: {fileID: 3591390733453324182}
   integrator: 0
@@ -604,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 0}
   readPosition: 0
   motor: {fileID: 2373451612687255671}
   integrator: 0
@@ -620,7 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 0}
   readPosition: 0
   motor: {fileID: 5290145487412587084}
   integrator: 0
@@ -636,7 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 0}
   readPosition: 0
   motor: {fileID: 6776586109098935137}
   integrator: 0
@@ -741,15 +749,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 5995511627637507719}
   motorLoad: {fileID: 779299711875428922}
+  upperSaturation: Infinity
+  lowerSaturation: -Infinity
+  armatureInertia: 0.5
+  armatureDamping: 0
   integrator: 2
   voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
-  momentOfInertia: 1
-  viscousDamping: 0
 --- !u!114 &779299711875428922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,10 +772,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f90396f51e946b4a9003cb80687ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 5995511627637507719}
   spinnerObject: {fileID: 3586418691300001380}
   spinAxis: 0
   _speed: 0
+  loadInertia: 0.5
+  loadDamping: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
 --- !u!1 &5282863310284906046
@@ -948,15 +960,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 5995511627637507719}
   motorLoad: {fileID: 6615449208180139306}
+  upperSaturation: Infinity
+  lowerSaturation: -Infinity
+  armatureInertia: 0.5
+  armatureDamping: 0
   integrator: 2
   voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
-  momentOfInertia: 1
-  viscousDamping: 0
 --- !u!114 &6615449208180139306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,10 +983,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f90396f51e946b4a9003cb80687ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
+  rigidBody: {fileID: 5995511627637507719}
   spinnerObject: {fileID: 3993565968597728049}
   spinAxis: 0
   _speed: 0
+  loadInertia: 0.5
+  loadDamping: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
 --- !u!1 &6506281918243838403

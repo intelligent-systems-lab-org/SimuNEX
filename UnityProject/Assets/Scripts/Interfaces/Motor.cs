@@ -22,6 +22,16 @@ public abstract class Motor : Actuator
     public float lowerSaturation = Mathf.NegativeInfinity;
 
     /// <summary>
+    /// The motor inertia in kg.m^2.
+    /// </summary>
+    public float armatureInertia = 0.5f;
+
+    /// <summary>
+    /// The motor damping coefficient in N.m.s/rad.
+    /// </summary>
+    public float armatureDamping = 0;
+
+    /// <summary>
     /// The motor function (MF) that computes output values based on the provided inputs and parameters.
     /// </summary>
     /// <param name="inputs">Input values to the motors (e.g., voltage).</param>
@@ -64,4 +74,16 @@ public abstract class Motor : Actuator
             motorLoad.DetachActuator();
         }
     }
+
+    /// <summary>
+    /// Obtains the total inertia given an attached <see cref="MotorLoad"/>.
+    /// </summary>
+    public float totalInertia 
+        => (motorLoad != null)? armatureInertia + motorLoad.loadInertia : armatureInertia;
+
+    /// <summary>
+    /// Obtains the total damping given an attached <see cref="MotorLoad"/>.
+    /// </summary>
+    public float totalDamping => 
+        (motorLoad != null)? armatureDamping + motorLoad.loadDamping : armatureDamping;
 }

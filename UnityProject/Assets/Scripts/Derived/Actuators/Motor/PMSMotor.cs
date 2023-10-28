@@ -40,16 +40,6 @@ public class PMSMotor : Motor
     public float flux = 0.175f;
 
     /// <summary>
-    /// The inertia of the load attached to the motor in kg.m^2.
-    /// </summary>
-    public float loadInertia = 8e-4f;
-
-    /// <summary>
-    /// The damping coefficient of the load in N.m.s/rad.
-    /// </summary>
-    public float loadDamping = 0.0021f;
-
-    /// <summary>
     /// <see cref="LinearStateSpace"/> which defines the motor dynamics in terms of a linear state space.
     /// </summary>
     private LinearStateSpace stateSpace;
@@ -64,7 +54,12 @@ public class PMSMotor : Motor
     {
         parameters = () => new float[]
         {
-            resistance, inductance, poles, flux, loadInertia, loadDamping
+            resistance,
+            inductance,
+            poles,
+            flux,
+            totalInertia,
+            totalDamping
         };
 
         inputs = () => new float[] { qAxisVoltage, dAxisVoltage };

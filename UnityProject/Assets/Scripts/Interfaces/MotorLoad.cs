@@ -31,6 +31,16 @@ public abstract class MotorLoad : Load
     protected Force force;
 
     /// <summary>
+    /// The inertia of the load attached to the <see cref="Motor"/> in kg.m^2.
+    /// </summary>
+    public float loadInertia = 0.5f;
+
+    /// <summary>
+    /// The damping coefficient of the load in N.m.s/rad.
+    /// </summary>
+    public float loadDamping = 0;
+
+    /// <summary>
     /// Set up forces, properties, etc. for simulation.
     /// </summary>
     protected abstract void Initialize();
