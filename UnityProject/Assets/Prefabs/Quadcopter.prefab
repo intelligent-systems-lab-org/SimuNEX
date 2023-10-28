@@ -260,8 +260,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2169389962855501919}
   - component: {fileID: 6761387330696549861}
-  - component: {fileID: 1193765062419722906}
   - component: {fileID: 3591390733453324182}
+  - component: {fileID: 5639305362122881889}
   m_Layer: 0
   m_Name: Back Left
   m_TagString: Untagged
@@ -308,24 +308,6 @@ CapsuleCollider:
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1193765062419722906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077389215443267492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8600cbaeed0e42949baed47b47a57fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
-  spinnerObject: {fileID: 448836474674124421}
-  spinAxis: 0
-  _speed: 0
-  thrustCoefficient: 0.0000188865
-  torqueCoefficient: 0.000011
 --- !u!114 &3591390733453324182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
-  motorLoad: {fileID: 1193765062419722906}
+  motorLoad: {fileID: 5639305362122881889}
   integrator: 2
   voltage: 131
   armatureResistance: 20
@@ -347,6 +329,24 @@ MonoBehaviour:
   torqueConstant: 10
   momentOfInertia: 1
   viscousDamping: 0
+--- !u!114 &5639305362122881889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077389215443267492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f90396f51e946b4a9003cb80687ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5995511627637507719}
+  spinnerObject: {fileID: 448836474674124421}
+  spinAxis: 0
+  _speed: 0
+  thrustCoefficient: 0.0000188865
+  torqueCoefficient: 0.000011
 --- !u!1 &2561734333488696745
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,8 +357,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7812500579648459483}
   - component: {fileID: 5360095315424139242}
-  - component: {fileID: 883555845070066623}
   - component: {fileID: 6776586109098935137}
+  - component: {fileID: 4390935632489885428}
   m_Layer: 0
   m_Name: Front Right
   m_TagString: Untagged
@@ -405,24 +405,6 @@ CapsuleCollider:
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &883555845070066623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2561734333488696745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8600cbaeed0e42949baed47b47a57fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
-  spinnerObject: {fileID: 4175366051938078750}
-  spinAxis: 0
-  _speed: 0
-  thrustCoefficient: 0.0000188865
-  torqueCoefficient: 0.000011
 --- !u!114 &6776586109098935137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
-  motorLoad: {fileID: 883555845070066623}
+  motorLoad: {fileID: 4390935632489885428}
   integrator: 2
   voltage: 131
   armatureResistance: 20
@@ -444,6 +426,24 @@ MonoBehaviour:
   torqueConstant: 10
   momentOfInertia: 1
   viscousDamping: 0
+--- !u!114 &4390935632489885428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561734333488696745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f90396f51e946b4a9003cb80687ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5995511627637507719}
+  spinnerObject: {fileID: 4175366051938078750}
+  spinAxis: 0
+  _speed: 0
+  thrustCoefficient: 0.0000188865
+  torqueCoefficient: 0.000011
 --- !u!1 &2818866878331278515
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,8 +681,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7477596436177550668}
   - component: {fileID: 7321828578574833083}
-  - component: {fileID: 6935648613651933530}
   - component: {fileID: 2373451612687255671}
+  - component: {fileID: 779299711875428922}
   m_Layer: 0
   m_Name: Back Right
   m_TagString: Untagged
@@ -729,24 +729,6 @@ CapsuleCollider:
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6935648613651933530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4223507230879152533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8600cbaeed0e42949baed47b47a57fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
-  spinnerObject: {fileID: 3586418691300001380}
-  spinAxis: 0
-  _speed: 0
-  thrustCoefficient: 0.0000188865
-  torqueCoefficient: 0.000011
 --- !u!114 &2373451612687255671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,7 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
-  motorLoad: {fileID: 6935648613651933530}
+  motorLoad: {fileID: 779299711875428922}
   integrator: 2
   voltage: -131
   armatureResistance: 20
@@ -768,6 +750,24 @@ MonoBehaviour:
   torqueConstant: 10
   momentOfInertia: 1
   viscousDamping: 0
+--- !u!114 &779299711875428922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223507230879152533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f90396f51e946b4a9003cb80687ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5995511627637507719}
+  spinnerObject: {fileID: 3586418691300001380}
+  spinAxis: 0
+  _speed: 0
+  thrustCoefficient: 0.0000188865
+  torqueCoefficient: 0.000011
 --- !u!1 &5282863310284906046
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,8 +888,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2062207294124337303}
   - component: {fileID: 2631671444239399540}
-  - component: {fileID: 9086012869280095152}
   - component: {fileID: 5290145487412587084}
+  - component: {fileID: 6615449208180139306}
   m_Layer: 0
   m_Name: Front Left
   m_TagString: Untagged
@@ -936,24 +936,6 @@ CapsuleCollider:
   m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9086012869280095152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5758165993973612182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8600cbaeed0e42949baed47b47a57fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 5995511627637507719}
-  spinnerObject: {fileID: 3993565968597728049}
-  spinAxis: 0
-  _speed: 0
-  thrustCoefficient: 0.0000188865
-  torqueCoefficient: 0.000011
 --- !u!114 &5290145487412587084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,7 +949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5995511627637507719}
-  motorLoad: {fileID: 9086012869280095152}
+  motorLoad: {fileID: 6615449208180139306}
   integrator: 2
   voltage: -131
   armatureResistance: 20
@@ -975,6 +957,24 @@ MonoBehaviour:
   torqueConstant: 10
   momentOfInertia: 1
   viscousDamping: 0
+--- !u!114 &6615449208180139306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758165993973612182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f90396f51e946b4a9003cb80687ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5995511627637507719}
+  spinnerObject: {fileID: 3993565968597728049}
+  spinAxis: 0
+  _speed: 0
+  thrustCoefficient: 0.0000188865
+  torqueCoefficient: 0.000011
 --- !u!1 &6506281918243838403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,13 +1190,9 @@ GameObject:
   - component: {fileID: 8214148604704887133}
   - component: {fileID: 5995511627637507719}
   - component: {fileID: 932807715222619118}
-  - component: {fileID: 7244151605623391754}
   - component: {fileID: 3071117602607612381}
   - component: {fileID: 8982310936213594927}
   - component: {fileID: 2611228371683169070}
-  - component: {fileID: 2833482343557108213}
-  - component: {fileID: 8113885178577293394}
-  - component: {fileID: 8590717562079975690}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1289,25 +1285,6 @@ MonoBehaviour:
   - {fileID: 5290145487412587084}
   - {fileID: 6776586109098935137}
   inputs: []
---- !u!114 &7244151605623391754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensors:
-  - {fileID: 4883061469072057648}
-  - {fileID: 3011489618110827443}
-  - {fileID: 271912348052366067}
-  - {fileID: 9020256483454760767}
-  - {fileID: 4971806525275137639}
-  outputs: []
 --- !u!114 &3071117602607612381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,44 +1327,3 @@ MonoBehaviour:
   dragCoefficients:
     linear: {x: 0.1, y: 0.1, z: 0.1}
     angular: {x: 0.05, y: 0.05, z: 0.05}
---- !u!114 &2833482343557108213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3695d7dbd512f9b41b9d46e9e651e8d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8113885178577293394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cea4d0a9b68240b4c84d18e2e95c0722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outputNodeName: SimuNEXROS2Listener
-  inputNodeName: SimuNEXROS2Talker
-  publisherName: SystemOutputs
-  subscriberName: SystemInputs
---- !u!114 &8590717562079975690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e26d9785ee89d4ab9ec9b4172a4f54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  protocol: {fileID: 8113885178577293394}

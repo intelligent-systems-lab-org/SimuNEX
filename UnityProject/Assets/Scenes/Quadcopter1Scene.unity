@@ -467,10 +467,6 @@ PrefabInstance:
       propertyPath: inputs.Array.size
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 7244151605623391754, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: outputs.Array.size
-      value: 17
-      objectReference: {fileID: 0}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: m_Name
       value: Quadcopter
