@@ -6,7 +6,14 @@ using UnityEngine;
 /// </summary>
 public class UnidirectionalPropeller : Propeller
 {
+    /// <summary>
+    /// Speed to thrust factor.
+    /// </summary>
     public float thrustCoefficient = 1.88865e-5f;
+
+    /// <summary>
+    /// Speed to torque factor.
+    /// </summary>
     public float torqueCoefficient = 1.1e-5f;
 
     protected override void Initialize()
