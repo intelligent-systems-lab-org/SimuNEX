@@ -11,7 +11,7 @@ public class UnidirectionalPropeller : Propeller
 
     protected override void Initialize()
     {
-        force = rb.gameObject.AddComponent<UnidirectionalPropellerForce>();
+        force = rigidBody.gameObject.AddComponent<UnidirectionalPropellerForce>();
         (force as UnidirectionalPropellerForce).Initialize(this);
     }
 }

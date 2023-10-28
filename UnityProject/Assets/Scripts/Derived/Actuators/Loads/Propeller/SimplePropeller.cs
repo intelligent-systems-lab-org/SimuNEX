@@ -11,7 +11,7 @@ public class SimplePropeller : Propeller
 
     protected override void Initialize()
     {
-        force = rb.gameObject.AddComponent<SimplePropellerForce>();
+        force = rigidBody.gameObject.AddComponent<SimplePropellerForce>();
         (force as SimplePropellerForce).Initialize(this);
     }
 }

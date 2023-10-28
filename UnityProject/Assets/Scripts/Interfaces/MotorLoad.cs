@@ -41,7 +41,7 @@ public abstract class MotorLoad : Load
     public void Activate()
     {
         Initialize();
-        rb.AttachForce(force);
+        rigidBody.AttachForce(force);
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public abstract class MotorLoad : Load
     /// </summary>
     public void Deactivate()
     {
-        rb.RemoveForce(force);
+        rigidBody.RemoveForce(force);
     }
 
     private void OnEnable()

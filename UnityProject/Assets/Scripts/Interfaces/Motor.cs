@@ -33,7 +33,7 @@ public abstract class Motor : Actuator
     {
         if (TryGetComponent(out motorLoad))
         {
-            motorLoad.rb = rb;
+            motorLoad.rigidBody = rigidBody;
         }
 
         Initialize();
@@ -43,7 +43,7 @@ public abstract class Motor : Actuator
     {
         if (TryGetComponent(out motorLoad))
         {
-            motorLoad.rb = rb;
+            motorLoad.rigidBody = rigidBody;
         }
 
         Initialize();

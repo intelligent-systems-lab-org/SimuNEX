@@ -21,7 +21,7 @@ public class ActuatorSystem : MonoBehaviour
     /// <summary>
     /// Attached <see cref="RigidBody"/>.
     /// </summary>
-    private RigidBody rb;
+    private RigidBody rigidBody;
 
     /// <summary>
     /// Total number of inputs.
@@ -43,13 +43,13 @@ public class ActuatorSystem : MonoBehaviour
     /// </summary>
     public void UpdateActuatorList()
     {
-        rb = GetComponent<RigidBody>();
+        rigidBody = GetComponent<RigidBody>();
         actuators = new List<Actuator>(GetComponentsInChildren<Actuator>());
 
         NumInputs = 0;
         foreach (Actuator actuator in actuators)
         {
-            actuator.rb = rb;
+            actuator.rigidBody = rigidBody;
             NumInputs += actuator.inputSize;
         }
         inputs = new float[NumInputs];
@@ -92,7 +92,7 @@ public abstract class Actuator : MonoBehaviour
     /// <summary>
     /// <see cref="RigidBody"/> object actuator is attached to.
     /// </summary>
-    public RigidBody rb;
+    public RigidBody rigidBody;
 
     /// <summary>
     /// Inputs to the actuator.

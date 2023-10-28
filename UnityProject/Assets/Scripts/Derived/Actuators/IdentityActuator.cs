@@ -31,7 +31,7 @@ public class IdentityActuator : Actuator
     {
         if (TryGetComponent(out load))
         {
-            load.rb = rb;
+            load.rigidBody = rigidBody;
         }
 
         inputs = () => new float[1] { input };
