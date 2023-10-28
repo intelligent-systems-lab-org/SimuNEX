@@ -8,13 +8,13 @@ public abstract class Force : MonoBehaviour
     /// <summary>
     /// Associated <see cref="RigidBody"/> to apply forces to.
     /// </summary>
-    protected RigidBody rb;
+    protected RigidBody rigidBody;
 
     private void OnEnable()
     {
-        if (TryGetComponent(out rb))
+        if (TryGetComponent(out rigidBody))
         {
-            rb.AttachForce(this);
+            rigidBody.AttachForce(this);
         }
         else
         {
@@ -24,7 +24,7 @@ public abstract class Force : MonoBehaviour
 
     private void OnDisable()
     {
-        rb.RemoveForce(this);
+        rigidBody.RemoveForce(this);
     }
 
     /// <summary>

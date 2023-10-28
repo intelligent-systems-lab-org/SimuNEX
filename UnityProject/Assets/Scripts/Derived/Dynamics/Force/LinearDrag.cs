@@ -12,7 +12,7 @@ public class LinearDrag : Force
 
     public override void ApplyForce()
     {
-        rb.AddForce(-1 * rb.velocity * dragCoefficients);
+        rigidBody.AddForce(-1 * rigidBody.velocity * dragCoefficients);
     }
 }
 

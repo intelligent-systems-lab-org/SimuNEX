@@ -2,26 +2,40 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// Implementation of a constant bouyant force.
+/// Implementation of a constant buoyant force.
 /// </summary>
 public class SimpleBuoyancy : Force
 {
     /// <summary>
-    /// The bouyant force.
+    /// The buoyant force.
     /// </summary>
-    public float buoyantForce = 1f;
+    [SerializeField]
+    private float buoyantForce = 1f;
+
+    /// <summary>
+    /// Density of the surrounding fluid.
+    /// </summary>
+    public float fluidDensity = 1000f;
 
     /// <summary>
     /// The center of buoyancy.
     /// </summary>
     public Transform centerOfBuoyancy;
 
+    /// <summary>
+    /// Gravitational force that is applied to the object.
+    /// </summary>
+    private SimpleGravity simpleGravity;
+
     private void OnValidate()
     {
+        simpleGravity = GetComponent<SimpleGravity>();
         FindCOB();
     }
 
-    private void Awake() {
+    private void Awake() 
+    {
+        simpleGravity = GetComponent<SimpleGravity>();
         FindCOB();
     }
 
@@ -31,7 +45,6 @@ public class SimpleBuoyancy : Force
     private void FindCOB() {
         if(centerOfBuoyancy == null)
             {
-                
                 Transform potentialCOB = transform.Find("COB");
                 if (potentialCOB != null)
                 {
@@ -41,11 +54,16 @@ public class SimpleBuoyancy : Force
     }
 
     /// <summary>
-    /// Apply the bouyant force to the specified <see cref="RigidBody"/> object.
+    /// Apply the buoyant force to the specified <see cref="RigidBodyF"/> object.
+    /// Has no effect on non-fluid based physics dynamics.
     /// </summary>
     public override void ApplyForce() 
-        => rb.AddLinearForceAtPosition(Vector3.up * buoyantForce, centerOfBuoyancy.position);
-
+    {
+        if (rigidBody is RigidBodyF rbf) {
+            buoyantForce = fluidDensity * simpleGravity.acceleration * rbf._volume * rbf._displacedFactor;
+            rigidBody.AddLinearForceAtPosition(Vector3.up * buoyantForce, centerOfBuoyancy.position);
+        }
+    }
 }
 
 #if UNITY_EDITOR
@@ -63,7 +81,14 @@ public class SimpleBuoyancyEditor : Editor
             return;
         }
 
+        if (buoyancy.gameObject.GetComponent<RigidBodyF>() == null)
+        {
+            EditorGUILayout.HelpBox("SimpleBuoyancy should be attached to a GameObject with a RigidBodyF component.", MessageType.Warning);
+            return;
+        }
+
         DrawDefaultInspector();
     }
 }
+
 #endif

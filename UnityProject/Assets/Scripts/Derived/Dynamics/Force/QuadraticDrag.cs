@@ -13,7 +13,7 @@ public class QuadraticDrag : Force
 
     public override void ApplyForce()
     {
-        rb.AddForce(-1 * rb.velocity.Apply(v => Mathf.Abs(v) * v) * dragCoefficients);
+        rigidBody.AddForce(-1 * rigidBody.velocity.Apply(v => Mathf.Abs(v) * v) * dragCoefficients);
     }
 }
 

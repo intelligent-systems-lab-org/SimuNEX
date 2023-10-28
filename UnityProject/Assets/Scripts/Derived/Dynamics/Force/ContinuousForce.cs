@@ -17,11 +17,11 @@ public class ContinuousForce : Force
     {
         if (referenceFrame == CoordinateFrame.BCF)
         {
-            rb.AddForce(forces.ToICF(transform));
+            rigidBody.AddForce(forces.ToICF(transform));
         }
         else
         {
-            rb.AddForce(forces);
+            rigidBody.AddForce(forces);
         }
     }
 }

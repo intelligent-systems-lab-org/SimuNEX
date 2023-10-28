@@ -46,14 +46,14 @@ public class SimpleGravity : Force
     public override void ApplyForce()
     {
         Vector3 gravityForce = Vector3.down * weight;
-        rb.AddLinearForceAtPosition(gravityForce, centerOfGravity.position);
+        rigidBody.AddLinearForceAtPosition(gravityForce, centerOfGravity.position);
     }
 
     /// <summary>
     /// Calculate the weight of the specified <see cref="RigidBody"/> object.
     /// </summary>
     /// <returns>The weight of the dynamics object.</returns>
-    public float weight => rb.mass * acceleration;
+    public float weight => rigidBody.mass * acceleration;
 
 }
 

@@ -59,8 +59,8 @@ public abstract class PropellerForce : Force
     {
         var _normal = normal();
         outputs = PropellerFunction(propellerSpeed, parameters);
-        rb.AddLinearForceAtPosition(_normal * outputs[0], positionCallback());
-        rb.AddTorque(_normal * outputs[1]);
+        rigidBody.AddLinearForceAtPosition(_normal * outputs[0], positionCallback());
+        rigidBody.AddTorque(_normal * outputs[1]);
     }
 
     /// <summary>
