@@ -11,16 +11,28 @@ public class Environment : MonoBehaviour
     /// </summary>
     private BoxCollider boxBounds;
 
-    private void Start()
-    {
+    /// <summary>
+    /// List of attached forcefields.
+    /// </summary>
+    public List<ForceField> forceFields = new();
+
+    private void OnValidate() {
+        Initialize();
+    }
+
+    private void Awake() {
+        Initialize();
+    }
+
+    private void Initialize() {
         // Get the BoxCollider attached to this GameObject.
-        
         if(!TryGetComponent(out boxBounds))
         {
             Debug.LogError("No BoxCollider found on the GameObject. Please attach one.");
             return;
         }
         boxBounds.isTrigger = true;
+        forceFields = new List<ForceField>(GetComponents<ForceField>());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +51,12 @@ public class Environment : MonoBehaviour
             if (rb != null && !rigidBodiesWithinBounds.Contains(rb))
             {
                 rigidBodiesWithinBounds.Add(rb);
+
+                // Apply all the force fields when a RigidBody enters the environment
+                foreach (ForceField forceField in forceFields)
+                {
+                    forceField.Apply(rb);
+                }
             }
         }
     }
@@ -58,9 +76,16 @@ public class Environment : MonoBehaviour
             if (parentTransform.TryGetComponent<RigidBody>(out var rb))
             {
                 rigidBodiesWithinBounds.Remove(rb);
+
+                // Remove all the force fields when a RigidBody exits the environment
+                foreach (ForceField forceField in forceFields)
+                {
+                    forceField.Remove(rb);
+                }
             }
         }
     }
+
 
     /// <summary>
     /// Obtains the list of detected <see cref="RigidBody"/> objects inside the environment.
