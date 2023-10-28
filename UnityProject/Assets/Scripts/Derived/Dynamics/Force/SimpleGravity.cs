@@ -54,6 +54,7 @@ public class SimpleGravity : Force
     /// </summary>
     /// <returns>The weight of the dynamics object.</returns>
     public float weight => rb.mass * acceleration;
+
 }
 
 #if UNITY_EDITOR

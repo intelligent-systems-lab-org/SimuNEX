@@ -45,6 +45,7 @@ public class SimpleBuoyancy : Force
     /// </summary>
     public override void ApplyForce() 
         => rb.AddLinearForceAtPosition(Vector3.up * buoyantForce, centerOfBuoyancy.position);
+
 }
 
 #if UNITY_EDITOR
