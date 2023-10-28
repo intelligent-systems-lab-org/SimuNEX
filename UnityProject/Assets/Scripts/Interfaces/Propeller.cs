@@ -67,10 +67,9 @@ public abstract class PropellerForce : Force
     /// Connects propeller object to its associated transforms and <see cref="RigidBody"/>.
     /// </summary>
     /// <param name="propeller"><see cref="Propeller"/> object that the force is being applied to.</param>
-    public PropellerForce(Propeller propeller)
+    public void Initialize(Propeller propeller)
     {
         normal = () => propeller.normal;
-        rb = propeller.rb;
         positionCallback = () => propeller.transform.position;
         propellerSpeed = () => propeller.motorOutput;
     }

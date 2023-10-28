@@ -11,7 +11,8 @@ public class SimplePropeller : Propeller
 
     protected override void Initialize()
     {
-        force = new SimplePropellerForce(this);
+        force = rb.gameObject.AddComponent<SimplePropellerForce>();
+        (force as SimplePropellerForce).Initialize(this);
     }
 }
 
@@ -24,8 +25,9 @@ public class SimplePropellerForce : PropellerForce
     /// Set up propeller specific parameters.
     /// </summary>
     /// <param name="propeller"><see cref="SimplePropeller"/> object that the force is being applied to.</param>
-    public SimplePropellerForce(SimplePropeller propeller) : base(propeller)
+    public void Initialize(SimplePropeller propeller)
     {
+        base.Initialize(propeller);
         parameters = () => new float[]
         {
           propeller.thrustCoefficient, propeller.torqueCoefficient
