@@ -86,7 +86,6 @@ public class Environment : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Obtains the list of detected <see cref="RigidBody"/> objects inside the environment.
     /// </summary>

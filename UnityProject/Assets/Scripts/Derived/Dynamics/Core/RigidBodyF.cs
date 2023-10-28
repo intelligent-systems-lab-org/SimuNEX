@@ -25,7 +25,7 @@ public class RigidBodyF : RigidBody
     /// <summary>
     /// Factor of fluid displaced between 0 and 1.
     /// </summary>
-    public float _displacedFactor = 1f;
+    public float _displacedVolumeFactor = 1f;
 
     protected override void Initialize()
     {

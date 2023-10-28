@@ -60,7 +60,7 @@ public class SimpleBuoyancy : Force
     public override void ApplyForce() 
     {
         if (rigidBody is RigidBodyF rbf) {
-            buoyantForce = fluidDensity * simpleGravity.acceleration * rbf._volume * rbf._displacedFactor;
+            buoyantForce = fluidDensity * simpleGravity.acceleration * rbf._volume * rbf._displacedVolumeFactor;
             rigidBody.AddLinearForceAtPosition(Vector3.up * buoyantForce, centerOfBuoyancy.position);
         }
     }
