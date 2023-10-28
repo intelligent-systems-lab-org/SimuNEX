@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 /// <summary>
 /// Interface for implementing motors.
@@ -9,6 +10,16 @@ public abstract class Motor : Actuator
     /// <see cref="MotorLoad"/> object that is attached to the motor.
     /// </summary>
     public MotorLoad motorLoad;
+
+    /// <summary>
+    /// Maximum output value.
+    /// </summary>
+    public float upperSaturation = Mathf.Infinity;
+
+    /// <summary>
+    /// Minimum output value
+    /// </summary>
+    public float lowerSaturation = Mathf.NegativeInfinity;
 
     /// <summary>
     /// The motor function (MF) that computes output values based on the provided inputs and parameters.

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using static StateSpaceTypes;
 
 public class PMSMotor : Motor
@@ -106,6 +107,10 @@ public class PMSMotor : Motor
         stateSpace.inputs[0, 0] = inputs()[0];
         stateSpace.inputs[1, 0] = inputs()[1];
         stateSpace.Compute();
+
+        // Apply saturation
+        stateSpace.states[2, 0] = Mathf.Clamp(stateSpace.states[2, 0], lowerSaturation, upperSaturation);
+
         return stateSpace.outputs[2, 0];
     }
 }

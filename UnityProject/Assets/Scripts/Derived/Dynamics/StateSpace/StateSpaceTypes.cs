@@ -45,12 +45,12 @@ public static class StateSpaceTypes
         /// <summary>
         /// The system's output, which is the value of its sole state.
         /// </summary>
-        public float Output => _states[0, 0];
+        public float output => _states[0, 0];
 
         /// <summary>
         /// The system's input.
         /// </summary>
-        public float Input
+        public float input
         {
             get => _inputs[0, 0];
             set => _inputs[0, 0] = value;
