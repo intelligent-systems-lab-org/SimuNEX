@@ -198,7 +198,7 @@ public class RigidBody : Dynamics
     {
         get
         {
-            if (TryGetComponent<SimpleGravity>(out var simpleGravity))
+            if (TryGetComponent<SimpleGravity>(out var simpleGravity) && simpleGravity.enabled)
             {
                 return simpleGravity.weight * transform.position.y;
             }
