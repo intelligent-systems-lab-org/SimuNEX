@@ -1,3 +1,6 @@
+/// <summary>
+/// Applies a constant gravitational acceleration to all <see cref="RigidBody"/> objects within the field.
+/// </summary>
 public class SimpleGravityField : ForceField
 {
     public float acceleration = 9.81f;
@@ -10,7 +13,6 @@ public class SimpleGravityField : ForceField
             // If there's an existing SimpleGravity, remove it first
             Destroy(existingGravity);
         }
-
         var simpleGravity = rigidBody.gameObject.AddComponent<SimpleGravity>();
         simpleGravity.acceleration = acceleration;
     }
@@ -18,9 +20,7 @@ public class SimpleGravityField : ForceField
     public override void Remove(RigidBody rigidBody)
     {
         // Try to find a SimpleGravity component attached to the Rigidbody's GameObject
-        SimpleGravity existingGravity = rigidBody.gameObject.GetComponent<SimpleGravity>();
-
-        if (existingGravity != null)
+        if (rigidBody.gameObject.TryGetComponent<SimpleGravity>(out var existingGravity))
         {
             // If found, destroy it
             Destroy(existingGravity);
