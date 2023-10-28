@@ -16,6 +16,30 @@ public class SimpleGravity : Force
     /// </summary>
     public Transform centerOfGravity;
 
+    private void OnValidate()
+    {
+        FindCOG();
+    }
+
+    private void Awake() {
+        FindCOG();
+    }
+
+    /// <summary>
+    /// Attempts to find a child with the name "COG" and assigns it as the COG.
+    /// </summary>
+    private void FindCOG() {
+        if(centerOfGravity == null)
+            {
+                
+                Transform potentialCOG = transform.Find("COG");
+                if(potentialCOG != null)
+                {
+                    centerOfGravity = potentialCOG;
+                }
+            }
+    }
+
     /// <summary>
     /// Apply the gravity force to the specified <see cref="RigidBody"/> object.
     /// </summary>

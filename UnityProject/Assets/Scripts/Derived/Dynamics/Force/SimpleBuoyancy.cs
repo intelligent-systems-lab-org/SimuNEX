@@ -16,6 +16,30 @@ public class SimpleBuoyancy : Force
     /// </summary>
     public Transform centerOfBuoyancy;
 
+    private void OnValidate()
+    {
+        FindCOB();
+    }
+
+    private void Awake() {
+        FindCOB();
+    }
+
+    /// <summary>
+    /// Attempts to find a child with the name "COB" and assigns it as the COB.
+    /// </summary>
+    private void FindCOB() {
+        if(centerOfBuoyancy == null)
+            {
+                
+                Transform potentialCOB = transform.Find("COB");
+                if(potentialCOB != null)
+                {
+                    centerOfBuoyancy = potentialCOB;
+                }
+            }
+    }
+
     /// <summary>
     /// Apply the bouyant force to the specified <see cref="RigidBody"/> object.
     /// </summary>
