@@ -39,6 +39,11 @@ public class RigidBodyF : RigidBody
     /// </summary>
     public Matrix6DOF MassMatrix => Matrix6DOF.CreateMassMatrix(mass, body.inertiaTensor) - addedMass;
 
-    //public override float kineticEnergy
-    //    => 0.5f * (_velocity.transpose * massMatrix() * _velocity)[0];        
+    public override float kineticEnergy
+    {
+        get {
+            Matrix momentum = MassMatrix * _velocity;
+            return 0.5f * (_velocity.transpose * momentum)[0, 0];
+        }
+    }        
 }

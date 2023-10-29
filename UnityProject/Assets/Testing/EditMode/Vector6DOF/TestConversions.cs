@@ -29,6 +29,28 @@ namespace Vector6DOFTests
         }
 
         [Test]
+        public void ImplicitOperator_ConvertsToMatrix()
+        {
+            // Arrange  
+            Vector6DOF v = new()
+            {
+                linear = new Vector3(1f, 2f, 3f),
+                angular = new Vector3(4f, 5f, 6f)
+            };
+
+            // Act
+            Matrix result = v;
+
+            // Assert
+            Assert.AreEqual(1f, result[0, 0]);
+            Assert.AreEqual(2f, result[1, 0]);
+            Assert.AreEqual(3f, result[2, 0]);
+            Assert.AreEqual(4f, result[3, 0]);
+            Assert.AreEqual(5f, result[4, 0]);
+            Assert.AreEqual(6f, result[5, 0]);
+        }
+
+        [Test]
         public void ToString_ReturnsStringRepresentation()
         {
             // Arrange

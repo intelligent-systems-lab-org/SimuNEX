@@ -27,6 +27,13 @@ public partial class Vector6DOF
     }
 
     /// <summary>
+    /// Implicitly converts a <see cref="Vector6DOF"/> instance to a <see cref="Matrix"/>.
+    /// </summary>
+    /// <param name="vector">The <see cref="Vector6DOF"/> instance to convert.</param>
+    /// <returns>A <see cref="Matrix"/> representing the values of the <see cref="Vector6DOF"/>.</returns>
+    public static implicit operator Matrix(Vector6DOF vector) => new(6, 1, vector);
+
+    /// <summary>
     /// Converts a string representation of a <see cref="Vector6DOF"/> to a <see cref="Vector6DOF"/> instance.
     /// </summary>
     /// <param name="vectorString">The string representation of the <see cref="Vector6DOF"/>.</param>
