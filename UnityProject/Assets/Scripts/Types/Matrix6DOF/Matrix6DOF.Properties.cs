@@ -15,4 +15,9 @@ public partial class Matrix6DOF
         get => _matrix[i, j];
         set => _matrix[i, j] = value;
     }
+
+    /// <summary>
+    /// Obtains the inverse of the matrix.
+    /// </summary>
+    public Matrix6DOF inverse => new(_matrix.Inverse);
 }
