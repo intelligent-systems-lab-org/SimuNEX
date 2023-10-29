@@ -75,4 +75,9 @@ public partial class Matrix
             return new Matrix(ColCount, RowCount, resultData);
         }
     }
+
+    /// <summary>
+    /// Returns the determinant of the matrix.
+    /// </summary>
+    public float Determinant => Eigen3.GetDeterminant(_matrixPtr);
 }
