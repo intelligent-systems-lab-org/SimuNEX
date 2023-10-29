@@ -54,6 +54,7 @@ MonoBehaviour:
   loadDamping: 0
   forceCoefficient: 1.5
   torqueCoefficient: 1
+  propulsionDirection: 2
 --- !u!114 &1848095677856972004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,6 +813,7 @@ MonoBehaviour:
   loadDamping: 0
   forceCoefficient: 1.5
   torqueCoefficient: 1
+  propulsionDirection: 2
 --- !u!1 &7646383365359444548
 GameObject:
   m_ObjectHideFlags: 0

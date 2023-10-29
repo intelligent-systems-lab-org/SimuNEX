@@ -520,10 +520,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 129176138644301223, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: propulsionDirection
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 435350545056485185, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -567,14 +563,6 @@ PrefabInstance:
     - target: {fileID: 1352934492587307473, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_Name
       value: AUV
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774299028294793820, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: propulsionDirection
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2850756111766097885, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: inputs.Array.size
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7524597411484692782, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: outputs.Array.size
