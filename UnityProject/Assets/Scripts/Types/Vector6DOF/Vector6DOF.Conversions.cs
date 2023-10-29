@@ -34,6 +34,38 @@ public partial class Vector6DOF
     public static implicit operator Matrix(Vector6DOF vector) => new(6, 1, vector);
 
     /// <summary>
+    /// Provides an implicit conversion from a Matrix to a Vector6DOF.
+    /// </summary>
+    /// <param name="matrix">The matrix to be converted.</param>
+    /// <returns>A Vector6DOF constructed from the given matrix.</returns>
+    /// <exception cref="ArgumentException">Thrown when the matrix is not 1x6 or 6x1.</exception>
+    public static implicit operator Vector6DOF(Matrix matrix)
+    {
+        if (matrix.RowCount == 1 && matrix.ColCount == 6)
+        {
+            return new Vector6DOF
+            (
+                matrix[0, 0], matrix[0, 1], matrix[0, 2],
+                matrix[0, 3], matrix[0, 4], matrix[0, 5]
+            );
+        }
+        else if (matrix.RowCount == 6 && matrix.ColCount == 1) 
+        {
+            return new Vector6DOF
+            (
+                matrix[0, 0], matrix[1, 0], matrix[2, 0],
+                matrix[3, 0], matrix[4, 0], matrix[5, 0]
+            );
+        }
+        else
+        {
+            // Throw an exception if the matrix is not 1x6 or 6x1
+            throw new ArgumentException("Matrix must be 1x6 or 6x1 to convert to Vector6DOF.");
+        }
+    }
+
+
+    /// <summary>
     /// Converts a string representation of a <see cref="Vector6DOF"/> to a <see cref="Vector6DOF"/> instance.
     /// </summary>
     /// <param name="vectorString">The string representation of the <see cref="Vector6DOF"/>.</param>

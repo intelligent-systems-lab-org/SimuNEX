@@ -130,5 +130,45 @@ namespace Vector6DOFTests
             var ex = Assert.Throws<ArgumentException>(() => new Vector6DOF(invalidValues));
             Assert.AreEqual("The enumerable must contain exactly 6 elements.", ex.Message);
         }
+
+        [Test]
+        public void TestVector6DOFConstructorWithMatrix_1x6()
+        {
+            // Arrange
+            Matrix matrix = new(1, 6);
+            matrix[0, 0] = 1;
+            matrix[0, 1] = 2;
+            matrix[0, 2] = 3;
+            matrix[0, 3] = 4;
+            matrix[0, 4] = 5;
+            matrix[0, 5] = 6;
+
+            // Act
+            Vector6DOF result = new(matrix);
+
+            // Assert
+            Assert.AreEqual(new Vector3(1, 2, 3), result.linear);
+            Assert.AreEqual(new Vector3(4, 5, 6), result.angular);
+        }
+
+        [Test]
+        public void TestVector6DOFConstructorWithMatrix_6x1()
+        {
+            // Arrange
+            Matrix matrix = new(6, 1);
+            matrix[0, 0] = 1;
+            matrix[1, 0] = 2;
+            matrix[2, 0] = 3;
+            matrix[3, 0] = 4;
+            matrix[4, 0] = 5;
+            matrix[5, 0] = 6;
+
+            // Act
+            Vector6DOF result = new(matrix);
+
+            // Assert
+            Assert.AreEqual(new Vector3(1, 2, 3), result.linear);
+            Assert.AreEqual(new Vector3(4, 5, 6), result.angular);
+        }
     }
 }

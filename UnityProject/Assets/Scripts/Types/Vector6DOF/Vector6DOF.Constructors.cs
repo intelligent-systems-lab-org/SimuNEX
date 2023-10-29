@@ -71,6 +71,17 @@ public partial class Vector6DOF
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Vector6DOF"/> class from a 6-element matrix.
+    /// </summary>
+    /// <param name="v">A 6-element matrix.</param>
+    public Vector6DOF(Matrix m)
+    {
+        Vector6DOF v = m;
+        linear = v.linear;
+        angular = v.angular;
+    }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="Vector6DOF"/> class from an enumerable of size 6.
     /// </summary>
     /// <param name="values">The enumerable of size 6.</param>

@@ -87,5 +87,59 @@ namespace Vector6DOFTests
                 .Throws<InvalidOperationException>(() => { Vector6DOF _ = vectorString2; });
             Assert.AreEqual("Invalid vector string. Expected 6 elements.", exception.Message);
         }
+
+        [Test]
+        public void TestMatrixToVector6DOFImplicitConversion_1x6()
+        {
+            // Arrange
+            Matrix matrix = new(1, 6);
+            matrix[0, 0] = 1;
+            matrix[0, 1] = 2;
+            matrix[0, 2] = 3;
+            matrix[0, 3] = 4;
+            matrix[0, 4] = 5;
+            matrix[0, 5] = 6;
+
+            // Act
+            Vector6DOF result = matrix;
+
+            // Assert
+            Assert.AreEqual(new Vector3(1, 2, 3), result.linear);
+            Assert.AreEqual(new Vector3(4, 5, 6), result.angular);
+        }
+
+        [Test]
+        public void TestMatrixToVector6DOFImplicitConversion_6x1()
+        {
+            // Arrange
+            Matrix matrix = new(6, 1);
+            matrix[0, 0] = 1;
+            matrix[1, 0] = 2;
+            matrix[2, 0] = 3;
+            matrix[3, 0] = 4;
+            matrix[4, 0] = 5;
+            matrix[5, 0] = 6;
+
+            // Act
+            Vector6DOF result = matrix;
+
+            // Assert
+            Assert.AreEqual(new Vector3(1, 2, 3), result.linear);
+            Assert.AreEqual(new Vector3(4, 5, 6), result.angular);
+        }
+
+        [Test]
+        public void TestMatrixToVector6DOFInvalidConversion()
+        {
+            // Arrange
+            // Invalid size for conversion
+            Matrix matrix = new(2, 3);
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Vector6DOF result = matrix;
+            }, "Matrix must be 1x6 or 6x1 to convert to Vector6DOF.");
+        }
     }
 }
