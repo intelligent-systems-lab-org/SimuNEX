@@ -190,7 +190,7 @@ MonoBehaviour:
     linear: {x: 0, y: 0, z: 0}
     angular: {x: 0, y: 0, z: 0}
   _volume: 10
-  _displacedFactor: 0.003051026
+  _displacedVolumeFactor: 0.0030512
 --- !u!114 &61859564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +245,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuators:
   - {fileID: 1602200428}
-  inputs: []
+  - {fileID: 1621785389}
+  - {fileID: 1987857623}
+  inputs:
+  - 0
+  - 0
 --- !u!114 &61859568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,8 +358,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3681095939753013997}
-  - {fileID: 5020439793264105997}
+  - {fileID: 1621785387}
+  - {fileID: 1987857621}
   m_Father: {fileID: 543450652198022559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &477741063
@@ -726,7 +730,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 0
-  voltage: 150
+  voltage: 100
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
@@ -750,6 +754,83 @@ MonoBehaviour:
   loadDamping: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0
+--- !u!1 &1621785386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621785387}
+  - component: {fileID: 1621785389}
+  - component: {fileID: 1621785390}
+  m_Layer: 0
+  m_Name: Rudders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1621785387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621785386}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.72194624, y: -0.0004612441, z: 0.001499634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3681095939753013997}
+  m_Father: {fileID: 305745823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1621785389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621785386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 61859563}
+  motorLoad: {fileID: 1621785390}
+  upperSaturation: Infinity
+  lowerSaturation: -Infinity
+  armatureInertia: 0.5
+  armatureDamping: 0
+  integrator: 0
+  voltage: 0
+  armatureResistance: 20
+  backEMFConstant: 1
+  torqueConstant: 10
+--- !u!114 &1621785390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621785386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eec634894894b544ac173e348851f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 61859563}
+  spinnerObject: {fileID: 3681095939753013997}
+  spinAxis: 0
+  _speed: 0
+  loadInertia: 0.5
+  loadDamping: 0
+  forceCoefficient: 1.5
+  torqueCoefficient: 1
 --- !u!1 &1797216156
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +968,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 61859561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1987857620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1987857621}
+  - component: {fileID: 1987857622}
+  - component: {fileID: 1987857623}
+  m_Layer: 0
+  m_Name: Stern Planes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1987857621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987857620}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.7220547, y: -0.0005125897, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5020439793264105997}
+  m_Father: {fileID: 305745823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1987857622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987857620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eec634894894b544ac173e348851f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 61859563}
+  spinnerObject: {fileID: 5020439793264105997}
+  spinAxis: 4
+  _speed: 0
+  loadInertia: 0.5
+  loadDamping: 0
+  forceCoefficient: 1.5
+  torqueCoefficient: 1
+--- !u!114 &1987857623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987857620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 61859563}
+  motorLoad: {fileID: 1987857622}
+  upperSaturation: Infinity
+  lowerSaturation: -Infinity
+  armatureInertia: 0.5
+  armatureDamping: 0
+  integrator: 0
+  voltage: 0
+  armatureResistance: 20
+  backEMFConstant: 1
+  torqueConstant: 10
 --- !u!1 &1993033782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1237,7 @@ GameObject:
   - component: {fileID: 977691432284887165}
   - component: {fileID: 5019311278321770387}
   m_Layer: 0
-  m_Name: Stern Planes
+  m_Name: Fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1154,11 +1312,11 @@ Transform:
   m_GameObject: {fileID: 4162732031172832082}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.72194624, y: -0.00030624616, z: 0.033298068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 305745823}
+  m_Father: {fileID: 1621785387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4162732031172832082
 GameObject:
@@ -1172,7 +1330,7 @@ GameObject:
   - component: {fileID: 8505136033323467344}
   - component: {fileID: 293798295866863399}
   m_Layer: 0
-  m_Name: Rudders
+  m_Name: Fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,11 +1387,11 @@ Transform:
   m_GameObject: {fileID: 2850302341954622097}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7220545, y: -0.00051259995, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 305745823}
+  m_Father: {fileID: 1987857621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6152191645182468581
 GameObject:
