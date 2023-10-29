@@ -145,13 +145,20 @@ public class RigidBody : Dynamics
             }
         }
 
-        body.AddForce(_forces.linear);
-        body.AddTorque(_forces.angular);
-
+        UpdatePhysics();
         appliedForce = _forces;
 
         // Reset forces before the next timestep
         _forces = Vector6DOF.zero;
+    }
+
+    /// <summary>
+    /// Updates the physics engine given the current values.
+    /// </summary>
+    protected virtual void UpdatePhysics() 
+    {
+        body.AddForce(_forces.linear);
+        body.AddTorque(_forces.angular);
     }
 
     /// <summary>

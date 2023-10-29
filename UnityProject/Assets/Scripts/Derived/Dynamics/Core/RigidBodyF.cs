@@ -7,9 +7,9 @@ using UnityEngine;
 public class RigidBodyF : RigidBody
 {
     /// <summary>
-    /// 6 x 6 mass matrix.
+    /// Added mass coefficients.
     /// </summary>
-    Func<Matrix> massMatrix;
+    public Matrix6DOF addedMass = new();
 
     /// <summary>
     /// Acceleration at the current timestep.
@@ -27,18 +27,17 @@ public class RigidBodyF : RigidBody
     /// </summary>
     public float _displacedVolumeFactor = 1f;
 
-    protected override void Initialize()
+    protected override void UpdatePhysics()
     {
-        massMatrix = () => new Matrix(new float[,]
-        {
-            { mass, 0, 0, 0, 0, 0 },
-            { 0, mass, 0, 0, 0, 0, },
-            { 0, 0, mass, 0, 0, 0, },
-            { 0, 0, 0, body.inertiaTensor.x, 0, 0 },
-            { 0, 0, 0, 0, body.inertiaTensor.y, 0 },
-            { 0, 0, 0, 0, 0, body.inertiaTensor.z }
-        });
+        _acceleration = MassMatrix.inverse * _forces;
+        body.AddForce(_acceleration.linear, ForceMode.Acceleration);
+        body.AddTorque(_acceleration.angular, ForceMode.Acceleration);
     }
+
+    /// <summary>
+    /// 6 x 6 mass matrix.
+    /// </summary>
+    public Matrix6DOF MassMatrix => Matrix6DOF.CreateMassMatrix(mass, body.inertiaTensor) - addedMass;
 
     //public override float kineticEnergy
     //    => 0.5f * (_velocity.transpose * massMatrix() * _velocity)[0];        

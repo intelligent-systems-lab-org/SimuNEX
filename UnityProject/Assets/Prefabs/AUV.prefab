@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 1170835664730685151}
   - component: {fileID: 5601625684026374144}
   - component: {fileID: 7524597411484692782}
-  - component: {fileID: 2850756111766097885}
+  - component: {fileID: 8255319234837448892}
   m_Layer: 0
   m_Name: AUV
   m_TagString: Untagged
@@ -342,7 +342,7 @@ MonoBehaviour:
   sensors:
   - {fileID: 5452912407559438521}
   outputs: []
---- !u!114 &2850756111766097885
+--- !u!114 &8255319234837448892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

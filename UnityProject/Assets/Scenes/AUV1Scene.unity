@@ -568,6 +568,10 @@ PrefabInstance:
       propertyPath: outputs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8255319234837448892, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: inputs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
