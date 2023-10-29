@@ -30,6 +30,21 @@ public partial class Matrix6DOF
         }
     }
 
+
+    /// <summary>
+    /// Compares two matrices for equality.
+    /// </summary>
+    /// <param name="rhs">The matrix being compared.</param>
+    /// <returns>True if the matrices are equal, false otherwise.</returns>
+    public bool IsEqual(Matrix6DOF rhs) => _matrix.IsEqual(new Matrix(rhs));
+
+    /// <summary>
+    /// Compares two matrices if they are not equal.
+    /// </summary>
+    /// <param name="rhs">The matrix being compared.</param>
+    /// <returns>True if the matrices are not equal, false otherwise.</returns>
+    public bool IsNotEqual(Matrix rhs) => _matrix.IsNotEqual(new Matrix(rhs));
+
     /// <summary>
     /// Adds two Matrix6DOF objects together.
     /// </summary>
