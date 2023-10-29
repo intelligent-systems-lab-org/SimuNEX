@@ -38,7 +38,7 @@ public abstract class PropellerForce : Force
     protected Func<Vector3> normal;
 
     /// <summary>
-    /// <see cref="Vector3"/> of the propeller.
+    /// Position of the propeller.
     /// </summary>
     protected Func<Vector3> positionCallback;
 
