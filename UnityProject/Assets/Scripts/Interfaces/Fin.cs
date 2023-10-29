@@ -71,27 +71,27 @@ public abstract class FinForce : Force
 
             switch (fin.spinAxis) 
             {
-                case SpinAxis.Up:
+                case Direction.Up:
                     angleInDegrees = fin.spinnerObject.localEulerAngles.y;
                     break;
 
-                case SpinAxis.Down:
+                case Direction.Down:
                     angleInDegrees = -fin.spinnerObject.localEulerAngles.y;
                     break;
 
-                case SpinAxis.Left:
+                case Direction.Left:
                     angleInDegrees = fin.spinnerObject.localEulerAngles.x;
                     break;
 
-                case SpinAxis.Right:
+                case Direction.Right:
                     angleInDegrees = -fin.spinnerObject.localEulerAngles.x;
                     break;
 
-                case SpinAxis.Forward:
+                case Direction.Forward:
                     angleInDegrees = fin.spinnerObject.localEulerAngles.z;
                     break;
 
-                case SpinAxis.Backward:
+                case Direction.Backward:
                     angleInDegrees = -fin.spinnerObject.localEulerAngles.z;
                     break;
             }

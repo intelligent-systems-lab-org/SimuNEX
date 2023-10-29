@@ -18,7 +18,7 @@ public abstract class MotorLoad : Load
     /// <summary>
     /// Propeller axis of rotation.
     /// </summary>
-    public SpinAxis spinAxis;
+    public Direction spinAxis;
 
     /// <summary>
     /// Propeller speed value.
@@ -120,22 +120,22 @@ public abstract class MotorLoad : Load
             Vector3 normal = Vector3.zero;
             switch (spinAxis)
             {
-                case SpinAxis.Up:
+                case Direction.Up:
                     normal = transform.up;
                     break;
-                case SpinAxis.Down:
+                case Direction.Down:
                     normal = -transform.up;
                     break;
-                case SpinAxis.Left:
+                case Direction.Left:
                     normal = -transform.right;
                     break;
-                case SpinAxis.Right:
+                case Direction.Right:
                     normal = transform.right;
                     break;
-                case SpinAxis.Forward:
+                case Direction.Forward:
                     normal = transform.forward;
                     break;
-                case SpinAxis.Backward:
+                case Direction.Backward:
                     normal = -transform.forward;
                     break;
             }
@@ -153,22 +153,22 @@ public abstract class MotorLoad : Load
             Vector3 normal = Vector3.zero;
             switch (spinAxis)
             {
-                case SpinAxis.Up:
+                case Direction.Up:
                     normal = Vector3.up;
                     break;
-                case SpinAxis.Down:
+                case Direction.Down:
                     normal = -Vector3.up;
                     break;
-                case SpinAxis.Left:
+                case Direction.Left:
                     normal = -Vector3.right;
                     break;
-                case SpinAxis.Right:
+                case Direction.Right:
                     normal = Vector3.right;
                     break;
-                case SpinAxis.Forward:
+                case Direction.Forward:
                     normal = Vector3.forward;
                     break;
-                case SpinAxis.Backward:
+                case Direction.Backward:
                     normal = -Vector3.forward;
                     break;
             }
@@ -178,9 +178,9 @@ public abstract class MotorLoad : Load
 }
 
 /// <summary>
-/// Axis of rotation.
+/// Represents a direction.
 /// </summary>
-public enum SpinAxis
+public enum Direction
 {
     Up, Down, Left, Right, Forward, Backward
 }
