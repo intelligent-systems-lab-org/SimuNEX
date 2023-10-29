@@ -520,13 +520,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 129176138644301223, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: flowDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 129176138644301223, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: forceCoefficient
+      value: 9.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 129176138644301223, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: torqueCoefficient
+      value: -6.15
+      objectReference: {fileID: 0}
     - target: {fileID: 435350545056485185, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 435350545056485185, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 435350545056485185, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -563,6 +575,18 @@ PrefabInstance:
     - target: {fileID: 1352934492587307473, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_Name
       value: AUV
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774299028294793820, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: flowDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774299028294793820, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: forceCoefficient
+      value: -9.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774299028294793820, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: torqueCoefficient
+      value: -6.15
       objectReference: {fileID: 0}
     - target: {fileID: 7524597411484692782, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: outputs.Array.size

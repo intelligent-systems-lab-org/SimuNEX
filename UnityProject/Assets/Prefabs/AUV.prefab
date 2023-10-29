@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5486475321926917844}
-  - component: {fileID: 1774299028294793820}
   - component: {fileID: 1848095677856972004}
+  - component: {fileID: 1774299028294793820}
   m_Layer: 0
   m_Name: Stern Planes
   m_TagString: Untagged
@@ -34,27 +34,6 @@ Transform:
   - {fileID: 796791977412584909}
   m_Father: {fileID: 1689416862073563053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1774299028294793820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36063087333249836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eec634894894b544ac173e348851f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidBody: {fileID: 1170835664730685151}
-  spinnerObject: {fileID: 796791977412584909}
-  spinAxis: 4
-  _speed: 0
-  loadInertia: 0.5
-  loadDamping: 0
-  forceCoefficient: 1.5
-  torqueCoefficient: 1
-  propulsionDirection: 2
 --- !u!114 &1848095677856972004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +57,27 @@ MonoBehaviour:
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
+--- !u!114 &1774299028294793820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36063087333249836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eec634894894b544ac173e348851f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1170835664730685151}
+  spinnerObject: {fileID: 796791977412584909}
+  spinAxis: 4
+  _speed: 0
+  loadInertia: 0.5
+  loadDamping: 0
+  forceCoefficient: 1.5
+  torqueCoefficient: 1
+  propulsionDirection: 2
 --- !u!1 &219131222136911832
 GameObject:
   m_ObjectHideFlags: 0

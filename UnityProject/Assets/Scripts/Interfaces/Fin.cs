@@ -6,6 +6,11 @@ using UnityEngine;
 /// </summary>
 public abstract class Fin : MotorLoad
 {
+    /// <summary>
+    /// Direction that the fluid acts across the moving body.
+    /// </summary>
+    public Direction flowDirection;
+
     private void Update()
     {
         // Scale Time.deltaTime based on _speed
@@ -22,6 +27,11 @@ public abstract class Fin : MotorLoad
 /// </summary>
 public abstract class FinForce : Force
 {
+    /// <summary>
+    /// Returns the current direction that fluid flows across the moving body.
+    /// </summary>
+    protected Func<Direction> flowDirection;
+
     /// <summary>
     /// Fin angle.
     /// </summary>
@@ -54,8 +64,34 @@ public abstract class FinForce : Force
     {
         var _normal = normal();
         outputs = FinFunction(finAngle, parameters);
-        rigidBody.AddLinearForce(_normal * outputs[0]);
+
+        // Determine the force direction based on the flow direction, transformed to the body frame
+        Vector3 forceDirection = rigidBody.transform.TransformDirection(FlowDirectionToVector(flowDirection()));
+
+        // Apply the force perpendicular to the fin normal
+        Vector3 appliedForce = Vector3.Cross(forceDirection, _normal).normalized * outputs[0];
+
+        rigidBody.AddLinearForce(appliedForce);
         rigidBody.AddTorque(_normal * outputs[1]);
+    }
+
+    /// <summary>
+    /// Converts a specified flow direction into a <see cref="Vector3"/> representation.
+    /// </summary>
+    /// <param name="dir">The flow direction to convert.</param>
+    /// <returns>A Vector3 representing the specified direction.</returns>
+    private Vector3 FlowDirectionToVector(Direction dir)
+    {
+        return dir switch
+        {
+            Direction.Left => Vector3.left,
+            Direction.Right => Vector3.right,
+            Direction.Forward => Vector3.forward,
+            Direction.Backward => Vector3.back,
+            Direction.Up => Vector3.up,
+            Direction.Down => Vector3.down,
+            _ => Vector3.zero
+        };
     }
 
     /// <summary>
@@ -65,6 +101,7 @@ public abstract class FinForce : Force
     public void Initialize(Fin fin)
     {
         normal = () => fin.normal;
+        flowDirection = () => fin.flowDirection;
         finAngle = () => 
         {
             float angleInDegrees = 0f;
@@ -109,5 +146,18 @@ public abstract class FinForce : Force
         while (angleInRadians <= -Mathf.PI) angleInRadians += 2 * Mathf.PI;
         while (angleInRadians > Mathf.PI) angleInRadians -= 2 * Mathf.PI;
         return angleInRadians;
+    }
+
+    public float thrustSpeed
+    {
+        get {
+            return flowDirection() switch
+            {
+                Direction.Left or Direction.Right => rigidBody.velocity.u,
+                Direction.Forward or Direction.Backward => rigidBody.velocity.v,
+                Direction.Up or Direction.Down => rigidBody.velocity.w,
+                _ => 0,
+            };
+        }
     }
 }
