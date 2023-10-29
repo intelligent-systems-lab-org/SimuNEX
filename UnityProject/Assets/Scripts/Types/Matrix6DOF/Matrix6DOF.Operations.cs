@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public partial class Matrix6DOF
@@ -68,4 +70,31 @@ public partial class Matrix6DOF
         Matrix difference = matrix1._matrix - matrix2._matrix;
         return new Matrix6DOF { _matrix = difference };
     }
+
+    /// <summary>
+    /// Multiplies a <see cref="Matrix6DOF"/> with <see cref="Matrix"/>.
+    /// </summary>
+    /// <param name="matrix2">The right matrix operand.</param>
+    /// <param name="matrix">The <see cref="Matrix6DOF"/>.</param>
+    /// <returns>The result of multiplying the <see cref="Matrix6DOF"/> 
+    /// with the <see cref="Matrix"/>.</returns>
+    public static Matrix operator *(Matrix6DOF matrix, Matrix matrix2) => new Matrix(matrix) * matrix2;
+
+    /// <summary>
+    /// Multiplies a <see cref="Matrix"/> with a <see cref="Matrix6DOF"/>.
+    /// </summary>
+    /// <param name="matrix2">The left matrix operand.</param>
+    /// <param name="matrix">The <see cref="Matrix6DOF"/>.</param>
+    /// <returns>The result of multiplying the <see cref="Matrix"/> 
+    /// with the <see cref="Matrix6DOF"/>.</returns>
+    public static Matrix operator *(Matrix matrix2, Matrix6DOF matrix) => matrix2 * new Matrix(matrix);
+
+    /// <summary>
+    /// Multiplies a <see cref="Matrix6DOF"/> by a <see cref="Vector6DOF"/>
+    /// </summary>
+    /// <param name="matrix">The matrix.</param>
+    /// <param name="vector">The vector to multiply.</param>
+    /// <returns>The result of multiplying the matrix with the vector.</returns>
+    public static Vector6DOF operator *(Matrix6DOF matrix, Vector6DOF vector)
+        => matrix._matrix * vector;
 }

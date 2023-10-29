@@ -1,6 +1,4 @@
 using NUnit.Framework;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Matrix6DOFTests
@@ -101,6 +99,77 @@ namespace Matrix6DOFTests
             // Assert
             Assert.AreEqual(2.0f, difference[0, 0], "Difference of matrices is incorrect.");
             Assert.AreEqual(2.0f, difference[3, 3], "Difference of matrices is incorrect.");
+        }
+
+        [Test]
+        public void OperatorMultiply_Matrix6DOFWithMatrix_ShouldReturnCorrectProduct()
+        {
+            // Arrange
+            Matrix6DOF matrix6DOF = Matrix6DOF.CreateMassMatrix(2.0f, new Vector3(2, 2, 2));
+            Matrix matrix = new(new float[,]
+            {
+                { 1, 0, 0, 0, 0, 0 },
+                { 0, 1, 0, 0, 0, 0 },
+                { 0, 0, 1, 0, 0, 0 },
+                { 0, 0, 0, 1, 0, 0 },
+                { 0, 0, 0, 0, 1, 0 },
+                { 0, 0, 0, 0, 0, 1 }
+            });
+
+            // Act
+            Matrix product = matrix6DOF * matrix;
+
+            // Assert
+            Assert.AreEqual(2.0f, product[0, 0], "Product of Matrix6DOF and Matrix is incorrect.");
+            Assert.AreEqual(2.0f, product[4, 4], "Product of Matrix6DOF and Matrix is incorrect.");
+        }
+
+        [Test]
+        public void OperatorMultiply_MatrixWithMatrix6DOF_ShouldReturnCorrectProduct()
+        {
+            // Arrange
+            Matrix matrix = new(new float[,]
+            {
+                { 1, 0, 0, 0, 0, 0 },
+                { 0, 1, 0, 0, 0, 0 },
+                { 0, 0, 1, 0, 0, 0 },
+                { 0, 0, 0, 1, 0, 0 },
+                { 0, 0, 0, 0, 1, 0 },
+                { 0, 0, 0, 0, 0, 1 }
+            });
+            Matrix6DOF matrix6DOF = Matrix6DOF.CreateMassMatrix(3.0f, new Vector3(3, 3, 3));
+
+            // Act
+            Matrix product = matrix * matrix6DOF;
+
+            // Assert
+            Assert.AreEqual(3.0f, product[0, 0], "Product of Matrix and Matrix6DOF is incorrect.");
+            Assert.AreEqual(3.0f, product[3, 3], "Product of Matrix and Matrix6DOF is incorrect.");
+        }
+
+        [Test]
+        public void OperatorMultiply_Matrix6DOFWithVector6DOF_ShouldReturnCorrectProduct()
+        {
+            // Arrange
+            Matrix6DOF matrix6DOF = Matrix6DOF.CreateMassMatrix(2.0f, new Vector3(2, 2, 2));
+            Vector6DOF vector6DOF = new(new Vector3(1, 2, 3), new Vector3(4, 5, 6));
+
+            // Act
+            Vector6DOF product = matrix6DOF * vector6DOF;
+
+            // Assert
+            Assert.AreEqual(2.0f, product[0],
+                "Product of Matrix6DOF and Vector6DOF is incorrect for linear component.");
+            Assert.AreEqual(4.0f, product[1],
+                "Product of Matrix6DOF and Vector6DOF is incorrect for linear component.");
+            Assert.AreEqual(6.0f, product[2],
+                "Product of Matrix6DOF and Vector6DOF is incorrect for linear component.");
+            Assert.AreEqual(8.0f, product[3],
+                "Product of Matrix6DOF and Vector6DOF is incorrect for angular component.");
+            Assert.AreEqual(10.0f, product[4],
+                "Product of Matrix6DOF and Vector6DOF is incorrect for angular component.");
+            Assert.AreEqual(12.0f, product[5],
+                "Product of Matrix6DOF and Vector6DOF is incorrect for angular component.");
         }
     }
 }
