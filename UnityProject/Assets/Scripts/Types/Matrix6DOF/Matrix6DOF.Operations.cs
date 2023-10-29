@@ -5,6 +5,32 @@ using UnityEngine;
 public partial class Matrix6DOF
 {
     /// <summary>
+    /// Sets the values of a specific row in the matrix.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to set.</param>
+    /// <param name="values">The values to set for the row.</param>
+    public void SetRow(int rowIndex, params float[] values)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            _matrix[rowIndex, j] = values[j];
+        }
+    }
+
+    /// <summary>
+    /// Sets the values of a specific column in the matrix.
+    /// </summary>
+    /// <param name="columnIndex">The index of the column to set.</param>
+    /// <param name="values">The values to set for the column.</param>
+    public void SetColumn(int columnIndex, params float[] values)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            _matrix[i, columnIndex] = values[i];
+        }
+    }
+
+    /// <summary>
     /// Adds two Matrix6DOF objects together.
     /// </summary>
     /// <param name="matrix1">The first Matrix6DOF.</param>

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// Represents a 6 x 6 matrix used in dynamics calculations.
@@ -76,5 +77,15 @@ public partial class Matrix6DOF
     {
         _matrix = matrix;
         Validate6DOFMatrix();
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Matrix6DOF"/> class from a string representation.
+    /// </summary>
+    /// <param name="matrixString">A string representation of the matrix.</param>
+    public Matrix6DOF(string matrixString)
+    {
+        Matrix6DOF newVec6 = matrixString;
+        _matrix = newVec6;
     }
 }
