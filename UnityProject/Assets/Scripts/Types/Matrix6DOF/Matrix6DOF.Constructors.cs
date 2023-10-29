@@ -4,6 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Represents a 6 x 6 matrix used in dynamics calculations.
 /// </summary>
+[Serializable]
 public partial class Matrix6DOF
 {
     /// <summary>
