@@ -1,5 +1,6 @@
 using System;
 using static StateSpaceTypes;
+using UnityEngine;
 
 /// <summary>
 /// Implements a DC motor modeled by a 1st-order transfer function.
@@ -16,12 +17,22 @@ public class DCMotor : Motor
     /// </summary>
     public float voltage = 0;
 
-    // Motor parameters
+    /// <summary>
+    /// Armature resistance in ohms.
+    /// </summary>
     public float armatureResistance = 20f;
+
+    /// <summary>
+    /// The constant representing the relationship between the back electromotive force (EMF) 
+    /// and the armature speed in V.s/rads.
+    /// </summary>
     public float backEMFConstant = 1f;
+
+    /// <summary>
+    /// The constant representing the relationship between the motor torque
+    /// and the armature current in N.m/A.
+    /// </summary>
     public float torqueConstant = 10f;
-    public float momentOfInertia = 1f;
-    public float viscousDamping = 0;
 
     /// <summary>
     /// <see cref="FirstOrderTF"/> which defines the transfer function.
@@ -34,11 +45,14 @@ public class DCMotor : Motor
     {
         parameters = () => new float[]
         {
-            armatureResistance, backEMFConstant, torqueConstant, momentOfInertia, viscousDamping
+            armatureResistance,
+            backEMFConstant,
+            torqueConstant,
+            totalInertia,
+            totalDamping
         };
 
         // Convert physical parameters to 1st order TF parameters
-
         float timeConstant()
         {
             float[] param = parameters();
@@ -56,8 +70,12 @@ public class DCMotor : Motor
 
     public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
     {
-        stateSpace.Input = inputs()[0];
+        stateSpace.input = inputs()[0];
         stateSpace.Compute();
-        return stateSpace.Output;
+
+        // Apply saturation
+        stateSpace.states[0, 0] = Mathf.Clamp(stateSpace.output, lowerSaturation, upperSaturation);
+
+        return stateSpace.output;
     }
 }

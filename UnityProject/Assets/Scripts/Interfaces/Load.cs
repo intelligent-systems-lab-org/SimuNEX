@@ -14,7 +14,7 @@ public abstract class Load : MonoBehaviour
     /// <summary>
     /// Attached <see cref="RigidBody"/> to apply forces to.
     /// </summary>
-    public RigidBody rb;
+    public RigidBody rigidBody;
 
     /// <summary>
     /// Attaches an <see cref="Actuator"/>.

@@ -1,5 +1,3 @@
-using System;
-
 /// <summary>
 /// Implements an ideal sensor that measures velocities and positions of a <see cref="RigidBody"/>.
 /// </summary>
@@ -9,10 +7,10 @@ public class Ideal6DOFMotionSensor : Sensor
     {
         outputs = () => new float[]
         {
-            rb.velocity.x, rb.velocity.z, rb.velocity.y,
-            rb.angularVelocity.x, rb.angularVelocity.z, rb.angularVelocity.y,
-            rb.angularPosition.w, rb.angularPosition.x, rb.angularPosition.z, rb.angularPosition.y,
-            rb.position.x, rb.position.z, rb.position.y
+            rigidBody.velocity.linear.x, rigidBody.velocity.linear.z, rigidBody.velocity.linear.y,
+            rigidBody.velocity.angular.x, rigidBody.velocity.angular.z, rigidBody.velocity.angular.y,
+            rigidBody.angularPosition.w, rigidBody.angularPosition.x, rigidBody.angularPosition.z, rigidBody.angularPosition.y,
+            rigidBody.position.x, rigidBody.position.z, rigidBody.position.y
         };
     }
 

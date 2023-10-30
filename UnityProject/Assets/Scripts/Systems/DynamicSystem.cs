@@ -38,7 +38,10 @@ public class DynamicSystem : MonoBehaviour
         sensorSystem = GetComponent<SensorSystem>();
         comSystem = GetComponent<COMSystem>();
 
-        receivedData = new float[actuatorSystem.inputs.Length];
+        if (actuatorSystem != null)
+        {
+            receivedData = new float[actuatorSystem.inputs.Length];
+        }
     }
 
     private void FixedUpdate()
@@ -54,7 +57,10 @@ public class DynamicSystem : MonoBehaviour
     /// </summary>
     private void HandleSensors()
     {
-        if (sensorSystem == null) return;
+        if (sensorSystem == null)
+        {
+            return;
+        }
 
         sensorSystem.GetSensorOutputs();
 
@@ -69,7 +75,10 @@ public class DynamicSystem : MonoBehaviour
     /// </summary>
     private void HandleCommunication()
     {
-        if (comSystem == null) return;
+        if (comSystem == null)
+        {
+            return;
+        }
 
         comSystem.Receive(receivedData);
     }
@@ -79,7 +88,10 @@ public class DynamicSystem : MonoBehaviour
     /// </summary>
     private void HandleActuators()
     {
-        if (actuatorSystem == null) return;
+        if (actuatorSystem == null)
+        {
+            return;
+        }
 
         if (comSystem != null)
         {

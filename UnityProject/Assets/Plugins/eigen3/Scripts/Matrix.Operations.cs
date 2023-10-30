@@ -7,7 +7,8 @@ public partial class Matrix
     /// </summary>
     /// <param name="other">The right operand.</param>
     /// <returns>Matrix product of this * other.</returns>
-    /// <exception cref="InvalidOperationException">Thrown when the matrix dimensions are incompatible for multiplication.</exception>
+    /// <exception cref="InvalidOperationException">Thrown when the matrix dimensions 
+    /// are incompatible for multiplication.</exception>
     public Matrix Multiply(Matrix other)
     {
         if (ColCount != other.RowCount)

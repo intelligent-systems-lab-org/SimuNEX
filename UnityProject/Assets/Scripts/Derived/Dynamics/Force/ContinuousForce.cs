@@ -1,5 +1,3 @@
-using UnityEngine;
-
 /// <summary>
 /// Applies a constant force to the attached RigidBody.
 /// </summary>
@@ -8,12 +6,7 @@ public class ContinuousForce : Force
     /// <summary>
     /// 3D force to apply.
     /// </summary>
-    [SerializeField] public Vector3 forces;
-
-    /// <summary>
-    /// 3D torque to apply.
-    /// </summary>
-    [SerializeField] public Vector3 torques;
+    public Vector6DOF forces;
 
     /// <summary>
     /// Reference frame to apply the force.
@@ -22,6 +15,13 @@ public class ContinuousForce : Force
 
     public override void ApplyForce()
     {
-        rb.AddForce(forces, torques, referenceFrame);
+        if (referenceFrame == CoordinateFrame.BCF)
+        {
+            rigidBody.AddForce(forces.ToICF(transform));
+        }
+        else
+        {
+            rigidBody.AddForce(forces);
+        }
     }
 }

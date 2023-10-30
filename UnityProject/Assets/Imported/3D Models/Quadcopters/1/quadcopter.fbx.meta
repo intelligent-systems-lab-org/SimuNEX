@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Logo
+    second: {fileID: 2100000, guid: 9e87ea2a5bca09a4b92a5b602b6c0461, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material.001
     second: {fileID: 2100000, guid: 03fa83cdf1db4904b9e280e302ffedcc, type: 2}
   - first:
@@ -44,6 +49,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Material.008
     second: {fileID: 2100000, guid: 7c1b55c57a2b1b34f97eb075e8121a14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: cc30f056c88b6054d9610c37e1365cc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Primary
+    second: {fileID: 2100000, guid: f637ef871d6076046a40c5cf63d61e83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Secondary
+    second: {fileID: 2100000, guid: 6131a71e0f0806145b7ae2370d34d6c2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

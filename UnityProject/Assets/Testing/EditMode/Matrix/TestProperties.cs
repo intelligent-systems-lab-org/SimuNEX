@@ -113,5 +113,19 @@ namespace Eigen3MatrixTests
                 var inverse = originalMatrix.Inverse;
             });
         }
+
+        [Test]
+        public void TestMatrixDeterminantProperty()
+        {
+            float tol = 1e-5f;
+            var originalMatrix = new Matrix(new float[,] {
+                { 1, 2 },
+                { 3, 4 }
+            });
+
+            float determinant = originalMatrix.Determinant;
+
+            Assert.AreEqual(4 - 6, determinant, tol);
+        }
     }
 }

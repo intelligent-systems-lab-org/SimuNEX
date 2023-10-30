@@ -20,7 +20,7 @@ public class SensorSystem : MonoBehaviour
     /// <summary>
     /// Attached <see cref="RigidBody"/>.
     /// </summary>
-    private RigidBody rb;
+    private RigidBody rigidBody;
 
     /// <summary>
     /// Total number of outputs.
@@ -42,13 +42,13 @@ public class SensorSystem : MonoBehaviour
     /// </summary>
     public void UpdateSensorList()
     {
-        rb = GetComponent<RigidBody>();
+        rigidBody = GetComponent<RigidBody>();
         sensors = new List<Sensor>(GetComponentsInChildren<Sensor>());
 
         NumOutputs = 0;
         foreach (Sensor sensor in sensors)
         {
-            sensor.rb = rb;
+            sensor.rigidBody = rigidBody;
             NumOutputs += sensor.outputSize;
         }
         outputs = new float[NumOutputs];
@@ -77,7 +77,7 @@ public abstract class Sensor : MonoBehaviour
     /// <summary>
     /// <see cref="RigidBody"/> object sensor is attached to.
     /// </summary>
-    public RigidBody rb;
+    public RigidBody rigidBody;
 
     /// <summary>
     /// Inputs to the sensor.

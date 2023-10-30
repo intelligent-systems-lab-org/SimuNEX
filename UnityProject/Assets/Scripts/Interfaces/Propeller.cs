@@ -12,7 +12,7 @@ public abstract class Propeller : MotorLoad
         float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
 
         // Handle rotation animation
-        Quaternion increment = Quaternion.Euler(rad2deg * spinnerNormal * _speed * scaledDeltaTime);
+        Quaternion increment = Quaternion.Euler(_speed * rad2deg * scaledDeltaTime * spinnerNormal);
         spinnerObject.localRotation *= increment;
     }
 }
@@ -38,9 +38,9 @@ public abstract class PropellerForce : Force
     protected Func<Vector3> normal;
 
     /// <summary>
-    /// <see cref="Transform"/> of the propeller.
+    /// Position of the propeller.
     /// </summary>
-    protected Func<Transform> transformCallback;
+    protected Func<Vector3> positionCallback;
 
     /// <summary>
     /// Propeller thrust and torques stored in an array.
@@ -58,21 +58,19 @@ public abstract class PropellerForce : Force
     public override void ApplyForce()
     {
         var _normal = normal();
-        Transform transform = transformCallback();
         outputs = PropellerFunction(propellerSpeed, parameters);
-        rb.AddLinearForceAtPosition(_normal * outputs[0], transform.position);
-        rb.AddTorque(_normal * outputs[1]);
+        rigidBody.AddLinearForceAtPosition(_normal * outputs[0], positionCallback());
+        rigidBody.AddTorque(_normal * outputs[1]);
     }
 
     /// <summary>
     /// Connects propeller object to its associated transforms and <see cref="RigidBody"/>.
     /// </summary>
     /// <param name="propeller"><see cref="Propeller"/> object that the force is being applied to.</param>
-    public PropellerForce(Propeller propeller)
+    public void Initialize(Propeller propeller)
     {
         normal = () => propeller.normal;
-        rb = propeller.rb;
-        transformCallback = () => propeller.transform;
+        positionCallback = () => propeller.transform.position;
         propellerSpeed = () => propeller.motorOutput;
     }
 }
