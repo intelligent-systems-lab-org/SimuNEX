@@ -36,21 +36,8 @@ namespace SimuNEX
         /// <param name="inertiaTensor">The inertia tensor.</param>
         /// <returns>A new <see cref="Matrix6DOF"/> with mass and inertia values along the diagonals.</returns>
         public static Matrix6DOF CreateMassMatrix(float mass, Vector3 inertiaTensor)
-        {
-            return new Matrix6DOF
-            {
-                _matrix = new Matrix(new float[,]
-                    {
-                        { mass, 0, 0, 0, 0, 0 },
-                        { 0, mass, 0, 0, 0, 0 },
-                        { 0, 0, mass, 0, 0, 0 },
-                        { 0, 0, 0, inertiaTensor.x, 0, 0 },
-                        { 0, 0, 0, 0, inertiaTensor.y, 0 },
-                        { 0, 0, 0, 0, 0, inertiaTensor.z }
-                    }
-                )
-            };
-        }
+            => Matrix.CreateDiagonal(mass, mass, mass, 
+                inertiaTensor.x, inertiaTensor.y, inertiaTensor.z);
 
         /// <summary>
         /// Validates the <see cref="Matrix6DOF"/>.
