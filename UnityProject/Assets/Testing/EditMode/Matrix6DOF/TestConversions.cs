@@ -10,7 +10,7 @@ namespace Matrix6DOFTests
         public void ToString_ShouldReturnCorrectStringRepresentation()
         {
             // Arrange
-            Matrix6DOF matrix6DOF = new Matrix6DOF();
+            Matrix6DOF matrix6DOF = new();
             string expectedStringRepresentation = matrix6DOF.ToString();
 
             // Act
