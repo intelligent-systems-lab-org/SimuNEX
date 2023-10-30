@@ -1,3 +1,67 @@
+# [0.4.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.3.1...v0.4.0) (2023-10-30)
+
+
+### Bug Fixes
+
+* **auv:** align stern plane origin. ([a2a230d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/a2a230dd6fef293e30150e1416a7797f8f94e725))
+* **auv:** correct displaced volume factor. ([01d336a](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/01d336af800ab565e3ac6353dc1284667ccf97fe))
+* **auv:** force perpendicular to flow and fin axis ([79761d9](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/79761d982fa64f4b0082ec0a24f2530f0e81a248))
+* **auv:** kinetic energy calculation. ([a1e7ebb](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/a1e7ebb744ad0965a99bc049bab75d2d32c182ad))
+* **auv:** update auv prefab. ([5b988aa](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/5b988aaf53518ebd7a2648ba33b7d2046711732f))
+* **dynamics:** add bidirectional thrust propeller. ([a6c68ee](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/a6c68ee005d562f1f2d5d5cf4a8c3c382b67b360))
+* **dynamics:** apply torque to _forces.angular. ([7ecf12c](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/7ecf12c9dd504db97ebea9ee5b03151063904027))
+* **dynamics:** enable check for potential energy ([eff772c](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/eff772c7e17d1f1b8fcde0a3dbde9969833caab3))
+* **dynamics:** remove coordinate frame argument. ([395919d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/395919de3ba71549b2a62ade545bb53e0e1fe67c))
+* **eigen3:** add determinant test. ([fb580dc](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/fb580dc57723d8645bca0fd3b47f0ca9f9f24ce3))
+* **eigen3:** make Matrix serializable. ([1719323](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/17193236fcd854160bb72af11a41b2782f960956))
+* **quadcopter:** change to box collider. ([329059e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/329059e8c27fd0d6c98534be227f5a1466615c70))
+* **quadcopter:** compress mesh ([22fcd06](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/22fcd0661283b5cb003f17aadca8b8b8602c7df1))
+* **quadcopter:** update prefab with compressed mesh. ([0d95a5b](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/0d95a5b8d9180d1a0b0b4b5315aeae644f3b8cc1))
+* **quadcopter:** use local space propeller location. ([9a8dfd9](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/9a8dfd98d02e075ee23d3233ef90675e545e64bd))
+
+
+### Features
+
+* **auv-simulation:** add AUV mesh ([58bf955](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/58bf9552642f501f1d928bfabe6407e346ca14e8))
+* **auv-simulation:** add tests for Vector6DOF ([28a9b1f](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/28a9b1f613322c86b10b0a2b6756eb9a9bfecd49))
+* **auv:** change drag coefficients to matrices. ([5028e87](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/5028e87cd915ef78f035b092afdf4e2ed6fb21cc))
+* **auv:** implement added mass ([3f073b9](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/3f073b9e99b4b9eae253b212bd1a3c622263bf0c))
+* **auv:** implement fins. ([585e73d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/585e73d9471048bedaa6145e7db7bdc45a632d17))
+* **auv:** set propulsion direction for fins. ([5c2f748](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/5c2f7484e029fec7e0a2dd5f0eb886b716ca87f2))
+* **dynamics:** add applied force property. ([f44c7ac](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f44c7acbee60383309b6b9098bac948ec85899c5))
+* **dynamics:** add buoyant force. ([2f9fcde](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/2f9fcde99ac1321e612c3b98e728feb86cb8f161))
+* **dynamics:** add fluid-based rigidbody. ([8c723ac](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/8c723ac1a62c76d9a8c2ad6641f7ddb04b2993df))
+* **dynamics:** add independent gravity Force component. ([0c414d3](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/0c414d3a54d1916c7e85e04d36621b422e2ba196))
+* **dynamics:** add kinetic energy property. ([8623ac7](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/8623ac7f96ede7a857bc079091119caf88998b00))
+* **dynamics:** add linear drag. ([ea6211e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/ea6211e8e5c265bd068d3cdcc9d0a07ca992a086))
+* **dynamics:** add mechanical power property. ([05727b2](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/05727b2e7adf65b2c027477edf6a9c2dee9ce459))
+* **dynamics:** add potential energy property. ([1ded9b4](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/1ded9b4685949ee028f4ac37a3ad652f0e7426ae))
+* **dynamics:** add quadratic drag. ([b2d4ab3](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b2d4ab3e3574268a6d843b53610f7629ae3437d4))
+* **dynamics:** Add Vector6DOF ([b439670](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b439670bf37cc0492a7c36393fcb45a08f592874))
+* **dynamics:** add velocity property. ([cc04ca5](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/cc04ca56c579b3f65ccf5fe0718701bb719332a0))
+* **dynamics:** automate COG and COB. ([bf89016](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/bf8901658acec1438393592729ecae87a115acad))
+* **dynamics:** automate COG and COG. ([766c719](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/766c719e271ba36c7a2a773f71b5d99aa4b8f9cb))
+* **dynamics:** velocity is now measured in the BCF. ([f040ae0](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f040ae0fcc8e7339e7aa6256f91f240576fbb350))
+* **editor:** add Vector6DOFDrawer ([1d42dba](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/1d42dba8a6474f0ffc13dde3e8b5bf39c023c107))
+* **eigen3:** add determinant property. ([8510da5](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/8510da5d507508e025aeb04c96cc34ff5b261c0f))
+* **environment:** add bounds detection. ([ed5d98b](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/ed5d98b1a7834cf777f4bcf8c7fea5b291edccae))
+* **environment:** add buoyancyfield. ([66cdf50](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/66cdf507e8a7aee45c231d3825ef89988c0fa39c))
+* **environment:** add gravity field. ([8cfb371](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/8cfb371a2c93fac63c49c0ef579aee8491d518ad))
+* **motor:** add saturation. ([6ff827f](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/6ff827fbdba3c50f7099d2508fbe29ab5ce713f4))
+* **motor:** add torque measurement. ([5ff30cb](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/5ff30cbf0769952da0a250c84d3bd1449cbf80cb))
+* **motor:** add total inertia calculation. ([16edf34](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/16edf34053b6207e619508271a7646b13160e1e9))
+* **SimuNEX:** add foldout to Vector6DOF. ([4e2258b](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/4e2258b2f68bb4b10b160fada68345148211023f))
+* **SimuNEX:** add Matrix-Vector6DOF conversion ([c4962cb](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/c4962cbd30f1efa9094c3fe7cf767378545b5281))
+* **SimuNEX:** add Matrix6DOF drawer. ([83ffc40](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/83ffc4004e3e13d18730f453d759b7ddc20f6d19))
+* **SimuNEX:** add Matrix6DOF operations. ([a81c257](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/a81c257bb720d68fae84e37e274e0c379784f1b2))
+* **SimuNEX:** add Matrix6DOF type. ([dcb615e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/dcb615e7fed4b966a0869e9f8fbb31ef5ffe700d))
+* **SimuNEX:** test Matrix6DOF constructors. ([f72a310](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f72a3101ddc81b1890c29f2a694cf62b9b7f45c8))
+* **SimuNEX:** test Matrix6DOF Conversions. ([21343a1](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/21343a17b62670902e159be03318f29712ed45e1))
+* **SimuNEX:** test Matrix6DOF Operations. ([ff0c639](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/ff0c639dc2d243d8811b7be000d7f2252c8d2117))
+* **SimuNEX:** test Matrix6DOF properties. ([e1b9042](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/e1b904286c18865dfe721d4438409f48a4a076ca))
+
+
+
 ## [0.3.1](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.3.0...v0.3.1) (2023-10-25)
 
 
