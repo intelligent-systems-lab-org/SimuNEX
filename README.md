@@ -7,9 +7,6 @@
   <a href="https://unity.com/">
     <img src="https://img.shields.io/badge/Unity-2022.3.10f1-blue.svg" alt="Unity Version">
   </a>
-  <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-    <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="CC BY-NC-SA 4.0">
-  </a>
 </p>
 
 -----
