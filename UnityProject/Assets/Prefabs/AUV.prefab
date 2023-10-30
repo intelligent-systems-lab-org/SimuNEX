@@ -52,7 +52,7 @@ MonoBehaviour:
   lowerSaturation: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 0
+  stepper: 0
   voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
@@ -130,8 +130,8 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
-  thrustCoefficient: 0.0000188865
-  torqueCoefficient: 0
+  thrustCoefficient: 0.00001
+  torqueCoefficient: 0.000000001
 --- !u!114 &5947556496897487590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   lowerSaturation: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 0
+  stepper: 0
   voltage: 100
   armatureResistance: 20
   backEMFConstant: 1
@@ -203,7 +203,7 @@ MonoBehaviour:
   readPosition: 0
   readTorque: 0
   motor: {fileID: 5947556496897487590}
-  integrator: 0
+  stepper: 0
 --- !u!1 &1352934492587307473
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +867,7 @@ MonoBehaviour:
   lowerSaturation: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 0
+  stepper: 0
   voltage: 0
   armatureResistance: 20
   backEMFConstant: 1

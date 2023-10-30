@@ -8,6 +8,54 @@ namespace SimuNEX
     public static class StateSpaceTypes
     {
         /// <summary>
+        /// Models a pure integrator with gain.
+        /// </summary>
+        public class Integrator : StateSpace
+        {
+            /// <summary>
+            /// The gain of the integrator, which is multiplied by the output of the integrator.
+            /// </summary>
+            public Func<float> Gain;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Integrator"/> class.
+            /// </summary>
+            /// <param name="gain">A function that returns the gain of the system.</param>
+            /// <param name="initialState">The initial state value.</param>
+            /// <param name="stepperMethod">The stepper method of choice.</param>
+            public Integrator
+            (
+                Func<float> gain,
+                float initialState = 0,
+                StepperMethod stepperMethod = StepperMethod.Euler
+            )
+            {
+                Gain = gain;
+
+                // Initialize with 1 state (output) and 1 input
+                Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), 
+                stepper: CreateStepper(stepperMethod));
+
+                // The derivative function for an integrator
+                DerivativeFcn = (states, inputs) => gain() * inputs;
+            }
+
+            /// <summary>
+            /// The system's output, which is the value of its sole state.
+            /// </summary>
+            public float output => _states[0, 0];
+
+            /// <summary>
+            /// The system's input.
+            /// </summary>
+            public float input
+            {
+                get => _inputs[0, 0];
+                set => _inputs[0, 0] = value;
+            }
+        }
+
+        /// <summary>
         /// Models a 1st-order transfer function.
         /// </summary>
         public class FirstOrderTF : StateSpace

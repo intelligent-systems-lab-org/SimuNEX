@@ -326,7 +326,7 @@ MonoBehaviour:
   lowerSaturation: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 2
+  stepper: 0
   voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
@@ -427,7 +427,7 @@ MonoBehaviour:
   lowerSaturation: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 2
+  stepper: 0
   voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
@@ -600,7 +600,7 @@ MonoBehaviour:
   readPosition: 0
   readTorque: 0
   motor: {fileID: 3591390733453324182}
-  integrator: 0
+  stepper: 0
 --- !u!114 &271912348052366067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,7 +617,7 @@ MonoBehaviour:
   readPosition: 0
   readTorque: 0
   motor: {fileID: 2373451612687255671}
-  integrator: 0
+  stepper: 0
 --- !u!114 &9020256483454760767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   readPosition: 0
   readTorque: 0
   motor: {fileID: 5290145487412587084}
-  integrator: 0
+  stepper: 0
 --- !u!114 &4971806525275137639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +651,7 @@ MonoBehaviour:
   readPosition: 0
   readTorque: 0
   motor: {fileID: 6776586109098935137}
-  integrator: 0
+  stepper: 0
 --- !u!1 &3847828993541165224
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
   lowerSaturation: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 2
+  stepper: 0
   voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
@@ -970,7 +970,7 @@ MonoBehaviour:
   lowerSaturation: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 2
+  stepper: 0
   voltage: -131
   armatureResistance: 20
   backEMFConstant: 1

@@ -67,7 +67,6 @@ namespace SimuNEX
             _odeSolver = stepper ?? new ForwardEuler();
         }
 
-
         /// <summary>
         /// The input vector.
         /// </summary>
