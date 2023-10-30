@@ -113,74 +113,10 @@ public abstract class MotorLoad : Load
     /// <summary>
     /// Obtains the local normal vector of rotation.
     /// </summary>
-    public Vector3 normal
-    {
-        get
-        {
-            Vector3 normal = Vector3.zero;
-            switch (spinAxis)
-            {
-                case Direction.Up:
-                    normal = transform.up;
-                    break;
-                case Direction.Down:
-                    normal = -transform.up;
-                    break;
-                case Direction.Left:
-                    normal = -transform.right;
-                    break;
-                case Direction.Right:
-                    normal = transform.right;
-                    break;
-                case Direction.Forward:
-                    normal = transform.forward;
-                    break;
-                case Direction.Backward:
-                    normal = -transform.forward;
-                    break;
-            }
-            return normal;
-        }
-    }
+    public Vector3 normal => transform.TransformDirection(spinAxis.ToVector());
 
     /// <summary>
     /// Obtains the normal vector of rotation.
     /// </summary>
-    public Vector3 spinnerNormal
-    {
-        get
-        {
-            Vector3 normal = Vector3.zero;
-            switch (spinAxis)
-            {
-                case Direction.Up:
-                    normal = Vector3.up;
-                    break;
-                case Direction.Down:
-                    normal = -Vector3.up;
-                    break;
-                case Direction.Left:
-                    normal = -Vector3.right;
-                    break;
-                case Direction.Right:
-                    normal = Vector3.right;
-                    break;
-                case Direction.Forward:
-                    normal = Vector3.forward;
-                    break;
-                case Direction.Backward:
-                    normal = -Vector3.forward;
-                    break;
-            }
-            return normal;
-        }
-    }
-}
-
-/// <summary>
-/// Represents a direction.
-/// </summary>
-public enum Direction
-{
-    Up, Down, Left, Right, Forward, Backward
+    public Vector3 spinnerNormal => spinAxis.ToVector();
 }

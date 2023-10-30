@@ -327,7 +327,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 2
-  voltage: 0
+  voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
@@ -428,7 +428,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 2
-  voltage: 0
+  voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
@@ -760,7 +760,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 2
-  voltage: 0
+  voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
@@ -971,7 +971,7 @@ MonoBehaviour:
   armatureInertia: 0.5
   armatureDamping: 0
   integrator: 2
-  voltage: 0
+  voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
@@ -1211,8 +1211,8 @@ GameObject:
   - component: {fileID: 5995511627637507719}
   - component: {fileID: 932807715222619118}
   - component: {fileID: 3071117602607612381}
-  - component: {fileID: 8982310936213594927}
   - component: {fileID: 2611228371683169070}
+  - component: {fileID: 6500127127408246068}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1318,20 +1318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   receivedData: []
---- !u!114 &8982310936213594927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3ac668907479140b436e06d3be84bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 9.81
-  centerOfGravity: {fileID: 7505561513377841643}
 --- !u!114 &2611228371683169070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,5 +1331,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCoefficients:
-    linear: {x: 0.1, y: 0.1, z: 0.1}
-    angular: {x: 0.05, y: 0.05, z: 0.05}
+    _matrix:
+      _serializedData:
+      - 0.1
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.1
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.1
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.05
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.05
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.05
+      _serializedRows: 6
+      _serializedCols: 6
+--- !u!114 &6500127127408246068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3ac668907479140b436e06d3be84bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 9.81
+  centerOfGravity: {fileID: 7505561513377841643}

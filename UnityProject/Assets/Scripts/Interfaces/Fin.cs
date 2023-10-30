@@ -66,32 +66,13 @@ public abstract class FinForce : Force
         outputs = FinFunction(finAngle, parameters);
 
         // Determine the force direction based on the flow direction, transformed to the body frame
-        Vector3 forceDirection = rigidBody.transform.TransformDirection(FlowDirectionToVector(flowDirection()));
+        Vector3 forceDirection = rigidBody.transform.TransformDirection(flowDirection().ToVector());
 
         // Apply the force perpendicular to the fin normal
         Vector3 appliedForce = Vector3.Cross(forceDirection, _normal).normalized * outputs[0];
 
         rigidBody.AddLinearForce(appliedForce);
         rigidBody.AddTorque(_normal * outputs[1]);
-    }
-
-    /// <summary>
-    /// Converts a specified flow direction into a <see cref="Vector3"/> representation.
-    /// </summary>
-    /// <param name="dir">The flow direction to convert.</param>
-    /// <returns>A Vector3 representing the specified direction.</returns>
-    private Vector3 FlowDirectionToVector(Direction dir)
-    {
-        return dir switch
-        {
-            Direction.Left => Vector3.left,
-            Direction.Right => Vector3.right,
-            Direction.Forward => Vector3.forward,
-            Direction.Backward => Vector3.back,
-            Direction.Up => Vector3.up,
-            Direction.Down => Vector3.down,
-            _ => Vector3.zero
-        };
     }
 
     /// <summary>
