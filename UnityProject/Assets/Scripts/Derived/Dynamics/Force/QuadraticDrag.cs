@@ -7,13 +7,14 @@ using UnityEngine;
 public class QuadraticDrag : Force
 {
     /// <summary>
-    /// Drag coefficients defined as six numbers, where each applies to a DOF.
+    /// Drag coefficients defined as a <see cref="Matrix6DOF"/>, 
+    /// where each row refers to a force applied to a DOF and each column refers to a velocity DOF.
     /// </summary>
-    public Vector6DOF dragCoefficients;
+    public Matrix6DOF dragCoefficients = new();
 
     public override void ApplyForce()
     {
-        rigidBody.AddForce(-1 * rigidBody.velocity.Apply(v => Mathf.Abs(v) * v) * dragCoefficients);
+        rigidBody.AddForce(dragCoefficients * rigidBody.velocity.Apply(v => Mathf.Abs(v) * v) * -1);
     }
 }
 
