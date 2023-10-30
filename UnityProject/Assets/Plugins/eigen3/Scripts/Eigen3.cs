@@ -55,4 +55,7 @@ internal static class Eigen3
 
     [DllImport(EigenWrapperDll)]
     public static extern void MultiplyByScalar(IntPtr matrixPtr, float scalar, float[] result);
+
+    [DllImport(EigenWrapperDll)]
+    public static extern IntPtr CreateDiagonalMatrix(float[] floats, int size);
 }

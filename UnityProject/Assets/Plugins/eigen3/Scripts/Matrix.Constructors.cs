@@ -92,10 +92,22 @@ public partial class Matrix : IDisposable
     /// Creates an identity matrix of given size.
     /// </summary>
     /// <param name="size">Size of the matrix (number of rows/columns).</param>
+    /// <returns>An identity matrix of the given size.</returns>
     public static Matrix Eye(int size)
     {
         var ptr = Eigen3.CreateIdentityMatrix(size);
-        return new Matrix(ptr);
+        return new(ptr);
+    }
+
+    /// <summary>
+    /// Creates a matrix with given entries along the diagonals.
+    /// </summary>
+    /// <param name="values">Values along the diagonals of the matrix.</param>
+    /// <returns>A diagonal matrix with the given values.</returns>
+    public static Matrix CreateDiagonal(params float[] values)
+    {
+        var ptr = Eigen3.CreateDiagonalMatrix(values, values.Length);
+        return new(ptr);
     }
 
     /// <summary>
