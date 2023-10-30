@@ -12,7 +12,7 @@ namespace SimuNEX
         /// <summary>
         /// The stepper method.
         /// </summary>
-        public StepperMethod stepper;
+        public StepperMethod speedStepper;
 
         /// <summary>
         /// The input voltage.
@@ -67,17 +67,15 @@ namespace SimuNEX
             };
 
             inputs = () => new float[] { voltage };
-            stateSpace = new FirstOrderTF(timeConstant, DCGain, stepperMethod: stepper);
+            stateSpace = new FirstOrderTF(timeConstant, DCGain, stepperMethod: speedStepper);
         }
 
         public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
         {
+            // Overwrite to the actual value
+            stateSpace.states[0, 0] = motorLoad._speed;
             stateSpace.input = inputs()[0];
             stateSpace.Compute();
-
-            // Apply saturation
-            stateSpace.states[0, 0] = Mathf.Clamp(stateSpace.output, lowerSaturation, upperSaturation);
-
             return stateSpace.output;
         }
     }

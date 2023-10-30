@@ -13,7 +13,7 @@ namespace SimuNEX
         /// <summary>
         /// The stepper method.
         /// </summary>
-        public StepperMethod stepper;
+        public StepperMethod speedStepper;
 
         /// <summary>
         /// The q-axis input voltage for the PMSM.
@@ -99,19 +99,17 @@ namespace SimuNEX
                         { 0,   0  }
                     });
                 },
-                stepperMethod: stepper
+                stepperMethod: speedStepper
             );
         }
 
         public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
         {
+            // Overwrite to the actual value
+            stateSpace.states[2, 0] = motorLoad._speed;
             stateSpace.inputs[0, 0] = inputs()[0];
             stateSpace.inputs[1, 0] = inputs()[1];
             stateSpace.Compute();
-
-            // Apply saturation
-            stateSpace.states[2, 0] = Mathf.Clamp(stateSpace.states[2, 0], lowerSaturation, upperSaturation);
-
             return stateSpace.outputs[2, 0];
         }
     }

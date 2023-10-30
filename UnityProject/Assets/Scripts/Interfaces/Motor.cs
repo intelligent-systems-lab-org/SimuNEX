@@ -1,4 +1,5 @@
 using System;
+using static SimuNEX.StateSpaceTypes;
 using UnityEngine;
 
 namespace SimuNEX 
@@ -16,12 +17,22 @@ namespace SimuNEX
         /// <summary>
         /// Maximum output value.
         /// </summary>
-        public float upperSaturation = Mathf.Infinity;
+        public float maxSpeed = Mathf.Infinity;
 
         /// <summary>
-        /// Minimum output value
+        /// Minimum output value.
         /// </summary>
-        public float lowerSaturation = Mathf.NegativeInfinity;
+        public float minSpeed = Mathf.NegativeInfinity;
+
+        /// <summary>
+        /// Maximum angular position in radians.
+        /// </summary>
+        public float maxPosition = Mathf.Infinity;
+
+        /// <summary>
+        /// Minimum angular position in radians.
+        /// </summary>
+        public float minPosition = Mathf.NegativeInfinity;
 
         /// <summary>
         /// The motor inertia in kg.m^2.
@@ -32,6 +43,16 @@ namespace SimuNEX
         /// The motor damping coefficient in N.m.s/rad.
         /// </summary>
         public float armatureDamping = 0;
+
+        /// <summary>
+        /// The stepper method for position prediction.
+        /// </summary>
+        public StepperMethod positionStepper;
+
+        /// <summary>
+        /// Speed integrator for predicting position.
+        /// </summary>
+        private Integrator integrator;
 
         /// <summary>
         /// The motor function (MF) that computes output values based on the provided inputs and parameters.
@@ -47,7 +68,7 @@ namespace SimuNEX
             {
                 motorLoad.rigidBody = rigidBody;
             }
-
+            integrator = new(() => 1, stepperMethod: positionStepper);
             Initialize();
         }
 
@@ -57,7 +78,7 @@ namespace SimuNEX
             {
                 motorLoad.rigidBody = rigidBody;
             }
-
+            integrator = new(() => 1, stepperMethod: positionStepper);
             Initialize();
         }
 
@@ -65,7 +86,7 @@ namespace SimuNEX
         {
             if (motorLoad != null)
             {
-                motorLoad.AttachActuator(() => MotorFunction(inputs, parameters));
+                motorLoad.AttachActuator(() => motorOutput);
             }
         }
 
@@ -88,5 +109,32 @@ namespace SimuNEX
         /// </summary>
         public float totalDamping => 
             (motorLoad != null)? armatureDamping + motorLoad.loadDamping : armatureDamping;
+
+        /// <summary>
+        /// The output of the motor given constraints.
+        /// </summary>
+        public float motorOutput
+        {
+            get {
+                float speed = MotorFunction(inputs, parameters);
+                
+                integrator.input = speed;
+                integrator.Compute();
+
+                float futurePosition = integrator.output;
+
+                if (futurePosition > maxPosition 
+                    || futurePosition < minPosition)
+                {
+                    motorLoad.normalizedAngle = Mathf.Clamp(futurePosition, minPosition, maxPosition);
+                    speed = 0;
+                }
+                else
+                {
+                    speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+                }
+                return speed;
+            }
+        }
     }
 }

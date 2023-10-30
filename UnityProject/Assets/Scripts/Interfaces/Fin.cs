@@ -55,6 +55,11 @@ namespace SimuNEX
         protected float[] outputs = new float[2];
 
         /// <summary>
+        /// Output speed of the motor attached to the fin.
+        /// </summary>
+        protected Func<float> motorOutput;
+
+        /// <summary>
         /// The fin function (FF) that computes output values based on the provided inputs (e.g. fin angle and other parameters).
         /// </summary>
         /// <param name="finAngle">Current fin angle.</param>
@@ -64,6 +69,7 @@ namespace SimuNEX
 
         public override void ApplyForce()
         {
+            var _ = motorOutput();
             var _normal = normal();
             outputs = FinFunction(finAngle, parameters);
 
@@ -86,6 +92,7 @@ namespace SimuNEX
             normal = () => fin.normal;
             flowDirection = () => fin.flowDirection;
             finAngle = () => fin.normalizedAngle;
+            motorOutput = () => fin.motorOutput;
         }
 
         public float thrustSpeed

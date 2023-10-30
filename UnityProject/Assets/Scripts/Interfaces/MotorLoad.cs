@@ -111,7 +111,6 @@ namespace SimuNEX
             }
         }
 
-
         /// <summary>
         /// Obtains the local normal vector of rotation.
         /// </summary>
@@ -128,8 +127,8 @@ namespace SimuNEX
         /// <returns>Normalized angle in radians.</returns>
         public float normalizedAngle
         {
-            get {
-
+            get 
+            {
                 float angleInDegrees = 0f;
 
                 switch (spinAxis) 
@@ -158,8 +157,41 @@ namespace SimuNEX
                         angleInDegrees = -spinnerObject.localEulerAngles.z;
                         break;
                 }
-
                 return NormalizeAngle(angleInDegrees * Mathf.Deg2Rad);
+            }
+            
+            set
+            {
+                Vector3 newEuler = spinnerObject.localEulerAngles;
+
+                switch (spinAxis) 
+                {
+                    case Direction.Up:
+                        newEuler.y = value * Mathf.Rad2Deg;
+                        break;
+
+                    case Direction.Down:
+                        newEuler.y = -value * Mathf.Rad2Deg;
+                        break;
+
+                    case Direction.Left:
+                        newEuler.x = value * Mathf.Rad2Deg;
+                        break;
+
+                    case Direction.Right:
+                        newEuler.x = -value * Mathf.Rad2Deg;
+                        break;
+
+                    case Direction.Forward:
+                        newEuler.z = value * Mathf.Rad2Deg;
+                        break;
+
+                    case Direction.Backward:
+                        newEuler.z = -value * Mathf.Rad2Deg;
+                        break;
+                }
+
+                spinnerObject.localEulerAngles = newEuler;
             }
         }
 

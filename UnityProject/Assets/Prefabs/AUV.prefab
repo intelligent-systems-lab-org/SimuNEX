@@ -48,11 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   motorLoad: {fileID: 1774299028294793820}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  maxSpeed: Infinity
+  minSpeed: -Infinity
+  maxPosition: 0.2373648
+  minPosition: -0.2373648
   armatureInertia: 0.5
   armatureDamping: 0
-  stepper: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
@@ -146,11 +149,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   motorLoad: {fileID: 7070348159328965532}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  maxSpeed: Infinity
+  minSpeed: -Infinity
+  maxPosition: Infinity
+  minPosition: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  stepper: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: 100
   armatureResistance: 20
   backEMFConstant: 1
@@ -863,11 +869,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   motorLoad: {fileID: 129176138644301223}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  maxSpeed: Infinity
+  minSpeed: -Infinity
+  maxPosition: 0.2373648
+  minPosition: -0.2373648
   armatureInertia: 0.5
   armatureDamping: 0
-  stepper: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
