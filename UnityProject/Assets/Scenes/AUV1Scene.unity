@@ -564,9 +564,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: AUV
       objectReference: {fileID: 0}
+    - target: {fileID: 7070348159328965532, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: thrustCoefficient
+      value: 0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070348159328965532, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: torqueCoefficient
+      value: 0.000000001
+      objectReference: {fileID: 0}
     - target: {fileID: 7524597411484692782, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: outputs.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8255319234837448892, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: inputs.Array.size
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

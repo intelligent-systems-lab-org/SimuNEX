@@ -13,16 +13,15 @@
 // limitations under the License.
 
 using UnityEngine;
-using UnityEngine.Profiling;
 using System;
 
 namespace ROS2
 {
 
-/// <summary>
-/// An abstract base class for ROS2-enabled sensor.
-/// </summary>
-public abstract class ISensor : MonoBehaviour
+    /// <summary>
+    /// An abstract base class for ROS2-enabled sensor.
+    /// </summary>
+    public abstract class ISensor : MonoBehaviour
 {
     /// <summary>
     /// The desired update frequency for the sensor. The maximum can be the rate with which FixedUpdate is called,

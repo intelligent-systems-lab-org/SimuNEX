@@ -12,16 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using UnityEngine;
-
 namespace ROS2
 {
 
-/// <summary>
-/// A ros2 clock class that for interfacing between a time source (unity or ros2 system time) and ros2cs messages, structs. 
-/// </summary>
-public class ROS2Clock
+    /// <summary>
+    /// A ros2 clock class that for interfacing between a time source (unity or ros2 system time) and ros2cs messages, structs. 
+    /// </summary>
+    public class ROS2Clock
 {
     private ITimeSource _timeSource;
 

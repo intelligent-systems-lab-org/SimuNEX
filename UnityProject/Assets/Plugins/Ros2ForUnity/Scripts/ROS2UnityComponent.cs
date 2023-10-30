@@ -16,20 +16,19 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using ROS2;
 
 namespace ROS2
 {
 
-/// <summary>
-/// The principal MonoBehaviour class for handling ros2 nodes and executables.
-/// Use this to create ros2 node, check ros2 status.
-/// Spins and executes actions (e. g. clock, sensor publish triggers) in a dedicated thread
-/// TODO: this is meant to be used as a one-of (a singleton). Enforce. However, things should work
-/// anyway with more than one since the underlying library can handle multiple init and shutdown calls,
-/// and does node name uniqueness check independently.
-/// </summary>
-public class ROS2UnityComponent : MonoBehaviour
+    /// <summary>
+    /// The principal MonoBehaviour class for handling ros2 nodes and executables.
+    /// Use this to create ros2 node, check ros2 status.
+    /// Spins and executes actions (e. g. clock, sensor publish triggers) in a dedicated thread
+    /// TODO: this is meant to be used as a one-of (a singleton). Enforce. However, things should work
+    /// anyway with more than one since the underlying library can handle multiple init and shutdown calls,
+    /// and does node name uniqueness check independently.
+    /// </summary>
+    public class ROS2UnityComponent : MonoBehaviour
 {
     private ROS2ForUnity ros2forUnity;
     private List<ROS2Node> nodes;

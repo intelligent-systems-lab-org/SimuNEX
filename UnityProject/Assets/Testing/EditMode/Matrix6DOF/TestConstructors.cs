@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Matrix6DOFTests

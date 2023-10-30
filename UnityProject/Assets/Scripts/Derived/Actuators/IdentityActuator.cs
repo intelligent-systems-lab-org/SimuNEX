@@ -1,5 +1,3 @@
-using System;
-
 /// <summary>
 /// Implements the identity function where output = input.
 /// </summary>
