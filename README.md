@@ -108,10 +108,8 @@ Currently a work in progress. Will be implemented with GitHub Pages.
  ROS 2 was tested on Windows, the ROSOnWindows binary was installed, which can be found [here](https://ms-iot.github.io/ROSOnWindows/GettingStarted/SetupRos2.html). This binary is provided by Microsoft's IoT team and is designed to simplify the installation process for ROS 2 on Windows. Credit should be given to the ms-iot team for their work on the binary, and their repository can be found [here](https://github.com/ms-iot/rosonwindows/).
 
 # License
-[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
+SimuNEX© 2022-2023 by [Lee Bissessar](https://github.com/leebissessar5), [Intelligent Systems Lab (ISL)](https://intelsyslab.com/) is licensed under the SimuNEX License.
 
-[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
-[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
+Under this license, users may utilize the software for personal or educational purposes and are granted permission to modify and redistribute the software freely, subject to certain conditions outlined in the full license. These conditions include restrictions against commercial and military use, requirements for attribution, and guidelines for redistribution of altered versions.
 
-SimuNEX © 2023 by [Lee Bissessar](https://github.com/leebissessar5), [Intelligent Systems Lab (ISL)](https://intelsyslab.com/) is licensed under the
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.][cc-by-nc-sa] Under the license, you must give credit to ISL, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests that ISL endorses you or your use.
+Please note that the SimuNEX License supersedes the previous CC-BY-NC-SA-4 International License. For a detailed overview of the terms and conditions, please refer to the [LICENSE](LICENSE) file.
