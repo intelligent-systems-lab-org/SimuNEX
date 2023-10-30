@@ -1,101 +1,104 @@
 using System;
 using UnityEngine;
 
-/// <summary>
-/// Interface for implementing numerical stepper integrators for <see cref="StateSpace"/>.
-/// </summary>
-public abstract class Integrator
+namespace SimuNEX
 {
     /// <summary>
-    /// The step size. Defaults to <see cref="Time.fixedDeltaTime"/>.
+    /// Interface for implementing numerical stepper integrators for <see cref="StateSpace"/>.
     /// </summary>
-    protected float h = Time.fixedDeltaTime;
-
-    /// <summary>
-    /// The step size for numerical integration.
-    /// </summary>
-    public float stepSize
+    public abstract class Integrator
     {
-        get { return h; }
-        set
+        /// <summary>
+        /// The step size. Defaults to <see cref="Time.fixedDeltaTime"/>.
+        /// </summary>
+        protected float h = Time.fixedDeltaTime;
+
+        /// <summary>
+        /// The step size for numerical integration.
+        /// </summary>
+        public float stepSize
         {
-            if (value <= 0)
+            get { return h; }
+            set
             {
-                throw new ArgumentException("Step size must be positive");
-            }
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Step size must be positive");
+                }
 
-            if (value < 0.0025f)
+                if (value < 0.0025f)
+                {
+                    throw new ArgumentException(@"Step size must be at least 0.0025 
+                        to maintain reasonable performance");
+                }
+
+                float remainder = value % 0.005f;
+                if (Math.Abs(remainder) > float.Epsilon)
+                {
+                    throw new ArgumentException("Step size must be a multiple of 0.005");
+                }
+
+                h = value;
+            }
+        }
+
+        /// <summary>
+        /// Numerically integrates the <see cref="StateSpace.Derivatives(Matrix, Matrix)"/> function.
+        /// </summary>
+        /// <param name="ss"><see cref="StateSpace"/> to be integrated.</param>
+        public abstract void Step(StateSpace ss);
+    }
+
+    /// <summary>
+    /// Contains <see cref="Integrator"/> functions.
+    /// </summary>
+    public static class Integrators
+    {
+        /// <summary>
+        /// Implements the forward Euler method.
+        /// </summary>
+        public class ForwardEuler : Integrator
+        {
+            public override void Step(StateSpace ss)
             {
-                throw new ArgumentException(@"Step size must be at least 0.0025 
-                    to maintain reasonable performance");
+                ss.states += h * ss.Derivatives(ss.states, ss.inputs);
             }
+        }
 
-            float remainder = value % 0.005f;
-            if (Math.Abs(remainder) > float.Epsilon)
+        /// <summary>
+        /// Implements Heun's method.
+        /// </summary>
+        public class Heun : Integrator
+        {
+            public override void Step(StateSpace ss)
             {
-                throw new ArgumentException("Step size must be a multiple of 0.005");
+                Matrix k1 = ss.Derivatives(ss.states, ss.inputs);
+                Matrix k2 = ss.Derivatives(ss.states + h * k1, ss.inputs);
+                ss.states += (h / 2f) * (k1 + k2);
             }
-
-            h = value;
         }
-    }
 
-    /// <summary>
-    /// Numerically integrates the <see cref="StateSpace.Derivatives(Matrix, Matrix)"/> function.
-    /// </summary>
-    /// <param name="ss"><see cref="StateSpace"/> to be integrated.</param>
-    public abstract void Step(StateSpace ss);
-}
-
-/// <summary>
-/// Contains <see cref="Integrator"/> functions.
-/// </summary>
-public static class Integrators
-{
-    /// <summary>
-    /// Implements the forward Euler method.
-    /// </summary>
-    public class ForwardEuler : Integrator
-    {
-        public override void Step(StateSpace ss)
+        /// <summary>
+        /// Implements the 4th-order Runge-Kutta method.
+        /// </summary>
+        public class RK4 : Integrator
         {
-            ss.states += h * ss.Derivatives(ss.states, ss.inputs);
+            public override void Step(StateSpace ss)
+            {
+                Matrix k1 = h * ss.Derivatives(ss.states, ss.inputs);
+                Matrix k2 = h * ss.Derivatives(ss.states + 0.5f * k1, ss.inputs);
+                Matrix k3 = h * ss.Derivatives(ss.states + 0.5f * k2, ss.inputs);
+                Matrix k4 = h * ss.Derivatives(ss.states + k3, ss.inputs);
+                ss.states += (1f / 6f) * (k1 + 2f * k2 + 2f * k3 + k4);
+            }
         }
     }
 
     /// <summary>
-    /// Implements Heun's method.
+    /// List of available <see cref="Integrator"/> methods
     /// </summary>
-    public class Heun : Integrator
+    public enum IntegrationMethod
     {
-        public override void Step(StateSpace ss)
-        {
-            Matrix k1 = ss.Derivatives(ss.states, ss.inputs);
-            Matrix k2 = ss.Derivatives(ss.states + h * k1, ss.inputs);
-            ss.states += (h / 2f) * (k1 + k2);
-        }
+        Euler, Heun, RK4
     }
-
-    /// <summary>
-    /// Implements the 4th-order Runge-Kutta method.
-    /// </summary>
-    public class RK4 : Integrator
-    {
-        public override void Step(StateSpace ss)
-        {
-            Matrix k1 = h * ss.Derivatives(ss.states, ss.inputs);
-            Matrix k2 = h * ss.Derivatives(ss.states + 0.5f * k1, ss.inputs);
-            Matrix k3 = h * ss.Derivatives(ss.states + 0.5f * k2, ss.inputs);
-            Matrix k4 = h * ss.Derivatives(ss.states + k3, ss.inputs);
-            ss.states += (1f / 6f) * (k1 + 2f * k2 + 2f * k3 + k4);
-        }
-    }
-}
-
-/// <summary>
-/// List of available <see cref="Integrator"/> methods
-/// </summary>
-public enum IntegrationMethod
-{
-    Euler, Heun, RK4
 }

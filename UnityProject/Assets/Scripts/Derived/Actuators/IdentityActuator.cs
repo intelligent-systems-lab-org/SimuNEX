@@ -1,53 +1,56 @@
-/// <summary>
-/// Implements the identity function where output = input.
-/// </summary>
-public class IdentityActuator : Actuator
+namespace SimuNEX
 {
     /// <summary>
-    /// The input value.
+    /// Implements the identity function where output = input.
     /// </summary>
-    public float input = 0;
-
-    /// <summary>
-    /// <see cref="Load"/> object that is attached to the actuator.
-    /// </summary>
-    public Load load;
-
-    public override void SetInput(float[] value) => input = value[0];
-
-    private void OnValidate()
+    public class IdentityActuator : Actuator
     {
-        Initialize();
-    }
+        /// <summary>
+        /// The input value.
+        /// </summary>
+        public float input = 0;
 
-    private void Awake()
-    {
-        Initialize();
-    }
+        /// <summary>
+        /// <see cref="Load"/> object that is attached to the actuator.
+        /// </summary>
+        public Load load;
 
-    protected override void Initialize()
-    {
-        if (TryGetComponent(out load))
+        public override void SetInput(float[] value) => input = value[0];
+
+        private void OnValidate()
         {
-            load.rigidBody = rigidBody;
+            Initialize();
         }
 
-        inputs = () => new float[1] { input };
-    }
-
-    private void OnEnable()
-    {
-        if (load != null)
+        private void Awake()
         {
-            load.AttachActuator(() => inputs()[0]);
+            Initialize();
         }
-    }
 
-    private void OnDisable()
-    {
-        if (load != null)
+        protected override void Initialize()
         {
-            load.DetachActuator();
+            if (TryGetComponent(out load))
+            {
+                load.rigidBody = rigidBody;
+            }
+
+            inputs = () => new float[1] { input };
+        }
+
+        private void OnEnable()
+        {
+            if (load != null)
+            {
+                load.AttachActuator(() => inputs()[0]);
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (load != null)
+            {
+                load.DetachActuator();
+            }
         }
     }
 }

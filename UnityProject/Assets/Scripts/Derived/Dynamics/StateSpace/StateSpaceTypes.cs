@@ -1,132 +1,140 @@
 using System;
 
-public static class StateSpaceTypes
+namespace SimuNEX
 {
     /// <summary>
-    /// Models a 1st-order transfer function.
+    /// Collection of <see cref="StateSpace"/> variations for ease of modeling.
     /// </summary>
-    public class FirstOrderTF : StateSpace
+    public static class StateSpaceTypes
     {
         /// <summary>
-        /// The time constant of the system. It represents the speed 
-        /// at which the system responds to changes in input.
+        /// Models a 1st-order transfer function.
         /// </summary>
-        public Func<float> TimeConstant;
-
-        /// <summary>
-        /// The DC gain of the system. It represents the steady-state 
-        /// change in output for a given change in input.
-        /// </summary>
-        public Func<float> DCGain;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FirstOrderTF"/> class.
-        /// </summary>
-        /// <param name="timeConstant">A function that returns the time constant of the system.</param>
-        /// <param name="dcGain">A function that returns the DC gain of the system.</param>
-        /// <param name="initialState">The initial state value.</param>
-        public FirstOrderTF
-        (
-            Func<float> timeConstant, 
-            Func<float> dcGain, 
-            float initialState = 0, 
-            IntegrationMethod integrationMethod = IntegrationMethod.Euler
-        )
+        public class FirstOrderTF : StateSpace
         {
-            TimeConstant = timeConstant;
-            DCGain = dcGain;
+            /// <summary>
+            /// The time constant of the system. It represents the speed 
+            /// at which the system responds to changes in input.
+            /// </summary>
+            public Func<float> TimeConstant;
 
-            // Initialize with 1 state (output) and 1 input
-            Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), integrator: CreateIntegrator(integrationMethod));
-            // The derivative function for a 1st-order TF
-            DerivativeFcn = (states, inputs) => (1 / TimeConstant()) * (DCGain() * inputs - states);
-        }
+            /// <summary>
+            /// The DC gain of the system. It represents the steady-state 
+            /// change in output for a given change in input.
+            /// </summary>
+            public Func<float> DCGain;
 
-        /// <summary>
-        /// The system's output, which is the value of its sole state.
-        /// </summary>
-        public float output => _states[0, 0];
-
-        /// <summary>
-        /// The system's input.
-        /// </summary>
-        public float input
-        {
-            get => _inputs[0, 0];
-            set => _inputs[0, 0] = value;
-        }
-    }
-
-    /// <summary>
-    /// Models state spaces given by A*states + B*inputs.
-    /// </summary>
-    public class LinearStateSpace : StateSpace
-    {
-        /// <summary>
-        /// System matrix.
-        /// </summary>
-        public Func<Matrix> A;
-
-        /// <summary>
-        /// Input matrix.
-        /// </summary>
-        public Func<Matrix> B;
-
-        /// <summary>
-        /// Output matrix.
-        /// </summary>
-        public Func<Matrix> C;
-
-        /// <summary>
-        /// Direct feedthrough matrix.
-        /// </summary>
-        public Func<Matrix> D;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LinearStateSpace"/> class.
-        /// </summary>
-        /// <param name="A">System matrix.</param>
-        /// <param name="B">Input matrix.</param>
-        /// <param name="C">Output matrix.</param>
-        /// <param name="D">Direct feedthrough matrix.</param>
-        /// <param name="initialConditions">Initial state values.</param>
-        public LinearStateSpace
-        (
-            Func<Matrix> A, 
-            Func<Matrix> B, 
-            Func<Matrix> C = null, 
-            Func<Matrix> D = null, 
-            float[] initialConditions = null,
-            IntegrationMethod integrationMethod = IntegrationMethod.Euler
-        )
-        {
-            this.A = A;
-            this.B = B;
-            // If C is null, default to identity matrix of size A's row count
-            this.C = C ?? (() => Matrix.Eye(A().RowCount));
-            this.D = D;
-
-            int stateCount = A().RowCount;
-            int inputCount = B().ColCount;
-
-            // If initialConditions is null, default to a zero-filled array
-            float[] initialValues = initialConditions ?? new float[stateCount];
-
-            Initialize(stateCount, inputCount, new Matrix(stateCount, 1, initialValues), integrator: CreateIntegrator(integrationMethod));
-            DerivativeFcn = (states, inputs) => A() * states + B() * inputs;
-        }
-
-        /// <summary>
-        /// The system's output values.
-        /// </summary>
-        public Matrix outputs
-        {
-            get
+            /// <summary>
+            /// Initializes a new instance of the <see cref="FirstOrderTF"/> class.
+            /// </summary>
+            /// <param name="timeConstant">A function that returns the time constant of the system.</param>
+            /// <param name="dcGain">A function that returns the DC gain of the system.</param>
+            /// <param name="initialState">The initial state value.</param>
+            public FirstOrderTF
+            (
+                Func<float> timeConstant, 
+                Func<float> dcGain, 
+                float initialState = 0, 
+                IntegrationMethod integrationMethod = IntegrationMethod.Euler
+            )
             {
-                if (D == null)
-                    return C() * _states;
-                else
-                    return C() * _states + D() * _inputs;
+                TimeConstant = timeConstant;
+                DCGain = dcGain;
+
+                // Initialize with 1 state (output) and 1 input
+                Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), 
+                integrator: CreateIntegrator(integrationMethod));
+                // The derivative function for a 1st-order TF
+                DerivativeFcn = (states, inputs) => (1 / TimeConstant()) * (DCGain() * inputs - states);
+            }
+
+            /// <summary>
+            /// The system's output, which is the value of its sole state.
+            /// </summary>
+            public float output => _states[0, 0];
+
+            /// <summary>
+            /// The system's input.
+            /// </summary>
+            public float input
+            {
+                get => _inputs[0, 0];
+                set => _inputs[0, 0] = value;
+            }
+        }
+
+        /// <summary>
+        /// Models state spaces given by A*states + B*inputs.
+        /// </summary>
+        public class LinearStateSpace : StateSpace
+        {
+            /// <summary>
+            /// System matrix.
+            /// </summary>
+            public Func<Matrix> A;
+
+            /// <summary>
+            /// Input matrix.
+            /// </summary>
+            public Func<Matrix> B;
+
+            /// <summary>
+            /// Output matrix.
+            /// </summary>
+            public Func<Matrix> C;
+
+            /// <summary>
+            /// Direct feedthrough matrix.
+            /// </summary>
+            public Func<Matrix> D;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="LinearStateSpace"/> class.
+            /// </summary>
+            /// <param name="A">System matrix.</param>
+            /// <param name="B">Input matrix.</param>
+            /// <param name="C">Output matrix.</param>
+            /// <param name="D">Direct feedthrough matrix.</param>
+            /// <param name="initialConditions">Initial state values.</param>
+            public LinearStateSpace
+            (
+                Func<Matrix> A, 
+                Func<Matrix> B, 
+                Func<Matrix> C = null, 
+                Func<Matrix> D = null, 
+                float[] initialConditions = null,
+                IntegrationMethod integrationMethod = IntegrationMethod.Euler
+            )
+            {
+                this.A = A;
+                this.B = B;
+                // If C is null, default to identity matrix of size A's row count
+                this.C = C ?? (() => Matrix.Eye(A().RowCount));
+                this.D = D;
+
+                int stateCount = A().RowCount;
+                int inputCount = B().ColCount;
+
+                // If initialConditions is null, default to a zero-filled array
+                float[] initialValues = initialConditions ?? new float[stateCount];
+
+                Initialize(stateCount, inputCount, new Matrix(stateCount, 1, initialValues), 
+                integrator: CreateIntegrator(integrationMethod));
+                DerivativeFcn = (states, inputs) => A() * states + B() * inputs;
+            }
+
+            /// <summary>
+            /// The system's output values.
+            /// </summary>
+            public Matrix outputs
+            {
+                get
+                {
+                    if (D == null)
+                        return C() * _states;
+                    else
+                        return C() * _states + D() * _inputs;
+                }
             }
         }
     }

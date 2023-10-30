@@ -1,111 +1,118 @@
 using System;
 using UnityEngine;
-using static StateSpaceTypes;
+using static SimuNEX.StateSpaceTypes;
 
-public class PMSMotor : Motor
+namespace SimuNEX
 {
     /// <summary>
-    /// The integration method.
+    /// Implements a Permanent Magnet Synchronous Motor (PMSM) 
+    /// modeled by a linear state space.
     /// </summary>
-    public IntegrationMethod integrator;
-
-    /// <summary>
-    /// The q-axis input voltage for the PMSM.
-    /// </summary>
-    public float qAxisVoltage = 0;
-
-    /// <summary>
-    /// The d-axis input voltage for the PMSM.
-    /// </summary>
-    public float dAxisVoltage = 0;
-
-    /// <summary>
-    /// The stator winding resistance in ohms.
-    /// </summary>
-    public float resistance = 2.875f;
-
-    /// <summary>
-    /// The stator winding inductance in henries.
-    /// </summary>
-    public float inductance = 8.5e-2f;
-
-    /// <summary>
-    /// The number of poles in the PMSM.
-    /// </summary>
-    public int poles = 2;
-
-    /// <summary>
-    /// The magnet flux linkage in webers.
-    /// </summary>
-    public float flux = 0.175f;
-
-    /// <summary>
-    /// <see cref="LinearStateSpace"/> which defines the motor dynamics in terms of a linear state space.
-    /// </summary>
-    private LinearStateSpace stateSpace;
-
-    public override void SetInput(float[] value)
+    public class PMSMotor : Motor
     {
-        qAxisVoltage = value[0];
-        dAxisVoltage = value[1];
-    }
+        /// <summary>
+        /// The integration method.
+        /// </summary>
+        public IntegrationMethod integrator;
 
-    protected override void Initialize()
-    {
-        parameters = () => new float[]
+        /// <summary>
+        /// The q-axis input voltage for the PMSM.
+        /// </summary>
+        public float qAxisVoltage = 0;
+
+        /// <summary>
+        /// The d-axis input voltage for the PMSM.
+        /// </summary>
+        public float dAxisVoltage = 0;
+
+        /// <summary>
+        /// The stator winding resistance in ohms.
+        /// </summary>
+        public float resistance = 2.875f;
+
+        /// <summary>
+        /// The stator winding inductance in henries.
+        /// </summary>
+        public float inductance = 8.5e-2f;
+
+        /// <summary>
+        /// The number of poles in the PMSM.
+        /// </summary>
+        public int poles = 2;
+
+        /// <summary>
+        /// The magnet flux linkage in webers.
+        /// </summary>
+        public float flux = 0.175f;
+
+        /// <summary>
+        /// <see cref="LinearStateSpace"/> which defines the motor dynamics in terms of a linear state space.
+        /// </summary>
+        private LinearStateSpace stateSpace;
+
+        public override void SetInput(float[] value)
         {
-            resistance,
-            inductance,
-            poles,
-            flux,
-            totalInertia,
-            totalDamping
-        };
+            qAxisVoltage = value[0];
+            dAxisVoltage = value[1];
+        }
 
-        inputs = () => new float[] { qAxisVoltage, dAxisVoltage };
-
-        stateSpace = new LinearStateSpace
-        (
-            A: () =>
+        protected override void Initialize()
+        {
+            parameters = () => new float[]
             {
-                float[] param = parameters();
-                float R = param[0];
-                float L = param[1];
-                float P = param[2];
-                float wb = param[3];
-                float J = param[4];
-                float D = param[5];
+                resistance,
+                inductance,
+                poles,
+                flux,
+                totalInertia,
+                totalDamping
+            };
 
-                return new(new float[,]
-               {
-                    { -R/L,        0,  wb*P/L },
-                    { 0,          -R/L,  0    },
-                    { 1.5f*P*wb/L, 0,  -D/J   }
-               });
-            },
-            B: () =>
-            {
-                float L = parameters()[1];
-                return new(new float[,]
+            inputs = () => new float[] { qAxisVoltage, dAxisVoltage };
+
+            stateSpace = new LinearStateSpace
+            (
+                A: () =>
                 {
-                    { 1/L, 0  },
-                    { 0,  1/L },
-                    { 0,   0  }
+                    float[] param = parameters();
+                    float R = param[0];
+                    float L = param[1];
+                    float P = param[2];
+                    float wb = param[3];
+                    float J = param[4];
+                    float D = param[5];
+
+                    return new(new float[,]
+                {
+                        { -R/L,        0,  wb*P/L },
+                        { 0,          -R/L,  0    },
+                        { 1.5f*P*wb/L, 0,  -D/J   }
                 });
-            },
-            integrationMethod: integrator
-        );
-    }
+                },
+                B: () =>
+                {
+                    float L = parameters()[1];
+                    return new(new float[,]
+                    {
+                        { 1/L, 0  },
+                        { 0,  1/L },
+                        { 0,   0  }
+                    });
+                },
+                integrationMethod: integrator
+            );
+        }
 
-    public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
-    {
-        stateSpace.inputs[0, 0] = inputs()[0];
-        stateSpace.inputs[1, 0] = inputs()[1];
-        stateSpace.Compute();
+        public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
+        {
+            stateSpace.inputs[0, 0] = inputs()[0];
+            stateSpace.inputs[1, 0] = inputs()[1];
+            stateSpace.Compute();
 
-        // Apply saturation
-        stateSpace.states[2, 0] = Mathf.Clamp(stateSpace.states[2, 0], lowerSaturation, upperSaturation);
+            // Apply saturation
+            stateSpace.states[2, 0] = Mathf.Clamp(stateSpace.states[2, 0], lowerSaturation, upperSaturation);
 
-        return stateSpace.outputs[2, 0];
+            return stateSpace.outputs[2, 0];
+        }
     }
 }

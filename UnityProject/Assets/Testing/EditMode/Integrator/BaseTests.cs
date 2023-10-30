@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
+using SimuNEX;
 
 namespace IntegratorTests
 {
@@ -22,7 +23,7 @@ namespace IntegratorTests
     public abstract class BaseTests<TIntegrator> where TIntegrator : Integrator, new()
     {
         protected TIntegrator TestIntegrator { get; set; }
-        protected virtual TestConfig Config => new TestConfig();
+        protected virtual TestConfig Config => new();
         Helpers helpers = new();
 
         [Test]

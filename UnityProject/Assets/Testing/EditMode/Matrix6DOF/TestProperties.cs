@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SimuNEX;
 
 namespace Matrix6DOFTests
 {

@@ -1,27 +1,30 @@
-/// <summary>
-/// Implements an ideal sensor that measures velocities and positions of a <see cref="RigidBody"/>.
-/// </summary>
-public class Ideal6DOFMotionSensor : Sensor
+namespace SimuNEX
 {
-    protected override void Initialize()
+    /// <summary>
+    /// Implements an ideal sensor that measures velocities and positions of a <see cref="RigidBody"/>.
+    /// </summary>
+    public class Ideal6DOFMotionSensor : Sensor
     {
-        outputs = () => new float[]
+        protected override void Initialize()
         {
-            rigidBody.velocity.linear.x, rigidBody.velocity.linear.z, rigidBody.velocity.linear.y,
-            rigidBody.velocity.angular.x, rigidBody.velocity.angular.z, rigidBody.velocity.angular.y,
-            rigidBody.angularPosition.w, rigidBody.angularPosition.x, rigidBody.angularPosition.z, rigidBody.angularPosition.y,
-            rigidBody.position.x, rigidBody.position.z, rigidBody.position.y
-        };
-    }
+            outputs = () => new float[]
+            {
+                rigidBody.velocity.linear.x, rigidBody.velocity.linear.z, rigidBody.velocity.linear.y,
+                rigidBody.velocity.angular.x, rigidBody.velocity.angular.z, rigidBody.velocity.angular.y,
+                rigidBody.angularPosition.w, rigidBody.angularPosition.x, rigidBody.angularPosition.z, rigidBody.angularPosition.y,
+                rigidBody.position.x, rigidBody.position.z, rigidBody.position.y
+            };
+        }
 
-    private void OnValidate()
-    {
-        Initialize();
-    }
+        private void OnValidate()
+        {
+            Initialize();
+        }
 
-    private void Awake()
-    {
-        Initialize();
-    }
+        private void Awake()
+        {
+            Initialize();
+        }
 
+    }
 }

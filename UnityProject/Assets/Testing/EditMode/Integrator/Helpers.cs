@@ -1,7 +1,8 @@
 using NUnit.Framework;
+using SimuNEX;
+using static SimuNEX.StateSpace;
 using System;
 using UnityEngine;
-using static StateSpace;
 
 namespace IntegratorTests
 {
