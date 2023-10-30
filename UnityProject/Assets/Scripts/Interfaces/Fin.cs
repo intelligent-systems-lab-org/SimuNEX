@@ -83,50 +83,7 @@ public abstract class FinForce : Force
     {
         normal = () => fin.normal;
         flowDirection = () => fin.flowDirection;
-        finAngle = () => 
-        {
-            float angleInDegrees = 0f;
-
-            switch (fin.spinAxis) 
-            {
-                case Direction.Up:
-                    angleInDegrees = fin.spinnerObject.localEulerAngles.y;
-                    break;
-
-                case Direction.Down:
-                    angleInDegrees = -fin.spinnerObject.localEulerAngles.y;
-                    break;
-
-                case Direction.Left:
-                    angleInDegrees = fin.spinnerObject.localEulerAngles.x;
-                    break;
-
-                case Direction.Right:
-                    angleInDegrees = -fin.spinnerObject.localEulerAngles.x;
-                    break;
-
-                case Direction.Forward:
-                    angleInDegrees = fin.spinnerObject.localEulerAngles.z;
-                    break;
-
-                case Direction.Backward:
-                    angleInDegrees = -fin.spinnerObject.localEulerAngles.z;
-                    break;
-            }
-            return NormalizeAngle(angleInDegrees * Mathf.Deg2Rad);
-        };
-    }
-
-    /// <summary>
-    /// Converts angles in the range 0 to 2pi to -pi to pi.
-    /// </summary>
-    /// <param name="angleInRadians">Angle in the range of 0 to 2pi.</param>
-    /// <returns>Converted angle between -pi to pi.</returns>
-    private float NormalizeAngle(float angleInRadians)
-    {
-        while (angleInRadians <= -Mathf.PI) angleInRadians += 2 * Mathf.PI;
-        while (angleInRadians > Mathf.PI) angleInRadians -= 2 * Mathf.PI;
-        return angleInRadians;
+        finAngle = () => fin.normalizedAngle;
     }
 
     public float thrustSpeed

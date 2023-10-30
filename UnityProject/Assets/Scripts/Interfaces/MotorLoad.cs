@@ -119,4 +119,57 @@ public abstract class MotorLoad : Load
     /// Obtains the normal vector of rotation.
     /// </summary>
     public Vector3 spinnerNormal => spinAxis.ToVector();
+
+    /// <summary>
+    /// Normalizes the angle of the rotating object based on the spin axis.
+    /// </summary>
+    /// <returns>Normalized angle in radians.</returns>
+    public float normalizedAngle
+    {
+        get {
+
+            float angleInDegrees = 0f;
+
+            switch (spinAxis) 
+            {
+                case Direction.Up:
+                    angleInDegrees = spinnerObject.localEulerAngles.y;
+                    break;
+
+                case Direction.Down:
+                    angleInDegrees = -spinnerObject.localEulerAngles.y;
+                    break;
+
+                case Direction.Left:
+                    angleInDegrees = spinnerObject.localEulerAngles.x;
+                    break;
+
+                case Direction.Right:
+                    angleInDegrees = -spinnerObject.localEulerAngles.x;
+                    break;
+
+                case Direction.Forward:
+                    angleInDegrees = spinnerObject.localEulerAngles.z;
+                    break;
+
+                case Direction.Backward:
+                    angleInDegrees = -spinnerObject.localEulerAngles.z;
+                    break;
+            }
+
+            return NormalizeAngle(angleInDegrees * Mathf.Deg2Rad);
+        }
+    }
+
+    /// <summary>
+    /// Converts angles in the range 0 to 2pi to -pi to pi.
+    /// </summary>
+    /// <param name="angleInRadians">Angle in the range of 0 to 2pi.</param>
+    /// <returns>Converted angle between -pi to pi.</returns>
+    private float NormalizeAngle(float angleInRadians)
+    {
+        while (angleInRadians <= -Mathf.PI) angleInRadians += 2 * Mathf.PI;
+        while (angleInRadians > Mathf.PI) angleInRadians -= 2 * Mathf.PI;
+        return angleInRadians;
+    }
 }
