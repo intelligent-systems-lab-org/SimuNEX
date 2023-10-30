@@ -29,16 +29,16 @@ namespace SimuNEX
         private StateSpace stateSpace;
 
         /// <summary>
-        /// The integration method.
+        /// The stepper method.
         /// </summary>
-        public IntegrationMethod integrator;
+        public StepperMethod stepper;
 
         protected override void Initialize()
         {
             if (readPosition || readTorque)
             {
                 stateSpace = new();
-                stateSpace.Initialize(2, 1, new Matrix(2, 1), integrator: StateSpace.CreateIntegrator(integrator));
+                stateSpace.Initialize(2, 1, new Matrix(2, 1), stepper: StateSpace.CreateStepper(stepper));
                 stateSpace.DerivativeFcn = (states, inputs) =>
                 {
                     // states[0] is position, states[1] is speed

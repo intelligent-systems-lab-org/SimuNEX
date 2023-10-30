@@ -30,12 +30,13 @@ namespace SimuNEX
             /// <param name="timeConstant">A function that returns the time constant of the system.</param>
             /// <param name="dcGain">A function that returns the DC gain of the system.</param>
             /// <param name="initialState">The initial state value.</param>
+            /// <param name="stepperMethod">The stepper method of choice.</param>
             public FirstOrderTF
             (
                 Func<float> timeConstant, 
                 Func<float> dcGain, 
                 float initialState = 0, 
-                IntegrationMethod integrationMethod = IntegrationMethod.Euler
+                StepperMethod stepperMethod = StepperMethod.Euler
             )
             {
                 TimeConstant = timeConstant;
@@ -43,7 +44,7 @@ namespace SimuNEX
 
                 // Initialize with 1 state (output) and 1 input
                 Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), 
-                integrator: CreateIntegrator(integrationMethod));
+                stepper: CreateStepper(stepperMethod));
                 // The derivative function for a 1st-order TF
                 DerivativeFcn = (states, inputs) => (1 / TimeConstant()) * (DCGain() * inputs - states);
             }
@@ -96,6 +97,7 @@ namespace SimuNEX
             /// <param name="C">Output matrix.</param>
             /// <param name="D">Direct feedthrough matrix.</param>
             /// <param name="initialConditions">Initial state values.</param>
+            /// <param name="stepperMethod">The stepper method of choice.</param>
             public LinearStateSpace
             (
                 Func<Matrix> A, 
@@ -103,7 +105,7 @@ namespace SimuNEX
                 Func<Matrix> C = null, 
                 Func<Matrix> D = null, 
                 float[] initialConditions = null,
-                IntegrationMethod integrationMethod = IntegrationMethod.Euler
+                StepperMethod stepperMethod = StepperMethod.Euler
             )
             {
                 this.A = A;
@@ -119,7 +121,7 @@ namespace SimuNEX
                 float[] initialValues = initialConditions ?? new float[stateCount];
 
                 Initialize(stateCount, inputCount, new Matrix(stateCount, 1, initialValues), 
-                integrator: CreateIntegrator(integrationMethod));
+                stepper: CreateStepper(stepperMethod));
                 DerivativeFcn = (states, inputs) => A() * states + B() * inputs;
             }
 

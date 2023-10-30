@@ -1,8 +1,9 @@
 using NUnit.Framework;
 using UnityEngine;
 using SimuNEX;
+using SolverTests;
 
-namespace IntegratorTests
+namespace StepperTests
 {
     public class TestConfig
     {
@@ -20,9 +21,9 @@ namespace IntegratorTests
         }
     }
 
-    public abstract class BaseTests<TIntegrator> where TIntegrator : Integrator, new()
+    public abstract class BaseTests<TStepper> where TStepper : ODESolver, new()
     {
-        protected TIntegrator TestIntegrator { get; set; }
+        protected TStepper TestStepper { get; set; }
         protected virtual TestConfig Config => new();
         Helpers helpers = new();
 
@@ -33,7 +34,7 @@ namespace IntegratorTests
             (
                 (states, inputs) => states,
                 new Matrix(1, 1, new float[] { 1f }),
-                TestIntegrator
+                TestStepper
             );
             helpers.RunSimulationTest(ss, Mathf.Exp, Config);
         }
@@ -45,7 +46,7 @@ namespace IntegratorTests
             (
                 (states, inputs) => new Matrix(1, 1, new float[] { 5f }),
                 new Matrix(1, 1, new float[] { 0f }),
-                TestIntegrator
+                TestStepper
             );
             helpers.RunSimulationTest(ss, (float time) => 5f * time, Config);
         }
@@ -62,7 +63,7 @@ namespace IntegratorTests
                     return new Matrix(2, 1, new float[] { y2, -y1 });
                 },
                 new Matrix(2, 1, new float[] { 0f, 1f }),
-                TestIntegrator
+                TestStepper
             );
             helpers.RunSimulationTest(ss, Mathf.Sin, Config);
         }

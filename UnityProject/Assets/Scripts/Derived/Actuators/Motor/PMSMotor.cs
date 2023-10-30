@@ -11,9 +11,9 @@ namespace SimuNEX
     public class PMSMotor : Motor
     {
         /// <summary>
-        /// The integration method.
+        /// The stepper method.
         /// </summary>
-        public IntegrationMethod integrator;
+        public StepperMethod stepper;
 
         /// <summary>
         /// The q-axis input voltage for the PMSM.
@@ -99,7 +99,7 @@ namespace SimuNEX
                         { 0,   0  }
                     });
                 },
-                integrationMethod: integrator
+                stepperMethod: stepper
             );
         }
 

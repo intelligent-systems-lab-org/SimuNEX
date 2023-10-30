@@ -36,7 +36,7 @@ SimuNEX is in its early stages of development and is only usable through the Uni
 - Functional interfaces have been established for actuators such as motors and loads like propellers.
 - Support for ROS 2 integration ensures compatibility with current robotics systems.
 - Interfaces have also been created for modeling state-space systems, which are widely employed in control theory.
-- Various integrating techniques including Euler, Heun, and RK4 stepper integrators are implemented for accurate simulation of dynamical systems.
+- Various integrating techniques including Euler, Heun, and RK4 stepper steppers are implemented for accurate simulation of dynamical systems.
 - A high performance matrix library built on top of eigen3 is incorporated to handle different state-spaces and functionals within the system efficiently.
 
 For upcoming plans and features, please check out the ongoing [projects](https://github.com/intelligent-systems-lab-org/SimuNEX/projects).

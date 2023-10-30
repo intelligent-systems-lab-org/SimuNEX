@@ -1,5 +1,5 @@
 using System;
-using static SimuNEX.Integrators;
+using static SimuNEX.Steppers;
 
 namespace SimuNEX
 {
@@ -19,9 +19,9 @@ namespace SimuNEX
         protected Matrix _states;
 
         /// <summary>
-        /// <see cref="Integrator"/> with a <see cref="IntegrationMethod"/>.
+        /// <see cref="ODESolver"/> with a <see cref="StepperMethod"/>.
         /// </summary>
-        private Integrator _integrator;
+        private ODESolver _odeSolver;
 
         /// <summary>
         /// Number of inputs.
@@ -40,7 +40,7 @@ namespace SimuNEX
         /// <param name="numInputs">The number of inputs to the system.</param>
         /// <param name="initialConditions">The matrix representing the initial state conditions. The number of rows should match <paramref name="numStates"/>.</param>
         /// <param name="derivativeFunction">The function representing the system's differential equations. If not provided, must be set externally before any computations.</param>
-        /// <param name="integrator">The numerical integration method to be used. If not provided, the Forward Euler method will be used as default.</param>
+        /// <param name="stepper">The stepper method to be used. If not provided, the Forward Euler method will be used as default.</param>
         /// <exception cref="ArgumentException">Thrown when the number of rows in <paramref name="initialConditions"/> doesn't match <paramref name="numStates"/>.</exception>
         public void Initialize
         (
@@ -48,7 +48,7 @@ namespace SimuNEX
             int numInputs,
             Matrix initialConditions,
             DerivativeFunction derivativeFunction = null,
-            Integrator integrator = null
+            ODESolver stepper = null
         )
         {
             inputSize = numInputs;
@@ -64,7 +64,7 @@ namespace SimuNEX
 
             _states = initialConditions;
             DerivativeFcn = derivativeFunction;
-            _integrator = integrator ?? new ForwardEuler();
+            _odeSolver = stepper ?? new ForwardEuler();
         }
 
 
@@ -95,12 +95,12 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// The current <see cref="Integrator"/>.
+        /// The current <see cref="ODESolver"/>.
         /// </summary>
-        public Integrator integrator
+        public ODESolver solver
         {
-            get => _integrator;
-            set => _integrator = value;
+            get => _odeSolver;
+            set => _odeSolver = value;
         }
 
         /// <summary>
@@ -134,24 +134,24 @@ namespace SimuNEX
         /// </summary>
         public void Compute()
         {
-            _integrator.Step(this);
+            _odeSolver.Step(this);
         }
 
         /// <summary>
-        /// Creates an <see cref="Integrator"/> from the chosen <see cref="IntegrationMethod"/>.
+        /// Creates an <see cref="ODESolver"/> from the chosen <see cref="StepperMethod"/>.
         /// </summary>
-        /// <param name="integrationMethod">The <see cref="IntegrationMethod"/> of choice.</param>
-        /// <returns>The <see cref="Integrator"/> that uses the desired <see cref="IntegrationMethod"/>.</returns>
+        /// <param name="stepperMethod">The <see cref="StepperMethod"/> of choice.</param>
+        /// <returns>The <see cref="ODESolver"/> that uses the desired <see cref="StepperMethod"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Throws when an unsupported method is passed.</exception>
-        public static Integrator CreateIntegrator(IntegrationMethod integrationMethod = IntegrationMethod.Euler)
+        public static ODESolver CreateStepper(StepperMethod stepperMethod = StepperMethod.Euler)
         {
-            return integrationMethod switch
+            return stepperMethod switch
             {
-                IntegrationMethod.Euler => new ForwardEuler(),
-                IntegrationMethod.Heun => new Heun(),
-                IntegrationMethod.RK4 => new RK4(),
-                _ => throw new ArgumentOutOfRangeException(nameof(integrationMethod),
-                    $"Not expected integration method: {integrationMethod}"),
+                StepperMethod.Euler => new ForwardEuler(),
+                StepperMethod.Heun => new Heun(),
+                StepperMethod.RK4 => new RK4(),
+                _ => throw new ArgumentOutOfRangeException(nameof(stepperMethod),
+                    $"Not expected stepper method: {stepperMethod}"),
             };
         }
     }

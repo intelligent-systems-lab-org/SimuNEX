@@ -4,9 +4,9 @@ using UnityEngine;
 namespace SimuNEX
 {
     /// <summary>
-    /// Interface for implementing numerical stepper integrators for <see cref="StateSpace"/>.
+    /// Interface for implementing numerical stepper Steppers for <see cref="StateSpace"/>.
     /// </summary>
-    public abstract class Integrator
+    public abstract class ODESolver
     {
         /// <summary>
         /// The step size. Defaults to <see cref="Time.fixedDeltaTime"/>.
@@ -50,14 +50,14 @@ namespace SimuNEX
     }
 
     /// <summary>
-    /// Contains <see cref="Integrator"/> functions.
+    /// Contains <see cref="ODESolver"/> functions.
     /// </summary>
-    public static class Integrators
+    public static class Steppers
     {
         /// <summary>
         /// Implements the forward Euler method.
         /// </summary>
-        public class ForwardEuler : Integrator
+        public class ForwardEuler : ODESolver
         {
             public override void Step(StateSpace ss)
             {
@@ -68,7 +68,7 @@ namespace SimuNEX
         /// <summary>
         /// Implements Heun's method.
         /// </summary>
-        public class Heun : Integrator
+        public class Heun : ODESolver
         {
             public override void Step(StateSpace ss)
             {
@@ -81,7 +81,7 @@ namespace SimuNEX
         /// <summary>
         /// Implements the 4th-order Runge-Kutta method.
         /// </summary>
-        public class RK4 : Integrator
+        public class RK4 : ODESolver
         {
             public override void Step(StateSpace ss)
             {
@@ -95,9 +95,9 @@ namespace SimuNEX
     }
 
     /// <summary>
-    /// List of available <see cref="Integrator"/> methods
+    /// List of available <see cref="ODESolver"/> methods
     /// </summary>
-    public enum IntegrationMethod
+    public enum StepperMethod
     {
         Euler, Heun, RK4
     }

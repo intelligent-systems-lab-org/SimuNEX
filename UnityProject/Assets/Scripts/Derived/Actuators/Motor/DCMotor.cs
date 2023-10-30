@@ -10,9 +10,9 @@ namespace SimuNEX
     public class DCMotor : Motor
     {
         /// <summary>
-        /// The integration method.
+        /// The stepper method.
         /// </summary>
-        public IntegrationMethod integrator;
+        public StepperMethod stepper;
 
         /// <summary>
         /// The input voltage.
@@ -67,7 +67,7 @@ namespace SimuNEX
             };
 
             inputs = () => new float[] { voltage };
-            stateSpace = new FirstOrderTF(timeConstant, DCGain, integrationMethod: integrator);
+            stateSpace = new FirstOrderTF(timeConstant, DCGain, stepperMethod: stepper);
         }
 
         public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
