@@ -10,8 +10,11 @@ public class Matrix6DOFDrawer : PropertyDrawer
     {
         if (fieldInfo.GetValue(property.serializedObject.targetObject) is not Matrix6DOF matrix) return;
 
+        EditorGUI.BeginChangeCheck();
+
         isExpanded = EditorGUI.Foldout(new Rect(position.x, position.y, position.width, 
             EditorGUIUtility.singleLineHeight), isExpanded, label);
+
         if (isExpanded)
         {
             EditorGUI.indentLevel++;
@@ -28,6 +31,11 @@ public class Matrix6DOFDrawer : PropertyDrawer
                 }
             }
             EditorGUI.indentLevel--;
+        }
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(property.serializedObject.targetObject);
         }
     }
 

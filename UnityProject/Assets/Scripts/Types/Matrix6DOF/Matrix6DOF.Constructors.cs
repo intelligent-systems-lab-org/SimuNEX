@@ -10,6 +10,7 @@ public partial class Matrix6DOF
     /// <summary>
     /// A 6x6 matrix.
     /// </summary>
+    [SerializeField]
     private Matrix _matrix;
 
     /// <summary>

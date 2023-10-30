@@ -3,6 +3,7 @@ using System;
 /// <summary>
 /// Matrix class that utilizes the eigen3 C++ library.
 /// </summary>
+[Serializable]
 public partial class Matrix : IDisposable
 {
     /// <summary>
