@@ -53,7 +53,7 @@ namespace ROS2
     private void LazyConstruct()
     {
         lock (mutex)
-        {        
+        {
             if (ros2forUnity != null)
                 return;
 

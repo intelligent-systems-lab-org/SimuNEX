@@ -71,10 +71,9 @@ namespace SimuNEX
         {
             if (ros2Unity.Ok())
             {
-                inputSubscriber ??= inputNode.CreateSubscription<Float32MultiArray>(subscriberName, msg =>
-                {
-                    Array.Copy(msg.Data, data, msg.Data.Length);
-                });
+                inputSubscriber ??= inputNode.CreateSubscription<Float32MultiArray>(
+                    subscriberName,
+                    msg => Array.Copy(msg.Data, data, msg.Data.Length));
             }
         }
 

@@ -7,7 +7,7 @@ namespace SimuNEX
     {
         public float acceleration = 9.81f;
 
-        public override void Apply(RigidBody rigidBody) 
+        public override void Apply(RigidBody rigidBody)
         {
             // Check for an existing SimpleGravity component before adding
             if (rigidBody.gameObject.TryGetComponent(out SimpleGravity existingGravity))
@@ -15,18 +15,20 @@ namespace SimuNEX
                 // If there's an existing SimpleGravity, remove it first
                 Destroy(existingGravity);
             }
-            var simpleGravity = rigidBody.gameObject.AddComponent<SimpleGravity>();
+
+            SimpleGravity simpleGravity = rigidBody.gameObject.AddComponent<SimpleGravity>();
             simpleGravity.acceleration = acceleration;
         }
 
         public override void Remove(RigidBody rigidBody)
         {
             // Try to find a SimpleGravity component attached to the Rigidbody's GameObject
-            if (rigidBody.gameObject.TryGetComponent<SimpleGravity>(out var existingGravity))
+            if (!rigidBody.gameObject.TryGetComponent<SimpleGravity>(out SimpleGravity existingGravity))
             {
-                // If found, destroy it
-                Destroy(existingGravity);
+                return;
             }
+            // If found, destroy it
+            Destroy(existingGravity);
         }
     }
 }

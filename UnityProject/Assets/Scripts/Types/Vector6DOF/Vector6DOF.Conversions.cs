@@ -9,7 +9,10 @@ namespace SimuNEX
         /// Returns a string representation of the vector in the format of a 6-element float vector.
         /// </summary>
         /// <returns>A string representation of the vector.</returns>
-        public override string ToString() => $"({linear.x} {linear.y} {linear.z} {angular.x} {angular.y} {angular.z})";
+        public override string ToString()
+        {
+            return $"({linear.x} {linear.y} {linear.z} {angular.x} {angular.y} {angular.z})";
+        }
 
         /// <summary>
         /// Implicitly converts a <see cref="Vector6DOF"/> instance to a <see cref="float[]"/>.
@@ -33,7 +36,10 @@ namespace SimuNEX
         /// </summary>
         /// <param name="vector">The <see cref="Vector6DOF"/> instance to convert.</param>
         /// <returns>A <see cref="Matrix"/> representing the values of the <see cref="Vector6DOF"/>.</returns>
-        public static implicit operator Matrix(Vector6DOF vector) => new(6, 1, vector);
+        public static implicit operator Matrix(Vector6DOF vector)
+        {
+            return new(6, 1, vector);
+        }
 
         /// <summary>
         /// Provides an implicit conversion from a Matrix to a Vector6DOF.
@@ -47,16 +53,24 @@ namespace SimuNEX
             {
                 return new Vector6DOF
                 (
-                    matrix[0, 0], matrix[0, 1], matrix[0, 2],
-                    matrix[0, 3], matrix[0, 4], matrix[0, 5]
+                    matrix[0, 0],
+                    matrix[0, 1],
+                    matrix[0, 2],
+                    matrix[0, 3],
+                    matrix[0, 4],
+                    matrix[0, 5]
                 );
             }
-            else if (matrix.RowCount == 6 && matrix.ColCount == 1) 
+            else if (matrix.RowCount == 6 && matrix.ColCount == 1)
             {
                 return new Vector6DOF
                 (
-                    matrix[0, 0], matrix[1, 0], matrix[2, 0],
-                    matrix[3, 0], matrix[4, 0], matrix[5, 0]
+                    matrix[0, 0],
+                    matrix[1, 0],
+                    matrix[2, 0],
+                    matrix[3, 0],
+                    matrix[4, 0],
+                    matrix[5, 0]
                 );
             }
             else
@@ -66,7 +80,6 @@ namespace SimuNEX
             }
         }
 
-
         /// <summary>
         /// Converts a string representation of a <see cref="Vector6DOF"/> to a <see cref="Vector6DOF"/> instance.
         /// </summary>
@@ -75,7 +88,7 @@ namespace SimuNEX
         /// <exception cref="InvalidOperationException">Thrown when the vector string does not contain 6 elements.</exception>
         public static implicit operator Vector6DOF(string vectorString)
         {
-            var values = vectorString.Trim('[', ']').Split(';');
+            string[] values = vectorString.Trim('[', ']').Split(';');
             if (values.Length != 6)
             {
                 throw new InvalidOperationException("Invalid vector string. Expected 6 elements.");
@@ -86,4 +99,3 @@ namespace SimuNEX
         }
     }
 }
-

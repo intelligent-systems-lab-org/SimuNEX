@@ -56,7 +56,10 @@ namespace SimuNEX
         /// <param name="scalar">The scalar value to multiply.</param>
         /// <param name="v">The <see cref="Vector6DOF"/> to multiply.</param>
         /// <returns>A new <see cref="Vector6DOF"/> representing the result of multiplying the scalar value by the <see cref="Vector6DOF"/>.</returns>
-        public static Vector6DOF operator *(float scalar, Vector6DOF v) => v * scalar;
+        public static Vector6DOF operator *(float scalar, Vector6DOF v)
+        {
+            return v * scalar;
+        }
 
         /// <summary>
         /// Divides a <see cref="Vector6DOF"/> instance by a scalar value.
@@ -158,7 +161,10 @@ namespace SimuNEX
         /// <param name="v1">The first <see cref="Vector6DOF"/>.</param>
         /// <param name="v2">The second <see cref="Vector6DOF"/>.</param>
         /// <returns>True if the two vectors are not equal; otherwise, false.</returns>
-        public static bool operator !=(Vector6DOF v1, Vector6DOF v2) => !(v1 == v2);
+        public static bool operator !=(Vector6DOF v1, Vector6DOF v2)
+        {
+            return !(v1 == v2);
+        }
 
         /// <summary>
         /// Multiplies a <see cref="Matrix"/> by a <see cref="Vector6DOF"/>.
@@ -177,16 +183,20 @@ namespace SimuNEX
         /// </summary>
         /// <param name="transform">The <see cref="Transform"/> defining the BCF.</param>
         /// <returns>A new <see cref="Vector6DOF"/> transformed to the ICF.</returns>
-        public Vector6DOF ToICF(Transform transform) =>
-            new(transform.TransformDirection(linear), transform.TransformDirection(angular));
+        public Vector6DOF ToICF(Transform transform)
+        {
+            return new(transform.TransformDirection(linear), transform.TransformDirection(angular));
+        }
 
         /// <summary>
         /// Converts the <see cref="Vector6DOF"/> defined in the ICF to BCF.
         /// </summary>
         /// <param name="transform">The <see cref="Transform"/> defining the BCF.</param>
         /// <returns>A new <see cref="Vector6DOF"/> transformed to the ICF.</returns>
-        public Vector6DOF ToBCF(Transform transform) =>
-            new(transform.InverseTransformDirection(linear), transform.InverseTransformDirection(angular));
+        public Vector6DOF ToBCF(Transform transform)
+        {
+            return new(transform.InverseTransformDirection(linear), transform.InverseTransformDirection(angular));
+        }
 
         /// <summary>
         /// Applies a specified function to each component of the <see cref="Vector6DOF"/>.

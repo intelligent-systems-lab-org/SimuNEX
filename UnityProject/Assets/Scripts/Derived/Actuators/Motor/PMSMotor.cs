@@ -1,11 +1,10 @@
 using System;
-using UnityEngine;
 using static SimuNEX.StateSpaceTypes;
 
 namespace SimuNEX
 {
     /// <summary>
-    /// Implements a Permanent Magnet Synchronous Motor (PMSM) 
+    /// Implements a Permanent Magnet Synchronous Motor (PMSM)
     /// modeled by a linear state space.
     /// </summary>
     public class PMSMotor : Motor
@@ -18,12 +17,12 @@ namespace SimuNEX
         /// <summary>
         /// The q-axis input voltage for the PMSM.
         /// </summary>
-        public float qAxisVoltage = 0;
+        public float qAxisVoltage;
 
         /// <summary>
         /// The d-axis input voltage for the PMSM.
         /// </summary>
-        public float dAxisVoltage = 0;
+        public float dAxisVoltage;
 
         /// <summary>
         /// The stator winding resistance in ohms.
@@ -83,21 +82,21 @@ namespace SimuNEX
                     float D = param[5];
 
                     return new(new float[,]
-                {
-                        { -R/L,        0,  wb*P/L },
-                        { 0,          -R/L,  0    },
-                        { 1.5f*P*wb/L, 0,  -D/J   }
-                });
+                        {
+                            { -R/L,        0,  wb*P/L },
+                            { 0,          -R/L,  0    },
+                            { 1.5f*P*wb/L, 0,  -D/J   }
+                        });
                 },
                 B: () =>
                 {
                     float L = parameters()[1];
                     return new(new float[,]
-                    {
-                        { 1/L, 0  },
-                        { 0,  1/L },
-                        { 0,   0  }
-                    });
+                        {
+                            { 1/L, 0  },
+                            { 0,  1/L },
+                            { 0,   0  }
+                        });
                 },
                 stepperMethod: speedStepper
             );

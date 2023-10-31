@@ -18,7 +18,10 @@ namespace SimuNEX
         /// <summary>
         /// Initializes a new instance of the <see cref="Matrix6DOF"/> class with an empty 6x6 matrix.
         /// </summary>
-        public Matrix6DOF() => _matrix = new Matrix(6, 6);
+        public Matrix6DOF()
+        {
+            _matrix = new Matrix(6, 6);
+        }
 
         /// <summary>
         /// Copy constructor. Initializes a new instance of the <see cref="Matrix6DOF"/> class with the same values as another instance.
@@ -36,8 +39,15 @@ namespace SimuNEX
         /// <param name="inertiaTensor">The inertia tensor.</param>
         /// <returns>A new <see cref="Matrix6DOF"/> with mass and inertia values along the diagonals.</returns>
         public static Matrix6DOF CreateMassMatrix(float mass, Vector3 inertiaTensor)
-            => Matrix.CreateDiagonal(mass, mass, mass, 
-                inertiaTensor.x, inertiaTensor.y, inertiaTensor.z);
+        {
+            return Matrix.CreateDiagonal(
+                mass,
+                mass,
+                mass,
+                inertiaTensor.x,
+                inertiaTensor.y,
+                inertiaTensor.z);
+        }
 
         /// <summary>
         /// Validates the <see cref="Matrix6DOF"/>.
@@ -73,8 +83,7 @@ namespace SimuNEX
         /// <param name="matrixString">A string representation of the matrix.</param>
         public Matrix6DOF(string matrixString)
         {
-            Matrix6DOF newVec6 = matrixString;
-            _matrix = newVec6;
+            _matrix = (Matrix6DOF)matrixString;
         }
-    }    
+    }
 }

@@ -19,11 +19,6 @@ namespace SimuNEX
         protected Matrix _states;
 
         /// <summary>
-        /// <see cref="ODESolver"/> with a <see cref="StepperMethod"/>.
-        /// </summary>
-        private ODESolver _odeSolver;
-
-        /// <summary>
         /// Number of inputs.
         /// </summary>
         public int inputSize;
@@ -64,7 +59,7 @@ namespace SimuNEX
 
             _states = initialConditions;
             DerivativeFcn = derivativeFunction;
-            _odeSolver = stepper ?? new ForwardEuler();
+            solver = stepper ?? new ForwardEuler();
         }
 
         /// <summary>
@@ -73,12 +68,14 @@ namespace SimuNEX
         public Matrix inputs
         {
             get => _inputs;
+
             set
             {
                 if (value.RowCount != inputSize)
                 {
                     throw new ArgumentException();
                 }
+
                 _inputs = value;
             }
 
@@ -96,11 +93,7 @@ namespace SimuNEX
         /// <summary>
         /// The current <see cref="ODESolver"/>.
         /// </summary>
-        public ODESolver solver
-        {
-            get => _odeSolver;
-            set => _odeSolver = value;
-        }
+        public ODESolver solver { get; set; }
 
         /// <summary>
         /// Delegate for the derivative function.
@@ -133,7 +126,7 @@ namespace SimuNEX
         /// </summary>
         public void Compute()
         {
-            _odeSolver.Step(this);
+            solver.Step(this);
         }
 
         /// <summary>
@@ -149,7 +142,8 @@ namespace SimuNEX
                 StepperMethod.Euler => new ForwardEuler(),
                 StepperMethod.Heun => new Heun(),
                 StepperMethod.RK4 => new RK4(),
-                _ => throw new ArgumentOutOfRangeException(nameof(stepperMethod),
+                _ => throw new ArgumentOutOfRangeException(
+                    nameof(stepperMethod),
                     $"Not expected stepper method: {stepperMethod}"),
             };
         }

@@ -29,13 +29,13 @@ namespace SimuNEX
         /// </summary>
         private SimpleGravity simpleGravity;
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             simpleGravity = GetComponent<SimpleGravity>();
             FindCOB();
         }
 
-        private void Awake() 
+        protected void Awake()
         {
             simpleGravity = GetComponent<SimpleGravity>();
             FindCOB();
@@ -59,7 +59,7 @@ namespace SimuNEX
         /// Apply the buoyant force to the specified <see cref="RigidBodyF"/> object.
         /// Has no effect on non-fluid based physics dynamics.
         /// </summary>
-        public override void ApplyForce() 
+        public override void ApplyForce()
         {
             if (rigidBody is RigidBodyF rbf) {
                 buoyantForce = fluidDensity * simpleGravity.acceleration * rbf._volume * rbf._displacedVolumeFactor;

@@ -1,4 +1,4 @@
-namespace SimuNEX 
+namespace SimuNEX
 {
     /// <summary>
     /// Interface for modeling force-based systems, such as rigidbodies and kinematic chains.

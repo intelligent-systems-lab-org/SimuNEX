@@ -3,7 +3,7 @@ using UnityEngine;
 namespace SimuNEX
 {
     /// <summary>
-    /// Serves as an orchestrator for simulating SimuNEX models, managing the interactions 
+    /// Serves as an orchestrator for simulating SimuNEX models, managing the interactions
     /// between dynamics, actuators, sensors, and communication systems.
     /// </summary>
     public class DynamicSystem : MonoBehaviour
@@ -11,29 +11,29 @@ namespace SimuNEX
         /// <summary>
         /// Dynamics object that represents the model's dynamic behavior.
         /// </summary>
-        Dynamics dynamics;
+        private Dynamics dynamics;
 
         /// <summary>
         /// Represents the actuation system controlling the dynamics.
         /// </summary>
-        ActuatorSystem actuatorSystem;
+        private ActuatorSystem actuatorSystem;
 
         /// <summary>
         /// Represents the sensing system reading states or outputs from the dynamics.
         /// </summary>
-        SensorSystem sensorSystem;
+        private SensorSystem sensorSystem;
 
         /// <summary>
         /// Represents the communication interface for the dynamic system.
         /// </summary>
-        COMSystem comSystem;
+        private COMSystem comSystem;
 
         /// <summary>
         /// Data received from the communication system to be passed to actuators.
         /// </summary>
         public float[] receivedData;
 
-        void Awake()
+        protected void Awake()
         {
             dynamics = GetComponent<Dynamics>();
             actuatorSystem = GetComponent<ActuatorSystem>();
@@ -46,7 +46,7 @@ namespace SimuNEX
             }
         }
 
-        private void FixedUpdate()
+        protected void FixedUpdate()
         {
             HandleSensors();
             HandleCommunication();

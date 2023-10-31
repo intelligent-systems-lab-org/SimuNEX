@@ -29,12 +29,7 @@ namespace SimuNEX
         /// </summary>
         private int NumOutputs;
 
-        private void OnValidate()
-        {
-            UpdateSensorList();
-        }
-
-        private void Awake()
+        protected void Awake()
         {
             UpdateSensorList();
         }
@@ -53,6 +48,7 @@ namespace SimuNEX
                 sensor.rigidBody = rigidBody;
                 NumOutputs += sensor.outputSize;
             }
+
             outputs = new float[NumOutputs];
         }
 
@@ -94,10 +90,7 @@ namespace SimuNEX
         /// <summary>
         /// Number of outputs specific to the <see cref="Sensor"/>.
         /// </summary>
-        public int outputSize
-        {
-            get => (outputs == null) ? 0 : outputs().Length;
-        }
+        public int outputSize => (outputs == null) ? 0 : outputs().Length;
 
         /// <summary>
         /// Sets up properties and defines the sensor's function for simulation.
@@ -108,6 +101,9 @@ namespace SimuNEX
         /// Gets all outputs specific to the <see cref="Sensor"/>.
         /// </summary>
         /// <returns>The current sensor readings.</returns>
-        public float[] GetOutput() => outputs();
+        public float[] GetOutput()
+        {
+            return outputs();
+        }
     }
 }

@@ -28,7 +28,6 @@ namespace SimuNEX
             }
         }
 
-
         /// <summary>
         /// Compares two matrices for equality.
         /// </summary>
@@ -41,7 +40,10 @@ namespace SimuNEX
         /// </summary>
         /// <param name="rhs">The matrix being compared.</param>
         /// <returns>True if the matrices are not equal, false otherwise.</returns>
-        public bool IsNotEqual(Matrix rhs) => _matrix.IsNotEqual(new Matrix(rhs));
+        public bool IsNotEqual(Matrix rhs)
+        {
+            return _matrix.IsNotEqual(new Matrix(rhs));
+        }
 
         /// <summary>
         /// Adds two Matrix6DOF objects together.
@@ -70,20 +72,26 @@ namespace SimuNEX
         /// <summary>
         /// Multiplies a <see cref="Matrix6DOF"/> with <see cref="Matrix"/>.
         /// </summary>
-        /// <param name="matrix2">The right matrix operand.</param>
         /// <param name="matrix">The <see cref="Matrix6DOF"/>.</param>
-        /// <returns>The result of multiplying the <see cref="Matrix6DOF"/> 
+        /// <param name="matrix2">The right matrix operand.</param>
+        /// <returns>The result of multiplying the <see cref="Matrix6DOF"/>
         /// with the <see cref="Matrix"/>.</returns>
-        public static Matrix operator *(Matrix6DOF matrix, Matrix matrix2) => new Matrix(matrix) * matrix2;
+        public static Matrix operator *(Matrix6DOF matrix, Matrix matrix2)
+        {
+            return new Matrix(matrix) * matrix2;
+        }
 
         /// <summary>
         /// Multiplies a <see cref="Matrix"/> with a <see cref="Matrix6DOF"/>.
         /// </summary>
         /// <param name="matrix2">The left matrix operand.</param>
         /// <param name="matrix">The <see cref="Matrix6DOF"/>.</param>
-        /// <returns>The result of multiplying the <see cref="Matrix"/> 
+        /// <returns>The result of multiplying the <see cref="Matrix"/>
         /// with the <see cref="Matrix6DOF"/>.</returns>
-        public static Matrix operator *(Matrix matrix2, Matrix6DOF matrix) => matrix2 * new Matrix(matrix);
+        public static Matrix operator *(Matrix matrix2, Matrix6DOF matrix)
+        {
+            return matrix2 * new Matrix(matrix);
+        }
 
         /// <summary>
         /// Multiplies a <see cref="Matrix6DOF"/> by a <see cref="Vector6DOF"/>
@@ -92,6 +100,8 @@ namespace SimuNEX
         /// <param name="vector">The vector to multiply.</param>
         /// <returns>The result of multiplying the matrix with the vector.</returns>
         public static Vector6DOF operator *(Matrix6DOF matrix, Vector6DOF vector)
-            => matrix._matrix * vector;
-    }    
+        {
+            return matrix._matrix * vector;
+        }
+    }
 }

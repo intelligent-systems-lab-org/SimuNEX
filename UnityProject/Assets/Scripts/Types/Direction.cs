@@ -7,7 +7,12 @@ namespace SimuNEX
     /// </summary>
     public enum Direction
     {
-        Up, Down, Left, Right, Forward, Backward
+        Up,
+        Down,
+        Left,
+        Right,
+        Forward,
+        Backward
     }
 
     /// <summary>

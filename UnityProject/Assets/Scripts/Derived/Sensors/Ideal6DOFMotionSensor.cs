@@ -9,19 +9,28 @@ namespace SimuNEX
         {
             outputs = () => new float[]
             {
-                rigidBody.velocity.linear.x, rigidBody.velocity.linear.z, rigidBody.velocity.linear.y,
-                rigidBody.velocity.angular.x, rigidBody.velocity.angular.z, rigidBody.velocity.angular.y,
-                rigidBody.angularPosition.w, rigidBody.angularPosition.x, rigidBody.angularPosition.z, rigidBody.angularPosition.y,
-                rigidBody.position.x, rigidBody.position.z, rigidBody.position.y
+                rigidBody.velocity.linear.x,
+                rigidBody.velocity.linear.z,
+                rigidBody.velocity.linear.y,
+                rigidBody.velocity.angular.x,
+                rigidBody.velocity.angular.z,
+                rigidBody.velocity.angular.y,
+                rigidBody.angularPosition.w,
+                rigidBody.angularPosition.x,
+                rigidBody.angularPosition.z,
+                rigidBody.angularPosition.y,
+                rigidBody.position.x,
+                rigidBody.position.z,
+                rigidBody.position.y
             };
         }
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             Initialize();
         }
 
-        private void Awake()
+        protected void Awake()
         {
             Initialize();
         }

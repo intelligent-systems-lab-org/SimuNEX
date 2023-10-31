@@ -33,8 +33,11 @@ namespace SimuNEX
                 Gain = gain;
 
                 // Initialize with 1 state (output) and 1 input
-                Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), 
-                stepper: CreateStepper(stepperMethod));
+                Initialize(
+                    1,
+                    1,
+                    new Matrix(1, 1, new float[] { initialState }),
+                    stepper: CreateStepper(stepperMethod));
 
                 // The derivative function for an integrator
                 DerivativeFcn = (states, inputs) => gain() * inputs;
@@ -61,13 +64,13 @@ namespace SimuNEX
         public class FirstOrderTF : StateSpace
         {
             /// <summary>
-            /// The time constant of the system. It represents the speed 
+            /// The time constant of the system. It represents the speed
             /// at which the system responds to changes in input.
             /// </summary>
             public Func<float> TimeConstant;
 
             /// <summary>
-            /// The DC gain of the system. It represents the steady-state 
+            /// The DC gain of the system. It represents the steady-state
             /// change in output for a given change in input.
             /// </summary>
             public Func<float> DCGain;
@@ -81,9 +84,9 @@ namespace SimuNEX
             /// <param name="stepperMethod">The stepper method of choice.</param>
             public FirstOrderTF
             (
-                Func<float> timeConstant, 
-                Func<float> dcGain, 
-                float initialState = 0, 
+                Func<float> timeConstant,
+                Func<float> dcGain,
+                float initialState = 0,
                 StepperMethod stepperMethod = StepperMethod.Euler
             )
             {
@@ -91,10 +94,13 @@ namespace SimuNEX
                 DCGain = dcGain;
 
                 // Initialize with 1 state (output) and 1 input
-                Initialize(1, 1, new Matrix(1, 1, new float[] { initialState }), 
-                stepper: CreateStepper(stepperMethod));
+                Initialize(
+                    1,
+                    1,
+                    new Matrix(1, 1, new float[] { initialState }),
+                    stepper: CreateStepper(stepperMethod));
                 // The derivative function for a 1st-order TF
-                DerivativeFcn = (states, inputs) => (1 / TimeConstant()) * (DCGain() * inputs - states);
+                DerivativeFcn = (states, inputs) => (1 / TimeConstant()) * ((DCGain() * inputs) - states);
             }
 
             /// <summary>
@@ -148,10 +154,10 @@ namespace SimuNEX
             /// <param name="stepperMethod">The stepper method of choice.</param>
             public LinearStateSpace
             (
-                Func<Matrix> A, 
-                Func<Matrix> B, 
-                Func<Matrix> C = null, 
-                Func<Matrix> D = null, 
+                Func<Matrix> A,
+                Func<Matrix> B,
+                Func<Matrix> C = null,
+                Func<Matrix> D = null,
                 float[] initialConditions = null,
                 StepperMethod stepperMethod = StepperMethod.Euler
             )
@@ -168,9 +174,12 @@ namespace SimuNEX
                 // If initialConditions is null, default to a zero-filled array
                 float[] initialValues = initialConditions ?? new float[stateCount];
 
-                Initialize(stateCount, inputCount, new Matrix(stateCount, 1, initialValues), 
-                stepper: CreateStepper(stepperMethod));
-                DerivativeFcn = (states, inputs) => A() * states + B() * inputs;
+                Initialize(
+                    stateCount,
+                    inputCount,
+                    new Matrix(stateCount, 1, initialValues),
+                    stepper: CreateStepper(stepperMethod));
+                DerivativeFcn = (states, inputs) => (A() * states) + (B() * inputs);
             }
 
             /// <summary>
@@ -181,9 +190,13 @@ namespace SimuNEX
                 get
                 {
                     if (D == null)
+                    {
                         return C() * _states;
+                    }
                     else
-                        return C() * _states + D() * _inputs;
+                    {
+                        return (C() * _states) + (D() * _inputs);
+                    }
                 }
             }
         }

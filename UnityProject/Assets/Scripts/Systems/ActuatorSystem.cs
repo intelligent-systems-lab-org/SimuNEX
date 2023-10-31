@@ -30,12 +30,12 @@ namespace SimuNEX
         /// </summary>
         private int NumInputs;
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             UpdateActuatorList();
         }
 
-        private void Awake()
+        protected void Awake()
         {
             UpdateActuatorList();
         }
@@ -54,6 +54,7 @@ namespace SimuNEX
                 actuator.rigidBody = rigidBody;
                 NumInputs += actuator.inputSize;
             }
+
             inputs = new float[NumInputs];
         }
 

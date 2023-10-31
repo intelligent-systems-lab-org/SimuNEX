@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX 
+namespace SimuNEX
 {
     /// <summary>
     /// Simulates rigidbodies that include added mass forces.
@@ -22,7 +22,7 @@ namespace SimuNEX
         /// Volume of the body. Can be set independent of dimensions for now.
         /// </summary>
         public float _volume = 10f;
-        
+
         /// <summary>
         /// Factor of fluid displaced between 0 and 1.
         /// </summary>
@@ -46,6 +46,6 @@ namespace SimuNEX
                 Matrix momentum = MassMatrix * _velocity;
                 return 0.5f * (_velocity.transpose * momentum)[0, 0];
             }
-        }        
+        }
     }
 }

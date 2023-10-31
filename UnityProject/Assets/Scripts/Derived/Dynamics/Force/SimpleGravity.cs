@@ -18,12 +18,12 @@ namespace SimuNEX
         /// </summary>
         public Transform centerOfGravity;
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             FindCOG();
         }
 
-        private void Awake() {
+        protected void Awake() {
             FindCOG();
         }
 
@@ -33,7 +33,7 @@ namespace SimuNEX
         private void FindCOG() {
             if(centerOfGravity == null)
                 {
-                    
+
                     Transform potentialCOG = transform.Find("COG");
                     if (potentialCOG != null)
                     {

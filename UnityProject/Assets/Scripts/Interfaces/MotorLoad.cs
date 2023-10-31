@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX 
+namespace SimuNEX
 {
     /// <summary>
     /// Generalizable class for motor loads such as <see cref="Propeller"/>.
@@ -25,7 +25,7 @@ namespace SimuNEX
         /// <summary>
         /// Propeller speed value.
         /// </summary>
-        public float _speed = 0;
+        public float _speed;
 
         /// <summary>
         /// Force associated with the load.
@@ -40,7 +40,7 @@ namespace SimuNEX
         /// <summary>
         /// The damping coefficient of the load in N.m.s/rad.
         /// </summary>
-        public float loadDamping = 0;
+        public float loadDamping;
 
         /// <summary>
         /// Set up forces, properties, etc. for simulation.
@@ -64,17 +64,17 @@ namespace SimuNEX
             rigidBody.RemoveForce(force);
         }
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             Activate();
         }
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             FindSpinnerTransforms();
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             Deactivate();
         }
@@ -84,7 +84,7 @@ namespace SimuNEX
         /// </summary>
         private void FindSpinnerTransforms()
         {
-            var transforms = GetComponentsInChildren<Transform>();
+            Transform[] transforms = GetComponentsInChildren<Transform>();
             if (transforms.Length > 1)
             {
                 spinnerObject = transforms[1];
@@ -127,68 +127,93 @@ namespace SimuNEX
         /// <returns>Normalized angle in radians.</returns>
         public float normalizedAngle
         {
-            get 
+            get
             {
                 float angleInDegrees = 0f;
 
-                switch (spinAxis) 
+                switch (spinAxis)
                 {
                     case Direction.Up:
-                        angleInDegrees = spinnerObject.localEulerAngles.y;
-                        break;
+                        {
+                            angleInDegrees = spinnerObject.localEulerAngles.y;
+                            break;
+                        }
 
                     case Direction.Down:
-                        angleInDegrees = -spinnerObject.localEulerAngles.y;
-                        break;
+                        {
+                            angleInDegrees = -spinnerObject.localEulerAngles.y;
+                            break;
+                        }
 
                     case Direction.Left:
-                        angleInDegrees = spinnerObject.localEulerAngles.x;
-                        break;
+                        {
+                            angleInDegrees = spinnerObject.localEulerAngles.x;
+                            break;
+                        }
 
                     case Direction.Right:
-                        angleInDegrees = -spinnerObject.localEulerAngles.x;
-                        break;
+                        {
+                            angleInDegrees = -spinnerObject.localEulerAngles.x;
+                            break;
+                        }
 
                     case Direction.Forward:
-                        angleInDegrees = spinnerObject.localEulerAngles.z;
-                        break;
+                        {
+                            angleInDegrees = spinnerObject.localEulerAngles.z;
+                            break;
+                        }
 
                     case Direction.Backward:
-                        angleInDegrees = -spinnerObject.localEulerAngles.z;
-                        break;
+                        {
+                            angleInDegrees = -spinnerObject.localEulerAngles.z;
+                            break;
+                        }
                 }
+
                 return NormalizeAngle(angleInDegrees * Mathf.Deg2Rad);
             }
-            
+
             set
             {
                 Vector3 newEuler = spinnerObject.localEulerAngles;
 
-                switch (spinAxis) 
+                switch (spinAxis)
                 {
                     case Direction.Up:
-                        newEuler.y = value * Mathf.Rad2Deg;
-                        break;
+                        {
+                            newEuler.y = value * Mathf.Rad2Deg;
+                            break;
+                        }
 
                     case Direction.Down:
-                        newEuler.y = -value * Mathf.Rad2Deg;
-                        break;
+                        {
+                            newEuler.y = -value * Mathf.Rad2Deg;
+                            break;
+                        }
 
                     case Direction.Left:
-                        newEuler.x = value * Mathf.Rad2Deg;
-                        break;
+                        {
+                            newEuler.x = value * Mathf.Rad2Deg;
+                            break;
+                        }
 
                     case Direction.Right:
-                        newEuler.x = -value * Mathf.Rad2Deg;
-                        break;
+                        {
+                            newEuler.x = -value * Mathf.Rad2Deg;
+                            break;
+                        }
 
                     case Direction.Forward:
-                        newEuler.z = value * Mathf.Rad2Deg;
-                        break;
+                        {
+                            newEuler.z = value * Mathf.Rad2Deg;
+                            break;
+                        }
 
                     case Direction.Backward:
-                        newEuler.z = -value * Mathf.Rad2Deg;
-                        break;
+                        {
+                            newEuler.z = -value * Mathf.Rad2Deg;
+                            break;
+                        }
                 }
 
                 spinnerObject.localEulerAngles = newEuler;
@@ -202,8 +227,16 @@ namespace SimuNEX
         /// <returns>Converted angle between -pi to pi.</returns>
         private float NormalizeAngle(float angleInRadians)
         {
-            while (angleInRadians <= -Mathf.PI) angleInRadians += 2 * Mathf.PI;
-            while (angleInRadians > Mathf.PI) angleInRadians -= 2 * Mathf.PI;
+            while (angleInRadians <= -Mathf.PI)
+            {
+                angleInRadians += 2 * Mathf.PI;
+            }
+
+            while (angleInRadians > Mathf.PI)
+            {
+                angleInRadians -= 2 * Mathf.PI;
+            }
+
             return angleInRadians;
         }
     }

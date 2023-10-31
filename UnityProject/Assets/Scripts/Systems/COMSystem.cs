@@ -12,7 +12,7 @@ namespace SimuNEX
         /// </summary>
         public COMProtocol protocol;
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             protocol = GetComponent<COMProtocol>();
         }

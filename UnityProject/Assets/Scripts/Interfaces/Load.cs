@@ -11,7 +11,7 @@ namespace SimuNEX
         /// <summary>
         /// Function of actuator attached to load.
         /// </summary>
-        protected Func<float> actuatorFunction = null;
+        protected Func<float> actuatorFunction;
 
         /// <summary>
         /// Attached <see cref="RigidBody"/> to apply forces to.

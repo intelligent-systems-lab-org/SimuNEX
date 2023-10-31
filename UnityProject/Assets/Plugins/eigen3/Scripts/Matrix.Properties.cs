@@ -54,7 +54,7 @@ public partial class Matrix
     /// <summary>
     /// Returns the inverse of the matrix.
     /// </summary>
-    /// <exception cref="InvalidOperationException">Thrown when matrix is 
+    /// <exception cref="InvalidOperationException">Thrown when matrix is
     /// singular or non-square.</exception>
     public Matrix Inverse
     {

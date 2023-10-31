@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX 
+namespace SimuNEX
 {
     /// <summary>
     /// Defines a force that can be applied to a RigidBody.
@@ -12,7 +12,7 @@ namespace SimuNEX
         /// </summary>
         protected RigidBody rigidBody;
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             if (TryGetComponent(out rigidBody))
             {
@@ -24,7 +24,7 @@ namespace SimuNEX
             }
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             rigidBody.RemoveForce(this);
         }

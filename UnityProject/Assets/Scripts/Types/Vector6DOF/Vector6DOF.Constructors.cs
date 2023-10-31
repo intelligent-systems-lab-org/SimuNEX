@@ -68,6 +68,7 @@ namespace SimuNEX
             {
                 throw new ArgumentException("Number of elements must be 6.");
             }
+
             linear = new Vector3(v[0], v[1], v[2]);
             angular = new Vector3(v[3], v[4], v[5]);
         }
@@ -75,7 +76,7 @@ namespace SimuNEX
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector6DOF"/> class from a 6-element matrix.
         /// </summary>
-        /// <param name="v">A 6-element matrix.</param>
+        /// <param name="m"></param>
         public Vector6DOF(Matrix m)
         {
             Vector6DOF v = m;
@@ -90,11 +91,12 @@ namespace SimuNEX
         /// <exception cref="ArgumentException">Thrown if the enumerable does not have exactly 6 elements.</exception>
         public Vector6DOF(IEnumerable<float> values)
         {
-            var enumerable = values.ToArray();
+            float[] enumerable = values.ToArray();
             if (enumerable.Length != 6)
             {
                 throw new ArgumentException("The enumerable must contain exactly 6 elements.");
             }
+
             linear = new Vector3(enumerable[0], enumerable[1], enumerable[2]);
             angular = new Vector3(enumerable[3], enumerable[4], enumerable[5]);
         }

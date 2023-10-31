@@ -2,7 +2,7 @@ using System;
 using static SimuNEX.StateSpaceTypes;
 using UnityEngine;
 
-namespace SimuNEX 
+namespace SimuNEX
 {
     /// <summary>
     /// Interface for implementing motors.
@@ -42,7 +42,7 @@ namespace SimuNEX
         /// <summary>
         /// The motor damping coefficient in N.m.s/rad.
         /// </summary>
-        public float armatureDamping = 0;
+        public float armatureDamping;
 
         /// <summary>
         /// The stepper method for position prediction.
@@ -62,27 +62,29 @@ namespace SimuNEX
         /// <returns>The output angular velocity.</returns>
         public abstract float MotorFunction(Func<float[]> inputs, Func<float[]> parameters);
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             if (TryGetComponent(out motorLoad))
             {
                 motorLoad.rigidBody = rigidBody;
             }
+
             integrator = new(() => 1, stepperMethod: positionStepper);
             Initialize();
         }
 
-        private void Awake()
+        protected void Awake()
         {
             if (TryGetComponent(out motorLoad))
             {
                 motorLoad.rigidBody = rigidBody;
             }
+
             integrator = new(() => 1, stepperMethod: positionStepper);
             Initialize();
         }
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             if (motorLoad != null)
             {
@@ -90,7 +92,7 @@ namespace SimuNEX
             }
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             if (motorLoad != null)
             {
@@ -101,38 +103,43 @@ namespace SimuNEX
         /// <summary>
         /// Obtains the total inertia given an attached <see cref="MotorLoad"/>.
         /// </summary>
-        public float totalInertia 
-            => (motorLoad != null)? armatureInertia + motorLoad.loadInertia : armatureInertia;
+        public float totalInertia =>
+            (motorLoad != null) ? armatureInertia + motorLoad.loadInertia : armatureInertia;
 
         /// <summary>
         /// Obtains the total damping given an attached <see cref="MotorLoad"/>.
         /// </summary>
-        public float totalDamping => 
-            (motorLoad != null)? armatureDamping + motorLoad.loadDamping : armatureDamping;
+        public float totalDamping =>
+            (motorLoad != null) ? armatureDamping + motorLoad.loadDamping : armatureDamping;
 
         /// <summary>
         /// The output of the motor given constraints.
         /// </summary>
         public float motorOutput
         {
-            get {
+            get
+            {
                 float speed = MotorFunction(inputs, parameters);
-                
+
                 integrator.input = speed;
                 integrator.Compute();
 
                 float futurePosition = integrator.output;
 
-                if (futurePosition > maxPosition 
-                    || futurePosition < minPosition)
+                if (futurePosition > maxPosition || futurePosition < minPosition)
                 {
-                    motorLoad.normalizedAngle = Mathf.Clamp(futurePosition, minPosition, maxPosition);
+                    motorLoad.normalizedAngle = Mathf.Clamp(
+                        futurePosition,
+                        minPosition,
+                        maxPosition
+                    );
                     speed = 0;
                 }
                 else
                 {
                     speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
                 }
+
                 return speed;
             }
         }

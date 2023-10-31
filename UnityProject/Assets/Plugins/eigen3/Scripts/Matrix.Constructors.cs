@@ -25,10 +25,10 @@ public partial class Matrix : IDisposable
     /// </summary>
     /// <param name="rows">Number of rows.</param>
     /// <param name="cols">Number of columns.</param>
-    /// <param name="data">Input array. 
+    /// <param name="data">Input array.
     /// If not given, creates a zero matrix by the specified size.</param>
     /// <param name="rowMajor">Assume order in row-major if true. Column-major by default.</param>
-    /// <exception cref="ArgumentException">If rows or cols is zero, 
+    /// <exception cref="ArgumentException">If rows or cols is zero,
     /// or the length of the data array is not equal to rows * cols.</exception>
     public Matrix(int rows, int cols, float[] data = null, bool rowMajor = false)
     {
@@ -69,7 +69,7 @@ public partial class Matrix : IDisposable
             for (int j = 0; j < cols; j++)
             {
                 // Flatten in column-major order
-                flatData[j * rows + i] = data[i, j];
+                flatData[(j * rows) + i] = data[i, j];
             }
         }
         _matrixPtr = Eigen3.CreateMatrix(rows, cols, flatData);

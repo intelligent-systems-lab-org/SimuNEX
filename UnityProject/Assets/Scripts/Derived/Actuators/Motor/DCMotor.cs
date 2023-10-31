@@ -1,6 +1,5 @@
 using System;
 using static SimuNEX.StateSpaceTypes;
-using UnityEngine;
 
 namespace SimuNEX
 {
@@ -17,7 +16,7 @@ namespace SimuNEX
         /// <summary>
         /// The input voltage.
         /// </summary>
-        public float voltage = 0;
+        public float voltage;
 
         /// <summary>
         /// Armature resistance in ohms.
@@ -25,7 +24,7 @@ namespace SimuNEX
         public float armatureResistance = 20f;
 
         /// <summary>
-        /// The constant representing the relationship between the back electromotive force (EMF) 
+        /// The constant representing the relationship between the back electromotive force (EMF)
         /// and the armature speed in V.s/rads.
         /// </summary>
         public float backEMFConstant = 1f;
@@ -58,12 +57,12 @@ namespace SimuNEX
             float timeConstant()
             {
                 float[] param = parameters();
-                return param[3] * 1 / (param[4] + (param[1] * param[2] / param[0])); 
+                return param[3] * 1 / (param[4] + (param[1] * param[2] / param[0]));
             };
-            float DCGain() 
+            float DCGain()
             {
                 float[] param = parameters();
-                return timeConstant() * param[2] / (param[0] * param[3]); 
+                return timeConstant() * param[2] / (param[0] * param[3]);
             };
 
             inputs = () => new float[] { voltage };

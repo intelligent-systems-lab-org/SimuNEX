@@ -8,8 +8,10 @@ namespace SimuNEX
     /// </summary>
     public class Environment : MonoBehaviour
     {
-        // List to keep track of all RigidBodies inside the collider.
-        private List<RigidBody> rigidBodiesWithinBounds = new();
+        /// <summary>
+        /// List to keep track of all RigidBodies inside the collider.
+        /// </summary>
+        private readonly List<RigidBody> rigidBodiesWithinBounds = new();
 
         /// <summary>
         /// Bounding box of the environment.
@@ -21,26 +23,30 @@ namespace SimuNEX
         /// </summary>
         public List<ForceField> forceFields = new();
 
-        private void OnValidate() {
+        protected void OnValidate()
+        {
             Initialize();
         }
 
-        private void Awake() {
+        protected void Awake()
+        {
             Initialize();
         }
 
-        private void Initialize() {
+        private void Initialize()
+        {
             // Get the BoxCollider attached to this GameObject.
-            if(!TryGetComponent(out boxBounds))
+            if (!TryGetComponent(out boxBounds))
             {
                 Debug.LogError("No BoxCollider found on the GameObject. Please attach one.");
                 return;
             }
+
             boxBounds.isTrigger = true;
             forceFields = new List<ForceField>(GetComponents<ForceField>());
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected void OnTriggerEnter(Collider other)
         {
             Transform parentTransform = other.transform;
 
@@ -66,7 +72,7 @@ namespace SimuNEX
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        protected void OnTriggerExit(Collider other)
         {
             Transform parentTransform = other.transform;
 
@@ -76,18 +82,17 @@ namespace SimuNEX
                 parentTransform = parentTransform.parent;
             }
 
-            if (parentTransform != null)
+            if (parentTransform == null || !parentTransform.TryGetComponent(out RigidBody rb))
             {
-                if (parentTransform.TryGetComponent<RigidBody>(out var rb))
-                {
-                    rigidBodiesWithinBounds.Remove(rb);
+                return;
+            }
 
-                    // Remove all the force fields when a RigidBody exits the environment
-                    foreach (ForceField forceField in forceFields)
-                    {
-                        forceField.Remove(rb);
-                    }
-                }
+            _ = rigidBodiesWithinBounds.Remove(rb);
+
+            // Remove all the force fields when a RigidBody exits the environment
+            foreach (ForceField forceField in forceFields)
+            {
+                forceField.Remove(rb);
             }
         }
 

@@ -11,12 +11,12 @@ namespace SimuNEX
         /// <summary>
         /// Enable position as a sensor reading.
         /// </summary>
-        public bool readPosition = false;
+        public bool readPosition;
 
         /// <summary>
         /// Enables torque as a sensor reading.
         /// </summary>
-        public bool readTorque = false;
+        public bool readTorque;
 
         /// <summary>
         /// <see cref="Motor"/> object to read speed values.
@@ -43,7 +43,7 @@ namespace SimuNEX
                 {
                     // states[0] is position, states[1] is speed
                     // Derivative of position is speed, input is acceleration
-                    return new Matrix(2, 1, new float[]{ states[1, 0], inputs[0, 0] });
+                    return new Matrix(2, 1, new float[] { states[1, 0], inputs[0, 0] });
                 };
 
                 outputs = () =>
@@ -51,7 +51,7 @@ namespace SimuNEX
                     if (motor.inputs != null)
                     {
                         float speed = motor.MotorFunction(motor.inputs, motor.parameters);
-                        float acceleration = (speed - stateSpace.states[1, 0]) / Time.deltaTime; 
+                        float acceleration = (speed - stateSpace.states[1, 0]) / Time.deltaTime;
 
                         stateSpace.inputs[0, 0] = acceleration;
                         stateSpace.Compute();
@@ -59,7 +59,7 @@ namespace SimuNEX
                         float integratedPosition = stateSpace.states[0, 0] % 2 * MathF.PI;
 
                         // Compute torque using provided relationship
-                        float torque = motor.totalInertia * acceleration + motor.totalDamping * speed;
+                        float torque = (motor.totalInertia * acceleration) + (motor.totalDamping * speed);
 
                         if (readPosition && readTorque)
                         {
@@ -69,33 +69,28 @@ namespace SimuNEX
                         {
                             return new float[] { speed, torque };
                         }
-                        else if (readPosition && !readTorque) {
+                        else if (readPosition && !readTorque)
+                        {
                             return new float[] { speed, integratedPosition };
                         }
                     }
-                        return (readPosition && readTorque)? new float[3] : new float[2];
+
+                    return (readPosition && readTorque) ? new float[3] : new float[2];
                 };
             }
             else
             {
-                outputs = () =>
-                {
-                    if (motor.inputs != null)
-                    {
-                        return new float[] { motor.MotorFunction(motor.inputs, motor.parameters) };
-                    }
-                    return new float[1];
-                };
+                outputs = () => motor.inputs != null ? (new float[] { motor.MotorFunction(motor.inputs, motor.parameters) }) : (new float[1]);
             }
-            
+
         }
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             Initialize();
         }
 
-        private void Awake()
+        protected void Awake()
         {
             Initialize();
         }

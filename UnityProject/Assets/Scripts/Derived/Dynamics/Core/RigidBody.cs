@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SimuNEX 
+namespace SimuNEX
 {
     [RequireComponent(typeof(Rigidbody))]
     public class RigidBody : Dynamics
@@ -51,7 +51,7 @@ namespace SimuNEX
         [SerializeField]
         protected float _power;
 
-        private void Start()
+        protected void Start()
         {
             Initialize();
         }
@@ -61,10 +61,10 @@ namespace SimuNEX
         /// </summary>
         protected override void Initialize()
         {
-            _forces = Vector6DOF.zero; 
+            _forces = Vector6DOF.zero;
         }
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             body = GetComponent<Rigidbody>();
             body.useGravity = false;
@@ -75,12 +75,14 @@ namespace SimuNEX
         public float mass
         {
             get => body.mass;
+
             protected set
             {
                 if (value < 0)
                 {
                     throw new ArgumentException();
                 }
+
                 body.mass = mass;
             }
         }
@@ -139,7 +141,7 @@ namespace SimuNEX
             _potentialEnergy = potentialEnergy;
             _power = power;
 
-            if (forces != null && forces.Count > 0)
+            if (forces?.Count > 0)
             {
                 foreach (Force force in forces)
                 {
@@ -157,7 +159,7 @@ namespace SimuNEX
         /// <summary>
         /// Updates the physics engine given the current values.
         /// </summary>
-        protected virtual void UpdatePhysics() 
+        protected virtual void UpdatePhysics()
         {
             body.AddForce(_forces.linear);
             body.AddTorque(_forces.angular);
@@ -184,22 +186,23 @@ namespace SimuNEX
         /// <returns>The value of the kinetic energy.</returns>
         public virtual float kineticEnergy
         {
-            get 
+            get
             {
                 float linearKE = 0.5f * mass * _velocity.linear.sqrMagnitude;
 
-                float rotationalKE = 0.5f * (
-                    body.inertiaTensor.x * _velocity.angular.x * _velocity.angular.x +
-                    body.inertiaTensor.y * _velocity.angular.y * _velocity.angular.y +
-                    body.inertiaTensor.z * _velocity.angular.z * _velocity.angular.z
-                );
+                float rotationalKE = 0.5f
+                    * (
+                        (body.inertiaTensor.x * _velocity.angular.x * _velocity.angular.x) +
+                            (body.inertiaTensor.y * _velocity.angular.y * _velocity.angular.y) +
+                            (body.inertiaTensor.z * _velocity.angular.z * _velocity.angular.z)
+                        );
 
                 return linearKE + rotationalKE;
             }
         }
 
         /// <summary>
-        /// Updates the potential energy property of the <see cref="RigidBody"/>. 
+        /// Updates the potential energy property of the <see cref="RigidBody"/>.
         /// Returns 0 if gravity or spring forces are absent.
         /// </summary>
         /// <returns>The value of the potential energy.</returns>
@@ -207,13 +210,13 @@ namespace SimuNEX
         {
             get
             {
-                if (TryGetComponent<SimpleGravity>(out var simpleGravity) && simpleGravity.enabled)
+                if (TryGetComponent<SimpleGravity>(out SimpleGravity simpleGravity) && simpleGravity.enabled)
                 {
                     return simpleGravity.weight * transform.position.y;
                 }
                 else
                 {
-                    return 0; 
+                    return 0;
                 }
             }
         }
@@ -222,7 +225,7 @@ namespace SimuNEX
         /// Average power of the <see cref="RigidBody"/>.
         /// </summary>
         public float power
-            => Vector3.Dot(appliedForce.linear, _velocity.linear) + 
-            Vector3.Dot(appliedForce.angular, _velocity.angular);
+            => Vector3.Dot(appliedForce.linear, _velocity.linear) +
+                Vector3.Dot(appliedForce.angular, _velocity.angular);
     }
 }

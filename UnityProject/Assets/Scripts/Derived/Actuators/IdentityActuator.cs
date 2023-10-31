@@ -8,7 +8,7 @@ namespace SimuNEX
         /// <summary>
         /// The input value.
         /// </summary>
-        public float input = 0;
+        public float input;
 
         /// <summary>
         /// <see cref="Load"/> object that is attached to the actuator.
@@ -17,12 +17,12 @@ namespace SimuNEX
 
         public override void SetInput(float[] value) => input = value[0];
 
-        private void OnValidate()
+        protected void OnValidate()
         {
             Initialize();
         }
 
-        private void Awake()
+        protected void Awake()
         {
             Initialize();
         }
@@ -37,7 +37,7 @@ namespace SimuNEX
             inputs = () => new float[1] { input };
         }
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             if (load != null)
             {
@@ -45,7 +45,7 @@ namespace SimuNEX
             }
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             if (load != null)
             {

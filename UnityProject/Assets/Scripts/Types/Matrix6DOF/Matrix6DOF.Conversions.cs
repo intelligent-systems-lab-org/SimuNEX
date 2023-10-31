@@ -34,7 +34,7 @@ namespace SimuNEX
         public static implicit operator Matrix6DOF(string matrixString)
         {
             Matrix6DOF matrix = new();
-            var rows = matrixString.Trim('[', ']').Split(';');
+            string[] rows = matrixString.Trim('[', ']').Split(';');
             if (rows.Length != 6)
             {
                 throw new ArgumentException("Invalid matrix string. Expected 6 rows.");
@@ -42,15 +42,16 @@ namespace SimuNEX
 
             for (int i = 0; i < 6; i++)
             {
-                var values = rows[i].Trim().Split(' ');
+                string[] values = rows[i].Trim().Split(' ');
                 if (values.Length != 6)
                 {
                     throw new ArgumentException("Invalid matrix string. Expected 6 columns in each row.");
                 }
 
-                var rowValues = values.Select(float.Parse).ToArray();
+                float[] rowValues = values.Select(float.Parse).ToArray();
                 matrix.SetRow(i, rowValues);
             }
+
             return matrix;
         }
     }

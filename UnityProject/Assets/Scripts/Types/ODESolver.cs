@@ -19,6 +19,7 @@ namespace SimuNEX
         public float stepSize
         {
             get { return h; }
+
             set
             {
                 if (value <= 0)
@@ -73,7 +74,7 @@ namespace SimuNEX
             public override void Step(StateSpace ss)
             {
                 Matrix k1 = ss.Derivatives(ss.states, ss.inputs);
-                Matrix k2 = ss.Derivatives(ss.states + h * k1, ss.inputs);
+                Matrix k2 = ss.Derivatives(ss.states + (h * k1), ss.inputs);
                 ss.states += (h / 2f) * (k1 + k2);
             }
         }
@@ -86,10 +87,10 @@ namespace SimuNEX
             public override void Step(StateSpace ss)
             {
                 Matrix k1 = h * ss.Derivatives(ss.states, ss.inputs);
-                Matrix k2 = h * ss.Derivatives(ss.states + 0.5f * k1, ss.inputs);
-                Matrix k3 = h * ss.Derivatives(ss.states + 0.5f * k2, ss.inputs);
+                Matrix k2 = h * ss.Derivatives(ss.states + (0.5f * k1), ss.inputs);
+                Matrix k3 = h * ss.Derivatives(ss.states + (0.5f * k2), ss.inputs);
                 Matrix k4 = h * ss.Derivatives(ss.states + k3, ss.inputs);
-                ss.states += (1f / 6f) * (k1 + 2f * k2 + 2f * k3 + k4);
+                ss.states += (1f / 6f) * (k1 + (2f * k2) + (2f * k3) + k4);
             }
         }
     }
@@ -99,6 +100,8 @@ namespace SimuNEX
     /// </summary>
     public enum StepperMethod
     {
-        Euler, Heun, RK4
+        Euler,
+        Heun,
+        RK4
     }
 }

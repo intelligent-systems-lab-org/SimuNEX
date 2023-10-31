@@ -18,5 +18,5 @@ namespace SimuNEX
         /// Obtains the inverse of the matrix.
         /// </summary>
         public Matrix6DOF inverse => new(_matrix.Inverse);
-    }    
+    }
 }

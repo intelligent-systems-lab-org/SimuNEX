@@ -13,7 +13,7 @@ public class Matrix6DOFDrawer : PropertyDrawer
 
         EditorGUI.BeginChangeCheck();
 
-        isExpanded = EditorGUI.Foldout(new Rect(position.x, position.y, position.width, 
+        isExpanded = EditorGUI.Foldout(new Rect(position.x, position.y, position.width,
             EditorGUIUtility.singleLineHeight), isExpanded, label);
 
         if (isExpanded)
@@ -26,8 +26,8 @@ public class Matrix6DOFDrawer : PropertyDrawer
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    Rect cellPosition = new(position.x + j * cellWidth, 
-                        position.y + (i + 1) * cellHeight, cellWidth, cellHeight);
+                    Rect cellPosition = new(position.x + (j * cellWidth),
+                        position.y + ((i + 1) * cellHeight), cellWidth, cellHeight);
                     matrix[i, j] = EditorGUI.FloatField(cellPosition, matrix[i, j]);
                 }
             }

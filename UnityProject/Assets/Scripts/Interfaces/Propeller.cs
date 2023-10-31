@@ -8,7 +8,7 @@ namespace SimuNEX
     /// </summary>
     public abstract class Propeller : MotorLoad
     {
-        private void Update()
+        protected void Update()
         {
             // Scale Time.deltaTime based on _speed
             float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
@@ -50,7 +50,7 @@ namespace SimuNEX
         protected float[] outputs = new float[2];
 
         /// <summary>
-        /// The propeller function (PF) that computes output values based on the provided inputs 
+        /// The propeller function (PF) that computes output values based on the provided inputs
         /// (e.g. propeller speed and other parameters).
         /// </summary>
         /// <param name="speed">Current propeller speed.</param>
@@ -60,7 +60,7 @@ namespace SimuNEX
 
         public override void ApplyForce()
         {
-            var _normal = normal();
+            Vector3 _normal = normal();
             outputs = PropellerFunction(propellerSpeed, parameters);
             rigidBody.AddLinearForceAtPosition(_normal * outputs[0], positionCallback());
             rigidBody.AddTorque(_normal * outputs[1]);

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SimuNEX 
+namespace SimuNEX
 {
     /// <summary>
     /// Interface for implementing fin-like/control surface systems.
@@ -13,7 +13,7 @@ namespace SimuNEX
         /// </summary>
         public Direction flowDirection;
 
-        private void Update()
+        protected void Update()
         {
             // Scale Time.deltaTime based on _speed
             float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
@@ -69,8 +69,8 @@ namespace SimuNEX
 
         public override void ApplyForce()
         {
-            var _ = motorOutput();
-            var _normal = normal();
+            float _ = motorOutput();
+            Vector3 _normal = normal();
             outputs = FinFunction(finAngle, parameters);
 
             // Determine the force direction based on the flow direction, transformed to the body frame

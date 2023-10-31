@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX 
+namespace SimuNEX
 {
     /// <summary>
     /// Interface for communication protocols (eg., TCP/IP, UDP, RTPS, MQTT, Simplex, etc).
@@ -12,7 +12,7 @@ namespace SimuNEX
         /// </summary>
         public abstract void Initialize();
 
-        private void Awake()
+        protected void Awake()
         {
             Initialize();
         }
