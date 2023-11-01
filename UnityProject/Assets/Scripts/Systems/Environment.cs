@@ -43,6 +43,9 @@ namespace SimuNEX
             Initialize();
         }
 
+        /// <summary>
+        /// Initializes bounding box and <see cref="ForceField"/> objects.
+        /// </summary>
         private void Initialize()
         {
             InitializeBoundingBox();
