@@ -28,8 +28,8 @@
    inkscape:deskcolor="#d1d1d1"
    showgrid="false"
    inkscape:zoom="1.00125"
-   inkscape:cx="399.50064"
-   inkscape:cy="400.00001"
+   inkscape:cx="399.50062"
+   inkscape:cy="400.99875"
    inkscape:window-width="1920"
    inkscape:window-height="991"
    inkscape:window-x="-9"
@@ -46,11 +46,11 @@
 <g
    id="g6"
    transform="matrix(1,0,0,1.181165,0,-46.378019)"
-   style="fill:#008000">
+   style="fill:#ff6600">
 	<path
    class="st0"
    d="M 459.813,280.313 C 443.922,153.172 532.954,17.25 410.891,42.266 140.234,97.688 35.875,365.126 0,472.735 h 512 c 0,0 -35.875,-61.968 -52.187,-192.422 z"
    id="path4"
-   style="fill:#008000" />
+   style="fill:#ff6600" />
 </g>
 </svg>
