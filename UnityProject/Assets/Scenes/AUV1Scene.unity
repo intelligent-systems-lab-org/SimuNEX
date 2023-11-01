@@ -1398,6 +1398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AUV
       objectReference: {fileID: 0}
+    - target: {fileID: 8378987297206801634, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: inputs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

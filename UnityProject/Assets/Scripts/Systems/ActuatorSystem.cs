@@ -103,6 +103,11 @@ namespace SimuNEX
         public Func<float[]> inputs;
 
         /// <summary>
+        /// Names of input values.
+        /// </summary>
+        public string[] inputNames;
+
+        /// <summary>
         /// Parameters specific to the actuator.
         /// </summary>
         public Func<float[]> parameters;

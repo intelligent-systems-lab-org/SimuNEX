@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
+  inputNames:
+  - Stern Plane Fin Motor Voltage
   motorLoad: {fileID: 1774299028294793820}
   speedLimits:
     max: Infinity
@@ -150,6 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
+  inputNames:
+  - Propeller Motor Voltage
   motorLoad: {fileID: 7070348159328965532}
   speedLimits:
     max: Infinity
@@ -228,7 +232,7 @@ GameObject:
   - component: {fileID: 1170835664730685151}
   - component: {fileID: 5601625684026374144}
   - component: {fileID: 7524597411484692782}
-  - component: {fileID: 8255319234837448892}
+  - component: {fileID: 8378987297206801634}
   m_Layer: 0
   m_Name: AUV
   m_TagString: Untagged
@@ -431,7 +435,7 @@ MonoBehaviour:
   sensors:
   - {fileID: 5452912407559438521}
   outputs: []
---- !u!114 &8255319234837448892
+--- !u!114 &8378987297206801634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -872,6 +876,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
+  inputNames:
+  - Rudder Fin Motor Voltage
   motorLoad: {fileID: 129176138644301223}
   speedLimits:
     max: Infinity
