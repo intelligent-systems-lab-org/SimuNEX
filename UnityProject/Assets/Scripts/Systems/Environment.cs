@@ -9,6 +9,16 @@ namespace SimuNEX
     public class Environment : MonoBehaviour
     {
         /// <summary>
+        /// Center of bounding box.
+        /// </summary>
+        public Vector3 center = Vector3.zero;
+
+        /// <summary>
+        /// Bounding box size.
+        /// </summary>
+        public Vector3 boxSize = Vector3.one;
+
+        /// <summary>
         /// List to keep track of all RigidBodies inside the collider.
         /// </summary>
         private readonly List<RigidBody> rigidBodiesWithinBounds = new();
@@ -35,15 +45,39 @@ namespace SimuNEX
 
         private void Initialize()
         {
-            // Get the BoxCollider attached to this GameObject.
-            if (!TryGetComponent(out boxBounds))
+            InitializeBoundingBox();
+            forceFields = new List<ForceField>(GetComponents<ForceField>());
+        }
+
+        /// <summary>
+        /// Sets up the bounding box.
+        /// </summary>
+        private void InitializeBoundingBox()
+        {
+            BoxCollider[] colliders = GetComponents<BoxCollider>();
+
+            // Destroy all BoxColliders except one
+            for (int i = 1; i < colliders.Length; i++)
             {
-                Debug.LogError("No BoxCollider found on the GameObject. Please attach one.");
-                return;
+                Destroy(colliders[i]);
             }
 
+            // If no BoxCollider is found or only one exists, handle it
+            if (colliders.Length == 0)
+            {
+                // No BoxCollider found, attach one
+                boxBounds = gameObject.AddComponent<BoxCollider>();
+            }
+            else
+            {
+                // One BoxCollider found, use it
+                boxBounds = colliders[0];
+            }
+
+            // Overwrite the properties of the BoxCollider
+            boxBounds.center = center;
+            boxBounds.size = boxSize;
             boxBounds.isTrigger = true;
-            forceFields = new List<ForceField>(GetComponents<ForceField>());
         }
 
         protected void OnTriggerEnter(Collider other)

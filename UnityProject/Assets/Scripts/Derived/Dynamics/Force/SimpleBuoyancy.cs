@@ -31,28 +31,37 @@ namespace SimuNEX
 
         protected void OnValidate()
         {
-            simpleGravity = GetComponent<SimpleGravity>();
-            FindCOB();
+            Initialize();
         }
 
         protected void Awake()
         {
-            simpleGravity = GetComponent<SimpleGravity>();
+            Initialize();
+        }
+
+        protected void Initialize()
+        {
+            if (!TryGetComponent(out simpleGravity))
+            {
+                simpleGravity = gameObject.AddComponent<SimpleGravity>();
+            }
+
             FindCOB();
         }
 
         /// <summary>
         /// Attempts to find a child with the name "COB" and assigns it as the COB.
         /// </summary>
-        private void FindCOB() {
-            if(centerOfBuoyancy == null)
+        private void FindCOB()
+        {
+            if (centerOfBuoyancy == null)
+            {
+                Transform potentialCOB = transform.Find("COB");
+                if (potentialCOB != null)
                 {
-                    Transform potentialCOB = transform.Find("COB");
-                    if (potentialCOB != null)
-                    {
-                        centerOfBuoyancy = potentialCOB;
-                    }
+                    centerOfBuoyancy = potentialCOB;
                 }
+            }
         }
 
         /// <summary>
@@ -61,14 +70,15 @@ namespace SimuNEX
         /// </summary>
         public override void ApplyForce()
         {
-            if (rigidBody is RigidBodyF rbf) {
+            if (rigidBody is RigidBodyF rbf)
+            {
                 buoyantForce = fluidDensity * simpleGravity.acceleration * rbf._volume * rbf._displacedVolumeFactor;
                 rigidBody.AddLinearForceAtPosition(Vector3.up * buoyantForce, centerOfBuoyancy.position);
             }
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 
     [CustomEditor(typeof(SimpleBuoyancy))]
     public class SimpleBuoyancyEditor : Editor
@@ -85,13 +95,15 @@ namespace SimuNEX
 
             if (buoyancy.gameObject.GetComponent<RigidBodyF>() == null)
             {
-                EditorGUILayout.HelpBox("SimpleBuoyancy should be attached to a GameObject with a RigidBodyF component.", MessageType.Warning);
+                EditorGUILayout.HelpBox(
+                    "SimpleBuoyancy should be attached to a GameObject with a RigidBodyF component.",
+                    MessageType.Warning);
                 return;
             }
 
-            DrawDefaultInspector();
+            _ = DrawDefaultInspector();
         }
     }
 
-    #endif
+#endif
 }

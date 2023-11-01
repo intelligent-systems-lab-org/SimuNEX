@@ -160,6 +160,9 @@ dotnet_diagnostic.UNT0014.severity = error
 dotnet_diagnostic.UNT0016.severity = error
 dotnet_diagnostic.UNT0015.severity = error
 
+# RCS1010: Use var instead of explicit type.
+dotnet_diagnostic.RCS1010.severity = none
+
 # RCS1060: Declare each type in separate file.
 dotnet_diagnostic.RCS1060.severity = none
 
@@ -240,3 +243,6 @@ dotnet_diagnostic.RCS1031.severity = none
 
 # RCS1161: Enum should declare explicit values.
 dotnet_diagnostic.RCS1161.severity = none
+
+# RCS1128: Prefer coalesce expression.
+dotnet_diagnostic.RCS1128.severity = none

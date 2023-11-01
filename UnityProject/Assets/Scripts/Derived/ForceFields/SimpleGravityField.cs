@@ -23,7 +23,7 @@ namespace SimuNEX
         public override void Remove(RigidBody rigidBody)
         {
             // Try to find a SimpleGravity component attached to the Rigidbody's GameObject
-            if (!rigidBody.gameObject.TryGetComponent<SimpleGravity>(out SimpleGravity existingGravity))
+            if (!rigidBody.gameObject.TryGetComponent(out SimpleGravity existingGravity))
             {
                 return;
             }

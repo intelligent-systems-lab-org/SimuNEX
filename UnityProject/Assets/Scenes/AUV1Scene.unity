@@ -961,7 +961,6 @@ GameObject:
   - component: {fileID: 1528627657}
   - component: {fileID: 1528627658}
   - component: {fileID: 1528627659}
-  - component: {fileID: 1528627660}
   - component: {fileID: 1528627661}
   m_Layer: 0
   m_Name: Environment
@@ -1018,22 +1017,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da73876a9ba014f4e85b73eca28bc5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  center: {x: 0, y: 0, z: 0}
+  boxSize: {x: 10, y: 10, z: 10}
   forceFields:
-  - {fileID: 1528627660}
+  - {fileID: 0}
   - {fileID: 1528627661}
---- !u!114 &1528627660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528627656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dace2a182fd63e48bfc7c1a672e2808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 9.81
 --- !u!114 &1528627661
 MonoBehaviour:
   m_ObjectHideFlags: 0

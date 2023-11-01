@@ -1,12 +1,9 @@
-using UnityEngine;
-
 namespace SimuNEX
 {
     /// <summary>
     /// Applies a constant buoyant force to all <see cref="RigidBody"/> objects within the field.
     /// Functions on <see cref="RigidBodyF"/> objects only.
     /// </summary>
-    [RequireComponent(typeof(SimpleGravityField))]
     public class SimpleBuoyancyField : ForceField
     {
         /// <summary>
@@ -30,7 +27,7 @@ namespace SimuNEX
         public override void Remove(RigidBody rigidBody)
         {
             // Try to find a SimpleBouyancy component attached to the Rigidbody's GameObject
-            if (!rigidBody.gameObject.TryGetComponent<SimpleBuoyancy>(out SimpleBuoyancy existingBuoyancy))
+            if (!rigidBody.gameObject.TryGetComponent(out SimpleBuoyancy existingBuoyancy))
             {
                 return;
             }
