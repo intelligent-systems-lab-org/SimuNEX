@@ -66,24 +66,27 @@ namespace SimuNEX
 
         protected void OnValidate()
         {
-            if (TryGetComponent(out motorLoad))
-            {
-                motorLoad.rigidBody = rigidBody;
-            }
-
-            integrator = new(stepperMethod: positionStepper);
+            InitializeBase();
             Initialize();
         }
 
         protected void Awake()
+        {
+            InitializeBase();
+            Initialize();
+        }
+
+        /// <summary>
+        /// Locates <see cref="RigidBody"/> and initializes <see cref="integrator"/>.
+        /// </summary>
+        protected void InitializeBase()
         {
             if (TryGetComponent(out motorLoad))
             {
                 motorLoad.rigidBody = rigidBody;
             }
 
-            integrator = new(() => 1, stepperMethod: positionStepper);
-            Initialize();
+            integrator = new(stepperMethod: positionStepper);
         }
 
         protected void OnEnable()

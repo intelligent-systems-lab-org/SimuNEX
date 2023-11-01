@@ -1398,26 +1398,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AUV
       objectReference: {fileID: 0}
-    - target: {fileID: 1848095677856972004, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: positionLimits.max
-      value: 0.2373648
-      objectReference: {fileID: 0}
-    - target: {fileID: 1848095677856972004, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: positionLimits.min
-      value: -0.2373648
-      objectReference: {fileID: 0}
-    - target: {fileID: 5112610935768309211, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: positionLimits.max
-      value: 0.2373648
-      objectReference: {fileID: 0}
-    - target: {fileID: 5112610935768309211, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: positionLimits.min
-      value: -0.2373648
-      objectReference: {fileID: 0}
-    - target: {fileID: 8255319234837448892, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: inputs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
