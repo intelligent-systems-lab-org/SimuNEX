@@ -40,7 +40,7 @@ namespace SimuNEX
                     stepper: CreateStepper(stepperMethod));
 
                 // The derivative function for an integrator
-                DerivativeFcn = (_, inputs) => gain() * inputs;
+                DerivativeFcn = (states, inputs) => Gain() * inputs;
             }
 
             /// <summary>
