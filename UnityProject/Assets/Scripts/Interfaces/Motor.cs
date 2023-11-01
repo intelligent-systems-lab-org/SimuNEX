@@ -71,7 +71,7 @@ namespace SimuNEX
                 motorLoad.rigidBody = rigidBody;
             }
 
-            integrator = new(() => 1, stepperMethod: positionStepper);
+            integrator = new(stepperMethod: positionStepper);
             Initialize();
         }
 

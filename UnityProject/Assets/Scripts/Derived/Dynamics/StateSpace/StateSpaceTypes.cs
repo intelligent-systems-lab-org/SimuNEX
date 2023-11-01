@@ -25,12 +25,12 @@ namespace SimuNEX
             /// <param name="stepperMethod">The stepper method of choice.</param>
             public Integrator
             (
-                Func<float> gain,
+                Func<float> gain = null,
                 float initialState = 0,
                 StepperMethod stepperMethod = StepperMethod.Euler
             )
             {
-                Gain = gain;
+                Gain = gain ?? (() => 1);
 
                 // Initialize with 1 state (output) and 1 input
                 Initialize(
@@ -40,7 +40,7 @@ namespace SimuNEX
                     stepper: CreateStepper(stepperMethod));
 
                 // The derivative function for an integrator
-                DerivativeFcn = (states, inputs) => gain() * inputs;
+                DerivativeFcn = (_, inputs) => gain() * inputs;
             }
 
             /// <summary>
@@ -99,6 +99,7 @@ namespace SimuNEX
                     1,
                     new Matrix(1, 1, new float[] { initialState }),
                     stepper: CreateStepper(stepperMethod));
+
                 // The derivative function for a 1st-order TF
                 DerivativeFcn = (states, inputs) => (1 / TimeConstant()) * ((DCGain() * inputs) - states);
             }
@@ -193,10 +194,8 @@ namespace SimuNEX
                     {
                         return C() * _states;
                     }
-                    else
-                    {
-                        return (C() * _states) + (D() * _inputs);
-                    }
+
+                    return (C() * _states) + (D() * _inputs);
                 }
             }
         }
