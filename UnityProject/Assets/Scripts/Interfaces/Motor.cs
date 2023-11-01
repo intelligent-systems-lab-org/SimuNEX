@@ -4,6 +4,14 @@ using UnityEngine;
 
 namespace SimuNEX
 {
+    [Serializable]
+    public struct Limits
+    {
+        public float max;
+        public float min;
+    }
+
+
     /// <summary>
     /// Interface for implementing motors.
     /// </summary>
@@ -15,24 +23,14 @@ namespace SimuNEX
         public MotorLoad motorLoad;
 
         /// <summary>
-        /// Maximum output value.
+        /// Bounds for speed values.
         /// </summary>
-        public float maxSpeed = Mathf.Infinity;
+        public Limits speedLimits = new Limits { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
 
         /// <summary>
-        /// Minimum output value.
+        /// Bounds for position values.
         /// </summary>
-        public float minSpeed = Mathf.NegativeInfinity;
-
-        /// <summary>
-        /// Maximum angular position in radians.
-        /// </summary>
-        public float maxPosition = Mathf.Infinity;
-
-        /// <summary>
-        /// Minimum angular position in radians.
-        /// </summary>
-        public float minPosition = Mathf.NegativeInfinity;
+        public Limits positionLimits = new Limits { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
 
         /// <summary>
         /// The motor inertia in kg.m^2.
@@ -126,18 +124,18 @@ namespace SimuNEX
 
                 float futurePosition = integrator.output;
 
-                if (futurePosition > maxPosition || futurePosition < minPosition)
+                if (futurePosition > positionLimits.max || futurePosition < positionLimits.min)
                 {
                     motorLoad.normalizedAngle = Mathf.Clamp(
                         futurePosition,
-                        minPosition,
-                        maxPosition
+                        positionLimits.min,
+                        positionLimits.max
                     );
                     speed = 0;
                 }
                 else
                 {
-                    speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+                    speed = Mathf.Clamp(speed, speedLimits.min, speedLimits.max);
                 }
 
                 return speed;
