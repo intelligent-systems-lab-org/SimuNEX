@@ -1,16 +1,20 @@
 using System;
 using static SimuNEX.StateSpaceTypes;
 using UnityEngine;
+using System.Diagnostics;
 
 namespace SimuNEX
 {
+    /// <summary>
+    /// For defining quantities with bounds.
+    /// </summary>
     [Serializable]
+    [DebuggerDisplay("Min = {min}, Max = {max}")]
     public struct Limits
     {
         public float max;
         public float min;
     }
-
 
     /// <summary>
     /// Interface for implementing motors.
@@ -25,12 +29,12 @@ namespace SimuNEX
         /// <summary>
         /// Bounds for speed values.
         /// </summary>
-        public Limits speedLimits = new Limits { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
+        public Limits speedLimits = new() { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
 
         /// <summary>
         /// Bounds for position values.
         /// </summary>
-        public Limits positionLimits = new Limits { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
+        public Limits positionLimits = new() { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
 
         /// <summary>
         /// The motor inertia in kg.m^2.

@@ -48,10 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   motorLoad: {fileID: 1774299028294793820}
-  maxSpeed: Infinity
-  minSpeed: -Infinity
-  maxPosition: 0.2373648
-  minPosition: -0.2373648
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: 0.2373648
+    min: -0.2373648
   armatureInertia: 0.5
   armatureDamping: 0
   positionStepper: 0
@@ -149,10 +151,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   motorLoad: {fileID: 7070348159328965532}
-  maxSpeed: Infinity
-  minSpeed: -Infinity
-  maxPosition: Infinity
-  minPosition: -Infinity
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: Infinity
+    min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
   positionStepper: 0
@@ -869,10 +873,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   motorLoad: {fileID: 129176138644301223}
-  maxSpeed: Infinity
-  minSpeed: -Infinity
-  maxPosition: 0.2373648
-  minPosition: -0.2373648
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: 0.2373648
+    min: -0.2373648
   armatureInertia: 0.5
   armatureDamping: 0
   positionStepper: 0
