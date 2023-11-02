@@ -216,19 +216,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   outputNames:
-  - X Velocity
-  - Z Velocity
-  - Y Velocity
-  - X Angular Velocity
-  - Z Angular Velocity
-  - Y Angular Velocity
-  - Quaternion W Position
-  - Quaternion X Position
-  - Quaternion Z Position
-  - Quaternion Y Position
-  - X Position
-  - Z Position
-  - Z Position
+  - AUV X Velocity
+  - AUV Z Velocity
+  - AUV Y Velocity
+  - AUV X Angular Velocity
+  - AUV Z Angular Velocity
+  - AUV Y Angular Velocity
+  - AUV W Angular Position
+  - AUV X Angular Position
+  - AUV Z Angular Position
+  - AUV Y Angular Position
+  - AUV X Position
+  - AUV Z Position
+  - AUV Y Position
 --- !u!114 &5452912407559438521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1170835664730685151}
   - component: {fileID: 5601625684026374144}
   - component: {fileID: 8378987297206801634}
-  - component: {fileID: 4383320113512983389}
+  - component: {fileID: 5620657284473227432}
   m_Layer: 0
   m_Name: AUV
   m_TagString: Untagged
@@ -467,7 +467,7 @@ MonoBehaviour:
   - {fileID: 5112610935768309211}
   - {fileID: 1848095677856972004}
   inputs: []
---- !u!114 &4383320113512983389
+--- !u!114 &5620657284473227432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
