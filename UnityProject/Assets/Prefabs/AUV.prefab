@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   inputNames:
-  - Stern Plane Fins Motor Voltage
+  - Stern Plane Fins Voltage
   motorLoad: {fileID: 1774299028294793820}
   speedLimits:
     max: Infinity
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   inputNames:
-  - Propeller Motor Voltage
+  - Back Propeller Voltage
   motorLoad: {fileID: 7070348159328965532}
   speedLimits:
     max: Infinity
@@ -952,7 +952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   inputNames:
-  - Rudder Fins Motor Voltage
+  - Rudder Fins Voltage
   motorLoad: {fileID: 129176138644301223}
   speedLimits:
     max: Infinity

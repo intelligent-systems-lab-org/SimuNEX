@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using static SimuNEX.StateSpaceTypes;
 
 namespace SimuNEX
@@ -72,6 +73,15 @@ namespace SimuNEX
 
             inputs = () => new float[] { voltage };
             stateSpace = new FirstOrderTF(timeConstant, DCGain, stepperMethod: speedStepper);
+
+            if (motorLoad != null)
+            {
+                inputNames = new string[] { $"{gameObject.name} {motorLoad.spinnerObject.gameObject.name} Voltage" };
+            }
+            else
+            {
+                inputNames = new string[] { $"{gameObject.name} Motor Voltage" };
+            }
         }
 
         public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)

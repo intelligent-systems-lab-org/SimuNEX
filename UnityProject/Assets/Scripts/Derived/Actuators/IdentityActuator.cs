@@ -36,6 +36,15 @@ namespace SimuNEX
             }
 
             inputs = () => new float[1] { input };
+
+            if (load != null)
+            {
+                inputNames = new string[] { $"{load.gameObject.name} Actuator Input" };
+            }
+            else
+            {
+                inputNames = new string[] { $"{gameObject.name} Actuator Input" };
+            }
         }
 
         protected void OnEnable()

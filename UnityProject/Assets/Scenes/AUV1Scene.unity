@@ -123,31 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &143287780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 461526801234737444, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-  m_PrefabInstance: {fileID: 2786592121914901967}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &143287786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143287780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidBody: {fileID: 2786592121914901969}
-  outputNames:
-  - Stern Plane Fins Speed
-  - Stern Plane Fins Position
-  readPosition: 1
-  readTorque: 0
-  motor: {fileID: 935610907}
-  stepper: 0
 --- !u!1 &185991603
 GameObject:
   m_ObjectHideFlags: 3
@@ -666,7 +641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606830624}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33331347, y: 0.0062563643, z: -0.0022118653, w: 0.9427927}
+  m_LocalRotation: {x: 0.33331347, y: 0.006256278, z: -0.0022118348, w: 0.9427927}
   m_LocalPosition: {x: -0.038133085, y: 4.5, z: -2.873095}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -707,17 +682,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &935610907 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1848095677856972004, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-  m_PrefabInstance: {fileID: 2786592121914901967}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &953826512
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +739,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016774524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33331344, y: 0.0062563377, z: -0.0022118555, w: 0.9427928}
+  m_LocalRotation: {x: 0.33331344, y: 0.006256305, z: -0.002211844, w: 0.9427928}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1434,43 +1398,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: AUV
       objectReference: {fileID: 0}
+    - target: {fileID: 2230904909486435595, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: outputs.Array.size
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8378987297206801634, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: inputs.Array.size
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 8739918863887579963, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: outputs.Array.size
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 8739918863887579963, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: sensors.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6024834219921007462, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 461526801234737444, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 143287786}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
 --- !u!4 &2786592121914901968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 435350545056485185, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
   m_PrefabInstance: {fileID: 2786592121914901967}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2786592121914901969 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1170835664730685151, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-  m_PrefabInstance: {fileID: 2786592121914901967}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 142812d157531b14393dc1b149c56fb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

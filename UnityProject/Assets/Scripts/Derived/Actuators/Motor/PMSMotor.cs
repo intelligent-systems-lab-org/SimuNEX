@@ -106,6 +106,8 @@ namespace SimuNEX
                 },
                 stepperMethod: speedStepper
             );
+
+            SetInputNames();
         }
 
         public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
@@ -116,6 +118,29 @@ namespace SimuNEX
             stateSpace.inputs[1, 0] = inputs()[1];
             stateSpace.Compute();
             return stateSpace.outputs[2, 0];
+        }
+
+        /// <summary>
+        /// Assigns the input names.
+        /// </summary>
+        private void SetInputNames()
+        {
+            if (motorLoad != null)
+            {
+                inputNames = new string[2]
+                {
+                    $"{gameObject.name} {motorLoad.spinnerObject.gameObject.name} Q-Axis Voltage",
+                    $"{gameObject.name} {motorLoad.spinnerObject.gameObject.name} D-Axis Voltage"
+                };
+            }
+            else
+            {
+                inputNames = new string[2]
+                {
+                    $"{gameObject.name} Motor Q-Axis Voltage",
+                    $"{gameObject.name} Motor D-Axis Voltage"
+                };
+            }
         }
     }
 }
