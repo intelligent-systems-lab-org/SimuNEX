@@ -321,12 +321,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5995511627637507719}
+  inputNames:
+  - Back Left Propeller Voltage
   motorLoad: {fileID: 5639305362122881889}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: Infinity
+    min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  stepper: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
@@ -422,12 +429,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5995511627637507719}
+  inputNames:
+  - Front Right Propeller Voltage
   motorLoad: {fileID: 4390935632489885428}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: Infinity
+    min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  stepper: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
@@ -583,7 +597,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4f6052c56cb194ea732f9bebd47ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 5995511627637507719}
+  outputNames:
+  - Quadcopter X Velocity
+  - Quadcopter Z Velocity
+  - Quadcopter Y Velocity
+  - Quadcopter X Angular Velocity
+  - Quadcopter Z Angular Velocity
+  - Quadcopter Y Angular Velocity
+  - Quadcopter W Angular Position
+  - Quadcopter X Angular Position
+  - Quadcopter Z Angular Position
+  - Quadcopter Y Angular Position
+  - Quadcopter X Position
+  - Quadcopter Z Position
+  - Quadcopter Y Position
 --- !u!114 &3011489618110827443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,7 +624,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 5995511627637507719}
+  outputNames:
+  - Back Left Propeller Speed
   readPosition: 0
   readTorque: 0
   motor: {fileID: 3591390733453324182}
@@ -613,7 +643,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 5995511627637507719}
+  outputNames:
+  - Back Right Propeller Speed
   readPosition: 0
   readTorque: 0
   motor: {fileID: 2373451612687255671}
@@ -630,7 +662,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 5995511627637507719}
+  outputNames:
+  - Front Left Propeller Speed
   readPosition: 0
   readTorque: 0
   motor: {fileID: 5290145487412587084}
@@ -647,7 +681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 5995511627637507719}
+  outputNames:
+  - Front Right Propeller Speed
   readPosition: 0
   readTorque: 0
   motor: {fileID: 6776586109098935137}
@@ -754,12 +790,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5995511627637507719}
+  inputNames:
+  - Back Right Propeller Voltage
   motorLoad: {fileID: 779299711875428922}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: Infinity
+    min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  stepper: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
@@ -965,12 +1008,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5995511627637507719}
+  inputNames:
+  - Front Left Propeller Voltage
   motorLoad: {fileID: 6615449208180139306}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: Infinity
+    min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  stepper: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
@@ -1213,6 +1263,7 @@ GameObject:
   - component: {fileID: 3071117602607612381}
   - component: {fileID: 2611228371683169070}
   - component: {fileID: 6500127127408246068}
+  - component: {fileID: 7705978417445785173}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1385,3 +1436,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 9.81
   centerOfGravity: {fileID: 7505561513377841643}
+--- !u!114 &7705978417445785173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensors:
+  - {fileID: 4883061469072057648}
+  - {fileID: 3011489618110827443}
+  - {fileID: 271912348052366067}
+  - {fileID: 9020256483454760767}
+  - {fileID: 4971806525275137639}
+  outputs: []

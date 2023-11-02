@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
-using static SimuNEX.EditorUtilityMethods;
 
 namespace SimuNEX
 {
@@ -14,11 +13,11 @@ namespace SimuNEX
 
             // Parameters foldout
             FieldInfo[] parameterFields = serializedObject.targetObject.GetFieldsWithAttribute<ParameterAttribute>();
-            DrawFoldout(serializedObject, parameterFields, "ParametersExpanded", "Parameters");
+            serializedObject.DrawFoldout(parameterFields, "ParametersExpanded", "Parameters");
 
             // Inputs foldout
             FieldInfo[] inputFields = serializedObject.targetObject.GetFieldsWithAttribute<InputAttribute>();
-            DrawFoldout(serializedObject, inputFields, "InputsExpanded", "Inputs");
+            serializedObject.DrawFoldout(inputFields, "InputsExpanded", "Inputs");
 
             // Other properties
             string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
@@ -38,7 +37,7 @@ namespace SimuNEX
 
             // Parameters foldout
             FieldInfo[] parameterFields = serializedObject.targetObject.GetFieldsWithAttribute<ParameterAttribute>();
-            DrawFoldout(serializedObject, parameterFields, "ParametersExpanded", "Parameters");
+            serializedObject.DrawFoldout(parameterFields, "ParametersExpanded", "Parameters");
 
             // Other properties
             string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();

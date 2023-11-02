@@ -1,31 +1,42 @@
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
 namespace SimuNEX
 {
-    public static class EditorUtilityMethods
+    public static class SerializedObjectExtensions
     {
+        /// <summary>
+        /// Static dictionary to store foldout states.
+        /// </summary>
+        private static readonly Dictionary<string, bool> foldoutStates = new();
+
         public static void DrawFoldout(
-            SerializedObject serializedObject,
+            this SerializedObject serializedObject,
             FieldInfo[] fields,
             string editorPrefsKey,
             string foldoutLabelPrefix)
         {
             int fieldCount = fields.Length;
-
             if (fieldCount == 0)
             {
                 return;
             }
 
+            // Use the serializedObject's hashCode or another unique identifier.
+            string uniqueKey = serializedObject.GetHashCode() + editorPrefsKey;
+
+            // Get the foldout state from the dictionary.
+            if (!foldoutStates.ContainsKey(uniqueKey))
+            {
+                foldoutStates[uniqueKey] = EditorPrefs.GetBool(editorPrefsKey, false);
+            }
+
             string foldoutLabel = $"{foldoutLabelPrefix} ({fieldCount})";
+            foldoutStates[uniqueKey] = EditorGUILayout.Foldout(foldoutStates[uniqueKey], foldoutLabel);
 
-            bool areFieldsExpanded = EditorPrefs.GetBool(editorPrefsKey, false);
-            areFieldsExpanded = EditorGUILayout.Foldout(areFieldsExpanded, foldoutLabel);
-            EditorPrefs.SetBool(editorPrefsKey, areFieldsExpanded);
-
-            if (areFieldsExpanded)
+            if (foldoutStates[uniqueKey])
             {
                 EditorGUI.indentLevel++;
                 foreach (FieldInfo field in fields)
