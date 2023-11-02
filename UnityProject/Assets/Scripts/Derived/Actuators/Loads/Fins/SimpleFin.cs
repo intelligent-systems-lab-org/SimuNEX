@@ -8,11 +8,13 @@ namespace SimuNEX
     /// </summary>
     public class SimpleFin : Fin
     {
+        [Parameter]
         /// <summary>
         /// Fin angle to force factor.
         /// </summary>
         public float forceCoefficient = 1.5f;
 
+        [Parameter]
         /// <summary>
         /// Fin angle to torque factor.
         /// </summary>

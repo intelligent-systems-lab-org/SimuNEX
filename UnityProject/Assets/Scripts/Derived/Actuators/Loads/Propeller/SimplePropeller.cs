@@ -8,11 +8,13 @@ namespace SimuNEX
     /// </summary>
     public class SimplePropeller : Propeller
     {
+        [Parameter]
         /// <summary>
         /// Speed to thrust factor.
         /// </summary>
         public float thrustCoefficient = 1.88865e-5f;
 
+        [Parameter]
         /// <summary>
         /// Speed to torque factor.
         /// </summary>

@@ -84,7 +84,6 @@ namespace SimuNEX
                     ? (new float[] { motor.MotorFunction(motor.inputs, motor.parameters) })
                     : (new float[1]);
             }
-
         }
 
         protected void OnValidate()

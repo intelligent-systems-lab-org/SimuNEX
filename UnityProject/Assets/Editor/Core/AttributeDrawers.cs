@@ -28,4 +28,23 @@ namespace SimuNEX
             _ = serializedObject.ApplyModifiedProperties();
         }
     }
+
+    [CustomEditor(typeof(Load), true)] // true makes it work for derived classes as well
+    public class LoadEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+
+            // Parameters foldout
+            FieldInfo[] parameterFields = serializedObject.targetObject.GetFieldsWithAttribute<ParameterAttribute>();
+            DrawFoldout(serializedObject, parameterFields, "ParametersExpanded", "Parameters");
+
+            // Other properties
+            string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
+            DrawPropertiesExcluding(serializedObject, parameterNames.ToArray());
+
+            _ = serializedObject.ApplyModifiedProperties();
+        }
+    }
 }

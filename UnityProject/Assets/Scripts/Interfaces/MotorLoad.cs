@@ -32,11 +32,13 @@ namespace SimuNEX
         /// </summary>
         protected Force force;
 
+        [Parameter]
         /// <summary>
         /// The inertia of the load attached to the <see cref="Motor"/> in kg.m^2.
         /// </summary>
         public float loadInertia = 0.5f;
 
+        [Parameter]
         /// <summary>
         /// The damping coefficient of the load in N.m.s/rad.
         /// </summary>
