@@ -180,6 +180,8 @@ GameObject:
   - component: {fileID: 8736971998255736337}
   - component: {fileID: 4621679548720714149}
   - component: {fileID: 5452912407559438521}
+  - component: {fileID: 7795851727195075924}
+  - component: {fileID: 6024834219921007462}
   m_Layer: 0
   m_Name: Sensors
   m_TagString: Untagged
@@ -243,10 +245,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
   outputNames:
-  - Propeller Speed
+  - Back Propeller Speed
   readPosition: 0
   readTorque: 0
   motor: {fileID: 5947556496897487590}
+  stepper: 0
+--- !u!114 &7795851727195075924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461526801234737444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1170835664730685151}
+  outputNames:
+  - Rudder Fins Speed
+  - Rudder Fins Position
+  readPosition: 1
+  readTorque: 0
+  motor: {fileID: 5112610935768309211}
+  stepper: 0
+--- !u!114 &6024834219921007462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461526801234737444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1170835664730685151}
+  outputNames:
+  - Stern Plane Fins Speed
+  - Stern Plane Fins Position
+  readPosition: 1
+  readTorque: 0
+  motor: {fileID: 1848095677856972004}
   stepper: 0
 --- !u!1 &1352934492587307473
 GameObject:
@@ -262,7 +304,7 @@ GameObject:
   - component: {fileID: 1170835664730685151}
   - component: {fileID: 5601625684026374144}
   - component: {fileID: 8378987297206801634}
-  - component: {fileID: 5620657284473227432}
+  - component: {fileID: 8739918863887579963}
   m_Layer: 0
   m_Name: AUV
   m_TagString: Untagged
@@ -467,7 +509,7 @@ MonoBehaviour:
   - {fileID: 5112610935768309211}
   - {fileID: 1848095677856972004}
   inputs: []
---- !u!114 &5620657284473227432
+--- !u!114 &8739918863887579963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,6 +524,8 @@ MonoBehaviour:
   sensors:
   - {fileID: 4621679548720714149}
   - {fileID: 5452912407559438521}
+  - {fileID: 7795851727195075924}
+  - {fileID: 6024834219921007462}
   outputs: []
 --- !u!1 &1917565314104323816
 GameObject:

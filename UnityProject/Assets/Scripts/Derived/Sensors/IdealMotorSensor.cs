@@ -84,6 +84,50 @@ namespace SimuNEX
                     ? (new float[] { motor.MotorFunction(motor.inputs, motor.parameters) })
                     : (new float[1]);
             }
+
+            if (motor != null)
+            {
+                SetOutputNames();
+            }
+        }
+
+        /// <summary>
+        /// Dynamically sets the output names given the chosen options.
+        /// </summary>
+        private void SetOutputNames()
+        {
+            string motorName = motor.gameObject.name;
+            string loadName = motor.motorLoad.spinnerObject.gameObject.name;
+
+            if (readPosition && readTorque)
+            {
+                outputNames = new string[]
+                {
+                    $"{motorName} {loadName} Speed",
+                    $"{motorName} {loadName} Position",
+                    $"{motorName} {loadName} Torque"
+                };
+            }
+            else if (readTorque && !readPosition)
+            {
+                outputNames = new string[]
+                {
+                    $"{motorName} {loadName} Speed",
+                    $"{motorName} {loadName} Torque"
+                };
+            }
+            else if (readPosition && !readTorque)
+            {
+                outputNames = new string[]
+                {
+                    $"{motorName} {loadName} Speed",
+                    $"{motorName} {loadName} Position"
+                };
+            }
+            else
+            {
+                outputNames = new string[] { $"{motorName} {loadName} Speed" };
+            }
         }
 
         protected void OnValidate()
