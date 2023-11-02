@@ -18,17 +18,20 @@ namespace SimuNEX
         /// </summary>
         public float voltage;
 
+        [Parameter]
         /// <summary>
         /// Armature resistance in ohms.
         /// </summary>
         public float armatureResistance = 20f;
 
+        [Parameter]
         /// <summary>
         /// The constant representing the relationship between the back electromotive force (EMF)
         /// and the armature speed in V.s/rads.
         /// </summary>
         public float backEMFConstant = 1f;
 
+        [Parameter]
         /// <summary>
         /// The constant representing the relationship between the motor torque
         /// and the armature current in N.m/A.

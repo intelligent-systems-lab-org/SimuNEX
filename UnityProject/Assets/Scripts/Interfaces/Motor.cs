@@ -36,11 +36,13 @@ namespace SimuNEX
         /// </summary>
         public Limits positionLimits = new() { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
 
+        [Parameter]
         /// <summary>
         /// The motor inertia in kg.m^2.
         /// </summary>
         public float armatureInertia = 0.5f;
 
+        [Parameter]
         /// <summary>
         /// The motor damping coefficient in N.m.s/rad.
         /// </summary>
