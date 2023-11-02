@@ -128,48 +128,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 461526801234737444, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
   m_PrefabInstance: {fileID: 2786592121914901967}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &143287782 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-  m_PrefabInstance: {fileID: 2786592121914901967}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143287780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &143287783 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-  m_PrefabInstance: {fileID: 2786592121914901967}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143287780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf4f6052c56cb194ea732f9bebd47ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &143287785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143287780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidBody: {fileID: 2786592121914901969}
-  outputNames:
-  - Rudder Fins Speed
-  - Rudder Fins Position
-  readPosition: 1
-  readTorque: 0
-  motor: {fileID: 1933539830}
-  stepper: 0
 --- !u!114 &143287786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,11 +575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &543353274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1352934492587307473, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-  m_PrefabInstance: {fileID: 2786592121914901967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &551197389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4252601917728235471, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
@@ -1429,17 +1382,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1933539830 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5112610935768309211, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-  m_PrefabInstance: {fileID: 2786592121914901967}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2786592121914901967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1492,37 +1434,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: AUV
       objectReference: {fileID: 0}
-    - target: {fileID: 5620657284473227432, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: outputs.Array.size
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620657284473227432, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: sensors.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620657284473227432, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: sensors.Array.data[2]
-      value: 
-      objectReference: {fileID: 143287785}
-    - target: {fileID: 5620657284473227432, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      propertyPath: sensors.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8378987297206801634, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: inputs.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8739918863887579963, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: outputs.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739918863887579963, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: sensors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5620657284473227432, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+    - {fileID: 6024834219921007462, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1352934492587307473, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2786592121914901975}
-    - targetCorrespondingSourceObject: {fileID: 461526801234737444, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 143287785}
     - targetCorrespondingSourceObject: {fileID: 461526801234737444, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 143287786}
@@ -1537,48 +1465,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1170835664730685151, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
   m_PrefabInstance: {fileID: 2786592121914901967}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 543353274}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 142812d157531b14393dc1b149c56fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2786592121914901975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 543353274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensors:
-  - {fileID: 143287783}
-  - {fileID: 143287782}
-  - {fileID: 143287785}
-  - {fileID: 143287786}
-  outputs:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

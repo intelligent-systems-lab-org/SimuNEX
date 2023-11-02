@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 4621679548720714149}
   - component: {fileID: 5452912407559438521}
   - component: {fileID: 7795851727195075924}
-  - component: {fileID: 6024834219921007462}
+  - component: {fileID: 4566193712669001726}
   m_Layer: 0
   m_Name: Sensors
   m_TagString: Untagged
@@ -270,7 +270,7 @@ MonoBehaviour:
   readTorque: 0
   motor: {fileID: 5112610935768309211}
   stepper: 0
---- !u!114 &6024834219921007462
+--- !u!114 &4566193712669001726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 1170835664730685151}
   - component: {fileID: 5601625684026374144}
   - component: {fileID: 8378987297206801634}
-  - component: {fileID: 8739918863887579963}
+  - component: {fileID: 2230904909486435595}
   m_Layer: 0
   m_Name: AUV
   m_TagString: Untagged
@@ -509,7 +509,7 @@ MonoBehaviour:
   - {fileID: 5112610935768309211}
   - {fileID: 1848095677856972004}
   inputs: []
---- !u!114 &8739918863887579963
+--- !u!114 &2230904909486435595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -525,7 +525,7 @@ MonoBehaviour:
   - {fileID: 4621679548720714149}
   - {fileID: 5452912407559438521}
   - {fileID: 7795851727195075924}
-  - {fileID: 6024834219921007462}
+  - {fileID: 4566193712669001726}
   outputs: []
 --- !u!1 &1917565314104323816
 GameObject:

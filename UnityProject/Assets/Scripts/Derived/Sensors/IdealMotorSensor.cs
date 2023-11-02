@@ -87,6 +87,11 @@ namespace SimuNEX
 
             if (motor != null)
             {
+                if (rigidBody == null)
+                {
+                    rigidBody = motor.rigidBody;
+                }
+
                 SetOutputNames();
             }
         }

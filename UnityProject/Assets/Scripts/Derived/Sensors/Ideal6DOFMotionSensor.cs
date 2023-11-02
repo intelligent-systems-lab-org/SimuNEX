@@ -54,6 +54,11 @@ namespace SimuNEX
         /// <returns>A string array containing output names.</returns>
         private string[] GenerateOutputNames()
         {
+            if (rigidBody == null)
+            {
+                return OutputLabels;
+            }
+
             string rigidBodyName = rigidBody.gameObject.name;
             string[] generatedNames = new string[OutputLabels.Length];
 
