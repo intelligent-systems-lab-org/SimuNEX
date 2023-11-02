@@ -7,14 +7,11 @@ namespace SimuNEX
     public class ActuatorSystemEditor : Editor
     {
         SerializedProperty actuatorsProp;
-        SerializedProperty inputsProp;
         bool showInputsFoldout = true;
 
         protected void OnEnable()
         {
-            // Get the serialized properties
             actuatorsProp = serializedObject.FindProperty("actuators");
-            inputsProp = serializedObject.FindProperty("inputs");
         }
 
         public override void OnInspectorGUI()

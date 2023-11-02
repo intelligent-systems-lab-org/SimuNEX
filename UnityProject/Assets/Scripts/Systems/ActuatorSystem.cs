@@ -115,10 +115,7 @@ namespace SimuNEX
         /// <summary>
         /// Number of inputs specific to the <see cref="Actuator"/>.
         /// </summary>
-        public int inputSize
-        {
-            get => (inputs == null) ? 0 : inputs().Length;
-        }
+        public int inputSize => (inputs == null) ? 0 : inputs().Length;
 
         /// <summary>
         /// Sets up properties and defines the actuator's function for simulation.

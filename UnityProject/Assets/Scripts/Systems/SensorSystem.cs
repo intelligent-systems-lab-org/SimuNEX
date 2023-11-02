@@ -29,6 +29,11 @@ namespace SimuNEX
         /// </summary>
         private int NumOutputs;
 
+        protected void OnValidate()
+        {
+            UpdateSensorList();
+        }
+
         protected void Awake()
         {
             UpdateSensorList();
@@ -60,9 +65,9 @@ namespace SimuNEX
             int idx = 0;
             foreach (Sensor sensor in sensors)
             {
-                float[] currentActuatorInputs = sensor.GetOutput();
-                Array.Copy(currentActuatorInputs, 0, outputs, idx, currentActuatorInputs.Length);
-                idx += currentActuatorInputs.Length;
+                float[] currentSensorOutputs = sensor.GetOutput();
+                Array.Copy(currentSensorOutputs, 0, outputs, idx, currentSensorOutputs.Length);
+                idx += currentSensorOutputs.Length;
             }
         }
     }
@@ -83,6 +88,11 @@ namespace SimuNEX
         protected Func<float[]> outputs;
 
         /// <summary>
+        /// Names of output values.
+        /// </summary>
+        public string[] outputNames;
+
+        /// <summary>
         /// Parameters specific to the sensor.
         /// </summary>
         public Func<float[]> parameters;
@@ -101,9 +111,6 @@ namespace SimuNEX
         /// Gets all outputs specific to the <see cref="Sensor"/>.
         /// </summary>
         /// <returns>The current sensor readings.</returns>
-        public float[] GetOutput()
-        {
-            return outputs();
-        }
+        public float[] GetOutput() => outputs();
     }
 }

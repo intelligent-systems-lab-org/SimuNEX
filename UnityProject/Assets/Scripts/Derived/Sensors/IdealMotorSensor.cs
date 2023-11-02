@@ -80,7 +80,9 @@ namespace SimuNEX
             }
             else
             {
-                outputs = () => motor.inputs != null ? (new float[] { motor.MotorFunction(motor.inputs, motor.parameters) }) : (new float[1]);
+                outputs = () => motor.inputs != null
+                    ? (new float[] { motor.MotorFunction(motor.inputs, motor.parameters) })
+                    : (new float[1]);
             }
 
         }

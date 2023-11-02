@@ -58,12 +58,13 @@ namespace SimuNEX
             {
                 float[] param = parameters();
                 return param[3] * 1 / (param[4] + (param[1] * param[2] / param[0]));
-            };
+            }
+
             float DCGain()
             {
                 float[] param = parameters();
                 return timeConstant() * param[2] / (param[0] * param[3]);
-            };
+            }
 
             inputs = () => new float[] { voltage };
             stateSpace = new FirstOrderTF(timeConstant, DCGain, stepperMethod: speedStepper);

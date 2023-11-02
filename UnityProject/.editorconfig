@@ -246,3 +246,9 @@ dotnet_diagnostic.RCS1161.severity = none
 
 # RCS1128: Prefer coalesce expression.
 dotnet_diagnostic.RCS1128.severity = none
+
+# RCS1038: Remove empty statement.
+dotnet_diagnostic.RCS1038.severity = none
+
+# RCS1198: Avoid unnecessary boxing of value type.
+dotnet_diagnostic.RCS1198.severity = none
