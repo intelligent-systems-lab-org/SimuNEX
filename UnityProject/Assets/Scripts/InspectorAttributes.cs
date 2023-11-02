@@ -5,11 +5,17 @@ using UnityEngine;
 
 namespace SimuNEX
 {
+    /// <summary>
+    /// Marks the variable as a parameter to the system.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = true)]
     public class ParameterAttribute : PropertyAttribute
     {
     }
 
+    /// <summary>
+    /// Marks the variable as an input to the system.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = true)]
     public class InputAttribute : PropertyAttribute
     {
@@ -17,11 +23,12 @@ namespace SimuNEX
 
     public static class ObjectExtensions
     {
-        public static int CountFieldsWithAttribute<T>(this object obj) where T : Attribute
+        public static FieldInfo[] GetFieldsWithAttribute<T>(this object obj) where T : Attribute
         {
             return obj.GetType()
                 .GetFields(BindingFlags.Public | BindingFlags.Instance)
-                .Count(f => Attribute.IsDefined(f, typeof(T)));
+                .Where(f => Attribute.IsDefined(f, typeof(T)))
+                .ToArray();
         }
     }
 }

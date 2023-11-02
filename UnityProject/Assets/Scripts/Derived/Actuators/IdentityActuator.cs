@@ -5,6 +5,7 @@ namespace SimuNEX
     /// </summary>
     public class IdentityActuator : Actuator
     {
+        [Input]
         /// <summary>
         /// The input value.
         /// </summary>

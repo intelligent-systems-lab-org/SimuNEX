@@ -14,31 +14,37 @@ namespace SimuNEX
         /// </summary>
         public StepperMethod speedStepper;
 
+        [Input]
         /// <summary>
         /// The q-axis input voltage for the PMSM.
         /// </summary>
         public float qAxisVoltage;
 
+        [Input]
         /// <summary>
         /// The d-axis input voltage for the PMSM.
         /// </summary>
         public float dAxisVoltage;
 
+        [Parameter]
         /// <summary>
         /// The stator winding resistance in ohms.
         /// </summary>
         public float resistance = 2.875f;
 
+        [Parameter]
         /// <summary>
         /// The stator winding inductance in henries.
         /// </summary>
         public float inductance = 8.5e-2f;
 
+        [Parameter]
         /// <summary>
         /// The number of poles in the PMSM.
         /// </summary>
         public int poles = 2;
 
+        [Parameter]
         /// <summary>
         /// The magnet flux linkage in webers.
         /// </summary>

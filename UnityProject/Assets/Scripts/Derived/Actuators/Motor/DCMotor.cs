@@ -13,6 +13,7 @@ namespace SimuNEX
         /// </summary>
         public StepperMethod speedStepper;
 
+        [Input]
         /// <summary>
         /// The input voltage.
         /// </summary>

@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -13,26 +12,51 @@ namespace SimuNEX
         {
             serializedObject.Update();
 
-            // Use reflection to gather all fields with the [Parameters] attribute
-            FieldInfo[] parameterFields = serializedObject.targetObject.GetType()
-                .GetFields(BindingFlags.Public | BindingFlags.Instance)
-                .Where(f => Attribute.IsDefined(f, typeof(ParameterAttribute)))
-                .ToArray();
+            // Parameters foldout
+            FieldInfo[] parameterFields = serializedObject.targetObject.GetFieldsWithAttribute<ParameterAttribute>();
+            DrawFoldout(parameterFields, "ParametersExpanded", "Parameters");
 
-            int paramCount = parameterFields.Length;
-            string foldoutLabel = $"Parameters ({paramCount})";
+            // Inputs foldout
+            FieldInfo[] inputFields = serializedObject.targetObject.GetFieldsWithAttribute<InputAttribute>();
+            DrawFoldout(inputFields, "InputsExpanded", "Inputs");
 
-            bool areParametersExpanded = EditorPrefs.GetBool("ParametersExpanded", false); // Use EditorPrefs to remember foldout state
-            areParametersExpanded = EditorGUILayout.Foldout(areParametersExpanded, foldoutLabel);
-            EditorPrefs.SetBool("ParametersExpanded", areParametersExpanded);
+            // Draw other properties
+            string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
+            string[] inputNames = inputFields.Select(f => f.Name).ToArray();
+            DrawPropertiesExcluding(serializedObject, parameterNames.Concat(inputNames).ToArray());
 
-            if (areParametersExpanded)
+            _ = serializedObject.ApplyModifiedProperties();
+        }
+
+        private void DrawFoldout(FieldInfo[] fields, string editorPrefsKey, string foldoutLabelPrefix)
+        {
+            int fieldCount = fields.Length;
+
+            if (fieldCount == 0)
+            {
+                return;
+            }
+
+            string foldoutLabel = $"{foldoutLabelPrefix} ({fieldCount})";
+
+            bool areFieldsExpanded = EditorPrefs.GetBool(editorPrefsKey, false);
+            areFieldsExpanded = EditorGUILayout.Foldout(areFieldsExpanded, foldoutLabel);
+            EditorPrefs.SetBool(editorPrefsKey, areFieldsExpanded);
+
+            if (areFieldsExpanded)
             {
                 EditorGUI.indentLevel++;
-                foreach (FieldInfo field in parameterFields)
+                foreach (FieldInfo field in fields)
                 {
                     SerializedProperty prop = serializedObject.FindProperty(field.Name);
-                    if (prop != null)
+                    if (prop != null && prop.propertyType == SerializedPropertyType.Float)
+                    {
+                        _ = EditorGUILayout.BeginHorizontal();
+                        EditorGUILayout.LabelField(ObjectNames.NicifyVariableName(field.Name), GUILayout.ExpandWidth(true));
+                        prop.floatValue = EditorGUILayout.FloatField(prop.floatValue, GUILayout.Width(100));
+                        EditorGUILayout.EndHorizontal();
+                    }
+                    else if (prop != null)
                     {
                         _ = EditorGUILayout.PropertyField(prop, new GUIContent(ObjectNames.NicifyVariableName(field.Name)));
                     }
@@ -40,12 +64,6 @@ namespace SimuNEX
 
                 EditorGUI.indentLevel--;
             }
-
-            // Draw other properties
-            string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
-            DrawPropertiesExcluding(serializedObject, parameterNames);
-
-            _ = serializedObject.ApplyModifiedProperties();
         }
     }
 }
