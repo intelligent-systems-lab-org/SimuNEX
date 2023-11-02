@@ -7,6 +7,7 @@ namespace SimuNEX
     /// A fault that adds a constant bias to the value.
     /// </summary>
     [DebuggerDisplay("Bias = {bias}")]
+    [Serializable]
     public class BiasFault : Fault
     {
         /// <summary>

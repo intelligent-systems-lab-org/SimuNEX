@@ -48,6 +48,7 @@ namespace SimuNEX
         /// <summary>
         /// List of faults present in the system.
         /// </summary>
-        public List<Fault> faults;
+        [SerializeReference]
+        public List<Fault> faults = new();
     }
 }

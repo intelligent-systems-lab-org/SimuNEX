@@ -90,7 +90,7 @@ namespace SimuNEX
     /// <summary>
     /// Interface for implementing actuator-based systems.
     /// </summary>
-    public abstract class Actuator : MonoBehaviour
+    public abstract class Actuator : FaultSystem
     {
         /// <summary>
         /// <see cref="RigidBody"/> object actuator is attached to.

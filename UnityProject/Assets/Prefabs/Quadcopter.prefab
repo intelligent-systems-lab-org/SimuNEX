@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   inputNames:
   - Back Left Propeller Voltage
@@ -338,6 +339,9 @@ MonoBehaviour:
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &5639305362122881889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   inputNames:
   - Front Right Propeller Voltage
@@ -446,6 +451,9 @@ MonoBehaviour:
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &4390935632489885428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   inputNames:
   - Back Right Propeller Voltage
@@ -807,6 +816,9 @@ MonoBehaviour:
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &779299711875428922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1007,6 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   inputNames:
   - Front Left Propeller Voltage
@@ -1025,6 +1038,9 @@ MonoBehaviour:
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6615449208180139306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,7 +1279,7 @@ GameObject:
   - component: {fileID: 3071117602607612381}
   - component: {fileID: 2611228371683169070}
   - component: {fileID: 6500127127408246068}
-  - component: {fileID: 7705978417445785173}
+  - component: {fileID: 6631078503300786394}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1436,7 +1452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 9.81
   centerOfGravity: {fileID: 7505561513377841643}
---- !u!114 &7705978417445785173
+--- !u!114 &6631078503300786394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
