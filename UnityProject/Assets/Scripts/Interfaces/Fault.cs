@@ -86,5 +86,31 @@ namespace SimuNEX
             FaultEntry entry = faults.Find(fe => fe.property == property);
             return entry?.Faults;
         }
+
+        /// <summary>
+        /// Applies all faults at once to the property value in place.
+        /// </summary>
+        /// <typeparam name="T">The <see cref="Faultable"/> property type.</typeparam>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="property">The property value to apply faults.</param>
+        /// <exception cref="InvalidOperationException">Thrown for an unsupported tpye.</exception>
+        public void ApplyFault<T>(string propertyName, ref T property)
+        {
+            List<Fault> faults = GetFaults(propertyName);
+
+            if (faults != null)
+            {
+                foreach (Fault fault in faults)
+                {
+                    property = property switch
+                    {
+                        float f => (T)(object)fault.FaultFunction(f),
+                        Vector3 v => (T)(object)fault.FaultFunction(v),
+                        Quaternion q => (T)(object)fault.FaultFunction(q),
+                        _ => throw new InvalidOperationException("Unsupported type"),
+                    };
+                }
+            }
+        }
     }
 }

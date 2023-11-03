@@ -135,6 +135,9 @@ namespace SimuNEX
         public float totalDamping =>
             (motorLoad != null) ? armatureDamping + motorLoad.loadDamping : armatureDamping;
 
+        /// <summary>
+        /// Updates the current motor speed.
+        /// </summary>
         public void Step()
         {
             _speed = MotorFunction(inputs, parameters);

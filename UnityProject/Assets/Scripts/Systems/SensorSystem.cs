@@ -75,7 +75,7 @@ namespace SimuNEX
     /// <summary>
     /// Interface for implementing sensor-based systems.
     /// </summary>
-    public abstract class Sensor : MonoBehaviour
+    public abstract class Sensor : FaultSystem
     {
         /// <summary>
         /// <see cref="RigidBody"/> object sensor is attached to.

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace SimuNEX
 {
     /// <summary>
@@ -5,6 +7,50 @@ namespace SimuNEX
     /// </summary>
     public class Ideal6DOFMotionSensor : Sensor
     {
+        /// <summary>
+        /// Velocity property.
+        /// </summary>
+        [Faultable]
+        public Vector3 velocity => _velocity;
+
+        /// <summary>
+        /// Angular velocity property.
+        /// </summary>
+        [Faultable]
+        public Vector3 angularVelocity => _angularVelocity;
+
+        /// <summary>
+        /// Angular position property.
+        /// </summary>
+        [Faultable]
+        public Quaternion angularPosition => _angularPosition;
+
+        /// <summary>
+        /// Position property.
+        /// </summary>
+        [Faultable]
+        public Vector3 position => _position;
+
+        /// <summary>
+        /// Measured velocity value.
+        /// </summary>
+        protected Vector3 _velocity;
+
+        /// <summary>
+        /// Measured angular velocity.
+        /// </summary>
+        protected Vector3 _angularVelocity;
+
+        /// <summary>
+        /// Measured angular position.
+        /// </summary>
+        protected Quaternion _angularPosition;
+
+        /// <summary>
+        /// Measured position.
+        /// </summary>
+        protected Vector3 _position;
+
         /// <summary>
         /// Default output names for <see cref="Ideal6DOFMotionSensor"/>.
         /// </summary>
@@ -27,21 +73,34 @@ namespace SimuNEX
 
         protected override void Initialize()
         {
-            outputs = () => new float[]
+            outputs = () =>
             {
-                rigidBody.velocity.linear.x,
-                rigidBody.velocity.linear.z,
-                rigidBody.velocity.linear.y,
-                rigidBody.velocity.angular.x,
-                rigidBody.velocity.angular.z,
-                rigidBody.velocity.angular.y,
-                rigidBody.angularPosition.w,
-                rigidBody.angularPosition.x,
-                rigidBody.angularPosition.z,
-                rigidBody.angularPosition.y,
-                rigidBody.position.x,
-                rigidBody.position.z,
-                rigidBody.position.y
+                _velocity = rigidBody.velocity.linear;
+                _angularVelocity = rigidBody.velocity.angular;
+                _angularPosition = rigidBody.angularPosition;
+                _position = rigidBody.position;
+
+                ApplyFault("velocity", ref _velocity);
+                ApplyFault("angularVelocity", ref _angularVelocity);
+                ApplyFault("angularPosition", ref _angularPosition);
+                ApplyFault("position", ref _position);
+
+                return new float[]
+                {
+                    velocity.x,
+                    velocity.z,
+                    velocity.y,
+                    angularVelocity.x,
+                    angularVelocity.z,
+                    angularVelocity.y,
+                    angularPosition.w,
+                    angularPosition.x,
+                    angularPosition.z,
+                    angularPosition.y,
+                    position.x,
+                    position.z,
+                    position.y
+                };
             };
 
             outputNames = GenerateOutputNames();
