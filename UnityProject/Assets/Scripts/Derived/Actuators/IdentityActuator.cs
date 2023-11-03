@@ -5,6 +5,17 @@ namespace SimuNEX
     /// </summary>
     public class IdentityActuator : Actuator
     {
+        /// <summary>
+        /// Output value property.
+        /// </summary>
+        [Faultable]
+        public float output => _output;
+
+        /// <summary>
+        /// Output value.
+        /// </summary>
+        protected float _output;
+
         [Input]
         /// <summary>
         /// The input value.
@@ -35,7 +46,12 @@ namespace SimuNEX
                 load.rigidBody = rigidBody;
             }
 
-            inputs = () => new float[1] { input };
+            inputs = () =>
+            {
+                _output = input;
+                ApplyFault("output", ref _output);
+                return new float[1] { _output };
+            };
 
             if (load != null)
             {

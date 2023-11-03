@@ -1332,6 +1332,30 @@ PrefabInstance:
       propertyPath: inputs.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].property
+      value: velocity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170802071830528]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[0]
+      value: 1465170802071830528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170802071830528]._value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6631078503300786394, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: outputs.Array.size
       value: 17

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using static SimuNEX.StateSpaceTypes;
@@ -141,16 +140,7 @@ namespace SimuNEX
         public void Step()
         {
             _speed = MotorFunction(inputs, parameters);
-
-            List<Fault> speedFaults = GetFaults("motorSpeed");
-
-            if (speedFaults != null)
-            {
-                foreach (Fault fault in speedFaults)
-                {
-                    _speed = fault.FaultFunction(_speed);
-                }
-            }
+            ApplyFault("motorSpeed", ref _speed);
 
             integrator.input = _speed;
             integrator.Compute();
