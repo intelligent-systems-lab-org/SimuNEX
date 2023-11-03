@@ -13,15 +13,14 @@ namespace SimuNEX
         /// <summary>
         /// Bias value.
         /// </summary>
-        [Parameter]
         public float bias;
 
         /// <summary>
-        /// <see cref="BiasFault"/> Default constructor.
+        /// <see cref="BiasFault"/> default constructor.
         /// </summary>
         public BiasFault()
         {
-            bias = 0f; // Default value
+            bias = 1f;
         }
 
         /// <summary>

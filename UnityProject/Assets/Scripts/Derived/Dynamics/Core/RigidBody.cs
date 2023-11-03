@@ -210,14 +210,12 @@ namespace SimuNEX
         {
             get
             {
-                if (TryGetComponent<SimpleGravity>(out SimpleGravity simpleGravity) && simpleGravity.enabled)
+                if (TryGetComponent(out SimpleGravity simpleGravity) && simpleGravity.enabled)
                 {
                     return simpleGravity.weight * transform.position.y;
                 }
-                else
-                {
-                    return 0;
-                }
+
+                return 0;
             }
         }
 

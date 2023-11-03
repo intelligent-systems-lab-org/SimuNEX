@@ -25,7 +25,7 @@ namespace SimuNEX
 
         private static void AddFault(Type faultType, SerializedObject serializedObject)
         {
-            Debug.Log("Adding fault of type: " + faultType.Name); // Debug statement
+            Debug.Log("Adding fault of type: " + faultType.Name);
 
             Fault newFault = FaultFactory.CreateFault(faultType);
             FaultSystem faultSystem = serializedObject.targetObject as FaultSystem;
@@ -34,7 +34,7 @@ namespace SimuNEX
                 (faultSystem.faults ??= new List<Fault>()).Add(newFault);
                 EditorUtility.SetDirty(faultSystem);
 
-                Debug.Log("Fault added. Total faults: " + faultSystem.faults.Count); // Debug statement
+                Debug.Log("Fault added. Total faults: " + faultSystem.faults.Count);
             }
             else
             {
