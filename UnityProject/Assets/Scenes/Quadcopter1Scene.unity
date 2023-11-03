@@ -1340,6 +1340,102 @@ PrefabInstance:
       propertyPath: voltage
       value: 130.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0]
+      value: 1465170793100738568
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[1]
+      value: 1465170793100738566
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[2]
+      value: 1465170793100738567
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738560]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738561]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738562]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738563]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738564]
+      value: SimuNEX SimuNEX.QuantizationFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738565]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738566]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738567]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738568]
+      value: SimuNEX SimuNEX.DeadZoneFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738560].bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738561].bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738563].bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738565].bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738567].bias
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738562].variance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738566].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738568].range.max
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738568].range.min
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170793100738564].quantizationStep
+      value: 0.03125
+      objectReference: {fileID: 0}
     - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: voltage
       value: -130.5

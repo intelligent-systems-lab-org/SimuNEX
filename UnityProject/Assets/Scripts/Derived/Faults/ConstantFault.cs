@@ -1,27 +1,26 @@
 using System;
 using System.Diagnostics;
-using UnityEngine;
 
 namespace SimuNEX
 {
     /// <summary>
     /// A fault that sets the value to a constant value.
     /// </summary>
-    [DebuggerDisplay("Value = {constantValue}")]
+    [DebuggerDisplay("Value = {_value}")]
     [Serializable]
     public class ConstantFault : Fault
     {
         /// <summary>
         /// Constant value to set.
         /// </summary>
-        public float constantValue;
+        public float _value;
 
         /// <summary>
         /// <see cref="ConstantFault"/> default constructor.
         /// </summary>
         public ConstantFault()
         {
-            constantValue = 0f;
+            _value = 0f;
         }
 
         /// <summary>
@@ -30,12 +29,12 @@ namespace SimuNEX
         /// <param name="constantValue">The constant value to set.</param>
         public ConstantFault(float constantValue)
         {
-            this.constantValue = constantValue;
+            _value = constantValue;
         }
 
         protected override float FaultFunction(float val)
         {
-            return constantValue;
+            return _value;
         }
     }
 }
