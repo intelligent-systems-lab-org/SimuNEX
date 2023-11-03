@@ -1,3 +1,55 @@
+# [0.5.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.4.0...v0.5.0) (2023-11-03)
+
+
+### Bug Fixes
+
+* **auv:** buoyancy now adds gravity automatically. ([42e119e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/42e119e1bdc46f4c9f74ed04b913e11a0f675cb6))
+* **auv:** use property Gain instead of gain. ([bdd37ee](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/bdd37ee540a297fba510bb30dfaa4d894771700c))
+* **eigen3:** exception for determinant method. ([aba44c0](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/aba44c02f6e29f41e0d3f5ecd8c9a0724c9d78ed))
+* **fault:** make clear Faultable is for properties. ([92529b7](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/92529b7dffa966ef515543c6751ac6b84f6653a3))
+* **legal:** add link to uwi policy. ([7d515c7](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/7d515c78dd18c04824b84d55ba597679d51b02e9))
+* **legal:** change LICENSE to md ([efcd6e2](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/efcd6e23a5904dfd71aa23611a2ace30469c9215))
+* **legal:** fix LICENSE link. ([b36447d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b36447dc42ac4340a11989084a4461fe1341e333))
+* **legal:** update LICENSE. ([5bfbb80](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/5bfbb80b0dd5418a21d254f5e81b6835398b8443))
+* **motor:** add limits summaries. ([534a96d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/534a96db5882b662ebeefd191141804f156406f8))
+* **README:** remove old license shield ([952ef2e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/952ef2e72776ae55e2d92ad22e4c50d8acbf0567))
+* **SimuNEX:** add rigidbody sensor checks. ([560e9b5](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/560e9b583a88f62d7bb8418b14cc91777199fe95))
+* **SimuNEX:** do not share EditorPrefs instances. ([051ef97](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/051ef9718a62da973444f68246212db216a5abae))
+* **SimuNEX:** README. ([be242e7](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/be242e749f014f0045c29a2b89c6e6434e081d66))
+
+
+### Features
+
+* **auv:** add more icons. ([3064036](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/3064036e128f4bdf9fe9cf5107f3c6704b016b58))
+* **auv:** add sensor and COMProtocol icons ([5bf48db](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/5bf48dbe154dadad1d5168482e578cb9e95b3f72))
+* **auv:** more icons. ([9eb5d92](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/9eb5d92504768a6f05b9018bb7622007a23c1db1))
+* **eigen3:** add diagonal constructor. ([6768185](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/67681855206b301f91a1c677909e65d2a7166095))
+* **Fault:** add Fault Addition. ([af1bad8](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/af1bad83db801ab23770c08992141248d0ea187a))
+* **fault:** add faults to IdentityActuator. ([96b1d0d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/96b1d0d902540e7ae605e7ed114006f9bf35349e))
+* **fault:** implement fault editor. ([fbb891b](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/fbb891b04f32a697ed4948cfa63f9adca2cec375))
+* **fault:** implement faults for IdealMotorSensor. ([f07b64e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f07b64e9df4f8f581d512476d88d3d377726e826))
+* **faults:** add faults drawer. ([a87d933](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/a87d933bc62759fe4a0aaa49bf7ef9f2d14779ca))
+* **faults:** add faults to Ideal6DOFMotionSensor. ([95c69ab](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/95c69ab1ecf30cbedabcf3bf6693c47217f5042f))
+* **faults:** add more faults. ([bb863cc](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/bb863cca9a0c7bdea7d3d4c4a3f29f8cfde037c1))
+* **faults:** implement fault type. ([235e2ce](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/235e2ce2f3e74d59218f3cb5cf788a51d9f01eb9))
+* **motor:** add position constraint. ([df98223](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/df98223efdc479887fb84183b6882b877ef32cac))
+* **SimuNEX:** add ActuatorSystemEditor. ([49a1e81](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/49a1e81e66ca330e35b9e791394040c60e241687))
+* **SimuNEX:** add attribute drawer for parameters. ([7140ca5](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/7140ca588f3d491f2b6bc2dbd32d0385f095fa09))
+* **SimuNEX:** add automated naming for Ideal6DOFMotionSensor. ([464cd5e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/464cd5e906356300082188a91d57e2614d33cb27))
+* **SimuNEX:** add automatic naming for IdealMotorSensor. ([796c408](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/796c408640d3110874af4785b58b005b9576cb23))
+* **SimuNEX:** add icons. ([b240416](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b2404161f090b4a35163946ef303aff1f833f5ab))
+* **SimuNEX:** add Load drawer. ([eab5ea4](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/eab5ea4f5bee8db3a521700d1b50dc2eee0f80fa))
+* **SimuNEX:** add namespace. ([eb23b19](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/eb23b190b7b49a855e138294db98f598b0ebca74))
+* **SimuNEX:** add roslyn and .editorconfig. ([285881e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/285881eeb13a5c35dc95b074359224bcd451169b))
+* **SimuNEX:** add SensorSystemEditor ([a74bec8](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/a74bec86084e4d69d262317719ee75c139349eed))
+* **SimuNEX:** automate current Actuator names. ([fc3ffda](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/fc3ffdabd746a22aab44938392132e2ae6fbebea))
+* **SimuNEX:** complete actuator drawer. ([85f1e09](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/85f1e09f33beca0fbcad94a44d534839e14f93f8))
+* **SimuNEX:** implement integrator state space. ([fb22d1f](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/fb22d1fde6d942eeba36e4148d00806e49183266))
+* **SimuNEX:** install Cinemachine. ([0ef60ae](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/0ef60aee02193d20c22aa12917ca1d4ab2328b31))
+* **VCS:** add CODEOWNERS ([1c9ac05](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/1c9ac0513b6a90ecbb03a158c2ce205f36c5f1f3))
+
+
+
 # [0.4.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.3.1...v0.4.0) (2023-10-30)
 
 
@@ -132,41 +184,6 @@
 * **motors:** add lineargrowth and sine integrator tests ([b281172](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b281172090d309d61b526cc47d4d959d5c576a5e))
 * **motors:** add tests for Heun and RK4 ([33538aa](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/33538aaa0ee44d52fbea05f82fcfe33d4f89ee63))
 * **motor:** use 1st-order TF. ([6fbeeb1](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/6fbeeb1a3f9a29e8f9fdffcd79e8438f280b96ae))
-
-
-
-# [0.1.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/413fab6935a115814d6cdd9509521718879a87a8...v0.1.0) (2023-10-16)
-
-
-### Bug Fixes
-
-* **quadcopter:** comments and animation ([7bcf822](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/7bcf8221d152c43199aa5fef75c7e06007f09a6c))
-* **quadcopter:** update gitignore ([9e03d43](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/9e03d4383cccbd3d1355957116a19f0a3fee7a48))
-* **quadcopter:** use quaternion calculation for propeller animation ([f54a285](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f54a285613ce476da010fdb27344f4949d29aaa1))
-* **quadcopter:** vscode gitignore ([31dd4be](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/31dd4be4e6bcab92c3c859ef07a89b189afdd272))
-
-
-### Features
-
-* **dynamics:** add dynamics interface ([3cadb8f](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/3cadb8fd14a3df8686ad807d59960187bc6beb4f))
-* **dynamics:** add RigidBody and test Forces ([defc719](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/defc719196ea09036ec20a65ad231edd2c617f8c))
-* **eigen3:** add 2D array constructor ([23d607c](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/23d607c2b1e8e5c95e02b2e028aa06cfef6030af))
-* **eigen3:** add and subtract operations ([ae8b3fe](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/ae8b3fe5913a83a170583881e403a9c2a77db9cc))
-* **eigen3:** add conversion to float[,] ([16b8821](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/16b882196df9bd76833db7aaeae4d7d292dbc19d))
-* **eigen3:** add equality check ([0c28743](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/0c287431f2cc74dde096b1415ab486c0a5da860f))
-* **eigen3:** add eye constructor ([388b5cf](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/388b5cfd093bfaeb0a7d5c05f712692a4a2a3153))
-* **eigen3:** add inverse property ([d62cc11](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/d62cc11ff80ff03fdaff544ca98bb43ff3bfedad))
-* **eigen3:** add transpose operations ([0561b15](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/0561b1582a668f02279ff767a62d59cb899e18b4))
-* **eigen3:** split tests and add copy constructor ([23b2516](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/23b25163a4b24742148c331b027f3fd9bd85941f))
-* **eigen3:** support scalar multiplication ([a1c55c6](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/a1c55c6454ed593d247ba5c8dbde4c478271bfaf))
-* **eigen3:** tests for ToArray ([78438d2](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/78438d2b3f8b37f19600fbeff1e39e544b874bce))
-* **eigen:** add basic matrix functions ([3dc39c3](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/3dc39c398c21fdd78d963293f3e4ff8492012a70))
-* **eigen:** add column and row-major 1D constructor ([3a8687e](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/3a8687e98055c54fb6c04094756e58a227b836b5))
-* **quadcopter:** Add 3d model ([413fab6](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/413fab6935a115814d6cdd9509521718879a87a8))
-* **quadcopter:** add propeller interface ([942c2b9](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/942c2b910513940f5d7a06044760361f23448d45))
-* **quadcopter:** implement propeller function ([9994438](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/99944386d3f25399b8ef2738f7f91f7d7d4cc98d))
-* **quadcopter:** implement simplepropeller ([d3dec6b](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/d3dec6b8a5f22f13249c71a411e3a38b901a7f2d))
-* **test:** add unit tests and code coverage ([b58212d](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b58212d2aea6110398927e233be7053fff2b7759))
 
 
 
