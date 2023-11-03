@@ -1226,7 +1226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128264826}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000010094461, y: 0.952017, z: -0.30604526, w: 0.00000031400913}
+  m_LocalRotation: {x: 0.00000011583892, y: 0.952017, z: -0.30604526, w: 0.00000036034092}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1333,120 +1333,232 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: voltage
-      value: -130.5
+      propertyPath: faults.Array.size
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: voltage
-      value: 130.5
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].property
+      value: motorSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491533]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491538]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491541]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491545]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[0]
+      value: 1465170797056491545
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491538]._value
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491533].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491541].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491545].variance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0]
-      value: 1465170793100738568
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[1]
-      value: 1465170793100738566
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[2]
-      value: 1465170793100738567
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: managedReferences[-2]
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738560]
-      value: SimuNEX SimuNEX.BiasFault
+      propertyPath: faults.Array.data[0].property
+      value: motorSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738561]
-      value: SimuNEX SimuNEX.BiasFault
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738562]
-      value: SimuNEX SimuNEX.GaussianFault
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738563]
-      value: SimuNEX SimuNEX.BiasFault
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738564]
-      value: SimuNEX SimuNEX.QuantizationFault
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738565]
-      value: SimuNEX SimuNEX.BiasFault
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738566]
-      value: SimuNEX SimuNEX.GaussianFault
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738567]
-      value: SimuNEX SimuNEX.BiasFault
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738568]
-      value: SimuNEX SimuNEX.DeadZoneFault
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738560].bias
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738561].bias
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738563].bias
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738565].bias
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738567].bias
+      propertyPath: faults.Array.data[0].Faults.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738562].variance
+      propertyPath: managedReferences[1465170797056491530]
+      value: SimuNEX SimuNEX.DeadZoneFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491531]
+      value: SimuNEX SimuNEX.ConstantFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491532]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491537]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491540]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491544]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[0]
+      value: 1465170797056491544
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[1]
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[2]
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491531]._value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738566].variance
+      propertyPath: managedReferences[1465170797056491537]._value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491532].variance
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738568].range.max
+      propertyPath: managedReferences[1465170797056491540].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491544].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491530].range.max
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738568].range.min
+      propertyPath: managedReferences[1465170797056491530].range.min
       value: -50
       objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465170793100738564].quantizationStep
-      value: 0.03125
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: voltage
-      value: -130.5
+      propertyPath: faults.Array.data[0].property
+      value: motorSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491534]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491539]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491542]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491546]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[0]
+      value: 1465170797056491546
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491539]._value
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491534].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491542].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491546].variance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6631078503300786394, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: outputs.Array.size
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: voltage
-      value: 130.5
+      propertyPath: faults.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].property
+      value: motorSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491535]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491536]
+      value: SimuNEX SimuNEX.BiasFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491543]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491547]
+      value: SimuNEX SimuNEX.GaussianFault
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[0]
+      value: 1465170797056491547
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491536]._value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491535].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491543].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170797056491547].variance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: m_Name

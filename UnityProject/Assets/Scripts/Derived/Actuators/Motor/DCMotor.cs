@@ -87,7 +87,7 @@ namespace SimuNEX
         public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)
         {
             // Overwrite to the actual value
-            stateSpace.states[0, 0] = motorLoad._speed;
+            stateSpace.states[0, 0] = motorSpeed;
             stateSpace.input = inputs()[0];
             stateSpace.Compute();
             return stateSpace.output;

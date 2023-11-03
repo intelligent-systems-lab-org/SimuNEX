@@ -50,7 +50,7 @@ namespace SimuNEX
                 {
                     if (motor.inputs != null)
                     {
-                        float speed = motor.MotorFunction(motor.inputs, motor.parameters);
+                        float speed = motor.motorSpeed;
                         float acceleration = (speed - stateSpace.states[1, 0]) / Time.deltaTime;
 
                         stateSpace.inputs[0, 0] = acceleration;

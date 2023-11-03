@@ -32,7 +32,7 @@ namespace SimuNEX
             this.variance = variance;
         }
 
-        protected override float FaultFunction(float val)
+        public override float FaultFunction(float val)
         {
             return val + (UnityEngine.Random.Range(-1, 1) * variance);
         }

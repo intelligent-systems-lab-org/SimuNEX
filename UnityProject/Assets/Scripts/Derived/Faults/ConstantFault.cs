@@ -32,7 +32,7 @@ namespace SimuNEX
             _value = constantValue;
         }
 
-        protected override float FaultFunction(float val)
+        public override float FaultFunction(float val)
         {
             return _value;
         }

@@ -6,21 +6,21 @@ namespace SimuNEX
     /// <summary>
     /// A fault that adds a constant bias to the value.
     /// </summary>
-    [DebuggerDisplay("Bias = {bias}")]
+    [DebuggerDisplay("Bias = {_value}")]
     [Serializable]
     public class BiasFault : Fault
     {
         /// <summary>
         /// Bias value.
         /// </summary>
-        public float bias;
+        public float _value;
 
         /// <summary>
         /// <see cref="BiasFault"/> default constructor.
         /// </summary>
         public BiasFault()
         {
-            bias = 1f;
+            _value = 1f;
         }
 
         /// <summary>
@@ -29,12 +29,12 @@ namespace SimuNEX
         /// <param name="bias">The bias value.</param>
         public BiasFault(float bias)
         {
-            this.bias = bias;
+            _value = bias;
         }
 
-        protected override float FaultFunction(float val)
+        public override float FaultFunction(float val)
         {
-            return val + bias;
+            return val + _value;
         }
     }
 }

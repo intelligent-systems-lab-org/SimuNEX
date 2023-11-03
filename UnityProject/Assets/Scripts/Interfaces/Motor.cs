@@ -1,7 +1,8 @@
 using System;
-using static SimuNEX.StateSpaceTypes;
-using UnityEngine;
+using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEngine;
+using static SimuNEX.StateSpaceTypes;
 
 namespace SimuNEX
 {
@@ -21,6 +22,17 @@ namespace SimuNEX
     /// </summary>
     public abstract class Motor : Actuator
     {
+        /// <summary>
+        /// Motor speed.
+        /// </summary>
+        protected float _speed;
+
+        /// <summary>
+        /// Motor speed property.
+        /// </summary>
+        [Faultable]
+        public float motorSpeed => _speed;
+
         /// <summary>
         /// <see cref="MotorLoad"/> object that is attached to the motor.
         /// </summary>
@@ -95,7 +107,11 @@ namespace SimuNEX
         {
             if (motorLoad != null)
             {
-                motorLoad.AttachActuator(() => motorOutput);
+                motorLoad.AttachActuator(() =>
+                {
+                    Step();
+                    return motorSpeed;
+                });
             }
         }
 
@@ -119,35 +135,37 @@ namespace SimuNEX
         public float totalDamping =>
             (motorLoad != null) ? armatureDamping + motorLoad.loadDamping : armatureDamping;
 
-        /// <summary>
-        /// The output of the motor given constraints.
-        /// </summary>
-        public float motorOutput
+        public void Step()
         {
-            get
+            _speed = MotorFunction(inputs, parameters);
+
+            List<Fault> speedFaults = GetFaults("motorSpeed");
+
+            if (speedFaults != null)
             {
-                float speed = MotorFunction(inputs, parameters);
-
-                integrator.input = speed;
-                integrator.Compute();
-
-                float futurePosition = integrator.output;
-
-                if (futurePosition > positionLimits.max || futurePosition < positionLimits.min)
+                foreach (Fault fault in speedFaults)
                 {
-                    motorLoad.normalizedAngle = Mathf.Clamp(
-                        futurePosition,
-                        positionLimits.min,
-                        positionLimits.max
-                    );
-                    speed = 0;
+                    _speed = fault.FaultFunction(_speed);
                 }
-                else
-                {
-                    speed = Mathf.Clamp(speed, speedLimits.min, speedLimits.max);
-                }
+            }
 
-                return speed;
+            integrator.input = _speed;
+            integrator.Compute();
+
+            float futurePosition = integrator.output;
+
+            if (futurePosition > positionLimits.max || futurePosition < positionLimits.min)
+            {
+                motorLoad.normalizedAngle = Mathf.Clamp(
+                    futurePosition,
+                    positionLimits.min,
+                    positionLimits.max
+                );
+                _speed = 0;
+            }
+            else
+            {
+                _speed = Mathf.Clamp(_speed, speedLimits.min, speedLimits.max);
             }
         }
     }

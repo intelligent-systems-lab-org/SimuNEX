@@ -32,7 +32,7 @@ namespace SimuNEX
             this.stictionThreshold = stictionThreshold;
         }
 
-        protected override float FaultFunction(float val)
+        public override float FaultFunction(float val)
         {
             return Math.Abs(val) < stictionThreshold ? 0 : val;
         }

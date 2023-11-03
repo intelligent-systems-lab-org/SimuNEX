@@ -33,7 +33,7 @@ namespace SimuNEX
             this.quantizationStep = quantizationStep;
         }
 
-        protected override float FaultFunction(float val)
+        public override float FaultFunction(float val)
         {
             return Mathf.Round(val / quantizationStep) * quantizationStep;
         }

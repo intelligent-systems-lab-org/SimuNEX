@@ -32,7 +32,7 @@ namespace SimuNEX
             this.gain = gain;
         }
 
-        protected override float FaultFunction(float val)
+        public override float FaultFunction(float val)
         {
             return val * gain;
         }

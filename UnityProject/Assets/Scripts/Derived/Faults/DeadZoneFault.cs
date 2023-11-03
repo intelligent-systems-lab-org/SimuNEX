@@ -42,7 +42,7 @@ namespace SimuNEX
             range = new Limits { min = min, max = max };
         }
 
-        protected override float FaultFunction(float val)
+        public override float FaultFunction(float val)
         {
             return (val > range.min && val < range.max) ? 0 : val;
         }

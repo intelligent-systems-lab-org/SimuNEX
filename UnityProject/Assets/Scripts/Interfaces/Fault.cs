@@ -15,7 +15,7 @@ namespace SimuNEX
         /// </summary>
         /// <param name="val">The value to apply the fault to.</param>
         /// <returns>The modified value with the fault applied.</returns>
-        protected abstract float FaultFunction(float val);
+        public abstract float FaultFunction(float val);
 
         /// <summary>
         /// Applies the fault to a Vector3.
@@ -40,6 +40,15 @@ namespace SimuNEX
         }
     }
 
+    [Serializable]
+    public class FaultEntry
+    {
+        public string property;
+
+        [SerializeReference]
+        public List<Fault> Faults;
+    }
+
     /// <summary>
     /// Adds faults to a supported system.
     /// </summary>
@@ -48,7 +57,34 @@ namespace SimuNEX
         /// <summary>
         /// List of faults present in the system.
         /// </summary>
-        [SerializeReference]
-        public List<Fault> faults = new();
+        public List<FaultEntry> faults = new();
+
+        /// <summary>
+        /// Adds to the list of faults affecting the selected property.
+        /// </summary>
+        /// <param name="property">Property value that is being faulted.</param>
+        /// <param name="fault"><see cref="Fault"/> object that applies the fault.</param>
+        public void AddFault(string property, Fault fault)
+        {
+            FaultEntry entry = faults.Find(fe => fe.property == property);
+            if (entry == null)
+            {
+                entry = new FaultEntry { property = property, Faults = new List<Fault>() };
+                faults.Add(entry);
+            }
+
+            entry.Faults.Add(fault);
+        }
+
+        /// <summary>
+        /// Finds the list of faults affecting property.
+        /// </summary>
+        /// <param name="property">The property of interest.</param>
+        /// <returns>The lists of faults affecting property.</returns>
+        public List<Fault> GetFaults(string property)
+        {
+            FaultEntry entry = faults.Find(fe => fe.property == property);
+            return entry?.Faults;
+        }
     }
 }
