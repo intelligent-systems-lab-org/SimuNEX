@@ -22,7 +22,7 @@ namespace SimuNEX
     }
 
     /// <summary>
-    /// Marks the variable so that <see cref="Fault"/> objects can be applied.
+    /// Marks the property so that <see cref="Fault"/> objects can be applied.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public class Faultable : Attribute
