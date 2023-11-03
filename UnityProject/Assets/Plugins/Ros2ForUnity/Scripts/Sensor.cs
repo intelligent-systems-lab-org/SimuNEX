@@ -13,16 +13,15 @@
 // limitations under the License.
 
 using UnityEngine;
-using UnityEngine.Profiling;
 using System;
 
 namespace ROS2
 {
 
-/// <summary>
-/// An abstract base class for ROS2-enabled sensor.
-/// </summary>
-public abstract class ISensor : MonoBehaviour
+    /// <summary>
+    /// An abstract base class for ROS2-enabled sensor.
+    /// </summary>
+    public abstract class ISensor : MonoBehaviour
 {
     /// <summary>
     /// The desired update frequency for the sensor. The maximum can be the rate with which FixedUpdate is called,
@@ -199,14 +198,19 @@ public abstract class Sensor<T> : ISensor where T : MessageWithHeader, new()
         double maxFrameFreq = 1.0 / Time.fixedDeltaTime;
         if (desiredUpdateFreq > maxFrameFreq)
         {
-            Debug.LogWarning("Desired frame rate of " + desiredUpdateFreq + " can't be met, "
-                            + "physics frequency is " + maxFrameFreq);
+            Debug.LogWarning("Desired frame rate of "
+                + desiredUpdateFreq
+                + " can't be met, "
+                + "physics frequency is "
+                + maxFrameFreq);
             desiredUpdateFreq = maxFrameFreq;  //Can't go faster than physics
         }
         if (desiredUpdateFreq < minimumFrequency)
         {
-            Debug.LogWarning("Minimum frequency of " + minimumFrequency
-                             + " applied instead of " + desiredUpdateFreq);
+            Debug.LogWarning("Minimum frequency of "
+                + minimumFrequency
+                + " applied instead of "
+                + desiredUpdateFreq);
             desiredUpdateFreq = minimumFrequency;
         }
         desiredFrameTime = 1.0 / desiredUpdateFreq;

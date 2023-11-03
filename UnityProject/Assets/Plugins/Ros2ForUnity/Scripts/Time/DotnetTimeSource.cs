@@ -65,7 +65,7 @@ public class DotnetTimeSource : ITimeSource
             {   // use Stopwatch offset
                 timeOffset = durationInSeconds;
             }
-            
+
             TimeUtils.TimeFromTotalSeconds(systemTimeIntervalStart + timeOffset, out seconds, out nanoseconds);
         }
     }

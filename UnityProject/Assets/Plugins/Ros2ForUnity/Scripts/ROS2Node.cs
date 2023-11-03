@@ -13,19 +13,16 @@
 // limitations under the License.
 
 using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
 
 namespace ROS2
 {
 
-/// <summary>
-/// A class representing a ros2 node. Multiple nodes can be used. Node can be removed by GC when not used anymore,
-/// but will also be removed properly with Ros2cs Shutdown, which ROS2 for Unity performs on application quit
-/// The node should be constructed through ROS2UnityComponent class, which also handles spinning
-/// </summary>
-public class ROS2Node
+    /// <summary>
+    /// A class representing a ros2 node. Multiple nodes can be used. Node can be removed by GC when not used anymore,
+    /// but will also be removed properly with Ros2cs Shutdown, which ROS2 for Unity performs on application quit
+    /// The node should be constructed through ROS2UnityComponent class, which also handles spinning
+    /// </summary>
+    public class ROS2Node
 {
     internal INode node;
     public ROS2Clock clock;

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   height="616.55841"
+   width="800"
+   version="1.1"
+   viewBox="0 0 298 229.66801"
+   enable-background="new 0 0 298 298"
+   id="svg8"
+   sodipodi:docname="motor-svgrepo-com.svg"
+   inkscape:export-filename="motor-svgrepo-com.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.0375"
+     inkscape:cx="363.37349"
+     inkscape:cy="323.37349"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <g
+     id="g6"
+     transform="translate(0,-34.166)"
+     style="fill:#ff0000">
+    <path
+       d="M 298,141.25 H 263.899 C 259.9,81.531 210.047,34.166 149.333,34.166 88.619,34.166 38.767,81.531 34.767,141.25 H 0 v 16 h 34.798 c 4.244,59.483 53.99,106.584 114.535,106.584 60.545,0 110.291,-47.101 114.535,-106.584 H 298 Z M 248.167,149 c 0,54.497 -44.337,98.834 -98.834,98.834 -54.497,0 -98.834,-44.337 -98.834,-98.834 0,-54.497 44.337,-98.834 98.834,-98.834 54.497,0 98.834,44.337 98.834,98.834 z"
+       id="path2"
+       style="fill:#ff0000" />
+    <polygon
+       points="99,100.25 99,199.25 118,199.25 118,133.549 144.107,182.25 154.559,182.25 180,133.549 180,199.25 199,199.25 199,100.25 178.805,100.25 149.264,156.545 120.002,100.25 "
+       id="polygon4"
+       style="fill:#ff0000" />
+  </g>
+</svg>

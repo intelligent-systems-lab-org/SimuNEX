@@ -127,5 +127,19 @@ namespace Eigen3MatrixTests
 
             Assert.AreEqual(4 - 6, determinant, tol);
         }
+
+        [Test]
+        public void TestMatrixDeterminantPropertyNonSquare_ThrowsException()
+        {
+            var originalMatrix = new Matrix(new float[,] {
+                { 1, 2, 0 },
+                { 3, 4, 1 }
+            });
+            
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                var determinant = originalMatrix.Determinant;
+            });
+        }
     }
 }

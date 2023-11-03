@@ -1,7 +1,5 @@
 using NUnit.Framework;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using SimuNEX;
 
 namespace Matrix6DOFTests
 {
@@ -21,7 +19,7 @@ namespace Matrix6DOFTests
             float actualValue = matrix6DOF[2, 3];
 
             // Assert
-            Assert.AreEqual(expectedValue, actualValue, 
+            Assert.AreEqual(expectedValue, actualValue,
                 "The value set and retrieved using the indexer does not match.");
         }
 
@@ -31,11 +29,11 @@ namespace Matrix6DOFTests
             var originalMatrix = new Matrix6DOF
             (
                 "[2 0 0 0 0 0; " +
-                 "0 2 0 0 0 0; " +
-                 "0 0 2 0 0 0; " +
-                 "0 0 0 5 0 0; " +
-                 "0 0 0 0 1 0; " +
-                 "0 0 0 0 0 4]"
+                    "0 2 0 0 0 0; " +
+                    "0 0 2 0 0 0; " +
+                    "0 0 0 5 0 0; " +
+                    "0 0 0 0 1 0; " +
+                    "0 0 0 0 0 4]"
             );
 
             var inverse = originalMatrix.inverse;

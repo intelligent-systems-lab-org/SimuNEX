@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1848095677856972004}
   - component: {fileID: 1774299028294793820}
   m_Layer: 0
-  m_Name: Stern Planes
+  m_Name: Stern Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,12 +47,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
+  inputNames:
+  - Stern Plane Fins Voltage
   motorLoad: {fileID: 1774299028294793820}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: 0.2373648
+    min: -0.2373648
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
@@ -130,8 +137,8 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
-  thrustCoefficient: 0.0000188865
-  torqueCoefficient: 0
+  thrustCoefficient: 0.00001
+  torqueCoefficient: 0.000000001
 --- !u!114 &5947556496897487590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,12 +152,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
+  inputNames:
+  - Back Propeller Voltage
   motorLoad: {fileID: 7070348159328965532}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: Infinity
+    min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: 100
   armatureResistance: 20
   backEMFConstant: 1
@@ -164,7 +178,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8736971998255736337}
+  - component: {fileID: 4621679548720714149}
   - component: {fileID: 5452912407559438521}
+  - component: {fileID: 7795851727195075924}
+  - component: {fileID: 4566193712669001726}
   m_Layer: 0
   m_Name: Sensors
   m_TagString: Untagged
@@ -187,6 +204,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 435350545056485185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4621679548720714149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461526801234737444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4f6052c56cb194ea732f9bebd47ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1170835664730685151}
+  outputNames:
+  - AUV X Velocity
+  - AUV Z Velocity
+  - AUV Y Velocity
+  - AUV X Angular Velocity
+  - AUV Z Angular Velocity
+  - AUV Y Angular Velocity
+  - AUV W Angular Position
+  - AUV X Angular Position
+  - AUV Z Angular Position
+  - AUV Y Angular Position
+  - AUV X Position
+  - AUV Z Position
+  - AUV Y Position
 --- !u!114 &5452912407559438521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,10 +244,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
+  outputNames:
+  - Back Propeller Speed
   readPosition: 0
   readTorque: 0
   motor: {fileID: 5947556496897487590}
-  integrator: 0
+  stepper: 0
+--- !u!114 &7795851727195075924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461526801234737444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1170835664730685151}
+  outputNames:
+  - Rudder Fins Speed
+  - Rudder Fins Position
+  readPosition: 1
+  readTorque: 0
+  motor: {fileID: 5112610935768309211}
+  stepper: 0
+--- !u!114 &4566193712669001726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461526801234737444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1170835664730685151}
+  outputNames:
+  - Stern Plane Fins Speed
+  - Stern Plane Fins Position
+  readPosition: 1
+  readTorque: 0
+  motor: {fileID: 1848095677856972004}
+  stepper: 0
 --- !u!1 &1352934492587307473
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,8 +303,8 @@ GameObject:
   - component: {fileID: 95786566618168691}
   - component: {fileID: 1170835664730685151}
   - component: {fileID: 5601625684026374144}
-  - component: {fileID: 7524597411484692782}
-  - component: {fileID: 8255319234837448892}
+  - component: {fileID: 8378987297206801634}
+  - component: {fileID: 2230904909486435595}
   m_Layer: 0
   m_Name: AUV
   m_TagString: Untagged
@@ -406,22 +492,7 @@ MonoBehaviour:
       - 188
       _serializedRows: 6
       _serializedCols: 6
---- !u!114 &7524597411484692782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352934492587307473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensors:
-  - {fileID: 5452912407559438521}
-  outputs: []
---- !u!114 &8255319234837448892
+--- !u!114 &8378987297206801634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,6 +509,24 @@ MonoBehaviour:
   - {fileID: 5112610935768309211}
   - {fileID: 1848095677856972004}
   inputs: []
+--- !u!114 &2230904909486435595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352934492587307473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensors:
+  - {fileID: 4621679548720714149}
+  - {fileID: 5452912407559438521}
+  - {fileID: 7795851727195075924}
+  - {fileID: 4566193712669001726}
+  outputs: []
 --- !u!1 &1917565314104323816
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +570,7 @@ GameObject:
   - component: {fileID: 4311938535804984735}
   - component: {fileID: 6013040632038734697}
   m_Layer: 0
-  m_Name: Fin
+  m_Name: Fins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -711,7 +800,7 @@ GameObject:
   - component: {fileID: 6306193290159191979}
   - component: {fileID: 4440751290389269809}
   m_Layer: 0
-  m_Name: Fin
+  m_Name: Fins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -827,7 +916,7 @@ GameObject:
   - component: {fileID: 5112610935768309211}
   - component: {fileID: 129176138644301223}
   m_Layer: 0
-  m_Name: Rudders
+  m_Name: Rudder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,12 +951,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1170835664730685151}
+  inputNames:
+  - Rudder Fins Voltage
   motorLoad: {fileID: 129176138644301223}
-  upperSaturation: Infinity
-  lowerSaturation: -Infinity
+  speedLimits:
+    max: Infinity
+    min: -Infinity
+  positionLimits:
+    max: 0.2373648
+    min: -0.2373648
   armatureInertia: 0.5
   armatureDamping: 0
-  integrator: 0
+  positionStepper: 0
+  speedStepper: 0
   voltage: 0
   armatureResistance: 20
   backEMFConstant: 1

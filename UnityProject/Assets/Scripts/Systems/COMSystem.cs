@@ -1,49 +1,52 @@
 using UnityEngine;
 
-/// <summary>
-/// Supervisory component for communication.
-/// </summary>
-public class COMSystem : MonoBehaviour
+namespace SimuNEX
 {
     /// <summary>
-    /// Attached <see cref="COMProtocol"/> object.
+    /// Supervisory component for communication.
     /// </summary>
-    public COMProtocol protocol;
-
-    private void OnValidate()
+    public class COMSystem : MonoBehaviour
     {
-        protocol = GetComponent<COMProtocol>();
-    }
+        /// <summary>
+        /// Attached <see cref="COMProtocol"/> object.
+        /// </summary>
+        public COMProtocol protocol;
 
-    /// <summary>
-    /// Sends data using the <see cref="COMProtocol"/>.
-    /// </summary>
-    /// <param name="data">Data to be sent.</param>
-    public void Send(float[] data)
-    {
-        if (protocol != null)
+        protected void OnValidate()
         {
-            protocol.Send(data);
+            protocol = GetComponent<COMProtocol>();
         }
-        else
-        {
-            Debug.LogWarning("COMProtocol component not found!");
-        }
-    }
 
-    /// <summary>
-    /// Receives data using the <see cref="COMProtocol"/>.
-    /// </summary>
-    /// <param name="data">Data to be received.</param>
-    public void Receive(float[] data)
-    {
-        if (protocol != null)
+        /// <summary>
+        /// Sends data using the <see cref="COMProtocol"/>.
+        /// </summary>
+        /// <param name="data">Data to be sent.</param>
+        public void Send(float[] data)
         {
-            protocol.Receive(data);
+            if (protocol != null)
+            {
+                protocol.Send(data);
+            }
+            else
+            {
+                Debug.LogWarning("COMProtocol component not found!");
+            }
         }
-        else
+
+        /// <summary>
+        /// Receives data using the <see cref="COMProtocol"/>.
+        /// </summary>
+        /// <param name="data">Data to be received.</param>
+        public void Receive(float[] data)
         {
-            Debug.LogWarning("COMProtocol component not found!");
+            if (protocol != null)
+            {
+                protocol.Receive(data);
+            }
+            else
+            {
+                Debug.LogWarning("COMProtocol component not found!");
+            }
         }
     }
 }

@@ -1,97 +1,196 @@
 using System;
 using UnityEngine;
 
-public class IdealMotorSensor : Sensor
+namespace SimuNEX
 {
     /// <summary>
-    /// Enable position as a sensor reading.
+    /// Implements an ideal sensor that measures <see cref="Motor"/> object values.
     /// </summary>
-    public bool readPosition = false;
-
-    /// <summary>
-    /// Enables torque as a sensor reading.
-    /// </summary>
-    public bool readTorque = false;
-
-    /// <summary>
-    /// <see cref="Motor"/> object to read speed values.
-    /// </summary>
-    public Motor motor;
-
-    /// <summary>
-    /// The state space for obtaining additional data such as position.
-    /// </summary>
-    private StateSpace stateSpace;
-
-    /// <summary>
-    /// The integration method.
-    /// </summary>
-    public IntegrationMethod integrator;
-
-    protected override void Initialize()
+    public class IdealMotorSensor : Sensor
     {
-        if (readPosition || readTorque)
+        /// <summary>
+        /// Motor speed property.
+        /// </summary>
+        [Faultable]
+        public float motorSpeed => _speed;
+
+        /// <summary>
+        /// Motor position property.
+        /// </summary>
+        [Faultable]
+        public float motorPosition => _position;
+
+        /// <summary>
+        /// Motor torque property.
+        /// </summary>
+        [Faultable]
+        public float motorTorque => _torque;
+
+        /// <summary>
+        /// Measured motor speed.
+        /// </summary>
+        protected float _speed;
+
+        /// <summary>
+        /// Measured motor position.
+        /// </summary>
+        protected float _position;
+
+        /// <summary>
+        /// Measured motor torque.
+        /// </summary>
+        protected float _torque;
+
+        /// <summary>
+        /// Enable position as a sensor reading.
+        /// </summary>
+        public bool readPosition;
+
+        /// <summary>
+        /// Enables torque as a sensor reading.
+        /// </summary>
+        public bool readTorque;
+
+        /// <summary>
+        /// <see cref="Motor"/> object to read speed values.
+        /// </summary>
+        public Motor motor;
+
+        /// <summary>
+        /// The state space for obtaining additional data such as position.
+        /// </summary>
+        private StateSpace stateSpace;
+
+        /// <summary>
+        /// The stepper method.
+        /// </summary>
+        public StepperMethod stepper;
+
+        protected override void Initialize()
         {
-            stateSpace = new();
-            stateSpace.Initialize(2, 1, new Matrix(2, 1), integrator: StateSpace.CreateIntegrator(integrator));
-            stateSpace.DerivativeFcn = (states, inputs) =>
+            if (readPosition || readTorque)
             {
-                // states[0] is position, states[1] is speed
-                // Derivative of position is speed, input is acceleration
-                return new Matrix(2, 1, new float[]{ states[1, 0], inputs[0, 0] });
-            };
-
-            outputs = () =>
-            {
-                if (motor.inputs != null)
+                stateSpace = new();
+                stateSpace.Initialize(2, 1, new Matrix(2, 1), stepper: StateSpace.CreateStepper(stepper));
+                stateSpace.DerivativeFcn = (states, inputs) =>
                 {
-                    float speed = motor.MotorFunction(motor.inputs, motor.parameters);
-                    float acceleration = (speed - stateSpace.states[1, 0]) / Time.deltaTime; 
+                    // states[0] is position, states[1] is speed
+                    // Derivative of position is speed, input is acceleration
+                    return new Matrix(2, 1, new float[] { states[1, 0], inputs[0, 0] });
+                };
 
-                    stateSpace.inputs[0, 0] = acceleration;
-                    stateSpace.Compute();
-
-                    float integratedPosition = stateSpace.states[0, 0] % 2 * MathF.PI;
-
-                    // Compute torque using provided relationship
-                    float torque = motor.totalInertia * acceleration + motor.totalDamping * speed;
-
-                    if (readPosition && readTorque)
+                outputs = () =>
+                {
+                    if (motor.inputs != null)
                     {
-                        return new float[] { speed, integratedPosition, torque };
+                        _speed = motor.motorSpeed;
+                        float acceleration = (_speed - stateSpace.states[1, 0]) / Time.deltaTime;
+
+                        stateSpace.inputs[0, 0] = acceleration;
+                        stateSpace.Compute();
+
+                        float _position = stateSpace.states[0, 0] % 2 * MathF.PI;
+
+                        // Compute torque using provided relationship
+                        _torque = (motor.totalInertia * acceleration) + (motor.totalDamping * _speed);
+
+                        ApplyFault("motorSpeed", ref _speed);
+
+                        if (readPosition && readTorque)
+                        {
+                            ApplyFault("motorPosition", ref _position);
+                            ApplyFault("motorTorque", ref _torque);
+                            return new float[] { motorSpeed, motorPosition, motorTorque };
+                        }
+                        else if (readTorque && !readPosition)
+                        {
+                            ApplyFault("motorTorque", ref _torque);
+                            return new float[] { motorSpeed, motorTorque };
+                        }
+                        else if (readPosition && !readTorque)
+                        {
+                            ApplyFault("motorPosition", ref _position);
+                            return new float[] { motorSpeed, motorPosition };
+                        }
                     }
-                    else if (readTorque && !readPosition)
+
+                    return (readPosition && readTorque) ? new float[3] : new float[2];
+                };
+            }
+            else
+            {
+                outputs = () =>
+                {
+                    if (motor.inputs == null)
                     {
-                        return new float[] { speed, torque };
+                        return new float[1];
                     }
-                    else if (readPosition && !readTorque) {
-                        return new float[] { speed, integratedPosition };
-                    }
+
+                    _speed = motor.motorSpeed;
+                    ApplyFault("motorSpeed", ref _speed);
+
+                    return new float[] { motorSpeed };
+                };
+            }
+
+            if (motor != null)
+            {
+                if (rigidBody == null)
+                {
+                    rigidBody = motor.rigidBody;
                 }
-                    return (readPosition && readTorque)? new float[3] : new float[2];
-            };
+
+                SetOutputNames();
+            }
         }
-        else
+
+        /// <summary>
+        /// Dynamically sets the output names given the chosen options.
+        /// </summary>
+        private void SetOutputNames()
         {
-            outputs = () =>
+            string motorName = motor.gameObject.name;
+            string loadName = motor.motorLoad.spinnerObject.gameObject.name;
+
+            if (readPosition && readTorque)
             {
-                if (motor.inputs != null)
+                outputNames = (new string[]
                 {
-                    return new float[] { motor.MotorFunction(motor.inputs, motor.parameters) };
-                }
-                return new float[1];
-            };
+                    $"{motorName} {loadName} Speed",
+                    $"{motorName} {loadName} Position",
+                    $"{motorName} {loadName} Torque"
+                });
+            }
+            else if (readTorque && !readPosition)
+            {
+                outputNames = (new string[]
+                                {
+                                    $"{motorName} {loadName} Speed",
+                                    $"{motorName} {loadName} Torque"
+                                });
+            }
+            else if (readPosition && !readTorque)
+            {
+                outputNames = (new string[]
+                                                {
+                                                    $"{motorName} {loadName} Speed",
+                                                    $"{motorName} {loadName} Position"
+                                                });
+            }
+            else
+            {
+                outputNames = (new string[] { $"{motorName} {loadName} Speed" });
+            }
         }
-        
-    }
 
-    private void OnValidate()
-    {
-        Initialize();
-    }
+        protected void OnValidate()
+        {
+            Initialize();
+        }
 
-    private void Awake()
-    {
-        Initialize();
+        protected void Awake()
+        {
+            Initialize();
+        }
     }
 }

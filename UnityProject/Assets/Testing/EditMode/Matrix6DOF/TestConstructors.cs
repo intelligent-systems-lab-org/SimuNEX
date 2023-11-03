@@ -1,6 +1,6 @@
 using NUnit.Framework;
+using SimuNEX;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Matrix6DOFTests
@@ -64,7 +64,7 @@ namespace Matrix6DOFTests
                 { 0, 0, 1, 0, 0, 0 },
                 { 0, 0, 0, 1, 0, 0 },
                 { 0, 0, 0, 0, 1, 0 },
-                { 0, 0, 0, 0, 0, 0 } 
+                { 0, 0, 0, 0, 0, 0 }
             });
 
             // Act & Assert
@@ -115,7 +115,7 @@ namespace Matrix6DOFTests
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    Assert.AreEqual(expectedValues[i, j], result[i, j], 
+                    Assert.AreEqual(expectedValues[i, j], result[i, j],
                         "Matrix values do not match expected values.");
                 }
             }
@@ -125,13 +125,13 @@ namespace Matrix6DOFTests
         public void Constructor_FromString_ShouldInitializeCorrectly()
         {
             // Arrange
-            string matrixString = 
+            string matrixString =
                "[1 0 0 0 0 0; " +
-                "0 2 0 0 0 0; " +
-                "0 0 3 0 0 0; " +
-                "0 0 0 4 0 0; " +
-                "0 0 0 0 5 0; " +
-                "0 0 0 0 0 6]";
+                   "0 2 0 0 0 0; " +
+                   "0 0 3 0 0 0; " +
+                   "0 0 0 4 0 0; " +
+                   "0 0 0 0 5 0; " +
+                   "0 0 0 0 0 6]";
 
             // Act
             Matrix6DOF matrix6DOF = new Matrix6DOF(matrixString);
@@ -141,7 +141,7 @@ namespace Matrix6DOFTests
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    Assert.AreEqual(i == j ? i + 1 : 0, matrix6DOF[i, j], 
+                    Assert.AreEqual(i == j ? i + 1 : 0, matrix6DOF[i, j],
                         $"Value at position [{i}, {j}] does not match.");
                 }
             }

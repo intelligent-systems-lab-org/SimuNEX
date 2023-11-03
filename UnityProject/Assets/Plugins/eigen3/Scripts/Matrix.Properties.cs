@@ -54,7 +54,7 @@ public partial class Matrix
     /// <summary>
     /// Returns the inverse of the matrix.
     /// </summary>
-    /// <exception cref="InvalidOperationException">Thrown when matrix is 
+    /// <exception cref="InvalidOperationException">Thrown when matrix is
     /// singular or non-square.</exception>
     public Matrix Inverse
     {
@@ -79,5 +79,14 @@ public partial class Matrix
     /// <summary>
     /// Returns the determinant of the matrix.
     /// </summary>
-    public float Determinant => Eigen3.GetDeterminant(_matrixPtr);
+    public float Determinant
+    {
+        get {
+            if (RowCount != ColCount)
+            {
+                throw new InvalidOperationException("Determinant is undefined for non-square matrices");
+            }
+            return Eigen3.GetDeterminant(_matrixPtr);
+        }
+    }
 }

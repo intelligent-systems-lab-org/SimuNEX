@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SimuNEX;
 using UnityEngine;
 
 namespace Vector6DOFTests

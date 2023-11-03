@@ -1,27 +1,30 @@
-/// <summary>
-/// Applies a constant force to the attached RigidBody.
-/// </summary>
-public class ContinuousForce : Force
+namespace SimuNEX
 {
     /// <summary>
-    /// 3D force to apply.
+    /// Applies a constant force to the attached RigidBody.
     /// </summary>
-    public Vector6DOF forces;
-
-    /// <summary>
-    /// Reference frame to apply the force.
-    /// </summary>
-    public CoordinateFrame referenceFrame;
-
-    public override void ApplyForce()
+    public class ContinuousForce : Force
     {
-        if (referenceFrame == CoordinateFrame.BCF)
+        /// <summary>
+        /// 3D force to apply.
+        /// </summary>
+        public Vector6DOF forces;
+
+        /// <summary>
+        /// Reference frame to apply the force.
+        /// </summary>
+        public CoordinateFrame referenceFrame;
+
+        public override void ApplyForce()
         {
-            rigidBody.AddForce(forces.ToICF(transform));
-        }
-        else
-        {
-            rigidBody.AddForce(forces);
+            if (referenceFrame == CoordinateFrame.BCF)
+            {
+                rigidBody.AddForce(forces.ToICF(transform));
+            }
+            else
+            {
+                rigidBody.AddForce(forces);
+            }
         }
     }
 }

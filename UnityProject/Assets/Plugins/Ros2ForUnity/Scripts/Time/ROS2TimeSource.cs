@@ -38,7 +38,7 @@ public class ROS2TimeSource : ITimeSource
     { // Create clock which uses system time by default (unless use_sim_time is set in ros2)
       clock = new ROS2.Clock();
     }
-  
+
     TimeUtils.TimeFromTotalSeconds(clock.Now.Seconds, out seconds, out nanoseconds);
   }
 

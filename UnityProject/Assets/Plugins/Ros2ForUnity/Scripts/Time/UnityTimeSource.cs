@@ -12,20 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Threading;
 using UnityEngine;
 
 namespace ROS2
 {
 
-/// <summary>
-/// Acquires Unity time. Note that Time API only allows main thread access,
-/// but this class object also stores last acquired value for other threads.
-/// This is done without a warning, so the class will not behave as expected
-/// when not used by main thread.
-/// </summary>
-public class UnityTimeSource : ITimeSource
+    /// <summary>
+    /// Acquires Unity time. Note that Time API only allows main thread access,
+    /// but this class object also stores last acquired value for other threads.
+    /// This is done without a warning, so the class will not behave as expected
+    /// when not used by main thread.
+    /// </summary>
+    public class UnityTimeSource : ITimeSource
 {
   private Thread mainThread;
   private double lastReadingSecs;

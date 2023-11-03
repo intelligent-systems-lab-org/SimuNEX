@@ -34,7 +34,7 @@ internal class ROS2ForUnity
         Windows,
         Linux
     }
-    
+
     private Platform GetOS()
     {
         if (Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
@@ -51,7 +51,7 @@ internal class ROS2ForUnity
     private bool InEditor() {
         return Application.isEditor;
     }
-    
+
     private string GetOSName()
     {
         switch (GetOS())
@@ -64,7 +64,7 @@ internal class ROS2ForUnity
                 throw new System.NotSupportedException("Only Linux and Windows are supported");
         }
     }
-    
+
     private string GetEnvPathVariableName()
     {
       string envVariable = "LD_LIBRARY_PATH";
@@ -90,9 +90,9 @@ internal class ROS2ForUnity
             // Ros2ForUnity is now inside the Plugins folder
             pluginPath += separator + "Plugins";
         }
-        
+
         pluginPath += separator + ros2ForUnityAssetFolderName;
-        
+
         if (InEditor()) {
             pluginPath += separator + GetOSName();
         }
@@ -101,7 +101,7 @@ internal class ROS2ForUnity
         {
            pluginPath += separator + "x86_64";
         }
-        
+
         if (GetOS() == Platform.Windows)
         {
            pluginPath = pluginPath.Replace("/", "\\");
@@ -116,14 +116,14 @@ internal class ROS2ForUnity
     /// <description>
     /// Note that on Linux, LD_LIBRARY_PATH as used for dlopen() is determined on process start and this change won't
     /// affect it. Ros2 looks for rmw implementation based on this variable (independently) and the change
-    /// is effective for this process, however rmw implementation's dependencies itself are loaded by dynamic linker 
+    /// is effective for this process, however rmw implementation's dependencies itself are loaded by dynamic linker
     /// anyway so setting  it for Linux is pointless.
     /// </description>
     private void SetEnvPathVariable()
     {
         string currentPath = GetEnvPathVariableValue();
         string pluginPath = GetPluginPath();
-        
+
         char envPathSep = ':';
         if (GetOS() == Platform.Windows)
         {
@@ -144,8 +144,9 @@ internal class ROS2ForUnity
         var supportedVersionsString = String.Join(", ", supportedVersions);
         if (string.IsNullOrEmpty(currentVersion))
         {
-            string errMessage = "No ROS environment sourced. You need to source your ROS2 " + supportedVersionsString
-              + " environment before launching Unity (ROS_DISTRO env variable not found)";
+            string errMessage = "No ROS environment sourced. You need to source your ROS2 "
+                + supportedVersionsString
+                + " environment before launching Unity (ROS_DISTRO env variable not found)";
             Debug.LogError(errMessage);
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
@@ -158,8 +159,11 @@ internal class ROS2ForUnity
 
         if (!supportedVersions.Contains(currentVersion))
         {
-            string errMessage = "Currently sourced ROS version differs from supported one. Sourced: " + currentVersion
-              + ", supported: " + supportedVersionsString + ".";
+            string errMessage = "Currently sourced ROS version differs from supported one. Sourced: "
+                + currentVersion
+                + ", supported: "
+                + supportedVersionsString
+                + ".";
             Debug.LogError(errMessage);
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;

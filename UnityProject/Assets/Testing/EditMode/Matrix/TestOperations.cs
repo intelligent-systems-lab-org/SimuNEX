@@ -165,12 +165,12 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(3, matrixC.ColCount);
 
             // test positions
-            Assert.AreEqual(2 * 1 + 4 * 4 + 3 * 7, matrixC[0, 0]);
-            Assert.AreEqual(2 * 2 + 4 * 5 + 3 * 8, matrixC[0, 1]);
-            Assert.AreEqual(2 * 3 + 4 * 6 + 3 * 9, matrixC[0, 2]);
-            Assert.AreEqual(5 * 1 + 6 * 4 + 1 * 7, matrixC[1, 0]);
-            Assert.AreEqual(5 * 2 + 6 * 5 + 1 * 8, matrixC[1, 1]);
-            Assert.AreEqual(5 * 3 + 6 * 6 + 1 * 9, matrixC[1, 2]);
+            Assert.AreEqual((2 * 1) + (4 * 4) + (3 * 7), matrixC[0, 0]);
+            Assert.AreEqual((2 * 2) + (4 * 5) + (3 * 8), matrixC[0, 1]);
+            Assert.AreEqual((2 * 3) + (4 * 6) + (3 * 9), matrixC[0, 2]);
+            Assert.AreEqual((5 * 1) + (6 * 4) + (1 * 7), matrixC[1, 0]);
+            Assert.AreEqual((5 * 2) + (6 * 5) + (1 * 8), matrixC[1, 1]);
+            Assert.AreEqual((5 * 3) + (6 * 6) + (1 * 9), matrixC[1, 2]);
         }
 
         [Test]
@@ -212,12 +212,12 @@ namespace Eigen3MatrixTests
             Assert.AreEqual(3, matrixC.ColCount);
 
             // test positions
-            Assert.AreEqual(2 * 1 + 4 * 4 + 3 * 7, matrixC[0, 0]);
-            Assert.AreEqual(2 * 2 + 4 * 5 + 3 * 8, matrixC[0, 1]);
-            Assert.AreEqual(2 * 3 + 4 * 6 + 3 * 9, matrixC[0, 2]);
-            Assert.AreEqual(5 * 1 + 6 * 4 + 1 * 7, matrixC[1, 0]);
-            Assert.AreEqual(5 * 2 + 6 * 5 + 1 * 8, matrixC[1, 1]);
-            Assert.AreEqual(5 * 3 + 6 * 6 + 1 * 9, matrixC[1, 2]);
+            Assert.AreEqual((2 * 1) + (4 * 4) + (3 * 7), matrixC[0, 0]);
+            Assert.AreEqual((2 * 2) + (4 * 5) + (3 * 8), matrixC[0, 1]);
+            Assert.AreEqual((2 * 3) + (4 * 6) + (3 * 9), matrixC[0, 2]);
+            Assert.AreEqual((5 * 1) + (6 * 4) + (1 * 7), matrixC[1, 0]);
+            Assert.AreEqual((5 * 2) + (6 * 5) + (1 * 8), matrixC[1, 1]);
+            Assert.AreEqual((5 * 3) + (6 * 6) + (1 * 9), matrixC[1, 2]);
         }
 
         [Test]

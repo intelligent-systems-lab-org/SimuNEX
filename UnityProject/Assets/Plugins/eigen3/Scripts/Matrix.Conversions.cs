@@ -16,7 +16,7 @@ public partial class Matrix
             {
                 for (int j = 0; j < ColCount; j++)
                 {
-                    data[i * ColCount + j] = this[i, j];
+                    data[(i * ColCount) + j] = this[i, j];
                 }
             }
         }
@@ -26,7 +26,7 @@ public partial class Matrix
             {
                 for (int j = 0; j < ColCount; j++)
                 {
-                    data[j * RowCount + i] = this[i, j];
+                    data[(j * RowCount) + i] = this[i, j];
                 }
             }
         }

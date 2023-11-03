@@ -25,10 +25,10 @@ public partial class Matrix : IDisposable
     /// </summary>
     /// <param name="rows">Number of rows.</param>
     /// <param name="cols">Number of columns.</param>
-    /// <param name="data">Input array. 
+    /// <param name="data">Input array.
     /// If not given, creates a zero matrix by the specified size.</param>
     /// <param name="rowMajor">Assume order in row-major if true. Column-major by default.</param>
-    /// <exception cref="ArgumentException">If rows or cols is zero, 
+    /// <exception cref="ArgumentException">If rows or cols is zero,
     /// or the length of the data array is not equal to rows * cols.</exception>
     public Matrix(int rows, int cols, float[] data = null, bool rowMajor = false)
     {
@@ -69,7 +69,7 @@ public partial class Matrix : IDisposable
             for (int j = 0; j < cols; j++)
             {
                 // Flatten in column-major order
-                flatData[j * rows + i] = data[i, j];
+                flatData[(j * rows) + i] = data[i, j];
             }
         }
         _matrixPtr = Eigen3.CreateMatrix(rows, cols, flatData);
@@ -92,10 +92,22 @@ public partial class Matrix : IDisposable
     /// Creates an identity matrix of given size.
     /// </summary>
     /// <param name="size">Size of the matrix (number of rows/columns).</param>
+    /// <returns>An identity matrix of the given size.</returns>
     public static Matrix Eye(int size)
     {
         var ptr = Eigen3.CreateIdentityMatrix(size);
-        return new Matrix(ptr);
+        return new(ptr);
+    }
+
+    /// <summary>
+    /// Creates a matrix with given entries along the diagonals.
+    /// </summary>
+    /// <param name="values">Values along the diagonals of the matrix.</param>
+    /// <returns>A diagonal matrix with the given values.</returns>
+    public static Matrix CreateDiagonal(params float[] values)
+    {
+        var ptr = Eigen3.CreateDiagonalMatrix(values, values.Length);
+        return new(ptr);
     }
 
     /// <summary>

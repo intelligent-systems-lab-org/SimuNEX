@@ -12,16 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using UnityEngine;
 
 namespace ROS2
 {
 
-/// <summary>
-/// An example class provided for testing of basic ROS2 communication
-/// </summary>
-public class ROS2ListenerExample : MonoBehaviour
+    /// <summary>
+    /// An example class provided for testing of basic ROS2 communication
+    /// </summary>
+    public class ROS2ListenerExample : MonoBehaviour
 {
     private ROS2UnityComponent ros2Unity;
     private ROS2Node ros2Node;

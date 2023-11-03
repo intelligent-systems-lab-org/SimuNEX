@@ -7,9 +7,6 @@
   <a href="https://unity.com/">
     <img src="https://img.shields.io/badge/Unity-2022.3.10f1-blue.svg" alt="Unity Version">
   </a>
-  <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-    <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="CC BY-NC-SA 4.0">
-  </a>
 </p>
 
 -----
@@ -39,7 +36,7 @@ SimuNEX is in its early stages of development and is only usable through the Uni
 - Functional interfaces have been established for actuators such as motors and loads like propellers.
 - Support for ROS 2 integration ensures compatibility with current robotics systems.
 - Interfaces have also been created for modeling state-space systems, which are widely employed in control theory.
-- Various integrating techniques including Euler, Heun, and RK4 stepper integrators are implemented for accurate simulation of dynamical systems.
+- Various integrating techniques including Euler, Heun, and RK4 steppers are implemented for accurate simulation of dynamical systems.
 - A high performance matrix library built on top of eigen3 is incorporated to handle different state-spaces and functionals within the system efficiently.
 
 For upcoming plans and features, please check out the ongoing [projects](https://github.com/intelligent-systems-lab-org/SimuNEX/projects).
@@ -99,19 +96,20 @@ Currently a work in progress. Will be implemented with GitHub Pages.
 |---------------|---------|--------------|---------|--------------------------|
 | ROS2ForUnity  | 1.1.0   | Windows, Linux | Communication using ROS 2[^1]  | [link](https://github.com/RobotecAI/ros2-for-unity) |
 | Eigen         | 3.4.0   | Windows[^2] | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
+| ErrorProne.NET.CoreAnalyzers        | 0.1.2 | Windows | For code analysis and Roslyn support[^3] | [link](https://www.nuget.org/packages/ErrorProne.NET.CoreAnalyzers/) |
 
 [^1]: Currently on Foxy installations only.
 
 [^2]: Custom C# bindings that only currently support Windows. Separately maintained in another repository. See [here](https://github.com/intelligent-systems-lab-org/eigen).
 
+[^3]: Functions with Visual Studio 2022.
+
 ### ROS on Windows
  ROS 2 was tested on Windows, the ROSOnWindows binary was installed, which can be found [here](https://ms-iot.github.io/ROSOnWindows/GettingStarted/SetupRos2.html). This binary is provided by Microsoft's IoT team and is designed to simplify the installation process for ROS 2 on Windows. Credit should be given to the ms-iot team for their work on the binary, and their repository can be found [here](https://github.com/ms-iot/rosonwindows/).
 
 # License
-[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
+SimuNEX© 2022-2023 by [Lee Bissessar](https://github.com/leebissessar5), [Intelligent Systems Lab (ISL)](https://intelsyslab.com/) is licensed under the SimuNEX License.
 
-[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
-[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
+Under this license, users may utilize the software for personal or educational purposes and are granted permission to modify and redistribute the software freely, subject to certain conditions outlined in the full license. These conditions include restrictions against commercial and military use, requirements for attribution, and guidelines for redistribution of altered versions.
 
-SimuNEX © 2023 by [Lee Bissessar](https://github.com/leebissessar5), [Intelligent Systems Lab (ISL)](https://intelsyslab.com/) is licensed under the
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.][cc-by-nc-sa] Under the license, you must give credit to ISL, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests that ISL endorses you or your use.
+Please note that the SimuNEX License supersedes the previous CC-BY-NC-SA-4 International License. For a detailed overview of the terms and conditions, please refer to the [LICENSE](LICENSE.md) file.

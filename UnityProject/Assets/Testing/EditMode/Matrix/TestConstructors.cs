@@ -190,6 +190,34 @@ namespace Eigen3MatrixTests
         }
 
         [Test]
+        
+        public void TestDiagonal()
+        {
+            float[] values = new float[]{ 1, 2, 3, 4, 5, 6 };
+            var matrix = Matrix.CreateDiagonal(values);
+
+            // test counts
+            Assert.AreEqual(6, matrix.RowCount);
+            Assert.AreEqual(6, matrix.ColCount);
+
+            // test positions
+            for (int i = 0; i < matrix.RowCount; ++i)
+            {
+                for (int j = 0; j < matrix.ColCount; ++j)
+                {
+                    if (i == j)
+                    {
+                        Assert.AreEqual(values[i], matrix[i, j]);
+                    }
+                    else
+                    {
+                        Assert.AreEqual(0, matrix[i, j]);
+                    }
+                }
+            }
+        }
+
+        [Test]
         public void TestMatrixDispose()
         {
             var matrix = new Matrix(2, 2, new float[] { 1, 2, 3, 4 });

@@ -1,0 +1,254 @@
+
+[*.{cs,vb}]
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = error
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_rule.types_should_be_pascal_case.severity = error
+dotnet_naming_rule.types_should_be_pascal_case.symbols = types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = error
+dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
+dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
+
+# Symbol specifications
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.interface.required_modifiers = 
+
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+dotnet_naming_symbols.types.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.types.required_modifiers = 
+
+dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
+dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.non_field_members.required_modifiers = 
+
+# Naming styles
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.required_suffix = 
+dotnet_naming_style.begins_with_i.word_separator = 
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+tab_width = 4
+indent_size = 4
+end_of_line = crlf
+insert_final_newline = true
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_prefer_auto_properties = true:silent
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:silent
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+dotnet_style_explicit_tuple_names = true:suggestion
+dotnet_style_prefer_conditional_expression_over_return = true:silent
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+dotnet_style_prefer_compound_assignment = true:suggestion
+dotnet_style_prefer_simplified_interpolation = true:suggestion
+dotnet_style_namespace_match_folder = true:suggestion
+dotnet_style_readonly_field = true:suggestion
+dotnet_style_predefined_type_for_locals_parameters_members = true:silent
+dotnet_style_predefined_type_for_member_access = true:silent
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
+dotnet_style_allow_multiple_blank_lines_experimental = true:silent
+dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
+dotnet_code_quality_unused_parameters = all:suggestion
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:silent
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:silent
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:silent
+dotnet_style_parentheses_in_other_operators = never_if_unnecessary:silent
+dotnet_style_qualification_for_field = false:silent
+dotnet_style_qualification_for_property = false:silent
+dotnet_style_qualification_for_method = false:silent
+dotnet_style_qualification_for_event = false:silent
+
+[*.cs]
+csharp_indent_labels = one_less_than_current
+csharp_using_directive_placement = outside_namespace:silent
+csharp_prefer_simple_using_statement = true:suggestion
+csharp_prefer_braces = true:silent
+csharp_style_namespace_declarations = block_scoped:silent
+csharp_style_prefer_method_group_conversion = true:silent
+csharp_style_prefer_top_level_statements = true:silent
+csharp_style_expression_bodied_methods = false:silent
+csharp_style_expression_bodied_constructors = false:silent
+csharp_style_expression_bodied_operators = false:silent
+csharp_style_expression_bodied_properties = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_lambdas = true:silent
+csharp_style_expression_bodied_local_functions = false:error
+csharp_space_around_binary_operators = before_and_after
+csharp_style_throw_expression = true:suggestion
+csharp_style_prefer_null_check_over_type_check = true:suggestion
+csharp_prefer_simple_default_expression = true:suggestion
+csharp_style_prefer_local_over_anonymous_function = true:suggestion
+csharp_style_prefer_index_operator = true:suggestion
+csharp_style_prefer_range_operator = true:suggestion
+csharp_style_implicit_object_creation_when_type_is_apparent = true:suggestion
+csharp_style_prefer_tuple_swap = true:suggestion
+csharp_style_prefer_utf8_string_literals = true:suggestion
+csharp_style_inlined_variable_declaration = true:suggestion
+csharp_style_deconstructed_variable_declaration = true:suggestion
+csharp_style_unused_value_assignment_preference = discard_variable:suggestion
+csharp_style_unused_value_expression_statement_preference = discard_variable:silent
+csharp_prefer_static_local_function = true:suggestion
+csharp_style_prefer_readonly_struct = true:suggestion
+csharp_style_allow_embedded_statements_on_same_line_experimental = true:silent
+csharp_style_allow_blank_lines_between_consecutive_braces_experimental = true:silent
+csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = true:silent
+csharp_style_conditional_delegate_call = true:suggestion
+csharp_style_prefer_switch_expression = true:suggestion
+csharp_style_prefer_pattern_matching = true:silent
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_prefer_not_pattern = true:suggestion
+csharp_style_prefer_extended_property_pattern = true:suggestion
+csharp_style_var_for_built_in_types = false:silent
+csharp_style_var_when_type_is_apparent = false:silent
+csharp_style_var_elsewhere = false:silent
+csharp_new_line_before_open_brace = all
+dotnet_diagnostic.UNT0007.severity = error
+dotnet_diagnostic.UNT0008.severity = error
+dotnet_diagnostic.UNT0026.severity = error
+dotnet_diagnostic.UNT0028.severity = error
+dotnet_diagnostic.UNT0024.severity = error
+dotnet_diagnostic.UNT0022.severity = error
+dotnet_diagnostic.UNT0019.severity = error
+dotnet_diagnostic.UNT0018.severity = error
+dotnet_diagnostic.UNT0017.severity = error
+dotnet_diagnostic.UNT0001.severity = error
+dotnet_diagnostic.UNT0002.severity = error
+dotnet_diagnostic.UNT0013.severity = error
+dotnet_diagnostic.UNT0027.severity = error
+dotnet_diagnostic.UNT0029.severity = error
+dotnet_diagnostic.UNT0005.severity = error
+dotnet_diagnostic.UNT0004.severity = error
+dotnet_diagnostic.UNT0009.severity = error
+dotnet_diagnostic.UNT0012.severity = error
+dotnet_diagnostic.UNT0020.severity = error
+dotnet_diagnostic.UNT0021.severity = error
+dotnet_diagnostic.UNT0023.severity = error
+dotnet_diagnostic.UNT0025.severity = error
+dotnet_diagnostic.UNT0030.severity = error
+dotnet_diagnostic.UNT0031.severity = error
+dotnet_diagnostic.UNT0003.severity = error
+dotnet_diagnostic.UNT0006.severity = error
+dotnet_diagnostic.UNT0010.severity = error
+dotnet_diagnostic.UNT0011.severity = error
+dotnet_diagnostic.UNT0014.severity = error
+dotnet_diagnostic.UNT0016.severity = error
+dotnet_diagnostic.UNT0015.severity = error
+
+# RCS1010: Use var instead of explicit type.
+dotnet_diagnostic.RCS1010.severity = none
+
+# RCS1060: Declare each type in separate file.
+dotnet_diagnostic.RCS1060.severity = none
+
+# RCS0045: Use linefeed as new line.
+dotnet_diagnostic.RCS0045.severity = none
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = none
+
+# RCS1100: Format documentation summary on a single line.
+dotnet_diagnostic.RCS1100.severity = none
+
+# RCS0031: Put enum member on its own line.
+dotnet_diagnostic.RCS0031.severity = warning
+
+# RCS0012: Add blank line between single-line declarations.
+dotnet_diagnostic.RCS0012.severity = none
+
+# RCS1037: Remove trailing white-space.
+dotnet_diagnostic.RCS1037.severity = warning
+
+# RCS1111: Add braces to switch section with multiple statements.
+dotnet_diagnostic.RCS1111.severity = warning
+
+# RCS1146: Use conditional access.
+dotnet_diagnostic.RCS1146.severity = none
+
+# RCS1123: Add parentheses when necessary.
+dotnet_diagnostic.RCS1123.severity = warning
+
+# RCS0055: Fix formatting of a binary expression chain.
+dotnet_diagnostic.RCS0055.severity = warning
+
+# RCS0008: Add blank line between closing brace and next statement.
+dotnet_diagnostic.RCS0008.severity = warning
+
+# RCS1007: Add braces.
+dotnet_diagnostic.RCS1007.severity = warning
+
+# RCS0053: Fix formatting of a list.
+dotnet_diagnostic.RCS0053.severity = warning
+
+# IDE0005: Using directive is unnecessary.
+dotnet_diagnostic.IDE0005.severity = error
+
+# RCS1021: Convert lambda expression body to expression body.
+dotnet_diagnostic.RCS1021.severity = warning
+
+# RCS0007: Add blank line between accessors.
+dotnet_diagnostic.RCS0007.severity = warning
+
+# RCS1085: Use auto-implemented property.
+dotnet_diagnostic.RCS1085.severity = warning
+
+# Default severity for analyzer diagnostics with category 'Roslynator'
+dotnet_analyzer_diagnostic.category-Roslynator.severity = warning
+
+# RCS1002: Remove braces.
+dotnet_diagnostic.RCS1002.severity = none
+
+# RCS1177: Use 'var' instead of explicit type (in foreach).
+dotnet_diagnostic.RCS1177.severity = none
+
+# RCS1176: Use 'var' instead of explicit type (when the type is not obvious).
+dotnet_diagnostic.RCS1176.severity = none
+
+# RCS1208: Reduce 'if' nesting.
+dotnet_diagnostic.RCS1208.severity = none
+
+# RCS1223: Mark publicly visible type with DebuggerDisplay attribute.
+dotnet_diagnostic.RCS1223.severity = suggestion
+
+# RCS1004: Remove braces from if-else.
+dotnet_diagnostic.RCS1004.severity = none
+
+# RCS1031: Remove unnecessary braces in switch section.
+dotnet_diagnostic.RCS1031.severity = none
+
+# RCS1161: Enum should declare explicit values.
+dotnet_diagnostic.RCS1161.severity = none
+
+# RCS1128: Prefer coalesce expression.
+dotnet_diagnostic.RCS1128.severity = none
+
+# RCS1038: Remove empty statement.
+dotnet_diagnostic.RCS1038.severity = none
+
+# RCS1198: Avoid unnecessary boxing of value type.
+dotnet_diagnostic.RCS1198.severity = none
