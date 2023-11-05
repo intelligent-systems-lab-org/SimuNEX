@@ -31,9 +31,13 @@ For any additional details, configurations, or advanced setups, refer to the [do
 # Features 
 SimuNEX is in its early stages of development and is only usable through the Unity Editor, offering interfaces for building dynamic systems similar to an API. Currently, the following features are available:
 
-- Simulation of single rigid body systems like quadcopters or other aerial vehicles.
-- A generic interface that can be used to incorporate different actuators, sensors, and communication components into the system.
+- Simulation of single rigid body systems including quadcopters and AUVs (autonomous underwater vehicles).
+- Reactive and event-driven simulation - constructed objects can have their properties modified and the changes occur immediately during simulation.
+- Environment-based force system where forces are automatically applied to systems within a boundary and removed when exiting the boundary.
+- A generic interface that can be used to incorporate different actuators, sensors, loads, and communication components into the system.
 - Functional interfaces have been established for actuators such as motors and loads like propellers.
+- Automated detection of actuators and sensors with supervisory systems.
+- Fault injection for actuators and sensors, including a user-friendly menus for adding and removing faults.
 - Support for ROS 2 integration ensures compatibility with current robotics systems.
 - Interfaces have also been created for modeling state-space systems, which are widely employed in control theory.
 - Various integrating techniques including Euler, Heun, and RK4 steppers are implemented for accurate simulation of dynamical systems.
