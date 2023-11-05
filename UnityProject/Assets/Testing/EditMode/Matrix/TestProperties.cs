@@ -8,7 +8,7 @@ namespace Eigen3MatrixTests
         [Test]
         public void TestMatrixIndexerGetSet()
         {
-            var matrix = new Matrix(3, 3, new float[9]);
+            Matrix matrix = new(3, 3, new float[9]);
             matrix[0, 0] = 1.0f;
             matrix[1, 1] = 2.0f;
             matrix[2, 2] = 3.0f;
@@ -21,36 +21,30 @@ namespace Eigen3MatrixTests
         [Test]
         public void TestMatrixIndexerGetSetInvalidIndices_ThrowsException()
         {
-            var matrix = new Matrix(2, 2);
-            
+            Matrix matrix = new(2, 2);
+
             matrix[1, 1] = 2.0f;
 
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            _ = Assert.Throws<ArgumentOutOfRangeException>(() => matrix[-1, 0] = 1.0f);
+            _ = Assert.Throws<ArgumentOutOfRangeException>(() => matrix[0, -1] = 2.0f);
+            _ = Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                matrix[-1, 0] = 1.0f;
+                float elem = matrix[-1, 0];
             });
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            _ = Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                matrix[0, -1] = 2.0f;
-            });
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                var elem = matrix[-1, 0];
-            });
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                var elem = matrix[0, -1];
+                float elem = matrix[0, -1];
             });
         }
 
         [Test]
         public void TestMatrixTransposeProperty()
         {
-            var originalMatrix = new Matrix(new float[,] {
+            Matrix originalMatrix = new(new float[,] {
                 { 1, 2, 3 },
                 { 4, 5, 6 }
             });
-            var transposedMatrix = originalMatrix.Transposed;
+            Matrix transposedMatrix = originalMatrix.Transposed;
 
             // test counts
             Assert.AreEqual(3, transposedMatrix.RowCount);
@@ -68,18 +62,18 @@ namespace Eigen3MatrixTests
         [Test]
         public void TestMatrixInverseProperty()
         {
-            var originalMatrix = new Matrix(new float[,] {
+            Matrix originalMatrix = new(new float[,] {
                 { 1, 2 },
                 { 3, 4 }
             });
-            var inverse = originalMatrix.Inverse;
+            Matrix inverse = originalMatrix.Inverse;
 
             // test counts
             Assert.AreEqual(2, inverse.RowCount);
             Assert.AreEqual(2, inverse.ColCount);
 
             // test positions
-            float tol = 1e-5f;
+            const float tol = 1e-5f;
             Assert.AreEqual(-2.0f, inverse[0, 0], tol);
             Assert.AreEqual(1.0f, inverse[0, 1], tol);
             Assert.AreEqual(1.5f, inverse[1, 0], tol);
@@ -89,36 +83,36 @@ namespace Eigen3MatrixTests
         [Test]
         public void TestMatrixInversePropertyNonSquare_ThrowsException()
         {
-            var originalMatrix = new Matrix(new float[,] {
+            Matrix originalMatrix = new(new float[,] {
                 { 1, 2, 0 },
                 { 3, 4, 1 }
             });
-            
-            Assert.Throws<InvalidOperationException>(() =>
+
+            _ = Assert.Throws<InvalidOperationException>(() =>
             {
-                var inverse = originalMatrix.Inverse;
+                Matrix inverse = originalMatrix.Inverse;
             });
         }
 
         [Test]
         public void TestMatrixInversePropertySingular_ThrowsException()
         {
-            var originalMatrix = new Matrix(new float[,] {
+            Matrix originalMatrix = new(new float[,] {
                 { 1, 2 },
                 { 1, 2 }
             });
 
-            Assert.Throws<InvalidOperationException>(() =>
+            _ = Assert.Throws<InvalidOperationException>(() =>
             {
-                var inverse = originalMatrix.Inverse;
+                Matrix inverse = originalMatrix.Inverse;
             });
         }
 
         [Test]
         public void TestMatrixDeterminantProperty()
         {
-            float tol = 1e-5f;
-            var originalMatrix = new Matrix(new float[,] {
+            const float tol = 1e-5f;
+            Matrix originalMatrix = new(new float[,] {
                 { 1, 2 },
                 { 3, 4 }
             });
@@ -131,14 +125,14 @@ namespace Eigen3MatrixTests
         [Test]
         public void TestMatrixDeterminantPropertyNonSquare_ThrowsException()
         {
-            var originalMatrix = new Matrix(new float[,] {
+            Matrix originalMatrix = new(new float[,] {
                 { 1, 2, 0 },
                 { 3, 4, 1 }
             });
-            
-            Assert.Throws<InvalidOperationException>(() =>
+
+            _ = Assert.Throws<InvalidOperationException>(() =>
             {
-                var determinant = originalMatrix.Determinant;
+                float determinant = originalMatrix.Determinant;
             });
         }
     }

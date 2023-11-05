@@ -6,13 +6,13 @@ using UnityEngine;
 public partial class Matrix : ISerializationCallbackReceiver
 {
     [SerializeField]
-    private float[] _serializedData;
+    internal float[] _serializedData;
 
     [SerializeField]
-    private int _serializedRows;
+    internal int _serializedRows;
 
     [SerializeField]
-    private int _serializedCols;
+    internal int _serializedCols;
 
     public void OnBeforeSerialize()
     {
