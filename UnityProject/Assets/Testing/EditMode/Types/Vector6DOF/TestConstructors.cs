@@ -51,7 +51,7 @@ namespace Vector6DOFTests
         [Test]
         public void TestVector6DOFConstructorWithString()
         {
-            string vectorString = "[1; 2; 3; 4; 5; 6]";
+            const string vectorString = "[1; 2; 3; 4; 5; 6]";
 
             Vector6DOF v = new(vectorString);
 
@@ -62,12 +62,12 @@ namespace Vector6DOFTests
         [Test]
         public void Vector6DOF_Constructor_InitializesComponents()
         {
-            float u = 1.5f;
-            float v = -0.5f;
-            float w = 2.0f;
-            float p = 0.1f;
-            float q = -0.3f;
-            float r = 0.5f;
+            const float u = 1.5f;
+            const float v = -0.5f;
+            const float w = 2.0f;
+            const float p = 0.1f;
+            const float q = -0.3f;
+            const float r = 0.5f;
 
             Vector6DOF vector6DOF = new(u, v, w, p, q, r);
 
@@ -86,7 +86,7 @@ namespace Vector6DOFTests
             float[] values = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f };
 
             // Act
-            var point = new Vector6DOF(values);
+            Vector6DOF point = new(values);
 
             // Assert
             Assert.AreEqual(values[0], point.u);
@@ -100,17 +100,17 @@ namespace Vector6DOFTests
             float[] values2 = { 1.0f, 2.0f };
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Vector6DOF(values2));
+            _ = Assert.Throws<ArgumentException>(() => new Vector6DOF(values2));
         }
 
         [Test]
         public void Vector6DOF_Constructor_WithList_Success()
         {
             // Arrange
-            var values = new List<float> { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f };
+            List<float> values = new() { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f };
 
             // Act
-            var point = new Vector6DOF(values);
+            Vector6DOF point = new(values);
 
             // Assert
             Assert.AreEqual(1.0f, point.u);
@@ -125,10 +125,10 @@ namespace Vector6DOFTests
         public void Vector6DOF_Constructor_WithInvalidList_ThrowsException()
         {
             // Arrange
-            var invalidValues = new List<float> { 1.0f, 2.0f, 3.0f }; // Not enough values
+            List<float> invalidValues = new() { 1.0f, 2.0f, 3.0f }; // Not enough values
 
             // Act & Assert
-            var ex = Assert.Throws<ArgumentException>(() => new Vector6DOF(invalidValues));
+            ArgumentException ex = Assert.Throws<ArgumentException>(() => new Vector6DOF(invalidValues));
             Assert.AreEqual("The enumerable must contain exactly 6 elements.", ex.Message);
         }
 

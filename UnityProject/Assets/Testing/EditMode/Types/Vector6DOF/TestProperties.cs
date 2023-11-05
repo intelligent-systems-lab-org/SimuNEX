@@ -45,11 +45,11 @@ namespace Vector6DOFTests
             // Test out of range exception
             Vector6DOF v2 = new(Vector3.zero, Vector3.zero);
 
-            Assert.Throws<IndexOutOfRangeException>(() => { float result = v2[-1]; });
-            Assert.Throws<IndexOutOfRangeException>(() => { float result = v2[6]; });
+            _ = Assert.Throws<IndexOutOfRangeException>(() => { float result = v2[-1]; });
+            _ = Assert.Throws<IndexOutOfRangeException>(() => { float result = v2[6]; });
 
-            Assert.Throws<IndexOutOfRangeException>(() => v2[-1] = 1f);
-            Assert.Throws<IndexOutOfRangeException>(() => v2[6] = 1f);
+            _ = Assert.Throws<IndexOutOfRangeException>(() => v2[-1] = 1f);
+            _ = Assert.Throws<IndexOutOfRangeException>(() => v2[6] = 1f);
         }
 
         [Test]
@@ -62,7 +62,6 @@ namespace Vector6DOFTests
 
             Assert.IsTrue(test.IsEqual(transpose));
         }
-
 
         [Test]
         public void TestVector6DOFMagnitude()
@@ -121,7 +120,7 @@ namespace Vector6DOFTests
             Assert.AreEqual(5, result[2]);
 
             // Test invalid component
-            Assert.Throws<NotSupportedException>(() => { float[] _ = v.Select("x"); });
+            _ = Assert.Throws<NotSupportedException>(() => _ = v.Select("x"));
         }
 
         [Test]
@@ -144,10 +143,10 @@ namespace Vector6DOFTests
             Assert.AreEqual(new Vector6DOF(new Vector3(10, 2, 20), new Vector3(4, 30, 6)), v);
 
             // Test invalid component
-            Assert.Throws<NotSupportedException>(() => { v.Alter("x", new float[] { 1 }); });
+            _ = Assert.Throws<NotSupportedException>(() => v.Alter("x", new float[] { 1 }));
 
             // Test size mismatch
-            var exception = Assert.Throws<InvalidOperationException>(() => v.Alter("u w", new float[] { 1, 2, 3 }));
+            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => v.Alter("u w", new float[] { 1, 2, 3 }));
             Assert.AreEqual("Size mismatch: Number of components in the query must match the size of the array.", exception.Message);
         }
 
@@ -165,13 +164,13 @@ namespace Vector6DOFTests
             Assert.AreEqual(6.0f, v1.angular.z);
 
             Vector6DOF v2 = new();
-            Assert.Throws<InvalidOperationException>(() => v2["u v w p q r"] = "[1; 2; 3; 4; 5]");
+            _ = Assert.Throws<InvalidOperationException>(() => v2["u v w p q r"] = "[1; 2; 3; 4; 5]");
 
             Vector6DOF v3 = new();
-            Assert.Throws<InvalidOperationException>(() => v3["u v w p q r"] = "[1; 2; 3; 4; 5; 6; 7]");
+            _ = Assert.Throws<InvalidOperationException>(() => v3["u v w p q r"] = "[1; 2; 3; 4; 5; 6; 7]");
 
             Vector6DOF v4 = new();
-            Assert.Throws<NotSupportedException>(() => v3["u v w x q r"] = "[1; 2; 3; 4; 5; 6]");
+            _ = Assert.Throws<NotSupportedException>(() => v3["u v w x q r"] = "[1; 2; 3; 4; 5; 6]");
         }
 
         [Test]

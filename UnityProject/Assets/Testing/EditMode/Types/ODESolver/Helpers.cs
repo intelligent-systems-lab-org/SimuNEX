@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using SimuNEX;
-using static SimuNEX.StateSpace;
+using StepperTests;
 using System;
 using UnityEngine;
-using StepperTests;
+using static SimuNEX.StateSpace;
 
 namespace SolverTests
 {
@@ -37,11 +37,8 @@ namespace SolverTests
         /// Runs a simulation test for a given StateSpace, comparing the results against a solution function.
         /// </summary>
         /// <param name="ss">The StateSpace instance to be tested.</param>
-        /// <param name="stepSize">The step size for the simulation.</param>
-        /// <param name="maxSimulationTime">The maximum simulation time.</param>
         /// <param name="solution">The solution function to compare against.</param>
-        /// <param name="log">Optional parameter to enable or disable logging.</param>
-        /// <param name="tolerance">Optional parameter to specify the acceptable difference between the solution and the simulation.</param>
+        /// <param name="testConfig"></param>
         public void RunSimulationTest
         (
             StateSpace ss,
@@ -63,8 +60,10 @@ namespace SolverTests
                 float expected = solution(currentTime);
                 if (testConfig.Log)
                 {
-                    Debug.Log($"Using step size of {ss.solver.stepSize}, at current time {currentTime}, Expected: {expected}, Actual: {ss.states[0, 0]}");
+                    Debug.Log($"Using step size of {ss.solver.stepSize}, at current time {currentTime}, " +
+                        $"Expected: {expected}, Actual: {ss.states[0, 0]}");
                 }
+
                 Assert.IsTrue(Mathf.Abs(expected - ss.states[0, 0]) < testConfig.Tolerance);
             }
         }

@@ -39,14 +39,14 @@ namespace Vector6DOFTests
         {
             // Arrange
             Matrix matrix = new(new float[,]
-            {
-            { 2f, 0f, 0f, 0f, 0f, 0f },
-            { 0f, 2f, 0f, 0f, 0f, 0f },
-            { 0f, 0f, 2f, 0f, 0f, 0f },
-            { 0f, 0f, 0f, 2f, 0f, 0f },
-            { 0f, 0f, 0f, 0f, 2f, 0f },
-            { 0f, 0f, 0f, 0f, 0f, 2f },
-            });
+                {
+                    { 2f, 0f, 0f, 0f, 0f, 0f },
+                    { 0f, 2f, 0f, 0f, 0f, 0f },
+                    { 0f, 0f, 2f, 0f, 0f, 0f },
+                    { 0f, 0f, 0f, 2f, 0f, 0f },
+                    { 0f, 0f, 0f, 0f, 2f, 0f },
+                    { 0f, 0f, 0f, 0f, 0f, 2f }
+                });
 
             Vector6DOF v = new(new Vector3(1f, 2f, 3f), new Vector3(4f, 5f, 6f));
             Vector6DOF expected = new(new Vector3(2f, 4f, 6f), new Vector3(8f, 10f, 12f));
@@ -69,7 +69,7 @@ namespace Vector6DOFTests
             Vector6DOF v = new(new Vector3(1f, 2f, 3f), new Vector3(4f, 5f, 6f));
             Vector6DOF expected = new
             (
-                transform.InverseTransformDirection(v.linear), 
+                transform.InverseTransformDirection(v.linear),
                 transform.InverseTransformDirection(v.angular)
             );
 
@@ -81,7 +81,7 @@ namespace Vector6DOFTests
             Assert.AreEqual(expected.angular, result.angular);
         }
 
-                [Test]
+        [Test]
         public void ToICF_Transform_ReturnsVector6DOFInInertialFrame()
         {
             // Arrange
@@ -91,7 +91,7 @@ namespace Vector6DOFTests
             Vector6DOF v = new(new Vector3(1f, 2f, 3f), new Vector3(4f, 5f, 6f));
             Vector6DOF expected = new
             (
-                transform.TransformDirection(v.linear), 
+                transform.TransformDirection(v.linear),
                 transform.TransformDirection(v.angular)
             );
 
@@ -117,7 +117,7 @@ namespace Vector6DOFTests
         public void TestVector6DOFMultiplication()
         {
             Vector6DOF v = new(Vector3.one, Vector3.one);
-            float scalar = 2f;
+            const float scalar = 2f;
             Vector6DOF result1 = v * scalar;
             Vector6DOF result2 = scalar * v;
 
@@ -129,7 +129,7 @@ namespace Vector6DOFTests
         public void TestVector6DOFDivision()
         {
             Vector6DOF v = new(Vector3.one * 4f, Vector3.one * 4f);
-            float scalar = 2f;
+            const float scalar = 2f;
 
             // Test v2 / scalar
             Vector6DOF result1 = v / scalar;

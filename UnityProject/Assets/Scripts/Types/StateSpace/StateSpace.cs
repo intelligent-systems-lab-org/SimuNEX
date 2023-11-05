@@ -48,7 +48,7 @@ namespace SimuNEX
         {
             inputSize = numInputs;
             stateSize = numStates;
-            _inputs = (numInputs > 0)? new Matrix(inputSize, 1, new float[inputSize]) : null;
+            _inputs = (numInputs > 0) ? new Matrix(inputSize, 1, new float[inputSize]) : null;
 
             if (initialConditions.RowCount != stateSize || initialConditions.ColCount != 1)
             {
@@ -65,20 +65,20 @@ namespace SimuNEX
         /// <summary>
         /// The input vector.
         /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Matrix inputs
         {
             get => _inputs;
 
             set
             {
-                if (value.RowCount != inputSize)
+                if (value.RowCount != inputSize || value.ColCount != 1)
                 {
                     throw new ArgumentException();
                 }
 
                 _inputs = value;
             }
-
         }
 
         /// <summary>
@@ -98,6 +98,8 @@ namespace SimuNEX
         /// <summary>
         /// Delegate for the derivative function.
         /// </summary>
+        /// <param name="states"></param>
+        /// <param name="inputs"></param>
         public delegate Matrix DerivativeFunction(Matrix states, Matrix inputs);
 
         /// <summary>
@@ -111,14 +113,12 @@ namespace SimuNEX
         /// <param name="states">The state vector.</param>
         /// <param name="inputs">The input vector.</param>
         /// <returns>The Derivative vector.</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public Matrix Derivatives(Matrix states, Matrix inputs)
         {
-            if (DerivativeFcn == null)
-            {
-                throw new InvalidOperationException("DerivativeFunction not set.");
-            }
-
-            return DerivativeFcn(states, inputs);
+            return DerivativeFcn == null
+                ? throw new InvalidOperationException("DerivativeFunction not set.")
+                : DerivativeFcn(states, inputs);
         }
 
         /// <summary>

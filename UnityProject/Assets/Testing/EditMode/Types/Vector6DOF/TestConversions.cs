@@ -11,14 +11,13 @@ namespace Vector6DOFTests
         public void ImplicitOperator_ConvertsToArray()
         {
             // Arrange  
-            Vector6DOF v = new()
+
+            // Act
+            float[] result = (Vector6DOF)(new()
             {
                 linear = new Vector3(1f, 2f, 3f),
                 angular = new Vector3(4f, 5f, 6f)
-            };
-
-            // Act
-            float[] result = v;
+            });
 
             // Assert
             Assert.AreEqual(1f, result[0]);
@@ -33,14 +32,13 @@ namespace Vector6DOFTests
         public void ImplicitOperator_ConvertsToMatrix()
         {
             // Arrange  
-            Vector6DOF v = new()
+
+            // Act
+            Matrix result = (Vector6DOF)(new()
             {
                 linear = new Vector3(1f, 2f, 3f),
                 angular = new Vector3(4f, 5f, 6f)
-            };
-
-            // Act
-            Matrix result = v;
+            });
 
             // Assert
             Assert.AreEqual(1f, result[0, 0]);
@@ -63,16 +61,14 @@ namespace Vector6DOFTests
             string result = vector6DOF.ToString();
 
             // Assert
-            string expected = "(1 2 3 4 5 6)";
+            const string expected = "(1 2 3 4 5 6)";
             Assert.AreEqual(expected, result);
         }
 
         [Test]
         public void TestStringToVector6DOFConversion()
         {
-            string vectorString = "[1; 2; 3; 4; 5; 6]";
-
-            Vector6DOF v = vectorString;
+            Vector6DOF v = "[1; 2; 3; 4; 5; 6]";
 
             Assert.AreEqual(1, v.linear.x);
             Assert.AreEqual(2, v.linear.y);
@@ -82,9 +78,9 @@ namespace Vector6DOFTests
             Assert.AreEqual(6, v.angular.z);
 
             // Invalid: Missing one element
-            string vectorString2 = "[1; 2; 3; 4; 5]";
+            const string vectorString2 = "[1; 2; 3; 4; 5]";
 
-            var exception = Assert
+            InvalidOperationException exception = Assert
                 .Throws<InvalidOperationException>(() => { Vector6DOF _ = vectorString2; });
             Assert.AreEqual("Invalid vector string. Expected 6 elements.", exception.Message);
         }
@@ -137,10 +133,12 @@ namespace Vector6DOFTests
             Matrix matrix = new(2, 3);
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                Vector6DOF result = matrix;
-            }, "Matrix must be 1x6 or 6x1 to convert to Vector6DOF.");
+            Assert.Throws<ArgumentException>(
+                () =>
+                {
+                    Vector6DOF result = matrix;
+                },
+                "Matrix must be 1x6 or 6x1 to convert to Vector6DOF.");
         }
     }
 }
