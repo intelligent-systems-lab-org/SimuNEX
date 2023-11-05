@@ -6,11 +6,29 @@ using UnityEngine;
 
 namespace StepperTests
 {
+    /// <summary>
+    /// Stepper configuration values for testing.
+    /// </summary>
     public class TestConfig
     {
+        /// <summary>
+        /// Step size for the stepper method.
+        /// </summary>
         public float StepSize;
+
+        /// <summary>
+        /// The maximum time to run the stepper method for.
+        /// </summary>
         public float MaxSimulationTime;
+
+        /// <summary>
+        /// Enables debug messages.
+        /// </summary>
         public bool Log;
+
+        /// <summary>
+        /// Tolerance value to be used for comparison.
+        /// </summary>
         public float Tolerance;
 
         public TestConfig(float stepSize = 0.02f, float maxSimulationTime = 1f, bool log = false, float tolerance = 5e-2f)
@@ -88,6 +106,11 @@ namespace StepperTests
         protected virtual TestConfig Config => new();
 
         private readonly Helpers helpers = new();
+
+        protected BaseTests()
+        {
+            TestStepper = new TSolver();
+        }
 
         [Test]
         public void ExponentialGrowth()
