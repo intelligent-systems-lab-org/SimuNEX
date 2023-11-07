@@ -1,43 +1,40 @@
 using System;
 using System.Diagnostics;
 
-namespace SimuNEX
+namespace SimuNEX.Faults.Types
 {
-    public static partial class FaultTypes
+    /// <summary>
+    /// A fault that scales the value.
+    /// </summary>
+    [DebuggerDisplay("Gain = {gain}")]
+    [Serializable]
+    public class Scale : Fault
     {
         /// <summary>
-        /// A fault that scales the value.
+        /// Gain value.
         /// </summary>
-        [DebuggerDisplay("Gain = {gain}")]
-        [Serializable]
-        public class Scale : Fault
+        public float gain;
+
+        /// <summary>
+        /// <see cref="Scale"/> default constructor.
+        /// </summary>
+        public Scale()
         {
-            /// <summary>
-            /// Gain value.
-            /// </summary>
-            public float gain;
+            gain = 1.1f;
+        }
 
-            /// <summary>
-            /// <see cref="Scale"/> default constructor.
-            /// </summary>
-            public Scale()
-            {
-                gain = 1.1f;
-            }
+        /// <summary>
+        /// <see cref="Scale"/> constructor.
+        /// </summary>
+        /// <param name="gain">The gain value.</param>
+        public Scale(float gain)
+        {
+            this.gain = gain;
+        }
 
-            /// <summary>
-            /// <see cref="Scale"/> constructor.
-            /// </summary>
-            /// <param name="gain">The gain value.</param>
-            public Scale(float gain)
-            {
-                this.gain = gain;
-            }
-
-            public override float FaultFunction(float val)
-            {
-                return val * gain;
-            }
+        public override float FaultFunction(float val)
+        {
+            return val * gain;
         }
     }
 }

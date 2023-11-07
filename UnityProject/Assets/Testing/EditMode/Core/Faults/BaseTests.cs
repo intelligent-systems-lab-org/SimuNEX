@@ -1,6 +1,6 @@
 using NUnit.Framework;
+using SimuNEX.Faults.Types;
 using UnityEngine;
-using static SimuNEX.FaultTypes;
 
 namespace FaultTests
 {

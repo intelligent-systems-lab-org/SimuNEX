@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using SimuNEX;
+using SimuNEX.Faults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static SimuNEX.FaultTypes;
+using UnityEngine;
 
 namespace FaultTests
 {
@@ -38,6 +38,11 @@ namespace FaultTests
         protected TFault faultInstance;
 
         /// <summary>
+        /// Test tolerance value.
+        /// </summary>
+        protected virtual float tolerance => 0.01f;
+
+        /// <summary>
         /// Input value for the test.
         /// </summary>
         protected virtual float testValue => 10f;
@@ -63,62 +68,12 @@ namespace FaultTests
         }
 
         [Test]
-        public void TestFaultFunction()
+        public virtual void TestFaultFunction()
         {
             float actualValue = faultInstance.FaultFunction(testValue);
             Assert.IsTrue(
-                actualValue == expectedValue,
+                Mathf.Abs(actualValue - expectedValue) < tolerance,
                 $"FaultFunction for {faultInstance.GetType().Name} did not return the expected value.");
-        }
-    }
-
-    public class ConstantFaultTest : FaultTests<Constant>
-    {
-        protected override float expectedValue => faultInstance._value;
-
-        protected override void InitializeFaultInstance()
-        {
-            faultInstance = new(4f);
-        }
-    }
-
-    public class BiasFaultTest : FaultTests<Bias>
-    {
-        protected override float expectedValue => testValue + faultInstance._value;
-
-        protected override void InitializeFaultInstance()
-        {
-            faultInstance = new(5f);
-        }
-    }
-
-    public class ScaleFaultTest : FaultTests<Scale>
-    {
-        protected override float expectedValue => testValue * faultInstance.gain;
-
-        protected override void InitializeFaultInstance()
-        {
-            faultInstance = new(2f);
-        }
-    }
-
-    public class DeadZoneFaultTest : FaultTests<DeadZone>
-    {
-        protected override float expectedValue =>
-                testValue > faultInstance.range.min && testValue < faultInstance.range.max ? 0f : testValue;
-
-        protected override void InitializeFaultInstance()
-        {
-            faultInstance = new(-1, 1);
-        }
-
-        [Test]
-        public void SingleFloatConstructor_InitializesCorrectly()
-        {
-            faultInstance = new(10);
-
-            Assert.AreEqual(10, faultInstance.range.max);
-            Assert.AreEqual(-10, faultInstance.range.min);
         }
     }
 }

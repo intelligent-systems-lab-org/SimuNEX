@@ -1,3 +1,4 @@
+using SimuNEX.Faults;
 using System;
 using System.Linq;
 using UnityEditor;
@@ -12,7 +13,7 @@ namespace SimuNEX
         {
             _ = EditorGUI.BeginProperty(position, label, property);
 
-            string faultName = property.managedReferenceFullTypename.Split(' ').Last().Split('.').Last().Split('/').Last();
+            string faultName = property.managedReferenceFullTypename.Split(' ').Last().Split('.').Last();
 
             position.height = EditorGUIUtility.singleLineHeight;
             EditorGUI.LabelField(position, faultName);

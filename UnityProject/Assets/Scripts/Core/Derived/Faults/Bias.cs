@@ -1,46 +1,40 @@
 using System;
 using System.Diagnostics;
 
-namespace SimuNEX
+namespace SimuNEX.Faults.Types
 {
     /// <summary>
-    /// Collection of <see cref="Fault"/> types.
+    /// A fault that adds a constant bias to the value.
     /// </summary>
-    public static partial class FaultTypes
+    [DebuggerDisplay("Bias = {_value}")]
+    [Serializable]
+    public class Bias : Fault
     {
         /// <summary>
-        /// A fault that adds a constant bias to the value.
+        /// Bias value.
         /// </summary>
-        [DebuggerDisplay("Bias = {_value}")]
-        [Serializable]
-        public class Bias : Fault
+        public float _value;
+
+        /// <summary>
+        /// <see cref="Bias"/> default constructor.
+        /// </summary>
+        public Bias()
         {
-            /// <summary>
-            /// Bias value.
-            /// </summary>
-            public float _value;
+            _value = 1f;
+        }
 
-            /// <summary>
-            /// <see cref="Bias"/> default constructor.
-            /// </summary>
-            public Bias()
-            {
-                _value = 1f;
-            }
+        /// <summary>
+        /// <see cref="Bias"/> constructor.
+        /// </summary>
+        /// <param name="bias">The bias value.</param>
+        public Bias(float bias)
+        {
+            _value = bias;
+        }
 
-            /// <summary>
-            /// <see cref="Bias"/> constructor.
-            /// </summary>
-            /// <param name="bias">The bias value.</param>
-            public Bias(float bias)
-            {
-                _value = bias;
-            }
-
-            public override float FaultFunction(float val)
-            {
-                return val + _value;
-            }
+        public override float FaultFunction(float val)
+        {
+            return val + _value;
         }
     }
 }

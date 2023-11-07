@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Faults
 {
     /// <summary>
     /// Interface for implementing faults.
