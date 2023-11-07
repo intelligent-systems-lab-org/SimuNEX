@@ -1,12 +1,10 @@
 {
-    "name": "TypesTests",
+    "name": "FaultsTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "eigen3",
-        "SimuNEX",
-        "SimuNEX.Types"
+        "SimuNEX.Faults"
     ],
     "includePlatforms": [
         "Editor"
