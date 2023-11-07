@@ -37,13 +37,27 @@ namespace FaultTests
     {
         protected TFault faultInstance;
 
+        /// <summary>
+        /// Input value for the test.
+        /// </summary>
         protected virtual float testValue => 10f;
+
+        /// <summary>
+        /// Expected value for the test
+        /// </summary>
         protected abstract float expectedValue { get; }
+
+        /// <summary>
+        /// Initializes the fault instance with the necessary parameters for construction.
+        /// </summary>
+        protected abstract void InitializeFaultInstance();
 
         [SetUp]
         public void SetUp()
         {
             faultInstance = new TFault();
+            InitializeFaultInstance();
+
             // Register the fault type as being tested
             FaultTestsSetup.RegisterFaultTest<TFault>();
         }
@@ -58,14 +72,53 @@ namespace FaultTests
         }
     }
 
-    /// <summary>
-    /// Example of a concrete test class
-    /// </summary>
     public class ConstantFaultTest : FaultTests<Constant>
     {
-        /// <summary>
-        /// Expected value for the test
-        /// </summary>
-        protected override float expectedValue => 0f;
+        protected override float expectedValue => faultInstance._value;
+
+        protected override void InitializeFaultInstance()
+        {
+            faultInstance = new(4f);
+        }
+    }
+
+    public class BiasFaultTest : FaultTests<Bias>
+    {
+        protected override float expectedValue => testValue + faultInstance._value;
+
+        protected override void InitializeFaultInstance()
+        {
+            faultInstance = new(5f);
+        }
+    }
+
+    public class ScaleFaultTest : FaultTests<Scale>
+    {
+        protected override float expectedValue => testValue * faultInstance.gain;
+
+        protected override void InitializeFaultInstance()
+        {
+            faultInstance = new(2f);
+        }
+    }
+
+    public class DeadZoneFaultTest : FaultTests<DeadZone>
+    {
+        protected override float expectedValue =>
+                testValue > faultInstance.range.min && testValue < faultInstance.range.max ? 0f : testValue;
+
+        protected override void InitializeFaultInstance()
+        {
+            faultInstance = new(-1, 1);
+        }
+
+        [Test]
+        public void SingleFloatConstructor_InitializesCorrectly()
+        {
+            faultInstance = new(10);
+
+            Assert.AreEqual(10, faultInstance.range.max);
+            Assert.AreEqual(-10, faultInstance.range.min);
+        }
     }
 }
