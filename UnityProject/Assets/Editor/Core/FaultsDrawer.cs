@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,17 +8,14 @@ namespace SimuNEX
     [CustomPropertyDrawer(typeof(Fault), true)]
     public class FaultDrawer : PropertyDrawer
     {
-        private static readonly Regex _regex = new("(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])");
-
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             _ = EditorGUI.BeginProperty(position, label, property);
 
-            string faultTypeName = property.managedReferenceFullTypename.Split(' ').Last().Split('.').Last();
-            string formattedFaultName = _regex.Replace(faultTypeName, " $1").Replace("Fault", "");
+            string faultName = property.managedReferenceFullTypename.Split(' ').Last().Split('.').Last().Split('/').Last();
 
             position.height = EditorGUIUtility.singleLineHeight;
-            EditorGUI.LabelField(position, formattedFaultName);
+            EditorGUI.LabelField(position, faultName);
 
             _ = EditorGUI.PropertyField(position, property, GUIContent.none, true);
 

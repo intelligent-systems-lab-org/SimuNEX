@@ -1,12 +1,8 @@
 {
-    "name": "SimuNEX.Core",
+    "name": "SimuNEX.Solvers",
     "rootNamespace": "",
     "references": [
-        "GUID:625f5aa6b749b4b479743aeb6513aa7c",
-        "GUID:e69e5b0eedcadc743a87e1fc2c3972ed",
-        "GUID:92dc28c5f63f44c4f96ed25234048dd7",
-        "GUID:73503c8e07bbdaf479c09e45ce84aff5",
-        "GUID:61af3ef2dd62b4d42a14cd57849a0b54"
+        "GUID:e69e5b0eedcadc743a87e1fc2c3972ed"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
