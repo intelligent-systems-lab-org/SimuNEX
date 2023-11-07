@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace SimuNEXTests
+namespace CoreTests
 {
     public class ActuatorSystemTests
     {

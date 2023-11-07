@@ -76,14 +76,14 @@ namespace SimuNEX.Mechanical
         {
             get => body.mass;
 
-            protected set
+            set
             {
                 if (value < 0)
                 {
                     throw new ArgumentException();
                 }
 
-                body.mass = mass;
+                body.mass = value;
             }
         }
 

@@ -5,7 +5,7 @@ using SimuNEX.Mechanical;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace SimuNEXTests
+namespace CoreTests
 {
     public class SensorSystemTests
     {
