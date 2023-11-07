@@ -25,32 +25,32 @@ namespace SimuNEX
             force = rigidBody.gameObject.AddComponent<UnidirectionalPropellerForce>();
             (force as UnidirectionalPropellerForce).Initialize(this);
         }
-    }
 
-    /// <summary>
-    /// Implements the PropellerFunction for <see cref="UnidirectionalPropeller"/>
-    /// </summary>
-    public class UnidirectionalPropellerForce : PropellerForce
-    {
         /// <summary>
-        /// Set up propeller specific parameters.
+        /// Implements the PropellerFunction for <see cref="UnidirectionalPropeller"/>
         /// </summary>
-        /// <param name="propeller"><see cref="UnidirectionalPropellerForce"/> object that the force is being applied to.</param>
-        public void Initialize(UnidirectionalPropeller propeller)
+        public class UnidirectionalPropellerForce : PropellerForce
         {
-            base.Initialize(propeller);
-            parameters = () => new float[]
+            /// <summary>
+            /// Set up propeller specific parameters.
+            /// </summary>
+            /// <param name="propeller"><see cref="UnidirectionalPropellerForce"/> object that the force is being applied to.</param>
+            public void Initialize(UnidirectionalPropeller propeller)
             {
-                propeller.thrustCoefficient, propeller.torqueCoefficient
-            };
-        }
+                base.Initialize(propeller);
+                parameters = () => new float[]
+                {
+                    propeller.thrustCoefficient, propeller.torqueCoefficient
+                };
+            }
 
-        public override float[] PropellerFunction(Func<float> speed, Func<float[]> parameters)
-        {
-            float _speed = speed();
-            float thrust = parameters()[0] * _speed * _speed;
-            float torque = parameters()[1] * _speed * Mathf.Abs(_speed);
-            return new float[] { thrust, torque };
+            public override float[] PropellerFunction(Func<float> speed, Func<float[]> parameters)
+            {
+                float _speed = speed();
+                float thrust = parameters()[0] * _speed * _speed;
+                float torque = parameters()[1] * _speed * Mathf.Abs(_speed);
+                return new float[] { thrust, torque };
+            }
         }
     }
 }

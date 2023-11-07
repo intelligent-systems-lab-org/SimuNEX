@@ -5,16 +5,19 @@ using System.Linq;
 
 namespace FaultTests
 {
+    /// <summary>
+    /// Identity <see cref="Fault"/> class for testing.
+    /// </summary>
+    public class TestFault : Fault
+    {
+        public override float FaultFunction(float val)
+        {
+            return val;
+        }
+    }
+
     public class FaultFactoryTests
     {
-        private class TestFault : Fault
-        {
-            public override float FaultFunction(float val)
-            {
-                return val;
-            }
-        }
-
         [Test]
         public void CreateFault_ReturnsCorrectFaultType()
         {

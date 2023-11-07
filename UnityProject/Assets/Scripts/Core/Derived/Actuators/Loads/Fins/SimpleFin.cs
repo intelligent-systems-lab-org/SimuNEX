@@ -23,36 +23,37 @@ namespace SimuNEX
         protected override void Initialize()
         {
             force = rigidBody.gameObject.AddComponent<SimpleFinForce>();
+
             (force as SimpleFinForce).Initialize(this);
         }
-    }
 
-    /// <summary>
-    /// Implements the FinFunction for <see cref="SimpleFin"/>
-    /// </summary>
-    public class SimpleFinForce : FinForce
-    {
         /// <summary>
-        /// Set up fin specific parameters.
+        /// Implements the FinFunction for <see cref="SimpleFin"/>
         /// </summary>
-        /// <param name="fin"><see cref="SimpleFin"/> object that the force is being applied to.</param>
-        public void Initialize(SimpleFin fin)
+        public class SimpleFinForce : FinForce
         {
-            base.Initialize(fin);
-            parameters = () => new float[]
+            /// <summary>
+            /// Set up fin specific parameters.
+            /// </summary>
+            /// <param name="fin"><see cref="SimpleFin"/> object that the force is being applied to.</param>
+            public void Initialize(SimpleFin fin)
             {
-                fin.forceCoefficient, fin.torqueCoefficient
-            };
-        }
+                base.Initialize(fin);
+                parameters = () => new float[]
+                {
+                    fin.forceCoefficient, fin.torqueCoefficient
+                };
+            }
 
-        public override float[] FinFunction(Func<float> finAngle, Func<float[]> parameters)
-        {
-            float _finAngle = finAngle();
-            float bodySpeedSquared = Mathf.Pow(thrustSpeed, 2);
+            public override float[] FinFunction(Func<float> finAngle, Func<float[]> parameters)
+            {
+                float _finAngle = finAngle();
+                float bodySpeedSquared = Mathf.Pow(thrustSpeed, 2);
 
-            float force = parameters()[0] * _finAngle * bodySpeedSquared;
-            float torque = parameters()[1] * _finAngle * bodySpeedSquared;
-            return new float[] { force, torque };
+                float force = parameters()[0] * _finAngle * bodySpeedSquared;
+                float torque = parameters()[1] * _finAngle * bodySpeedSquared;
+                return new float[] { force, torque };
+            }
         }
     }
 }

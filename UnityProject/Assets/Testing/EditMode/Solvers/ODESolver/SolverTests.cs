@@ -42,7 +42,7 @@ namespace ODESolverTests
     /// <summary>
     /// Tests the methods specific to the base class.
     /// </summary>
-    public class ODESolverTests
+    public class BaseTests
     {
         private class TestSolver : ODESolver
         {
@@ -99,14 +99,14 @@ namespace ODESolverTests
     /// Tests each <see cref="ODESolver"/> solver capability.
     /// </summary>
     /// <typeparam name="TSolver">A <see cref="ODESolver"/> to test.</typeparam>
-    public abstract class BaseTests<TSolver> where TSolver : ODESolver, new()
+    public abstract class SolverTests<TSolver> where TSolver : ODESolver, new()
     {
         protected TSolver TestStepper { get; set; }
         protected virtual TestConfig Config => new();
 
         private readonly Helpers helpers = new();
 
-        protected BaseTests()
+        protected SolverTests()
         {
             TestStepper = new TSolver();
         }

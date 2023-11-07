@@ -2,7 +2,7 @@ using SimuNEX;
 
 namespace ODESolverTests
 {
-    public class TestEuler : BaseTests<ODESolvers.ForwardEuler>
+    public class TestEuler : SolverTests<ODESolvers.ForwardEuler>
     {
     }
 }
