@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SimuNEX.Mechanical;
 using UnityEngine;
 
 namespace SimuNEX

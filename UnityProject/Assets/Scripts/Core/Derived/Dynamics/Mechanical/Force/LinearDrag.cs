@@ -1,4 +1,4 @@
-namespace SimuNEX
+namespace SimuNEX.Mechanical.Forces
 {
     /// <summary>
     /// Implementation of linear drag.

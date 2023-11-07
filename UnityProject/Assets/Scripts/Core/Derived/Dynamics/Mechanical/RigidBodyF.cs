@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Simulates rigidbodies that include added mass forces.
@@ -42,7 +42,8 @@ namespace SimuNEX
 
         public override float kineticEnergy
         {
-            get {
+            get
+            {
                 Matrix momentum = MassMatrix * _velocity;
                 return 0.5f * (_velocity.transpose * momentum)[0, 0];
             }

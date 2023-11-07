@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Defines a force that can be applied to a RigidBody.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Interface for handling environmental-based forces.

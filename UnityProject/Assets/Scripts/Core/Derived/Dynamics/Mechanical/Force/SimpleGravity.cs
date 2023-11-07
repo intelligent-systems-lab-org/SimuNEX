@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Mechanical.Forces
 {
     /// <summary>
     /// Implementation of a simple gravity force.

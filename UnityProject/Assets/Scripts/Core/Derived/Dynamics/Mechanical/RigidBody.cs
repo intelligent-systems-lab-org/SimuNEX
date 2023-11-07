@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Mechanical
 {
     [RequireComponent(typeof(Rigidbody))]
     public class RigidBody : Dynamics
@@ -102,26 +102,35 @@ namespace SimuNEX
         /// <param name="force">Force to be removed.</param>
         public void RemoveForce(Force force)
         {
-            forces.Remove(force);
+            _ = forces.Remove(force);
         }
 
         /// <summary>
         /// Adds translational force to the current timestep.
         /// </summary>
         /// <param name="f">3D force to be applied.</param>
-        public void AddLinearForce(Vector3 f) => _forces.linear += f;
+        public void AddLinearForce(Vector3 f)
+        {
+            _forces.linear += f;
+        }
 
         /// <summary>
         /// Adds torque to the current timestep.
         /// </summary>
         /// <param name="tau">3D torque to be applied.</param>
-        public void AddTorque(Vector3 tau) => _forces.angular += tau;
+        public void AddTorque(Vector3 tau)
+        {
+            _forces.angular += tau;
+        }
 
         /// <summary>
         /// Adds force (linear and angular) to the current timestep.
         /// </summary>
         /// <param name="F">6DOF force to be applied.</param>
-        public void AddForce(Vector6DOF F) => _forces += F;
+        public void AddForce(Vector6DOF F)
+        {
+            _forces += F;
+        }
 
         /// <summary>
         /// Applies a linear force at a position.
@@ -206,18 +215,9 @@ namespace SimuNEX
         /// Returns 0 if gravity or spring forces are absent.
         /// </summary>
         /// <returns>The value of the potential energy.</returns>
-        public float potentialEnergy
-        {
-            get
-            {
-                if (TryGetComponent(out SimpleGravity simpleGravity) && simpleGravity.enabled)
-                {
-                    return simpleGravity.weight * transform.position.y;
-                }
-
-                return 0;
-            }
-        }
+        public float potentialEnergy => TryGetComponent(out Forces.SimpleGravity simpleGravity) && simpleGravity.enabled
+            ? simpleGravity.weight * transform.position.y
+            : (float)0;
 
         /// <summary>
         /// Average power of the <see cref="RigidBody"/>.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Mechanical.Forces
 {
     /// <summary>
     /// Implementation of quadratic drag where the force depends on the square of the velocity of the <see cref="RigidBody"/>.

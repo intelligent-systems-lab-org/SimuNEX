@@ -16,7 +16,7 @@ namespace SimuNEX
         /// <summary>
         /// Attached <see cref="RigidBody"/> to apply forces to.
         /// </summary>
-        public RigidBody rigidBody;
+        public Mechanical.RigidBody rigidBody;
 
         /// <summary>
         /// Attaches an <see cref="Actuator"/>.

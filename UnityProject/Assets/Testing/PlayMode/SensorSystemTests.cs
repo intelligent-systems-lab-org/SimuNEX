@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using SimuNEX;
 using System.Collections;
+using SimuNEX.Mechanical;
 using UnityEngine;
 using UnityEngine.TestTools;
 

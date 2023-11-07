@@ -30,7 +30,7 @@ namespace SimuNEX
         /// <summary>
         /// Force associated with the load.
         /// </summary>
-        protected Force force;
+        protected Mechanical.Force force;
 
         [Parameter]
         /// <summary>

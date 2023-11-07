@@ -1,4 +1,6 @@
-namespace SimuNEX
+using SimuNEX.Mechanical.Forces;
+
+namespace SimuNEX.Mechanical.ForceFields
 {
     /// <summary>
     /// Applies a constant buoyant force to all <see cref="RigidBody"/> objects within the field.
