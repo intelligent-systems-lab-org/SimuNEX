@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace SimuNEX
@@ -6,6 +5,7 @@ namespace SimuNEX
     /// <summary>
     /// Implementation of quadratic drag where the force depends on the square of the velocity of the <see cref="RigidBody"/>.
     /// </summary>
+    [SingleInstance]
     public class QuadraticDrag : Force
     {
         /// <summary>
@@ -19,24 +19,4 @@ namespace SimuNEX
             rigidBody.AddForce(dragCoefficients * rigidBody.velocity.Apply(v => Mathf.Abs(v) * v) * -1);
         }
     }
-
-    #if UNITY_EDITOR
-
-    [CustomEditor(typeof(QuadraticDrag))]
-    public class QuadraticDragEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            QuadraticDrag quadDrag = (QuadraticDrag)target;
-
-            if (quadDrag.gameObject.GetComponents<QuadraticDrag>().Length > 1)
-            {
-                EditorGUILayout.HelpBox("Only one QuadraticDrag component can be added to the GameObject.", MessageType.Error);
-                return;
-            }
-
-            DrawDefaultInspector();
-        }
-    }
-    #endif
 }

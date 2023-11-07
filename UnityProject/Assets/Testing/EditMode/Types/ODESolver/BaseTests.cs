@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using SimuNEX;
-using SolverTests;
 using System;
 using UnityEngine;
 

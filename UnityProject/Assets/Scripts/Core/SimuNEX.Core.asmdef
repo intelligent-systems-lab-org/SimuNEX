@@ -1,5 +1,5 @@
 {
-    "name": "SimuNEX",
+    "name": "SimuNEX.Core",
     "rootNamespace": "",
     "references": [
         "GUID:625f5aa6b749b4b479743aeb6513aa7c",

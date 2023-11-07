@@ -1,21 +1,9 @@
 using System;
-using System.Diagnostics;
 using UnityEngine;
 using static SimuNEX.StateSpaceTypes;
 
 namespace SimuNEX
 {
-    /// <summary>
-    /// For defining quantities with bounds.
-    /// </summary>
-    [Serializable]
-    [DebuggerDisplay("Min = {min}, Max = {max}")]
-    public struct Limits
-    {
-        public float max;
-        public float min;
-    }
-
     /// <summary>
     /// Interface for implementing motors.
     /// </summary>

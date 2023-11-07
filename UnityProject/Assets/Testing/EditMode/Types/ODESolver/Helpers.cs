@@ -1,11 +1,10 @@
 using NUnit.Framework;
 using SimuNEX;
-using StepperTests;
 using System;
 using UnityEngine;
 using static SimuNEX.StateSpace;
 
-namespace SolverTests
+namespace StepperTests
 {
     /// <summary>
     /// Provides utility functions and delegates for stepper tests related to <see cref="StateSpace"/> simulations.

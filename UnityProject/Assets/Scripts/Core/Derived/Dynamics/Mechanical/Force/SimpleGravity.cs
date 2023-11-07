@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace SimuNEX
@@ -6,6 +5,7 @@ namespace SimuNEX
     /// <summary>
     /// Implementation of a simple gravity force.
     /// </summary>
+    [SingleInstance]
     public class SimpleGravity : Force
     {
         /// <summary>
@@ -23,23 +23,24 @@ namespace SimuNEX
             FindCOG();
         }
 
-        protected void Awake() {
+        protected void Awake()
+        {
             FindCOG();
         }
 
         /// <summary>
         /// Attempts to find a child with the name "COG" and assigns it as the COG.
         /// </summary>
-        private void FindCOG() {
-            if(centerOfGravity == null)
+        private void FindCOG()
+        {
+            if (centerOfGravity == null)
+            {
+                Transform potentialCOG = transform.Find("COG");
+                if (potentialCOG != null)
                 {
-
-                    Transform potentialCOG = transform.Find("COG");
-                    if (potentialCOG != null)
-                    {
-                        centerOfGravity = potentialCOG;
-                    }
+                    centerOfGravity = potentialCOG;
                 }
+            }
         }
 
         /// <summary>
@@ -56,26 +57,5 @@ namespace SimuNEX
         /// </summary>
         /// <returns>The weight of the dynamics object.</returns>
         public float weight => rigidBody.mass * acceleration;
-
     }
-
-    #if UNITY_EDITOR
-
-    [CustomEditor(typeof(SimpleGravity))]
-    public class SimpleGravityEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            SimpleGravity gravity = (SimpleGravity)target;
-
-            if (gravity.gameObject.GetComponents<SimpleGravity>().Length > 1)
-            {
-                EditorGUILayout.HelpBox("Only one SimpleGravity component can be added to the GameObject.", MessageType.Error);
-                return;
-            }
-
-            DrawDefaultInspector();
-        }
-    }
-    #endif
 }

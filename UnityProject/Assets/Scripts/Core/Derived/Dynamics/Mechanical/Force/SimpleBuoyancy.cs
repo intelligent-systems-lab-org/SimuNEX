@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace SimuNEX
@@ -6,6 +5,7 @@ namespace SimuNEX
     /// <summary>
     /// Implementation of a constant buoyant force.
     /// </summary>
+    [SingleInstance]
     public class SimpleBuoyancy : Force
     {
         /// <summary>
@@ -77,33 +77,4 @@ namespace SimuNEX
             }
         }
     }
-
-#if UNITY_EDITOR
-
-    [CustomEditor(typeof(SimpleBuoyancy))]
-    public class SimpleBuoyancyEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            SimpleBuoyancy buoyancy = (SimpleBuoyancy)target;
-
-            if (buoyancy.gameObject.GetComponents<SimpleBuoyancy>().Length > 1)
-            {
-                EditorGUILayout.HelpBox("Only one SimpleBuoyancy component can be added to the GameObject.", MessageType.Error);
-                return;
-            }
-
-            if (buoyancy.gameObject.GetComponent<RigidBodyF>() == null)
-            {
-                EditorGUILayout.HelpBox(
-                    "SimpleBuoyancy should be attached to a GameObject with a RigidBodyF component.",
-                    MessageType.Warning);
-                return;
-            }
-
-            _ = DrawDefaultInspector();
-        }
-    }
-
-#endif
 }
