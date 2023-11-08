@@ -46,6 +46,8 @@ The scope could be anything specifying the place of the commit change. For examp
 - **actuator** / **<actuator_name>**: Actuator-related code
 - **sensor** / **<sensor_name>**: Sensor-related code
 - **alarm**: Alarm-based code
+- **system** / **<system_name>**: System-related code such as quadcopter, AUV
+- **<dependency_name>**: Dependency-specific changes, such as Eigen3, ROS2, etc.
 
 ### Subject
 
@@ -72,6 +74,10 @@ For documentation changes, use `docs` as the type, and the file name as the scop
 ```
 docs(README): update installation instructions
 ```
+
+## Coding Style
+
+To maintain the consistency and quality of our codebase, please adhere to the coding styles defined in `.editorconfig` and the Roslyn analyzer. We recommend using Visual Studio with its code cleanup tools to manage coding style automatically. This will help ensure that your contributions match the project's coding standards.
 
 ## Code of Conduct
 
