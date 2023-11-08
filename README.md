@@ -101,6 +101,7 @@ Currently a work in progress. Will be implemented with GitHub Pages.
 | ROS2ForUnity  | 1.1.0   | Windows, Linux | Communication using ROS 2[^1]  | [link](https://github.com/RobotecAI/ros2-for-unity) |
 | Eigen         | 3.4.0   | Windows[^2] | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
 | ErrorProne.NET.CoreAnalyzers        | 0.1.2 | Windows | For code analysis and Roslyn support[^3] | [link](https://www.nuget.org/packages/ErrorProne.NET.CoreAnalyzers/) |
+| NSubstitute (**experimental**)   | 5.1.0   | Windows, Linux | For mock testing | [link](https://www.nuget.org/packages/NSubstitute) |
 
 [^1]: Currently on Foxy installations only.
 
