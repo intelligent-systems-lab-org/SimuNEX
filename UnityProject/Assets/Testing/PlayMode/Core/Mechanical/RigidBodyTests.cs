@@ -35,5 +35,23 @@ namespace MechanicalTests
             // Act & Assert
             _ = Assert.Throws<ArgumentException>(() => rigidBody.mass = -testMass);
         }
+
+        [Test]
+        public void AngularPosition_ReturnsTransformRotation()
+        {
+            Quaternion testRotation = Quaternion.identity;
+            testObject.transform.rotation = testRotation;
+
+            Assert.IsTrue(rigidBody.angularPosition == testRotation);
+        }
+
+        [Test]
+        public void Position_ReturnsTransformPosition()
+        {
+            Vector3 testPosition = new(10, 5, 10);
+            testObject.transform.position = testPosition;
+
+            Assert.IsTrue(rigidBody.position == testPosition);
+        }
     }
 }

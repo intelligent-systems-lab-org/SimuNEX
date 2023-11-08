@@ -182,12 +182,12 @@ namespace SimuNEX.Mechanical
         /// <summary>
         /// Angular position of the <see cref="RigidBody"/> expressed as a <see cref="Quaternion"/>.
         /// </summary>
-        public Quaternion angularPosition => body.rotation;
+        public Quaternion angularPosition => transform.rotation;
 
         /// <summary>
         /// Linear position of the <see cref="RigidBody"/>.
         /// </summary>
-        public Vector3 position => body.position;
+        public Vector3 position => transform.position;
 
         /// <summary>
         /// Updates the kinetic energy of the <see cref="RigidBody"/>.
