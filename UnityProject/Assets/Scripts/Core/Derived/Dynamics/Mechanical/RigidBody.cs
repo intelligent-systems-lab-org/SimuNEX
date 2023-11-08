@@ -177,7 +177,7 @@ namespace SimuNEX.Mechanical
         /// <summary>
         /// 6DOF velocity of the <see cref="Rigidbody"/>.
         /// </summary>
-        public Vector6DOF velocity => new(body.velocity, body.angularVelocity);
+        public Vector6DOF velocity => _velocity;
 
         /// <summary>
         /// Angular position of the <see cref="RigidBody"/> expressed as a <see cref="Quaternion"/>.
