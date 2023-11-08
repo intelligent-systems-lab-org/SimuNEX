@@ -24,7 +24,7 @@ namespace FaultTests
         protected virtual float testValue => 10f;
 
         /// <summary>
-        /// Expected value for the test
+        /// Expected value for the test.
         /// </summary>
         protected abstract float expectedValue { get; }
 

@@ -62,6 +62,7 @@ namespace SimuNEX.Mechanical
         protected override void Initialize()
         {
             _forces = Vector6DOF.zero;
+            appliedForce = Vector6DOF.zero;
         }
 
         protected void OnValidate()
