@@ -1,37 +1,12 @@
+using FactoryTests;
 using NUnit.Framework;
-using SimuNEX;
 using SimuNEX.Faults;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace FaultTests
 {
-    [SetUpFixture]
-    public class FaultTestsSetup
+    public class FaultTestsSetup : TypeRegisterSetup<Fault>
     {
-        private static readonly HashSet<Type> faultTypesTested = new();
-
-        public static void RegisterFaultTest<T>() where T : Fault
-        {
-            _ = faultTypesTested.Add(typeof(T));
-        }
-
-        [OneTimeTearDown]
-        public void AfterAllTests()
-        {
-            // Retrieve all available fault types using the factory
-            Type[] faultTypes = Factory<Fault>.GetAvailableTypes();
-
-            // Check if all fault types have been registered/tested
-            List<Type> untestedFaultTypes = faultTypes.Where(t => !faultTypesTested.Contains(t)).ToList();
-            if (untestedFaultTypes.Count > 0)
-            {
-                throw new Exception(
-                    "The following fault types are not tested: " + string.Join(", ", untestedFaultTypes.Select(t => t.Name)));
-            }
-        }
     }
 
     public abstract class FaultTests<TFault> where TFault : Fault, new()
@@ -65,7 +40,7 @@ namespace FaultTests
             InitializeFaultInstance();
 
             // Register the fault type as being tested
-            FaultTestsSetup.RegisterFaultTest<TFault>();
+            FaultTestsSetup.RegisterTest<TFault>();
         }
 
         [Test]

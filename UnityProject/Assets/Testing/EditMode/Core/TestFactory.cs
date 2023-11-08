@@ -6,8 +6,15 @@ using SimuNEX;
 
 namespace FactoryTests
 {
+    /// <summary>
+    /// Generic tests for <see cref="Factory{T}"/>.
+    /// </summary>
+    /// <typeparam name="T">Abstract type to be tested.</typeparam>
     public abstract class FactoryTests<T>
     {
+        /// <summary>
+        /// A concrete class of <see cref="T"/>.
+        /// </summary>
         protected T testClass;
 
         [Test]
