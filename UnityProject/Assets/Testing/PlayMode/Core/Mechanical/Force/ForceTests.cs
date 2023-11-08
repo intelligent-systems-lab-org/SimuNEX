@@ -12,7 +12,9 @@ namespace ForceTests
     {
     }
 
-    public abstract class ForceTests<TForce> where TForce : Force, new()
+    public abstract class ForceTests<TForce, TBody>
+        where TForce : Force, new()
+        where TBody : RigidBody, new()
     {
         protected TForce forceInstance;
 
@@ -24,9 +26,9 @@ namespace ForceTests
         protected GameObject gameObject;
 
         /// <summary>
-        /// Test <see cref="RigidBody"/>.
+        /// Test <see cref="TBody"/>.
         /// </summary>
-        protected RigidBody rigidBody;
+        protected TBody rigidBody;
 
         /// <summary>
         /// Expected value for the test.
@@ -42,7 +44,7 @@ namespace ForceTests
         public void SetUp()
         {
             gameObject = new("Test");
-            rigidBody = gameObject.AddComponent<RigidBody>();
+            rigidBody = gameObject.AddComponent<TBody>();
 
             forceInstance = rigidBody.gameObject.AddComponent<TForce>();
             SetProperties();
@@ -58,17 +60,18 @@ namespace ForceTests
 
             yield return null;
 
-            IsForceApplied();
+            _ = IsForceApplied(expectedValue);
         }
 
         /// <summary>
         /// Verifies if the <see cref="Force"/> was applied to the <see cref="RigidBody"/>.
         /// </summary>
+        /// <param name="force">Force that was applied.</param>
         /// <returns>True if the force applied to the <see cref="RigidBody"/> meets the required critera.
         /// False otherwise.</returns>
-        public bool IsForceApplied()
+        public bool IsForceApplied(Vector6DOF force)
         {
-            Vector6DOF difference = expectedValue - rigidBody.appliedForce;
+            Vector6DOF difference = force - rigidBody.appliedForce;
 
             Assert.That(Mathf.Abs(difference.u), Is.LessThan(tolerance), "u component out of tolerance");
             Assert.That(Mathf.Abs(difference.v), Is.LessThan(tolerance), "v component out of tolerance");
