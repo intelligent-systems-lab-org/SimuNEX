@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Communication
 {
     /// <summary>
     /// Interface for communication protocols (eg., TCP/IP, UDP, RTPS, MQTT, Simplex, etc).

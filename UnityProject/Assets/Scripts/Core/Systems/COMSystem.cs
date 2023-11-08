@@ -1,3 +1,4 @@
+using SimuNEX.Communication;
 using UnityEngine;
 
 namespace SimuNEX

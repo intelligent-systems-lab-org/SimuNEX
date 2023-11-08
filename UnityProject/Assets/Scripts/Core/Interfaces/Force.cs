@@ -10,27 +10,46 @@ namespace SimuNEX.Mechanical
         /// <summary>
         /// Associated <see cref="RigidBody"/> to apply forces to.
         /// </summary>
-        protected RigidBody rigidBody;
+        public RigidBody rigidBody;
 
         protected void OnEnable()
         {
-            if (TryGetComponent(out rigidBody))
+            TryAttachForce();
+        }
+
+        protected void OnDisable()
+        {
+            TryDetachForce();
+        }
+
+        /// <summary>
+        /// Attaches the <see cref="Force"/> to the <see cref="RigidBody"/>.
+        /// </summary>
+        public void TryAttachForce()
+        {
+            if (rigidBody != null || TryGetComponent(out rigidBody))
             {
                 rigidBody.AttachForce(this);
             }
             else
             {
-                Debug.LogError("RigidBody component not found!", this);
+                Debug.LogWarning("RigidBody component not found!", this);
             }
         }
 
-        protected void OnDisable()
+        /// <summary>
+        /// Removes the <see cref="Force"/> from the <see cref="RigidBody"/>.
+        /// </summary>
+        public void TryDetachForce()
         {
-            rigidBody.RemoveForce(this);
+            if (rigidBody != null)
+            {
+                rigidBody.RemoveForce(this);
+            }
         }
 
         /// <summary>
-        /// Apply the force to the specified RigidBody.
+        /// Apply the <see cref="Force"/> to the <see cref="RigidBody"/>.
         /// </summary>
         public abstract void ApplyForce();
     }

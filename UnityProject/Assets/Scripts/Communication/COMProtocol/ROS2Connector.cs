@@ -3,7 +3,7 @@ using std_msgs.msg;
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Communication.Protocols
 {
     /// <summary>
     /// Provides an interface for SimuNEX to connect and communicate with ROS2.
@@ -14,17 +14,17 @@ namespace SimuNEX
         /// <summary>
         /// Reference to the attached ROS2 Unity component for managing ROS2 operations.
         /// </summary>
-        private ROS2UnityComponent ros2Unity;
+        public ROS2UnityComponent ros2Unity;
 
         /// <summary>
         /// Node dedicated to sending out ROS2 messages.
         /// </summary>
-        private ROS2Node outputNode;
+        public ROS2Node outputNode;
 
         /// <summary>
         /// Node dedicated to listening to incoming ROS2 messages.
         /// </summary>
-        private ROS2Node inputNode;
+        public ROS2Node inputNode;
 
         /// <summary>
         /// Name of the node responsible for listening to ROS2 messages.

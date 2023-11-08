@@ -15,7 +15,7 @@ namespace SimuNEX.Mechanical
         /// <summary>
         /// Active forces that are attached to the <see cref="RigidBody"/>
         /// </summary>
-        protected List<Force> forces = new();
+        public List<Force> forces = new();
 
         /// <summary>
         /// Accumulated forces in the current timestep.
@@ -217,7 +217,7 @@ namespace SimuNEX.Mechanical
         /// <returns>The value of the potential energy.</returns>
         public float potentialEnergy => TryGetComponent(out Forces.SimpleGravity simpleGravity) && simpleGravity.enabled
             ? simpleGravity.weight * transform.position.y
-            : (float)0;
+            : 0;
 
         /// <summary>
         /// Average power of the <see cref="RigidBody"/>.
