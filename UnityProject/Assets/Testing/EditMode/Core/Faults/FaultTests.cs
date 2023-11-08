@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SimuNEX;
 using SimuNEX.Faults;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace FaultTests
         public void AfterAllTests()
         {
             // Retrieve all available fault types using the factory
-            Type[] faultTypes = FaultFactory.GetAvailableFaultTypes();
+            Type[] faultTypes = Factory<Fault>.GetAvailableTypes();
 
             // Check if all fault types have been registered/tested
             List<Type> untestedFaultTypes = faultTypes.Where(t => !faultTypesTested.Contains(t)).ToList();

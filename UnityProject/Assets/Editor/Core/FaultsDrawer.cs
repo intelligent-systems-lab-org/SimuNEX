@@ -58,7 +58,7 @@ namespace SimuNEX
                 string[] faultables = faultSystem.GetPropertiesWithAttribute<Faultable>().Select(p => p.Name).ToArray();
 
                 // Get the list of available Faults
-                Type[] faultTypes = FaultFactory.GetAvailableFaultTypes();
+                Type[] faultTypes = Factory<Fault>.GetAvailableTypes();
                 string[] faultTypeNames = faultTypes.Select(t => t.Name).ToArray();
 
                 selectedFaultableIndex = EditorGUILayout.Popup("Faultable Properties", selectedFaultableIndex, faultables);
@@ -79,7 +79,7 @@ namespace SimuNEX
         {
             Debug.Log("Adding fault of type: " + faultType.Name);
 
-            Fault newFault = FaultFactory.CreateFault(faultType);
+            Fault newFault = Factory<Fault>.Create(faultType);
             FaultSystem faultSystem = serializedObject.targetObject as FaultSystem;
 
             if (faultSystem != null)
