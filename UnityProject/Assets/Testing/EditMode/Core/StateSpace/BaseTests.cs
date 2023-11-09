@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using SimuNEX;
+using SimuNEX.Models;
+using SimuNEX.Solvers;
 using System;
-using static SimuNEX.ODESolvers;
 
 namespace StateSpaceTests
 {
@@ -62,28 +62,28 @@ namespace StateSpaceTests
         [Test]
         public void CreateStepper_WithEulerMethod_ReturnsForwardEulerSolver()
         {
-            ODESolver solver = StateSpace.CreateStepper(StepperMethod.Euler);
+            ODESolver solver = StateSpace.CreateStepper(SolverMethod.Euler);
             Assert.IsInstanceOf<ForwardEuler>(solver);
         }
 
         [Test]
         public void CreateStepper_WithHeunMethod_ReturnsHeunSolver()
         {
-            ODESolver solver = StateSpace.CreateStepper(StepperMethod.Heun);
+            ODESolver solver = StateSpace.CreateStepper(SolverMethod.Heun);
             Assert.IsInstanceOf<Heun>(solver);
         }
 
         [Test]
         public void CreateStepper_WithRK4Method_ReturnsRK4Solver()
         {
-            ODESolver solver = StateSpace.CreateStepper(StepperMethod.RK4);
+            ODESolver solver = StateSpace.CreateStepper(SolverMethod.RK4);
             Assert.IsInstanceOf<RK4>(solver);
         }
 
         [Test]
         public void CreateStepper_WithUnsupportedMethod_ThrowsArgumentOutOfRangeException()
         {
-            const StepperMethod invalidMethod = (StepperMethod)(-1);
+            const SolverMethod invalidMethod = (SolverMethod)(-1);
 
             ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() =>
                 StateSpace.CreateStepper(invalidMethod));

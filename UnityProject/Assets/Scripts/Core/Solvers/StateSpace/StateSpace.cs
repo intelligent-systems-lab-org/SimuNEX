@@ -1,7 +1,7 @@
+using SimuNEX.Solvers;
 using System;
-using static SimuNEX.ODESolvers;
 
-namespace SimuNEX
+namespace SimuNEX.Models
 {
     /// <summary>
     /// Interface for modelling systems represented by state-spaces.
@@ -130,18 +130,18 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// Creates an <see cref="ODESolver"/> from the chosen <see cref="StepperMethod"/>.
+        /// Creates an <see cref="ODESolver"/> from the chosen <see cref="SolverMethod"/>.
         /// </summary>
-        /// <param name="stepperMethod">The <see cref="StepperMethod"/> of choice.</param>
-        /// <returns>The <see cref="ODESolver"/> that uses the desired <see cref="StepperMethod"/>.</returns>
+        /// <param name="stepperMethod">The <see cref="SolverMethod"/> of choice.</param>
+        /// <returns>The <see cref="ODESolver"/> that uses the desired <see cref="SolverMethod"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Throws when an unsupported method is passed.</exception>
-        public static ODESolver CreateStepper(StepperMethod stepperMethod = StepperMethod.Euler)
+        public static ODESolver CreateStepper(SolverMethod stepperMethod = SolverMethod.Euler)
         {
             return stepperMethod switch
             {
-                StepperMethod.Euler => new ForwardEuler(),
-                StepperMethod.Heun => new Heun(),
-                StepperMethod.RK4 => new RK4(),
+                SolverMethod.Euler => new ForwardEuler(),
+                SolverMethod.Heun => new Heun(),
+                SolverMethod.RK4 => new RK4(),
                 _ => throw new ArgumentOutOfRangeException(
                     nameof(stepperMethod),
                     $"Not expected stepper method: {stepperMethod}"),

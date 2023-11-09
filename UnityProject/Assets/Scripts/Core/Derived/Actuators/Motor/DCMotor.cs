@@ -1,6 +1,7 @@
+using SimuNEX.Models;
+using SimuNEX.Solvers;
 using System;
 using UnityEngine;
-using static SimuNEX.StateSpaceTypes;
 
 namespace SimuNEX
 {
@@ -10,9 +11,9 @@ namespace SimuNEX
     public class DCMotor : Motor
     {
         /// <summary>
-        /// The stepper method.
+        /// The solver method.
         /// </summary>
-        public StepperMethod speedStepper;
+        public SolverMethod speedStepper;
 
         [Input]
         /// <summary>
@@ -45,7 +46,10 @@ namespace SimuNEX
         /// </summary>
         private FirstOrderTF stateSpace;
 
-        public override void SetInput(float[] value) => voltage = value[0];
+        public override void SetInput(float[] value)
+        {
+            voltage = value[0];
+        }
 
         protected override void Initialize()
         {
@@ -72,16 +76,11 @@ namespace SimuNEX
             }
 
             inputs = () => new float[] { voltage };
-            stateSpace = new FirstOrderTF(timeConstant, DCGain, stepperMethod: speedStepper);
+            stateSpace = new FirstOrderTF(timeConstant, DCGain, solverMethod: speedStepper);
 
-            if (motorLoad != null)
-            {
-                inputNames = new string[] { $"{gameObject.name} {motorLoad.spinnerObject.gameObject.name} Voltage" };
-            }
-            else
-            {
-                inputNames = new string[] { $"{gameObject.name} Motor Voltage" };
-            }
+            inputNames = motorLoad != null
+                ? (new string[] { $"{gameObject.name} {motorLoad.spinnerObject.gameObject.name} Voltage" })
+                : (new string[] { $"{gameObject.name} Motor Voltage" });
         }
 
         public override float MotorFunction(Func<float[]> inputs, Func<float[]> parameters)

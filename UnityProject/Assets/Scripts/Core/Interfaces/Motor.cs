@@ -1,6 +1,7 @@
+using SimuNEX.Models;
+using SimuNEX.Solvers;
 using System;
 using UnityEngine;
-using static SimuNEX.StateSpaceTypes;
 
 namespace SimuNEX
 {
@@ -48,9 +49,9 @@ namespace SimuNEX
         public float armatureDamping;
 
         /// <summary>
-        /// The stepper method for position prediction.
+        /// The solver method for position prediction.
         /// </summary>
-        public StepperMethod positionStepper;
+        public SolverMethod positionStepper;
 
         /// <summary>
         /// Speed integrator for predicting position.

@@ -1,5 +1,7 @@
+using FactoryTests;
 using NUnit.Framework;
-using SimuNEX;
+using SimuNEX.Models;
+using SimuNEX.Solvers;
 using System;
 using UnityEngine;
 
@@ -95,20 +97,28 @@ namespace ODESolverTests
         }
     }
 
+    public class SolverTestsSetup : TypeRegisterSetup<ODESolver>
+    {
+    }
+
     /// <summary>
     /// Tests each <see cref="ODESolver"/> solver capability.
     /// </summary>
     /// <typeparam name="TSolver">A <see cref="ODESolver"/> to test.</typeparam>
     public abstract class SolverTests<TSolver> where TSolver : ODESolver, new()
     {
-        protected TSolver TestStepper { get; set; }
+        protected TSolver solverInstance { get; set; }
         protected virtual TestConfig Config => new();
 
         private readonly Helpers helpers = new();
 
-        protected SolverTests()
+        [SetUp]
+        public void SetUp()
         {
-            TestStepper = new TSolver();
+            solverInstance = new TSolver();
+
+            // Register the solver type as being tested
+            SolverTestsSetup.RegisterTest<TSolver>();
         }
 
         [Test]
@@ -118,7 +128,7 @@ namespace ODESolverTests
             (
                 (states, inputs) => states,
                 new Matrix(1, 1, new float[] { 1f }),
-                TestStepper
+                solverInstance
             );
             helpers.RunSimulationTest(ss, Mathf.Exp, Config);
         }
@@ -130,7 +140,7 @@ namespace ODESolverTests
             (
                 (states, inputs) => new Matrix(1, 1, new float[] { 5f }),
                 new Matrix(1, 1, new float[] { 0f }),
-                TestStepper
+                solverInstance
             );
             helpers.RunSimulationTest(ss, (float time) => 5f * time, Config);
         }
@@ -147,7 +157,7 @@ namespace ODESolverTests
                     return new Matrix(2, 1, new float[] { y2, -y1 });
                 },
                 new Matrix(2, 1, new float[] { 0f, 1f }),
-                TestStepper
+                solverInstance
             );
             helpers.RunSimulationTest(ss, Mathf.Sin, Config);
         }

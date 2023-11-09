@@ -1,5 +1,6 @@
+using SimuNEX.Models;
+using SimuNEX.Solvers;
 using System;
-using static SimuNEX.StateSpaceTypes;
 
 namespace SimuNEX
 {
@@ -10,9 +11,9 @@ namespace SimuNEX
     public class PMSMotor : Motor
     {
         /// <summary>
-        /// The stepper method.
+        /// The solver method.
         /// </summary>
-        public StepperMethod speedStepper;
+        public SolverMethod speedStepper;
 
         [Input]
         /// <summary>
@@ -125,22 +126,17 @@ namespace SimuNEX
         /// </summary>
         private void SetInputNames()
         {
-            if (motorLoad != null)
-            {
-                inputNames = new string[2]
+            inputNames = motorLoad != null
+                ? (new string[2]
                 {
                     $"{gameObject.name} {motorLoad.spinnerObject.gameObject.name} Q-Axis Voltage",
                     $"{gameObject.name} {motorLoad.spinnerObject.gameObject.name} D-Axis Voltage"
-                };
-            }
-            else
-            {
-                inputNames = new string[2]
+                })
+                : (new string[2]
                 {
                     $"{gameObject.name} Motor Q-Axis Voltage",
                     $"{gameObject.name} Motor D-Axis Voltage"
-                };
-            }
+                });
         }
     }
 }

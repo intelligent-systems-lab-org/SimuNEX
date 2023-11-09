@@ -1,8 +1,9 @@
 using NUnit.Framework;
-using SimuNEX;
+using SimuNEX.Models;
+using SimuNEX.Solvers;
 using System;
 using UnityEngine;
-using static SimuNEX.StateSpace;
+using static SimuNEX.Models.StateSpace;
 
 namespace ODESolverTests
 {

@@ -1,6 +1,6 @@
 using NUnit.Framework;
-using static SimuNEX.StateSpaceTypes;
-using static SimuNEX.ODESolvers;
+using SimuNEX.Models;
+using SimuNEX.Solvers;
 
 namespace StateSpaceTests
 {

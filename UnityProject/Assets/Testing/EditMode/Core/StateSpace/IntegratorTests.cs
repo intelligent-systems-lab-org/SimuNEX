@@ -1,6 +1,6 @@
 using NUnit.Framework;
-using static SimuNEX.StateSpaceTypes;
-using static SimuNEX.ODESolvers;
+using SimuNEX.Models;
+using SimuNEX.Solvers;
 
 namespace StateSpaceTests
 {
@@ -9,7 +9,7 @@ namespace StateSpaceTests
     /// </summary>
     public class IntegratorTests
     {
-        const float tolerance = 1e-3f;
+        private const float tolerance = 1e-3f;
 
         [Test]
         public void Constructor_InitializesCorrectly()

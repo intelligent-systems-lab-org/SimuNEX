@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using static SimuNEX.StateSpaceTypes;
+using SimuNEX.Models;
 
 namespace StateSpaceTests
 {
