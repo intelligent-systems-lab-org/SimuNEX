@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX.Mechanical.Forces
+namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Implements a constant force that acts at a point on the <see cref="RigidBody"/>.

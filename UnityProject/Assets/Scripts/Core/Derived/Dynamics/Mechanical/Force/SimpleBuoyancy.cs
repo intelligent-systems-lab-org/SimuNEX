@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX.Mechanical.Forces
+namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Implementation of a constant buoyant force.

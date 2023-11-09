@@ -1,4 +1,4 @@
-namespace SimuNEX.Mechanical.Forces
+namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Applies a constant force to the attached RigidBody.

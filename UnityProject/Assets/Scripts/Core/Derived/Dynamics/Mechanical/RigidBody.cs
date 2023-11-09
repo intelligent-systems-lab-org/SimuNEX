@@ -216,7 +216,7 @@ namespace SimuNEX.Mechanical
         /// Returns 0 if gravity or spring forces are absent.
         /// </summary>
         /// <returns>The value of the potential energy.</returns>
-        public float potentialEnergy => TryGetComponent(out Forces.SimpleGravity simpleGravity) && simpleGravity.enabled
+        public float potentialEnergy => TryGetComponent(out SimpleGravity simpleGravity) && simpleGravity.enabled
             ? simpleGravity.weight * transform.position.y
             : 0;
 

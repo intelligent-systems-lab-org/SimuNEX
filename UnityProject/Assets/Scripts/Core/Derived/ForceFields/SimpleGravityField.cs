@@ -1,6 +1,4 @@
-using SimuNEX.Mechanical.Forces;
-
-namespace SimuNEX.Mechanical.ForceFields
+namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Applies a constant gravitational acceleration to all <see cref="RigidBody"/> objects within the field.

@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using SimuNEX.Mechanical;
-using SimuNEX.Mechanical.Forces;
 using UnityEngine;
 
 namespace MechanicalTests.ForceTests

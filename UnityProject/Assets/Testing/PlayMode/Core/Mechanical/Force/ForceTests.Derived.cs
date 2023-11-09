@@ -1,6 +1,5 @@
 using SimuNEX;
 using SimuNEX.Mechanical;
-using SimuNEX.Mechanical.Forces;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
