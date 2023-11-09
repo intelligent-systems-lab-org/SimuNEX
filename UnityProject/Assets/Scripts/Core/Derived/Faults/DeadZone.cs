@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace SimuNEX.Faults.Types
+namespace SimuNEX.Faults
 {
     /// <summary>
     /// A fault that applies a dead zone effect to the value.

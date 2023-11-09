@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace SimuNEX.Faults.Types
+namespace SimuNEX.Faults
 {
     /// <summary>
     /// A fault that adds a constant bias to the value.

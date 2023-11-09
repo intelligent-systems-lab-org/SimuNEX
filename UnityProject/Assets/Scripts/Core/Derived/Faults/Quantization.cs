@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using UnityEngine;
 
-namespace SimuNEX.Faults.Types
+namespace SimuNEX.Faults
 {
     /// <summary>
     /// A fault that applies quantization error to the value.

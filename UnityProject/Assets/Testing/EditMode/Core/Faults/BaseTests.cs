@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using SimuNEX.Faults.Types;
+using SimuNEX.Faults;
 using UnityEngine;
 
 namespace FaultTests

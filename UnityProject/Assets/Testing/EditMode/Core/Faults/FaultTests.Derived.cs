@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using SimuNEX.Faults.Types;
+using SimuNEX.Faults;
 using System;
 using System.Collections.Generic;
 using System.Linq;

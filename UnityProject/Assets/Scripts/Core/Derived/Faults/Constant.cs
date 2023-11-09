@@ -1,9 +1,8 @@
 using System;
 using System.Diagnostics;
 
-namespace SimuNEX.Faults.Types
+namespace SimuNEX.Faults
 {
-
     /// <summary>
     /// A fault that sets the value to a constant value.
     /// </summary>
