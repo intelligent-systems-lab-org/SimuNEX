@@ -4,13 +4,13 @@ using UnityEngine;
 namespace SimuNEX
 {
     /// <summary>
-    /// Simple fin model with constant force and torque coefficients.
+    /// Simple fin model with constant _force and torque coefficients.
     /// </summary>
     public class SimpleFin : Fin
     {
         [Parameter]
         /// <summary>
-        /// Fin angle to force factor.
+        /// Fin angle to _force factor.
         /// </summary>
         public float forceCoefficient = 1.5f;
 
@@ -22,9 +22,9 @@ namespace SimuNEX
 
         protected override void Initialize()
         {
-            force = rigidBody.gameObject.AddComponent<SimpleFinForce>();
+            _force = rigidBody.gameObject.AddComponent<SimpleFinForce>();
 
-            (force as SimpleFinForce).Initialize(this);
+            (_force as SimpleFinForce).Initialize(this);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace SimuNEX
             /// <summary>
             /// Set up fin specific parameters.
             /// </summary>
-            /// <param name="fin"><see cref="SimpleFin"/> object that the force is being applied to.</param>
+            /// <param name="fin"><see cref="SimpleFin"/> object that the _force is being applied to.</param>
             public void Initialize(SimpleFin fin)
             {
                 base.Initialize(fin);

@@ -89,7 +89,7 @@ namespace SimuNEX.Mechanical
         }
 
         /// <summary>
-        /// Attaches a force to the <see cref="RigidBody"/>.
+        /// Attaches a _force to the <see cref="RigidBody"/>.
         /// </summary>
         /// <param name="force">Force to be attached.</param>
         public void AttachForce(Force force)
@@ -98,7 +98,7 @@ namespace SimuNEX.Mechanical
         }
 
         /// <summary>
-        /// Removes a force to the <see cref="RigidBody"/>.
+        /// Removes a _force to the <see cref="RigidBody"/>.
         /// </summary>
         /// <param name="force">Force to be removed.</param>
         public void RemoveForce(Force force)
@@ -107,9 +107,9 @@ namespace SimuNEX.Mechanical
         }
 
         /// <summary>
-        /// Adds translational force to the current timestep.
+        /// Adds translational _force to the current timestep.
         /// </summary>
-        /// <param name="f">3D force to be applied.</param>
+        /// <param name="f">3D _force to be applied.</param>
         public void AddLinearForce(Vector3 f)
         {
             _forces.linear += f;
@@ -125,19 +125,19 @@ namespace SimuNEX.Mechanical
         }
 
         /// <summary>
-        /// Adds force (linear and angular) to the current timestep.
+        /// Adds _force (linear and angular) to the current timestep.
         /// </summary>
-        /// <param name="F">6DOF force to be applied.</param>
+        /// <param name="F">6DOF _force to be applied.</param>
         public void AddForce(Vector6DOF F)
         {
             _forces += F;
         }
 
         /// <summary>
-        /// Applies a linear force at a position.
+        /// Applies a linear _force at a position.
         /// </summary>
-        /// <param name="f">The 3D force to be applied.</param>
-        /// <param name="pos">The position at which the force acts.</param>
+        /// <param name="f">The 3D _force to be applied.</param>
+        /// <param name="pos">The position at which the _force acts.</param>
         public void AddLinearForceAtPosition(Vector3 f, Vector3 pos)
         {
             AddLinearForce(f);

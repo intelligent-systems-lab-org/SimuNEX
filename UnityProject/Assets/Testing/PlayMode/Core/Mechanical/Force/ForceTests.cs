@@ -10,10 +10,11 @@ namespace ForceTests
 {
     public class ForceTestsSetup : TypeRegisterSetup<Force>
     {
+        public override bool includeNested => false;
     }
 
     public abstract class ForceTests<TForce, TBody>
-        where TForce : Force, new()
+        where TForce : Force
         where TBody : RigidBody, new()
     {
         protected TForce forceInstance;
@@ -41,7 +42,7 @@ namespace ForceTests
         protected abstract void SetProperties();
 
         [SetUp]
-        public void SetUp()
+        public virtual void Setup()
         {
             gameObject = new("Test");
             rigidBody = gameObject.AddComponent<TBody>();
@@ -49,7 +50,7 @@ namespace ForceTests
             forceInstance = rigidBody.gameObject.AddComponent<TForce>();
             SetProperties();
 
-            // Register the fault type as being tested
+            // Register the _force type as being tested
             ForceTestsSetup.RegisterTest<TForce>();
         }
 
@@ -67,7 +68,7 @@ namespace ForceTests
         /// Verifies if the <see cref="Force"/> was applied to the <see cref="RigidBody"/>.
         /// </summary>
         /// <param name="force">Force that was applied.</param>
-        /// <returns>True if the force applied to the <see cref="RigidBody"/> meets the required critera.
+        /// <returns>True if the _force applied to the <see cref="RigidBody"/> meets the required critera.
         /// False otherwise.</returns>
         public bool IsForceApplied(Vector6DOF force)
         {

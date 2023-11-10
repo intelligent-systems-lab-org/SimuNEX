@@ -1,17 +1,17 @@
 namespace SimuNEX.Mechanical
 {
     /// <summary>
-    /// Applies a constant force to the attached RigidBody.
+    /// Applies a constant _force to the attached RigidBody.
     /// </summary>
     public class ContinuousForce : Force
     {
         /// <summary>
-        /// 3D force to apply.
+        /// 3D _force to apply.
         /// </summary>
         public Vector6DOF forces;
 
         /// <summary>
-        /// Reference frame to apply the force.
+        /// Reference frame to apply the _force.
         /// </summary>
         public CoordinateFrame referenceFrame;
 

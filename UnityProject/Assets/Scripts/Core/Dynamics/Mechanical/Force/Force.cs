@@ -3,7 +3,7 @@ using UnityEngine;
 namespace SimuNEX.Mechanical
 {
     /// <summary>
-    /// Defines a force that can be applied to a RigidBody.
+    /// Defines a _force that can be applied to a RigidBody.
     /// </summary>
     public abstract class Force : MonoBehaviour
     {

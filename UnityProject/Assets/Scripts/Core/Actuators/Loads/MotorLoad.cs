@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SimuNEX
@@ -28,9 +29,9 @@ namespace SimuNEX
         public float _speed;
 
         /// <summary>
-        /// Force associated with the load.
+        /// <see cref="Mechanical.Force"/> associated with the load.
         /// </summary>
-        protected Mechanical.Force force;
+        protected Mechanical.Force _force;
 
         [Parameter]
         /// <summary>
@@ -49,13 +50,30 @@ namespace SimuNEX
         /// </summary>
         protected abstract void Initialize();
 
+        protected void Update()
+        {
+            // Scale Time.deltaTime based on _speed
+            float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
+
+            // Handle rotation animation
+            Quaternion increment = Quaternion.Euler(_speed * rad2deg * scaledDeltaTime * spinnerNormal);
+            spinnerObject.localRotation *= increment;
+        }
+
         /// <summary>
         /// Attaches a <see cref="Force"/> to the <see cref="RigidBody"/>.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown if the force was not initialized in <see cref="Initialize"/></exception>
         public void Activate()
         {
-            Initialize();
-            rigidBody.AttachForce(force);
+            if (rigidBody != null)
+            {
+                Initialize();
+                if (_force == null)
+                {
+                    throw new InvalidOperationException($"The force component for '{nameof(rigidBody)}' was not initialized properly.");
+                }
+            }
         }
 
         /// <summary>
@@ -63,7 +81,10 @@ namespace SimuNEX
         /// </summary>
         public void Deactivate()
         {
-            rigidBody.RemoveForce(force);
+            if (rigidBody != null)
+            {
+                rigidBody.RemoveForce(_force);
+            }
         }
 
         protected void OnEnable()

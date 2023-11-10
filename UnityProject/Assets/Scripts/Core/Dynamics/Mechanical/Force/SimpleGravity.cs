@@ -1,7 +1,7 @@
 namespace SimuNEX.Mechanical
 {
     /// <summary>
-    /// Implementation of a simple gravity force.
+    /// Implementation of a simple gravity _force.
     /// </summary>
     [SingleInstance]
     public class SimpleGravity : PointForce

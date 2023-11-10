@@ -1,5 +1,5 @@
-using System;
 using SimuNEX.Mechanical;
+using System;
 using UnityEngine;
 
 namespace SimuNEX
@@ -9,16 +9,6 @@ namespace SimuNEX
     /// </summary>
     public abstract class Propeller : MotorLoad
     {
-        protected void Update()
-        {
-            // Scale Time.deltaTime based on _speed
-            float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
-
-            // Handle rotation animation
-            Quaternion increment = Quaternion.Euler(_speed * rad2deg * scaledDeltaTime * spinnerNormal);
-            spinnerObject.localRotation *= increment;
-        }
-
         /// <summary>
         /// Specialized forces for propellers.
         /// </summary>
@@ -55,7 +45,7 @@ namespace SimuNEX
             /// </summary>
             /// <param name="speed">Current propeller speed.</param>
             /// <param name="parameters">Parameters specific to the propeller.</param>
-            /// <returns>An array of float values where the first element is force and the second is torque.</returns>
+            /// <returns>An array of float values where the first element is _force and the second is torque.</returns>
             public abstract float[] PropellerFunction(Func<float> speed, Func<float[]> parameters);
 
             public override void ApplyForce()
@@ -69,7 +59,7 @@ namespace SimuNEX
             /// <summary>
             /// Connects propeller object to its associated transforms and <see cref="RigidBody"/>.
             /// </summary>
-            /// <param name="propeller"><see cref="Propeller"/> object that the force is being applied to.</param>
+            /// <param name="propeller"><see cref="Propeller"/> object that the _force is being applied to.</param>
             public void Initialize(Propeller propeller)
             {
                 normal = () => propeller.normal;

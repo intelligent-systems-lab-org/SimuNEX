@@ -14,16 +14,6 @@ namespace SimuNEX
         /// </summary>
         public Direction flowDirection;
 
-        protected void Update()
-        {
-            // Scale Time.deltaTime based on _speed
-            float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
-
-            // Handle rotation animation
-            Quaternion increment = Quaternion.Euler(_speed * rad2deg * scaledDeltaTime * spinnerNormal);
-            spinnerObject.localRotation *= increment;
-        }
-
         /// <summary>
         /// Specialized forces for fins.
         /// </summary>
@@ -64,7 +54,7 @@ namespace SimuNEX
             /// </summary>
             /// <param name="finAngle">Current fin angle.</param>
             /// <param name="parameters">Parameters specific to the fin.</param>
-            /// <returns>An array of float values where the first element is force and the second is torque.</returns>
+            /// <returns>An array of float values where the first element is _force and the second is torque.</returns>
             public abstract float[] FinFunction(Func<float> finAngle, Func<float[]> parameters);
 
             public override void ApplyForce()
@@ -73,10 +63,10 @@ namespace SimuNEX
                 Vector3 _normal = normal();
                 outputs = FinFunction(finAngle, parameters);
 
-                // Determine the force direction based on the flow direction, transformed to the body frame
+                // Determine the _force direction based on the flow direction, transformed to the body frame
                 Vector3 forceDirection = rigidBody.transform.TransformDirection(flowDirection().ToVector());
 
-                // Apply the force perpendicular to the fin normal
+                // Apply the _force perpendicular to the fin normal
                 Vector3 appliedForce = Vector3.Cross(forceDirection, _normal).normalized * outputs[0];
 
                 rigidBody.AddLinearForce(appliedForce);
@@ -86,7 +76,7 @@ namespace SimuNEX
             /// <summary>
             /// Connects fin object to its associated transforms and <see cref="RigidBody"/>.
             /// </summary>
-            /// <param name="fin"><see cref="Fin"/> object that the force is being applied to.</param>
+            /// <param name="fin"><see cref="Fin"/> object that the _force is being applied to.</param>
             public void Initialize(Fin fin)
             {
                 normal = () => fin.normal;

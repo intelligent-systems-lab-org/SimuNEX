@@ -1,7 +1,7 @@
 namespace SimuNEX.Mechanical
 {
     /// <summary>
-    /// Applies a constant buoyant force to all <see cref="RigidBody"/> objects within the field.
+    /// Applies a constant buoyant _force to all <see cref="RigidBody"/> objects within the field.
     /// Functions on <see cref="RigidBodyF"/> objects only.
     /// </summary>
     public class SimpleBuoyancyField : ForceField

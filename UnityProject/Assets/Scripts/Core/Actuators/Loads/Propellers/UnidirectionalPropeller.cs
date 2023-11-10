@@ -22,8 +22,8 @@ namespace SimuNEX
 
         protected override void Initialize()
         {
-            force = rigidBody.gameObject.AddComponent<UnidirectionalPropellerForce>();
-            (force as UnidirectionalPropellerForce).Initialize(this);
+            _force = rigidBody.gameObject.AddComponent<UnidirectionalPropellerForce>();
+            (_force as UnidirectionalPropellerForce).Initialize(this);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace SimuNEX
             /// <summary>
             /// Set up propeller specific parameters.
             /// </summary>
-            /// <param name="propeller"><see cref="UnidirectionalPropellerForce"/> object that the force is being applied to.</param>
+            /// <param name="propeller"><see cref="UnidirectionalPropellerForce"/> object that the _force is being applied to.</param>
             public void Initialize(UnidirectionalPropeller propeller)
             {
                 base.Initialize(propeller);

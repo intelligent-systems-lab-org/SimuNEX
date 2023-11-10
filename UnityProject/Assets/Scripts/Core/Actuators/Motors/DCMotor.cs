@@ -29,7 +29,7 @@ namespace SimuNEX
 
         [Parameter]
         /// <summary>
-        /// The constant representing the relationship between the back electromotive force (EMF)
+        /// The constant representing the relationship between the back electromotive _force (EMF)
         /// and the armature speed in V.s/rads.
         /// </summary>
         public float backEMFConstant = 1f;

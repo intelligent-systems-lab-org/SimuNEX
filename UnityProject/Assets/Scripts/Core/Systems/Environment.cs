@@ -101,7 +101,7 @@ namespace SimuNEX
                 {
                     rigidBodiesWithinBounds.Add(rb);
 
-                    // Apply all the force fields when a RigidBody enters the environment
+                    // Apply all the _force fields when a RigidBody enters the environment
                     foreach (ForceField forceField in forceFields)
                     {
                         forceField.Apply(rb);
@@ -127,7 +127,7 @@ namespace SimuNEX
 
             _ = rigidBodiesWithinBounds.Remove(rb);
 
-            // Remove all the force fields when a RigidBody exits the environment
+            // Remove all the _force fields when a RigidBody exits the environment
             foreach (ForceField forceField in forceFields)
             {
                 forceField.Remove(rb);

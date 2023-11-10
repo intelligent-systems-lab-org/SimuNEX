@@ -1,7 +1,7 @@
 namespace SimuNEX.Mechanical
 {
     /// <summary>
-    /// Interface for modeling force-based systems, such as rigidbodies and kinematic chains.
+    /// Interface for modeling _force-based systems, such as rigidbodies and kinematic chains.
     /// </summary>
     public abstract class Mechanical : Dynamics
     {

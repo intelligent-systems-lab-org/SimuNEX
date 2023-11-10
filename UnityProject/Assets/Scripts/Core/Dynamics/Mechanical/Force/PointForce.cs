@@ -3,27 +3,27 @@ using UnityEngine;
 namespace SimuNEX.Mechanical
 {
     /// <summary>
-    /// Implements a constant force that acts at a point on the <see cref="RigidBody"/>.
+    /// Implements a constant _force that acts at a point on the <see cref="RigidBody"/>.
     /// </summary>
     public abstract class PointForce : Force
     {
         /// <summary>
-        /// The value of the force to apply.
+        /// The value of the _force to apply.
         /// </summary>
         protected abstract float force { get; }
 
         /// <summary>
-        /// Direction where the force acts.
+        /// Direction where the _force acts.
         /// </summary>
         protected abstract Direction direction { get; }
 
         /// <summary>
-        /// Point where the force acts.
+        /// Point where the _force acts.
         /// </summary>
         public Transform point;
 
         /// <summary>
-        /// Name of the point where the force acts.
+        /// Name of the point where the _force acts.
         /// </summary>
         protected abstract string centerName { get; }
 

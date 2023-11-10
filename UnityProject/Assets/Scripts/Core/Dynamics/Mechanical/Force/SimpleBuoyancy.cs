@@ -3,7 +3,7 @@ using UnityEngine;
 namespace SimuNEX.Mechanical
 {
     /// <summary>
-    /// Implementation of a constant buoyant force.
+    /// Implementation of a constant buoyant _force.
     /// </summary>
     [SingleInstance]
     public class SimpleBuoyancy : PointForce
@@ -19,12 +19,12 @@ namespace SimuNEX.Mechanical
         public Transform centerOfBuoyancy;
 
         /// <summary>
-        /// Gravitational force that is applied to the object.
+        /// Gravitational _force that is applied to the object.
         /// </summary>
         public SimpleGravity simpleGravity;
 
         /// <summary>
-        /// Calculates the buoyant force for <see cref="RigidBodyF"/> objects.
+        /// Calculates the buoyant _force for <see cref="RigidBodyF"/> objects.
         /// Has no effect on non-fluid based physics dynamics.
         /// </summary>
         protected override float force

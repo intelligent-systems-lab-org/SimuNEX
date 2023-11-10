@@ -22,8 +22,8 @@ namespace SimuNEX
 
         protected override void Initialize()
         {
-            force = rigidBody.gameObject.AddComponent<SimplePropellerForce>();
-            (force as SimplePropellerForce).Initialize(this);
+            _force = rigidBody.gameObject.AddComponent<SimplePropellerForce>();
+            (_force as SimplePropellerForce).Initialize(this);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace SimuNEX
             /// <summary>
             /// Set up propeller specific parameters.
             /// </summary>
-            /// <param name="propeller"><see cref="SimplePropeller"/> object that the force is being applied to.</param>
+            /// <param name="propeller"><see cref="SimplePropeller"/> object that the _force is being applied to.</param>
             public void Initialize(SimplePropeller propeller)
             {
                 base.Initialize(propeller);
