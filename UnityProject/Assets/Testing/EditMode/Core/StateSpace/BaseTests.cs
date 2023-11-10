@@ -62,21 +62,21 @@ namespace StateSpaceTests
         [Test]
         public void CreateStepper_WithEulerMethod_ReturnsForwardEulerSolver()
         {
-            ODESolver solver = StateSpace.CreateStepper(SolverMethod.Euler);
+            ODESolver solver = StateSpace.CreateSolver(SolverMethod.Euler);
             Assert.IsInstanceOf<ForwardEuler>(solver);
         }
 
         [Test]
         public void CreateStepper_WithHeunMethod_ReturnsHeunSolver()
         {
-            ODESolver solver = StateSpace.CreateStepper(SolverMethod.Heun);
+            ODESolver solver = StateSpace.CreateSolver(SolverMethod.Heun);
             Assert.IsInstanceOf<Heun>(solver);
         }
 
         [Test]
         public void CreateStepper_WithRK4Method_ReturnsRK4Solver()
         {
-            ODESolver solver = StateSpace.CreateStepper(SolverMethod.RK4);
+            ODESolver solver = StateSpace.CreateSolver(SolverMethod.RK4);
             Assert.IsInstanceOf<RK4>(solver);
         }
 
@@ -86,7 +86,7 @@ namespace StateSpaceTests
             const SolverMethod invalidMethod = (SolverMethod)(-1);
 
             ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() =>
-                StateSpace.CreateStepper(invalidMethod));
+                StateSpace.CreateSolver(invalidMethod));
 
             Assert.That(ex.ParamName, Is.EqualTo("stepperMethod"));
             Assert.That(ex.Message, Does.Contain($"Not expected stepper method: {invalidMethod}"));

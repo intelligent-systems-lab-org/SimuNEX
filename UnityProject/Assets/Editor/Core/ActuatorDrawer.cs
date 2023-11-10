@@ -5,6 +5,7 @@ using UnityEditor;
 namespace SimuNEX
 {
     [CustomEditor(typeof(Actuator), true)]
+    [CanEditMultipleObjects]
     public class ActuatorEditor : Editor
     {
         public override void OnInspectorGUI()

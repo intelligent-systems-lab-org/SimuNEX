@@ -1,6 +1,6 @@
-using System;
 using SimuNEX.Models;
 using SimuNEX.Solvers;
+using System;
 using UnityEngine;
 
 namespace SimuNEX
@@ -73,7 +73,7 @@ namespace SimuNEX
             if (readPosition || readTorque)
             {
                 stateSpace = new();
-                stateSpace.Initialize(2, 1, new Matrix(2, 1), stepper: StateSpace.CreateStepper(solver));
+                stateSpace.Initialize(2, 1, new Matrix(2, 1), stepper: StateSpace.CreateSolver(solver));
                 stateSpace.DerivativeFcn = (states, inputs) =>
                 {
                     // states[0] is position, states[1] is speed
@@ -166,22 +166,20 @@ namespace SimuNEX
             else if (readTorque && !readPosition)
             {
                 outputNames = (new string[]
-                                {
-                                    $"{motorName} {loadName} Speed",
-                                    $"{motorName} {loadName} Torque"
-                                });
-            }
-            else if (readPosition && !readTorque)
-            {
-                outputNames = (new string[]
-                                                {
-                                                    $"{motorName} {loadName} Speed",
-                                                    $"{motorName} {loadName} Position"
-                                                });
+                {
+                    $"{motorName} {loadName} Speed",
+                    $"{motorName} {loadName} Torque"
+                });
             }
             else
             {
-                outputNames = (new string[] { $"{motorName} {loadName} Speed" });
+                outputNames = readPosition && !readTorque
+                    ? (new string[]
+                    {
+                        $"{motorName} {loadName} Speed",
+                        $"{motorName} {loadName} Position"
+                    })
+                    : (new string[] { $"{motorName} {loadName} Speed" });
             }
         }
 

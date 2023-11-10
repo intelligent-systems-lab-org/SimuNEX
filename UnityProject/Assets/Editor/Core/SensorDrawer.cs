@@ -3,6 +3,7 @@ using UnityEditor;
 namespace SimuNEX
 {
     [CustomEditor(typeof(Sensor), true)]
+    [CanEditMultipleObjects]
     public class SensorEditor : Editor
     {
         public override void OnInspectorGUI()

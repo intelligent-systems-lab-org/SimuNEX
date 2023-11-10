@@ -9,7 +9,7 @@ namespace SimuNEX
     public abstract class Sensor : FaultSystem
     {
         /// <summary>
-        /// <see cref="RigidBody"/> object sensor is attached to.
+        /// <see cref="RigidBody"/> object that the sensor is attached to.
         /// </summary>
         public RigidBody rigidBody;
 

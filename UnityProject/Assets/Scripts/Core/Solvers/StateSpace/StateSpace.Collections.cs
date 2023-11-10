@@ -33,7 +33,7 @@ namespace SimuNEX.Models
                 1,
                 1,
                 new Matrix(1, 1, new float[] { initialState }),
-                stepper: CreateStepper(stepperMethod));
+                stepper: CreateSolver(stepperMethod));
 
             // The derivative function for an integrator
             DerivativeFcn = (states, inputs) => Gain() * inputs;
@@ -94,7 +94,7 @@ namespace SimuNEX.Models
                 1,
                 1,
                 new Matrix(1, 1, new float[] { initialState }),
-                stepper: CreateStepper(solverMethod));
+                stepper: CreateSolver(solverMethod));
 
             // The derivative function for a 1st-order TF
             DerivativeFcn = (states, inputs) => 1 / TimeConstant() * ((DCGain() * inputs) - states);
@@ -175,7 +175,7 @@ namespace SimuNEX.Models
                 stateCount,
                 inputCount,
                 new Matrix(stateCount, 1, initialValues),
-                stepper: CreateStepper(stepperMethod));
+                stepper: CreateSolver(stepperMethod));
             DerivativeFcn = (states, inputs) => (A() * states) + (B() * inputs);
         }
 

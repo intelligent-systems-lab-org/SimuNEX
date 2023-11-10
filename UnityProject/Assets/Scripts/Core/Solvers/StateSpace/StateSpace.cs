@@ -132,19 +132,19 @@ namespace SimuNEX.Models
         /// <summary>
         /// Creates an <see cref="ODESolver"/> from the chosen <see cref="SolverMethod"/>.
         /// </summary>
-        /// <param name="stepperMethod">The <see cref="SolverMethod"/> of choice.</param>
+        /// <param name="solverMethod">The <see cref="SolverMethod"/> of choice.</param>
         /// <returns>The <see cref="ODESolver"/> that uses the desired <see cref="SolverMethod"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Throws when an unsupported method is passed.</exception>
-        public static ODESolver CreateStepper(SolverMethod stepperMethod = SolverMethod.Euler)
+        public static ODESolver CreateSolver(SolverMethod solverMethod = SolverMethod.Euler)
         {
-            return stepperMethod switch
+            return solverMethod switch
             {
                 SolverMethod.Euler => new ForwardEuler(),
                 SolverMethod.Heun => new Heun(),
                 SolverMethod.RK4 => new RK4(),
                 _ => throw new ArgumentOutOfRangeException(
-                    nameof(stepperMethod),
-                    $"Not expected stepper method: {stepperMethod}"),
+                    nameof(solverMethod),
+                    $"Not expected stepper method: {solverMethod}"),
             };
         }
     }

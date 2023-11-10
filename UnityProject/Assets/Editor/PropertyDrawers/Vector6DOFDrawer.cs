@@ -1,57 +1,74 @@
-using SimuNEX;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(Vector6DOF))]
-public class Vector6DOFDrawer : PropertyDrawer
+namespace SimuNEX
 {
-    private const float Spacing = 2f;
-    private bool isExpanded = false;
-
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(Vector6DOF))]
+    public class Vector6DOFDrawer : PropertyDrawer
     {
-        EditorGUI.BeginProperty(position, label, property);
+        private const float Spacing = 2f;
 
-        // Use Foldout to control isExpanded
-        isExpanded = EditorGUI.Foldout(new Rect(position.x, position.y, position.width,
-            EditorGUIUtility.singleLineHeight), isExpanded, label, true);
-        if (isExpanded)
+        private bool isExpanded;
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            Rect linearLabelRect = new(position.x, position.y + EditorGUIUtility.singleLineHeight,
-                position.width, EditorGUIUtility.singleLineHeight);
-            EditorGUI.LabelField(linearLabelRect, "Linear");
+            _ = EditorGUI.BeginProperty(position, label, property);
 
-            Rect linearRect = new(position.x, position.y + (2 * EditorGUIUtility.singleLineHeight),
-                position.width, EditorGUIUtility.singleLineHeight);
-            SerializedProperty linearProperty = property.FindPropertyRelative("linear");
-            linearProperty.vector3Value = EditorGUI.Vector3Field(linearRect, GUIContent.none,
-                linearProperty.vector3Value);
+            // Use Foldout to control isExpanded
+            isExpanded = EditorGUI.Foldout(
+                new Rect(
+                    position.x,
+                    position.y,
+                    position.width,
+                    EditorGUIUtility.singleLineHeight),
+                isExpanded,
+                label,
+                true);
+            if (isExpanded)
+            {
+                Rect linearLabelRect = new(
+                    position.x,
+                    position.y + EditorGUIUtility.singleLineHeight,
+                    position.width,
+                    EditorGUIUtility.singleLineHeight);
+                EditorGUI.LabelField(linearLabelRect, "Linear");
 
-            Rect angularLabelRect = new(position.x,
-                position.y + (3 * EditorGUIUtility.singleLineHeight) + Spacing,
-                position.width, EditorGUIUtility.singleLineHeight);
-            EditorGUI.LabelField(angularLabelRect, "Angular");
+                Rect linearRect = new(
+                    position.x,
+                    position.y + (2 * EditorGUIUtility.singleLineHeight),
+                    position.width,
+                    EditorGUIUtility.singleLineHeight);
+                SerializedProperty linearProperty = property.FindPropertyRelative("linear");
+                linearProperty.vector3Value = EditorGUI.Vector3Field(
+                    linearRect,
+                    GUIContent.none,
+                    linearProperty.vector3Value);
 
-            Rect angularRect = new(position.x,
-                position.y + (4 * EditorGUIUtility.singleLineHeight) + Spacing,
-                position.width, EditorGUIUtility.singleLineHeight);
-            SerializedProperty angularProperty = property.FindPropertyRelative("angular");
-            angularProperty.vector3Value = EditorGUI.Vector3Field(angularRect, GUIContent.none,
-                angularProperty.vector3Value);
+                Rect angularLabelRect = new(
+                    position.x,
+                    position.y + (3 * EditorGUIUtility.singleLineHeight) + Spacing,
+                    position.width,
+                    EditorGUIUtility.singleLineHeight);
+                EditorGUI.LabelField(angularLabelRect, "Angular");
+
+                Rect angularRect = new(
+                    position.x,
+                    position.y + (4 * EditorGUIUtility.singleLineHeight) + Spacing,
+                    position.width,
+                    EditorGUIUtility.singleLineHeight);
+                SerializedProperty angularProperty = property.FindPropertyRelative("angular");
+                angularProperty.vector3Value = EditorGUI.Vector3Field(
+                    angularRect,
+                    GUIContent.none,
+                    angularProperty.vector3Value);
+            }
+
+            EditorGUI.EndProperty();
         }
 
-        EditorGUI.EndProperty();
-    }
-
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        if (isExpanded)
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return 5 * (EditorGUIUtility.singleLineHeight + Spacing);
-        }
-        else
-        {
-            return EditorGUIUtility.singleLineHeight;
+            return isExpanded ? 5 * (EditorGUIUtility.singleLineHeight + Spacing) : EditorGUIUtility.singleLineHeight;
         }
     }
 }
