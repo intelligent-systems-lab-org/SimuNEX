@@ -88,8 +88,8 @@ namespace SimuNEX
             public float thrustSpeed => flowDirection() switch
             {
                 Direction.Left or Direction.Right => rigidBody.velocity.u,
-                Direction.Forward or Direction.Backward => rigidBody.velocity.v,
-                Direction.Up or Direction.Down => rigidBody.velocity.w,
+                Direction.Up or Direction.Down => rigidBody.velocity.v,
+                Direction.Forward or Direction.Backward => rigidBody.velocity.w,
                 _ => 0,
             };
         }

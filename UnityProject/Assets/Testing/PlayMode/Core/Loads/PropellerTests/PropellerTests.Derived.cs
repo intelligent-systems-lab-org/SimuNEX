@@ -25,8 +25,8 @@ namespace LoadTests.Propellers
                     Vector3 momentTorque = Vector3.Cross(
                         force,
                         rigidBody.transform.InverseTransformPoint(testPropeller.transform.position));
-                    Vector3 YawTorque = new(0, testPropeller.torqueCoefficient * speedSigned, 0);
-                    return new(force, momentTorque + YawTorque);
+                    Vector3 reactionTorque = new(0, testPropeller.torqueCoefficient * speedSigned, 0);
+                    return new(force, momentTorque + reactionTorque);
                 }
             }
 
@@ -59,8 +59,8 @@ namespace LoadTests.Propellers
                     Vector3 momentTorque = Vector3.Cross(
                         force,
                         rigidBody.transform.InverseTransformPoint(testPropeller.transform.position));
-                    Vector3 YawTorque = new(0, testPropeller.torqueCoefficient * speedSigned, 0);
-                    return new(force, momentTorque + YawTorque);
+                    Vector3 reactionTorque = new(0, testPropeller.torqueCoefficient * speedSigned, 0);
+                    return new(force, momentTorque + reactionTorque);
                 }
             }
 

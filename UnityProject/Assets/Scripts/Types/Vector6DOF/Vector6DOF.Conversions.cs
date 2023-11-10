@@ -21,7 +21,7 @@ namespace SimuNEX
         /// <returns>A <see cref="float[]"/> representing the values of the <see cref="Vector6DOF"/>.</returns>
         public static implicit operator float[](Vector6DOF vector)
         {
-            var result = new float[6];
+            float[] result = new float[6];
             result[0] = vector.linear.x;
             result[1] = vector.linear.y;
             result[2] = vector.linear.z;

@@ -29,7 +29,6 @@ namespace LoadTests.Propellers
         [OneTimeSetUp]
         public void Setup()
         {
-            //sharedRigidBody = PropellerTestsSetup.SharedRigidBody;
             sharedRigidBody = new GameObject("Test").AddComponent<RigidBody>();
 
             spinnerObject = new("Propeller");
@@ -37,10 +36,6 @@ namespace LoadTests.Propellers
 
             testPropeller = sharedRigidBody.gameObject.AddComponent<TPropeller>();
             InitializePropeller();
-
-            testPropeller.enabled = false;
-            testPropeller.rigidBody = sharedRigidBody;
-            testPropeller.enabled = true;
 
             // Register the propeller type as being tested
             PropellerTestsSetup.RegisterTest<TPropeller>();
@@ -61,6 +56,10 @@ namespace LoadTests.Propellers
         {
             public override void Setup()
             {
+                testPropeller.enabled = false;
+                testPropeller.rigidBody = sharedRigidBody;
+                testPropeller.enabled = true;
+
                 rigidBody = sharedRigidBody;
                 forceInstance = rigidBody.gameObject.GetComponent<TForce>();
                 SetProperties();

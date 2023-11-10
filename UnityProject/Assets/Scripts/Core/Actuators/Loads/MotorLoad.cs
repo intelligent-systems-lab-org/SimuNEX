@@ -97,6 +97,11 @@ namespace SimuNEX
             FindSpinnerTransforms();
         }
 
+        protected void Awake()
+        {
+            FindSpinnerTransforms();
+        }
+
         protected void OnDisable()
         {
             Deactivate();

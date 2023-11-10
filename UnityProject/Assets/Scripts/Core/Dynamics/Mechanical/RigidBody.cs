@@ -20,18 +20,18 @@ namespace SimuNEX.Mechanical
         /// <summary>
         /// Accumulated forces in the current timestep.
         /// </summary>
-        protected Vector6DOF _forces = Vector6DOF.zero;
+        protected Vector6DOF _forces = new();
 
         /// <summary>
         /// Applied forces in the BCF in the current timestep.
         /// </summary>
-        public Vector6DOF appliedForce;
+        public Vector6DOF appliedForce = new();
 
         /// <summary>
         /// Velocity in the BCF at the current timestep.
         /// </summary>
         [SerializeField]
-        protected Vector6DOF _velocity;
+        protected Vector6DOF _velocity = new();
 
         /// <summary>
         /// Kinetic energy at the current timestep.
@@ -51,6 +51,11 @@ namespace SimuNEX.Mechanical
         [SerializeField]
         protected float _power;
 
+        /// <summary>
+        /// Velocity at the start of simulation.
+        /// </summary>
+        public Vector6DOF initialVelocity = new();
+
         protected void Start()
         {
             Initialize();
@@ -61,8 +66,8 @@ namespace SimuNEX.Mechanical
         /// </summary>
         protected override void Initialize()
         {
-            _forces = Vector6DOF.zero;
-            appliedForce = Vector6DOF.zero;
+            body.velocity = initialVelocity.linear;
+            body.angularVelocity = initialVelocity.angular;
         }
 
         protected void OnValidate()

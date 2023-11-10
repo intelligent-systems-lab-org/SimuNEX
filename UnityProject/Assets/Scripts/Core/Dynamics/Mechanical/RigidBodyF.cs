@@ -16,7 +16,7 @@ namespace SimuNEX.Mechanical
         /// Acceleration at the current timestep.
         /// </summary>
         [SerializeField]
-        private Vector6DOF _acceleration;
+        private Vector6DOF _acceleration = new();
 
         /// <summary>
         /// Volume of the body. Can be set independent of dimensions for now.
