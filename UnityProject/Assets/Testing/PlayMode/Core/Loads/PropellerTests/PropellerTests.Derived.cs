@@ -1,4 +1,5 @@
 using SimuNEX;
+using SimuNEX.Loads;
 using UnityEngine;
 
 namespace LoadTests.Propellers

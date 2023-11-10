@@ -1,3 +1,4 @@
+using SimuNEX.Loads;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -19,7 +20,7 @@ namespace SimuNEX
             string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
             DrawPropertiesExcluding(serializedObject, parameterNames.ToArray());
 
-            serializedObject.ApplyModifiedProperties();
+            _ = serializedObject.ApplyModifiedProperties();
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Loads
 {
     /// <summary>
     /// Generalizable class for any load that an actuator might drive.

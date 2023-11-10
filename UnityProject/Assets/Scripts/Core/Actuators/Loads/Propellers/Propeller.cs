@@ -2,7 +2,7 @@ using SimuNEX.Mechanical;
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Loads
 {
     /// <summary>
     /// Interface for implementing propeller systems.

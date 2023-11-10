@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using SimuNEX.Mechanical;
 
-namespace SimuNEX
+namespace SimuNEX.Loads
 {
     /// <summary>
     /// Interface for implementing fin-like/control surface systems.

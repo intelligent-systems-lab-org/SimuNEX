@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Loads
 {
     /// <summary>
     /// Simple propeller model with constant thrust and torque coefficients.

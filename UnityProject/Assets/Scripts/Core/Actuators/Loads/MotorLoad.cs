@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Loads
 {
     /// <summary>
     /// Generalizable class for motor loads such as <see cref="Propeller"/>.

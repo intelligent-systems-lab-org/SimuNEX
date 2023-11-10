@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Loads
 {
     /// <summary>
     /// Simple fin model with constant _force and torque coefficients.

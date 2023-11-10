@@ -1,3 +1,5 @@
+using SimuNEX.Loads;
+
 namespace SimuNEX
 {
     /// <summary>

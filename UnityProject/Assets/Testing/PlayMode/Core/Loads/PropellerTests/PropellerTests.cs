@@ -1,6 +1,6 @@
 using FactoryTests;
 using NUnit.Framework;
-using SimuNEX;
+using SimuNEX.Loads;
 using SimuNEX.Mechanical;
 using UnityEngine;
 

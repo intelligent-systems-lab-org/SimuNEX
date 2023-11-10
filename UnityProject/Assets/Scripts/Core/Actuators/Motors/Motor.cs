@@ -1,4 +1,5 @@
 using SimuNEX.Models;
+using SimuNEX.Loads;
 using SimuNEX.Solvers;
 using System;
 using UnityEngine;
