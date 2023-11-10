@@ -1,6 +1,7 @@
 using SimuNEX.Models;
 using SimuNEX.Solvers;
 using System;
+using UnityEngine;
 
 namespace SimuNEX
 {
@@ -13,7 +14,8 @@ namespace SimuNEX
         /// <summary>
         /// The solver method.
         /// </summary>
-        public SolverMethod speedStepper;
+        [SerializeReference]
+        public ODESolver speedSolver;
 
         [Input]
         /// <summary>
@@ -105,7 +107,7 @@ namespace SimuNEX
                             { 0,   0  }
                         });
                 },
-                stepperMethod: speedStepper
+                solverMethod: speedSolver
             );
 
             SetInputNames();

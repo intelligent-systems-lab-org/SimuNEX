@@ -35,7 +35,7 @@ namespace SimuNEX.Models
         /// <param name="numInputs">The number of inputs to the system.</param>
         /// <param name="initialConditions">The matrix representing the initial state conditions. The number of rows should match <paramref name="numStates"/>.</param>
         /// <param name="derivativeFunction">The function representing the system's differential equations. If not provided, must be set externally before any computations.</param>
-        /// <param name="stepper">The stepper method to be used. If not provided, the Forward Euler method will be used as default.</param>
+        /// <param name="solver">The solver method to be used. If not provided, the Forward Euler method will be used as default.</param>
         /// <exception cref="ArgumentException">Thrown when the number of rows in <paramref name="initialConditions"/> doesn't match <paramref name="numStates"/>.</exception>
         public void Initialize
         (
@@ -43,7 +43,7 @@ namespace SimuNEX.Models
             int numInputs,
             Matrix initialConditions,
             DerivativeFunction derivativeFunction = null,
-            ODESolver stepper = null
+            ODESolver solver = null
         )
         {
             inputSize = numInputs;
@@ -59,7 +59,7 @@ namespace SimuNEX.Models
 
             _states = initialConditions;
             DerivativeFcn = derivativeFunction;
-            solver = stepper ?? new ForwardEuler();
+            this.solver = solver ?? new ForwardEuler();
         }
 
         /// <summary>
@@ -127,25 +127,6 @@ namespace SimuNEX.Models
         public void Compute()
         {
             solver.Step(this);
-        }
-
-        /// <summary>
-        /// Creates an <see cref="ODESolver"/> from the chosen <see cref="SolverMethod"/>.
-        /// </summary>
-        /// <param name="solverMethod">The <see cref="SolverMethod"/> of choice.</param>
-        /// <returns>The <see cref="ODESolver"/> that uses the desired <see cref="SolverMethod"/>.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throws when an unsupported method is passed.</exception>
-        public static ODESolver CreateSolver(SolverMethod solverMethod = SolverMethod.Euler)
-        {
-            return solverMethod switch
-            {
-                SolverMethod.Euler => new ForwardEuler(),
-                SolverMethod.Heun => new Heun(),
-                SolverMethod.RK4 => new RK4(),
-                _ => throw new ArgumentOutOfRangeException(
-                    nameof(solverMethod),
-                    $"Not expected stepper method: {solverMethod}"),
-            };
         }
     }
 }

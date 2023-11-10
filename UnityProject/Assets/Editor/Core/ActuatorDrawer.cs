@@ -23,7 +23,8 @@ namespace SimuNEX
             // Other properties
             string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
             string[] inputNames = inputFields.Select(f => f.Name).ToArray();
-            DrawPropertiesExcluding(serializedObject, parameterNames.Concat(inputNames).ToArray());
+            string[] removedProperties = new string[] { "m_Script" };
+            DrawPropertiesExcluding(serializedObject, parameterNames.Concat(inputNames).Concat(removedProperties).ToArray());
 
             //// Draw fault addition UI
             serializedObject.DrawFaultAddition();

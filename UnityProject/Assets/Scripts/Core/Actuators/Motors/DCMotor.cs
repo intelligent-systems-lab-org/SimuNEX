@@ -13,7 +13,8 @@ namespace SimuNEX
         /// <summary>
         /// The solver method.
         /// </summary>
-        public SolverMethod speedStepper;
+        [SerializeReference]
+        public ODESolver speedSolver;
 
         [Input]
         /// <summary>
@@ -76,7 +77,7 @@ namespace SimuNEX
             }
 
             inputs = () => new float[] { voltage };
-            stateSpace = new FirstOrderTF(timeConstant, DCGain, solverMethod: speedStepper);
+            stateSpace = new FirstOrderTF(timeConstant, DCGain, solverMethod: speedSolver);
 
             inputNames = motorLoad != null
                 ? (new string[] { $"{gameObject.name} {motorLoad.spinnerObject.gameObject.name} Voltage" })

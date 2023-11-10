@@ -66,14 +66,15 @@ namespace SimuNEX
         /// <summary>
         /// The solver method.
         /// </summary>
-        public SolverMethod solver;
+        [SerializeReference]
+        public ODESolver solver;
 
         protected override void Initialize()
         {
             if (readPosition || readTorque)
             {
                 stateSpace = new();
-                stateSpace.Initialize(2, 1, new Matrix(2, 1), stepper: StateSpace.CreateSolver(solver));
+                stateSpace.Initialize(2, 1, new Matrix(2, 1), solver: solver);
                 stateSpace.DerivativeFcn = (states, inputs) =>
                 {
                     // states[0] is position, states[1] is speed

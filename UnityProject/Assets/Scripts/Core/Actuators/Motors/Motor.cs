@@ -49,10 +49,8 @@ namespace SimuNEX
         /// </summary>
         public float armatureDamping;
 
-        /// <summary>
-        /// The solver method for position prediction.
-        /// </summary>
-        public SolverMethod positionStepper;
+        [SerializeReference]
+        public ODESolver positionSolver;
 
         /// <summary>
         /// Speed integrator for predicting position.
@@ -89,7 +87,7 @@ namespace SimuNEX
                 motorLoad.rigidBody = rigidBody;
             }
 
-            integrator = new(stepperMethod: positionStepper);
+            integrator = new(solverMethod: positionSolver);
         }
 
         protected void OnEnable()

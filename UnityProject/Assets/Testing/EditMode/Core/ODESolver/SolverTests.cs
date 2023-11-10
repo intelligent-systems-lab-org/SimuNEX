@@ -65,11 +65,20 @@ namespace ODESolverTests
         }
 
         [Test]
-        public void StepSize_WhenSetToNegative_ThrowsArgumentException()
+        public void StepSize_WhenSetToNegativeExceptOne_ThrowsArgumentException()
         {
             TestSolver solver = new();
 
-            _ = Assert.Throws<ArgumentException>(() => solver.stepSize = -1f);
+            Assert.DoesNotThrow(() => solver.stepSize = -1f);
+            _ = Assert.Throws<ArgumentException>(() => solver.stepSize = -5f);
+        }
+
+        [Test]
+        public void StepSize_WhenSetToNegativeOne_GetsFixedDeltaTime()
+        {
+            TestSolver solver = new() { stepSize = -1f };
+
+            Assert.IsTrue(solver.stepSize == Time.fixedDeltaTime);
         }
 
         [Test]

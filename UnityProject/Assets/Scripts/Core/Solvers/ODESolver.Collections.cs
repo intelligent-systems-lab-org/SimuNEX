@@ -9,7 +9,7 @@ namespace SimuNEX.Solvers
     {
         public override void Step(StateSpace ss)
         {
-            ss.states += h * ss.Derivatives(ss.states, ss.inputs);
+            ss.states += stepSize * ss.Derivatives(ss.states, ss.inputs);
         }
     }
 
@@ -21,8 +21,8 @@ namespace SimuNEX.Solvers
         public override void Step(StateSpace ss)
         {
             Matrix k1 = ss.Derivatives(ss.states, ss.inputs);
-            Matrix k2 = ss.Derivatives(ss.states + (h * k1), ss.inputs);
-            ss.states += h / 2f * (k1 + k2);
+            Matrix k2 = ss.Derivatives(ss.states + (stepSize * k1), ss.inputs);
+            ss.states += stepSize / 2f * (k1 + k2);
         }
     }
 
@@ -33,21 +33,11 @@ namespace SimuNEX.Solvers
     {
         public override void Step(StateSpace ss)
         {
-            Matrix k1 = h * ss.Derivatives(ss.states, ss.inputs);
-            Matrix k2 = h * ss.Derivatives(ss.states + (0.5f * k1), ss.inputs);
-            Matrix k3 = h * ss.Derivatives(ss.states + (0.5f * k2), ss.inputs);
-            Matrix k4 = h * ss.Derivatives(ss.states + k3, ss.inputs);
+            Matrix k1 = stepSize * ss.Derivatives(ss.states, ss.inputs);
+            Matrix k2 = stepSize * ss.Derivatives(ss.states + (0.5f * k1), ss.inputs);
+            Matrix k3 = stepSize * ss.Derivatives(ss.states + (0.5f * k2), ss.inputs);
+            Matrix k4 = stepSize * ss.Derivatives(ss.states + k3, ss.inputs);
             ss.states += 1f / 6f * (k1 + (2f * k2) + (2f * k3) + k4);
         }
-    }
-
-    /// <summary>
-    /// List of available <see cref="ODESolver"/> methods
-    /// </summary>
-    public enum SolverMethod
-    {
-        Euler,
-        Heun,
-        RK4
     }
 }

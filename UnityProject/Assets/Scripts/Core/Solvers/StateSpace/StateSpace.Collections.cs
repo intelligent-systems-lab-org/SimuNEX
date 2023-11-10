@@ -18,22 +18,23 @@ namespace SimuNEX.Models
         /// </summary>
         /// <param name="gain">A function that returns the gain of the system.</param>
         /// <param name="initialState">The initial state value.</param>
-        /// <param name="stepperMethod">The stepper method of choice.</param>
+        /// <param name="solverMethod">The solver method of choice.</param>
         public Integrator
         (
             Func<float> gain = null,
             float initialState = 0,
-            SolverMethod stepperMethod = SolverMethod.Euler
+            ODESolver solverMethod = null
         )
         {
             Gain = gain ?? (() => 1);
+            solverMethod ??= new ForwardEuler();
 
             // Initialize with 1 state (output) and 1 input
             Initialize(
                 1,
                 1,
                 new Matrix(1, 1, new float[] { initialState }),
-                stepper: CreateSolver(stepperMethod));
+                solver: solverMethod);
 
             // The derivative function for an integrator
             DerivativeFcn = (states, inputs) => Gain() * inputs;
@@ -83,18 +84,20 @@ namespace SimuNEX.Models
             Func<float> timeConstant,
             Func<float> dcGain,
             float initialState = 0,
-            SolverMethod solverMethod = SolverMethod.Euler
+            ODESolver solverMethod = null
         )
         {
             TimeConstant = timeConstant;
             DCGain = dcGain;
+
+            solverMethod ??= new ForwardEuler();
 
             // Initialize with 1 state (output) and 1 input
             Initialize(
                 1,
                 1,
                 new Matrix(1, 1, new float[] { initialState }),
-                stepper: CreateSolver(solverMethod));
+                solver: solverMethod);
 
             // The derivative function for a 1st-order TF
             DerivativeFcn = (states, inputs) => 1 / TimeConstant() * ((DCGain() * inputs) - states);
@@ -148,7 +151,7 @@ namespace SimuNEX.Models
         /// <param name="C">Output matrix.</param>
         /// <param name="D">Direct feedthrough matrix.</param>
         /// <param name="initialConditions">Initial state values.</param>
-        /// <param name="stepperMethod">The stepper method of choice.</param>
+        /// <param name="solverMethod">The solver method of choice.</param>
         public LinearStateSpace
         (
             Func<Matrix> A,
@@ -156,7 +159,7 @@ namespace SimuNEX.Models
             Func<Matrix> C = null,
             Func<Matrix> D = null,
             float[] initialConditions = null,
-            SolverMethod stepperMethod = SolverMethod.Euler
+            ODESolver solverMethod = null
         )
         {
             this.A = A;
@@ -164,6 +167,8 @@ namespace SimuNEX.Models
             // If C is null, default to identity matrix of size A's row count
             this.C = C ?? (() => Matrix.Eye(A().RowCount));
             this.D = D;
+
+            solverMethod ??= new ForwardEuler();
 
             int stateCount = A().RowCount;
             int inputCount = B().ColCount;
@@ -175,7 +180,7 @@ namespace SimuNEX.Models
                 stateCount,
                 inputCount,
                 new Matrix(stateCount, 1, initialValues),
-                stepper: CreateSolver(stepperMethod));
+                solver: solverMethod);
             DerivativeFcn = (states, inputs) => (A() * states) + (B() * inputs);
         }
 

@@ -1,5 +1,5 @@
-using System;
 using SimuNEX.Models;
+using System;
 using UnityEngine;
 
 namespace SimuNEX.Solvers
@@ -12,7 +12,7 @@ namespace SimuNEX.Solvers
         /// <summary>
         /// The step size. Defaults to <see cref="Time.fixedDeltaTime"/>.
         /// </summary>
-        protected float h = Time.fixedDeltaTime;
+        private float h = -1;
 
         /// <summary>
         /// The step size for numerical integration.
@@ -20,23 +20,23 @@ namespace SimuNEX.Solvers
         /// <exception cref="ArgumentException"></exception>
         public float stepSize
         {
-            get => h;
+            get => h == -1f ? Time.fixedDeltaTime : h;
 
             set
             {
-                if (value <= 0)
+                if (value is <= 0 and not (-1))
                 {
                     throw new ArgumentException("Step size must be positive");
                 }
 
-                if (value < 0.0025f)
+                if (value is < 0.0025f and not (-1))
                 {
                     throw new ArgumentException(@"Step size must be at least 0.0025 
                         to maintain reasonable performance");
                 }
 
                 float remainder = value % 0.005f;
-                if (Math.Abs(remainder) > float.Epsilon)
+                if (Math.Abs(remainder) > float.Epsilon && value != -1)
                 {
                     throw new ArgumentException("Step size must be a multiple of 0.005");
                 }

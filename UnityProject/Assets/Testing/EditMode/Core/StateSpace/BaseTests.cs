@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using SimuNEX.Models;
-using SimuNEX.Solvers;
 using System;
 
 namespace StateSpaceTests
@@ -54,42 +53,6 @@ namespace StateSpaceTests
             // Assert
             Assert.AreEqual(5, ss.inputs[0, 0]);
             Assert.AreEqual(6, ss.inputs[1, 0]);
-        }
-    }
-
-    public class StepperCreationTests
-    {
-        [Test]
-        public void CreateStepper_WithEulerMethod_ReturnsForwardEulerSolver()
-        {
-            ODESolver solver = StateSpace.CreateSolver(SolverMethod.Euler);
-            Assert.IsInstanceOf<ForwardEuler>(solver);
-        }
-
-        [Test]
-        public void CreateStepper_WithHeunMethod_ReturnsHeunSolver()
-        {
-            ODESolver solver = StateSpace.CreateSolver(SolverMethod.Heun);
-            Assert.IsInstanceOf<Heun>(solver);
-        }
-
-        [Test]
-        public void CreateStepper_WithRK4Method_ReturnsRK4Solver()
-        {
-            ODESolver solver = StateSpace.CreateSolver(SolverMethod.RK4);
-            Assert.IsInstanceOf<RK4>(solver);
-        }
-
-        [Test]
-        public void CreateStepper_WithUnsupportedMethod_ThrowsArgumentOutOfRangeException()
-        {
-            const SolverMethod invalidMethod = (SolverMethod)(-1);
-
-            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() =>
-                StateSpace.CreateSolver(invalidMethod));
-
-            Assert.That(ex.ParamName, Is.EqualTo("stepperMethod"));
-            Assert.That(ex.Message, Does.Contain($"Not expected stepper method: {invalidMethod}"));
         }
     }
 }

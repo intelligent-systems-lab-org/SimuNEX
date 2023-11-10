@@ -19,7 +19,8 @@ namespace SimuNEX
 
             // Other properties
             string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
-            DrawPropertiesExcluding(serializedObject, parameterNames.ToArray());
+            string[] removedProperties = new string[] { "m_Script" };
+            DrawPropertiesExcluding(serializedObject, parameterNames.Concat(removedProperties).ToArray());
 
             _ = serializedObject.ApplyModifiedProperties();
         }
