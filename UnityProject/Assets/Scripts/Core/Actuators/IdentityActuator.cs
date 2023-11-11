@@ -33,11 +33,13 @@ namespace SimuNEX
 
         protected void OnValidate()
         {
+            InitializeVariables();
             Initialize();
         }
 
         protected void Awake()
         {
+            InitializeVariables();
             Initialize();
         }
 

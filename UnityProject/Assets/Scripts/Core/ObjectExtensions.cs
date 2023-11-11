@@ -45,11 +45,7 @@ namespace SimuNEX
         /// <param name="variableFunction">Output <see cref="Func{T}"/> array.</param>
         public static void InitializeVariables<T>(this object obj, out Func<float[]> variableFunction) where T : Attribute
         {
-            FieldInfo[] fields = obj.GetType()
-                .GetFields(BindingFlags.Public | BindingFlags.Instance)
-                .Where(f => Attribute.IsDefined(f, typeof(T)))
-                .ToArray();
-
+            FieldInfo[] fields = obj.GetFieldsWithAttribute<T>();
             variableFunction = () => fields.Select(f => Convert.ToSingle(f.GetValue(obj))).ToArray();
         }
     }

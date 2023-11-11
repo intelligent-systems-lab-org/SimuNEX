@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 1170835664730685151}
   inputNames:
   - Stern Plane Fins Voltage
@@ -58,12 +59,19 @@ MonoBehaviour:
     min: -0.2373648
   armatureInertia: 0.5
   armatureDamping: 0
-  positionStepper: 0
-  speedStepper: 0
+  positionSolver:
+    rid: -2
+  speedSolver:
+    rid: -2
   voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &1774299028294793820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 1170835664730685151}
   inputNames:
   - Back Propeller Voltage
@@ -163,12 +172,19 @@ MonoBehaviour:
     min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  positionStepper: 0
-  speedStepper: 0
+  positionSolver:
+    rid: -2
+  speedSolver:
+    rid: -2
   voltage: 100
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &461526801234737444
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4f6052c56cb194ea732f9bebd47ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 1170835664730685151}
   outputNames:
   - AUV X Velocity
@@ -231,6 +248,9 @@ MonoBehaviour:
   - AUV X Position
   - AUV Z Position
   - AUV Y Position
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &5452912407559438521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,13 +263,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 1170835664730685151}
   outputNames:
   - Back Propeller Speed
   readPosition: 0
   readTorque: 0
   motor: {fileID: 5947556496897487590}
-  stepper: 0
+  solver:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &7795851727195075924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 1170835664730685151}
   outputNames:
   - Rudder Fins Speed
@@ -269,7 +297,13 @@ MonoBehaviour:
   readPosition: 1
   readTorque: 0
   motor: {fileID: 5112610935768309211}
-  stepper: 0
+  solver:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &4566193712669001726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 1170835664730685151}
   outputNames:
   - Stern Plane Fins Speed
@@ -289,7 +324,13 @@ MonoBehaviour:
   readPosition: 1
   readTorque: 0
   motor: {fileID: 1848095677856972004}
-  stepper: 0
+  solver:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &1352934492587307473
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 4038526879733743781}
+  forces: []
   appliedForce:
     linear: {x: 0, y: 0, z: 0}
     angular: {x: 0, y: 0, z: 0}
@@ -393,6 +435,9 @@ MonoBehaviour:
   _kineticEnergy: 0
   _potentialEnergy: 0
   _power: 0
+  initialVelocity:
+    linear: {x: 0, y: 0, z: 0}
+    angular: {x: 0, y: 0, z: 0}
   addedMass:
     _matrix:
       _serializedData:
@@ -451,6 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6664d1774d0497e48969db05f09fb2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1170835664730685151}
   dragCoefficients:
     _matrix:
       _serializedData:
@@ -950,6 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83bfcc534bf2184fa7decfd5209f404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 1170835664730685151}
   inputNames:
   - Rudder Fins Voltage
@@ -962,12 +1009,19 @@ MonoBehaviour:
     min: -0.2373648
   armatureInertia: 0.5
   armatureDamping: 0
-  positionStepper: 0
-  speedStepper: 0
+  positionSolver:
+    rid: -2
+  speedSolver:
+    rid: -2
   voltage: 0
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &129176138644301223
 MonoBehaviour:
   m_ObjectHideFlags: 0

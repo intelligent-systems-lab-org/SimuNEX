@@ -68,6 +68,7 @@ namespace SimuNEX
         protected void OnValidate()
         {
             SetUp();
+            InitializeVariables();
             Initialize();
         }
 
