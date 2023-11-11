@@ -35,7 +35,6 @@ namespace SimuNEX
                 // Adjust the position for the contents of the foldout
                 position.y += EditorGUIUtility.singleLineHeight;
                 position.height = EditorGUIUtility.singleLineHeight;
-                position = EditorGUI.IndentedRect(position);
 
                 ODESolver solver = fieldInfo.GetValue(property.serializedObject.targetObject) as ODESolver;
 

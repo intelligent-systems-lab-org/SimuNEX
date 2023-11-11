@@ -25,11 +25,13 @@ namespace SimuNEX
         /// <summary>
         /// Bounds for speed values.
         /// </summary>
+        [Constraint]
         public Limits speedLimits = new() { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
 
         /// <summary>
         /// Bounds for position values.
         /// </summary>
+        [Constraint]
         public Limits positionLimits = new() { max = Mathf.Infinity, min = Mathf.NegativeInfinity };
 
         [Parameter]
@@ -45,6 +47,7 @@ namespace SimuNEX
         public float armatureDamping;
 
         [SerializeReference]
+        [Solver]
         public ODESolver positionSolver;
 
         /// <summary>
@@ -129,7 +132,7 @@ namespace SimuNEX
             integrator.input = motorSpeed;
             integrator.Compute();
 
-            float futurePosition = integrator.output;
+            float futurePosition = integrator.output % 2 * MathF.PI;
 
             if (futurePosition > positionLimits.max || futurePosition < positionLimits.min)
             {

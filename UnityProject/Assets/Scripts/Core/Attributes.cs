@@ -20,6 +20,22 @@ namespace SimuNEX
     }
 
     /// <summary>
+    /// Marks the variable as a constraint.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    public class ConstraintAttribute : PropertyAttribute
+    {
+    }
+
+    /// <summary>
+    /// Marks the variable as a solver.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    public class SolverAttribute : PropertyAttribute
+    {
+    }
+
+    /// <summary>
     /// Marks the property so that <see cref="Fault"/> objects can be applied.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]

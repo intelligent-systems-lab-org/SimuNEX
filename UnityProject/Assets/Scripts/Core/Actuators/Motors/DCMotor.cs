@@ -14,6 +14,7 @@ namespace SimuNEX
         /// The solver method.
         /// </summary>
         [SerializeReference]
+        [Solver]
         public ODESolver speedSolver;
 
         [Input]

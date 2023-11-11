@@ -14,10 +14,18 @@ namespace SimuNEX
             // Foldouts
             string[] parameterNames = serializedObject.DrawFoldout<ParameterAttribute>("ParametersExpanded", "Parameters");
             string[] inputNames = serializedObject.DrawFoldout<InputAttribute>("InputsExpanded", "Inputs");
+            string[] constraintNames = serializedObject.DrawFoldout<ConstraintAttribute>("ConstraintsExpanded", "Constraints");
+            string[] solverNames = serializedObject.DrawFoldout<SolverAttribute>("SolverExpanded", "Solvers");
 
             // Other properties
             string[] removedProperties = new string[] { "m_Script", "faults" };
-            DrawPropertiesExcluding(serializedObject, parameterNames.Concat(inputNames).Concat(removedProperties).ToArray());
+            DrawPropertiesExcluding(
+                serializedObject,
+                parameterNames.Concat(inputNames)
+                    .Concat(removedProperties)
+                    .Concat(constraintNames)
+                    .Concat(solverNames)
+                    .ToArray());
 
             //// Draw fault addition UI
             serializedObject.DrawFaultAddition();
