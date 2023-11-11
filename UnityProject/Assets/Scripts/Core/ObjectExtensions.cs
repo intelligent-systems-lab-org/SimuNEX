@@ -38,20 +38,6 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// Obtains all <see cref="PropertyInfo"/> objects with attribute <see cref="T"/>.
-        /// </summary>
-        /// <typeparam name="T"><see cref="Attribute"/> type.</typeparam>
-        /// <param name="obj">Object containing queried attributes.</param>
-        /// <returns>Array of <see cref="PropertyInfo"/> objects queried with attribute <see cref="T"/>.</returns>
-        public static PropertyInfo[] GetPropertiesWithAttribute<T>(this object obj) where T : Attribute
-        {
-            return obj.GetType()
-                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(p => Attribute.IsDefined(p, typeof(T)))
-                .ToArray();
-        }
-
-        /// <summary>
         /// Maps marked variables into a <see cref="Func{T}>"/> array.
         /// </summary>
         /// <typeparam name="T"><see cref="Attribute"/> to query.</typeparam>

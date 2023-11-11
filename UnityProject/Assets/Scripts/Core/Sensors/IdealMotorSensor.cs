@@ -13,19 +13,16 @@ namespace SimuNEX
         /// <summary>
         /// Motor speed property.
         /// </summary>
-        [Faultable]
         public float motorSpeed => _speed;
 
         /// <summary>
         /// Motor position property.
         /// </summary>
-        [Faultable]
         public float motorPosition => _position;
 
         /// <summary>
         /// Motor torque property.
         /// </summary>
-        [Faultable]
         public float motorTorque => _torque;
 
         /// <summary>

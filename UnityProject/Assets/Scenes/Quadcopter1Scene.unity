@@ -594,7 +594,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 838450894}
-  - component: {fileID: 838450895}
   m_Layer: 0
   m_Name: Interaction
   m_TagString: Untagged
@@ -618,18 +617,6 @@ Transform:
   - {fileID: 235856978}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &838450895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838450893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 300921c083b3cda45bb4d2bef8a62875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1049144653
 GameObject:
   m_ObjectHideFlags: 3
@@ -1328,9 +1315,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 932807715222619118, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: inputs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.data[0].property
@@ -1345,16 +1336,24 @@ PrefabInstance:
       value: SimuNEX.Core SimuNEX.Faults.Gaussian
       objectReference: {fileID: 0}
     - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170975604604938]
+      value: SimuNEX.Core SimuNEX.Faults.Gaussian
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465170975604604935
+      value: 1465170975604604938
       objectReference: {fileID: 0}
     - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: managedReferences[1465170975604604935].variance
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170975604604938].variance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.data[0].property
@@ -1369,16 +1368,24 @@ PrefabInstance:
       value: SimuNEX.Core SimuNEX.Faults.Gaussian
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170975604604937]
+      value: SimuNEX.Core SimuNEX.Faults.Gaussian
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465170975604604936
+      value: 1465170975604604937
       objectReference: {fileID: 0}
     - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: managedReferences[1465170975604604936].variance
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170975604604937].variance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.data[0].property
@@ -1393,11 +1400,19 @@ PrefabInstance:
       value: SimuNEX.Core SimuNEX.Faults.Gaussian
       objectReference: {fileID: 0}
     - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170975604604939]
+      value: SimuNEX.Core SimuNEX.Faults.Gaussian
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465170975604604934
+      value: 1465170975604604939
       objectReference: {fileID: 0}
     - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: managedReferences[1465170975604604934].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170975604604939].variance
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6631078503300786394, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
@@ -1406,7 +1421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.data[0].property
@@ -1421,11 +1436,19 @@ PrefabInstance:
       value: SimuNEX.Core SimuNEX.Faults.Gaussian
       objectReference: {fileID: 0}
     - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170975604604940]
+      value: SimuNEX.Core SimuNEX.Faults.Gaussian
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465170975604604933
+      value: 1465170975604604940
       objectReference: {fileID: 0}
     - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: managedReferences[1465170975604604933].variance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: managedReferences[1465170975604604940].variance
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}

@@ -22,8 +22,8 @@ namespace SimuNEX
     /// <summary>
     /// Marks the property so that <see cref="Fault"/> objects can be applied.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
-    public class Faultable : Attribute
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class FaultableAttribute : PropertyAttribute
     {
     }
 }

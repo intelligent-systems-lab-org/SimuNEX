@@ -23,7 +23,7 @@ namespace SimuNEX
 
         protected void Start()
         {
-            faultables = this.GetFieldsWithAttribute<Faultable>(includePrivate: true);
+            faultables = this.GetFieldsWithAttribute<FaultableAttribute>(includePrivate: true);
         }
 
         /// <summary>

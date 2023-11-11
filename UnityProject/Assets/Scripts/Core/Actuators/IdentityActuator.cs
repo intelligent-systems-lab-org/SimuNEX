@@ -8,15 +8,10 @@ namespace SimuNEX
     public class IdentityActuator : Actuator
     {
         /// <summary>
-        /// Output value property.
-        /// </summary>
-        [Faultable]
-        public float output => _output;
-
-        /// <summary>
         /// Output value.
         /// </summary>
-        protected float _output;
+        [Faultable]
+        protected float output;
 
         [Input]
         /// <summary>
@@ -67,7 +62,7 @@ namespace SimuNEX
                 load.AttachActuator(() =>
                 {
                     Step();
-                    return _output;
+                    return output;
                 });
             }
         }
@@ -82,7 +77,7 @@ namespace SimuNEX
 
         protected override void ComputeStep()
         {
-            _output = inputs()[0];
+            output = inputs()[0];
         }
 
         protected override void ConstraintsStep()

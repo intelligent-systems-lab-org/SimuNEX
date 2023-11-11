@@ -10,25 +10,21 @@ namespace SimuNEX
         /// <summary>
         /// Velocity property.
         /// </summary>
-        [Faultable]
         public Vector3 velocity => _velocity;
 
         /// <summary>
         /// Angular velocity property.
         /// </summary>
-        [Faultable]
         public Vector3 angularVelocity => _angularVelocity;
 
         /// <summary>
         /// Angular position property.
         /// </summary>
-        [Faultable]
         public Quaternion angularPosition => _angularPosition;
 
         /// <summary>
         /// Position property.
         /// </summary>
-        [Faultable]
         public Vector3 position => _position;
 
         /// <summary>
