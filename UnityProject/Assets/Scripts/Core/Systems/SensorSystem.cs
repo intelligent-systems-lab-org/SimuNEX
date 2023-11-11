@@ -8,6 +8,7 @@ namespace SimuNEX
     /// <summary>
     /// Groups all attached <see cref="Sensor"/> objects.
     /// </summary>
+    [DisallowMultipleComponent]
     public class SensorSystem : MonoBehaviour
     {
         /// <summary>

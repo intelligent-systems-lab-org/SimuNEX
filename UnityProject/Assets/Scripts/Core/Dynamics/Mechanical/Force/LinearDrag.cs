@@ -1,9 +1,11 @@
+using UnityEngine;
+
 namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Implementation of linear drag.
     /// </summary>
-    [SingleInstance]
+    [DisallowMultipleComponent]
     public class LinearDrag : Force
     {
         /// <summary>

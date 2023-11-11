@@ -5,6 +5,7 @@ namespace SimuNEX.Mechanical
     /// <summary>
     /// Simulates rigidbodies that include added mass forces.
     /// </summary>
+    [DisallowMultipleComponent]
     public class RigidBodyF : RigidBody
     {
         /// <summary>

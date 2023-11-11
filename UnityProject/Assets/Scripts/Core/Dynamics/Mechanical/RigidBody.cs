@@ -5,6 +5,7 @@ using UnityEngine;
 namespace SimuNEX.Mechanical
 {
     [RequireComponent(typeof(Rigidbody))]
+    [DisallowMultipleComponent]
     public class RigidBody : Dynamics
     {
         /// <summary>

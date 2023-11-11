@@ -9,6 +9,7 @@ namespace SimuNEX
     /// <summary>
     /// Groups all attached <see cref="Actuator"/> objects.
     /// </summary>
+    [DisallowMultipleComponent]
     public class ActuatorSystem : MonoBehaviour
     {
         /// <summary>

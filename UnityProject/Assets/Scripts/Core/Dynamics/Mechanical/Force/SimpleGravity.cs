@@ -1,9 +1,11 @@
+using UnityEngine;
+
 namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Implementation of a simple gravity _force.
     /// </summary>
-    [SingleInstance]
+    [DisallowMultipleComponent]
     public class SimpleGravity : PointForce
     {
         /// <summary>

@@ -5,7 +5,7 @@ namespace SimuNEX.Mechanical
     /// <summary>
     /// Implementation of a constant buoyant _force.
     /// </summary>
-    [SingleInstance]
+    [DisallowMultipleComponent]
     public class SimpleBuoyancy : PointForce
     {
         /// <summary>

@@ -6,6 +6,7 @@ namespace SimuNEX
     /// Serves as an orchestrator for simulating SimuNEX models, managing the interactions
     /// between dynamics, actuators, sensors, and communication systems.
     /// </summary>
+    [DisallowMultipleComponent]
     public class DynamicSystem : MonoBehaviour
     {
         /// <summary>

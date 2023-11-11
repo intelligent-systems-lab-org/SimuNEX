@@ -4,14 +4,6 @@ using UnityEngine;
 namespace SimuNEX
 {
     /// <summary>
-    /// Marks the class as single instance, where only one component of this type can be attached to a <see cref="MonoBehaviour"/>.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class, Inherited = true)]
-    public class SingleInstanceAttribute : Attribute
-    {
-    }
-
-    /// <summary>
     /// Marks the variable as a parameter to the system.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = true)]

@@ -5,7 +5,7 @@ namespace SimuNEX.Mechanical
     /// <summary>
     /// Implementation of quadratic drag where the _force depends on the square of the velocity of the <see cref="RigidBody"/>.
     /// </summary>
-    [SingleInstance]
+    [DisallowMultipleComponent]
     public class QuadraticDrag : Force
     {
         /// <summary>
