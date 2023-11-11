@@ -1,6 +1,5 @@
 using SimuNEX.Loads;
 using System.Linq;
-using System.Reflection;
 using UnityEditor;
 
 namespace SimuNEX
@@ -14,11 +13,9 @@ namespace SimuNEX
             serializedObject.Update();
 
             // Parameters foldout
-            FieldInfo[] parameterFields = serializedObject.targetObject.GetFieldsWithAttribute<ParameterAttribute>();
-            serializedObject.DrawFoldout(parameterFields, "ParametersExpanded", "Parameters");
+            string[] parameterNames = serializedObject.DrawFoldout<ParameterAttribute>("ParametersExpanded", "Parameters");
 
             // Other properties
-            string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
             string[] removedProperties = new string[] { "m_Script" };
             DrawPropertiesExcluding(serializedObject, parameterNames.Concat(removedProperties).ToArray());
 
