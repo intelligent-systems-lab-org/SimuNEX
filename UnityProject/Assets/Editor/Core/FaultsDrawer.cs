@@ -2,6 +2,7 @@ using SimuNEX.Faults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -44,37 +45,48 @@ namespace SimuNEX
             FaultSystem faultSystem = serializedObject.targetObject as FaultSystem;
 
             const string editorPrefsKey = "FaultsExpanded";
-
-            // Use the serializedObject's hashCode or another unique identifier.
             string uniqueKey = serializedObject.GetHashCode() + editorPrefsKey;
 
-            // Get the foldout state from the dictionary.
             if (!foldoutStates.ContainsKey(uniqueKey))
             {
                 foldoutStates[uniqueKey] = EditorPrefs.GetBool(editorPrefsKey, false);
             }
 
-            // Draw the "Fault Menu" foldout
             foldoutStates[uniqueKey] = EditorGUILayout.Foldout(foldoutStates[uniqueKey], "Fault Menu");
 
             if (foldoutStates[uniqueKey])
             {
                 // Get list of Faultable properties
-                string[] faultables = faultSystem.GetFieldsWithAttribute<FaultableAttribute>(includePrivate: true).Select(p => p.Name)
+                string[] faultables = faultSystem.GetFieldsWithAttribute<FaultableAttribute>(includePrivate: true)
+                    .Select(p => p.Name)
                     .ToArray();
 
-                // Get the list of available Faults
-                Type[] faultTypes = Factory<Fault>.GetAvailableTypes();
-                string[] faultTypeNames = faultTypes.Select(t => t.Name).ToArray();
+                // Determine the FaultableAttribute of the selected property
+                FieldInfo selectedField = faultSystem.GetType().GetField(
+                    faultables[selectedFaultableIndex],
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                FaultableAttribute faultableAttr = selectedField.GetCustomAttribute<FaultableAttribute>();
+
+                // Filter the list of available Faults based on the FaultableAttribute
+                IEnumerable<Type> filteredFaultTypes = Factory<Fault>.GetAvailableTypes();
+                if (faultableAttr.UnsupportedFaults.Length > 0)
+                {
+                    filteredFaultTypes = filteredFaultTypes.Except(faultableAttr.UnsupportedFaults);
+                }
+                else if (faultableAttr.SupportedFaults.Length > 0)
+                {
+                    filteredFaultTypes = filteredFaultTypes.Intersect(faultableAttr.SupportedFaults);
+                }
+
+                string[] faultTypeNames = filteredFaultTypes.Select(t => t.Name).ToArray();
 
                 selectedFaultableIndex = EditorGUILayout.Popup("Faultable Properties", selectedFaultableIndex, faultables);
                 selectedFaultIndex = EditorGUILayout.Popup("Available Faults", selectedFaultIndex, faultTypeNames);
 
                 if (GUILayout.Button("Apply Fault"))
                 {
-                    // Retrieve the selected Faultable property and Fault type
                     string selectedFaultableProperty = faultables[selectedFaultableIndex];
-                    Type selectedFaultType = faultTypes[selectedFaultIndex];
+                    Type selectedFaultType = filteredFaultTypes.ElementAt(selectedFaultIndex);
 
                     AddFault(selectedFaultableProperty, selectedFaultType, serializedObject);
                 }

@@ -25,5 +25,20 @@ namespace SimuNEX
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class FaultableAttribute : PropertyAttribute
     {
+        /// <summary>
+        /// List of supported faults.
+        /// </summary>
+        public Type[] SupportedFaults { get; }
+
+        /// <summary>
+        /// List of unsupported faults.
+        /// </summary>
+        public Type[] UnsupportedFaults { get; }
+
+        public FaultableAttribute(Type[] supportedFaults = null, Type[] unsupportedFaults = null)
+        {
+            SupportedFaults = supportedFaults ?? Array.Empty<Type>();
+            UnsupportedFaults = unsupportedFaults ?? Array.Empty<Type>();
+        }
     }
 }
