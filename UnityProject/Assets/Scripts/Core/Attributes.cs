@@ -35,6 +35,11 @@ namespace SimuNEX
         /// </summary>
         public Type[] UnsupportedFaults { get; }
 
+        /// <summary>
+        /// Sets either a list of supported and unsupported fault operations on the field.
+        /// </summary>
+        /// <param name="supportedFaults">List of faults that the field allows.</param>
+        /// <param name="unsupportedFaults">List of faults that the field does not allow.</param>
         public FaultableAttribute(Type[] supportedFaults = null, Type[] unsupportedFaults = null)
         {
             SupportedFaults = supportedFaults ?? Array.Empty<Type>();

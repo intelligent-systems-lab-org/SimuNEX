@@ -10,7 +10,9 @@ namespace SimuNEX
         {
             serializedObject.Update();
 
-            _ = DrawDefaultInspector();
+            string[] removedProperties = new string[] { "m_Script", "faults" };
+
+            DrawPropertiesExcluding(serializedObject, removedProperties);
 
             //// Draw fault addition UI
             serializedObject.DrawFaultAddition();

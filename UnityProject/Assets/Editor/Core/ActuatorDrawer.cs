@@ -16,7 +16,7 @@ namespace SimuNEX
             string[] inputNames = serializedObject.DrawFoldout<InputAttribute>("InputsExpanded", "Inputs");
 
             // Other properties
-            string[] removedProperties = new string[] { "m_Script" };
+            string[] removedProperties = new string[] { "m_Script", "faults" };
             DrawPropertiesExcluding(serializedObject, parameterNames.Concat(inputNames).Concat(removedProperties).ToArray());
 
             //// Draw fault addition UI

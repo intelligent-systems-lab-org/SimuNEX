@@ -47,48 +47,70 @@ namespace SimuNEX
             const string editorPrefsKey = "FaultsExpanded";
             string uniqueKey = serializedObject.GetHashCode() + editorPrefsKey;
 
-            if (!foldoutStates.ContainsKey(uniqueKey))
+            // Get list of Faultable properties
+            string[] faultables = faultSystem.GetFieldsWithAttribute<FaultableAttribute>(includePrivate: true)
+                .Select(p => p.Name)
+                .ToArray();
+
+            if (faultables.Length > 0)
             {
-                foldoutStates[uniqueKey] = EditorPrefs.GetBool(editorPrefsKey, false);
-            }
-
-            foldoutStates[uniqueKey] = EditorGUILayout.Foldout(foldoutStates[uniqueKey], "Fault Menu");
-
-            if (foldoutStates[uniqueKey])
-            {
-                // Get list of Faultable properties
-                string[] faultables = faultSystem.GetFieldsWithAttribute<FaultableAttribute>(includePrivate: true)
-                    .Select(p => p.Name)
-                    .ToArray();
-
-                // Determine the FaultableAttribute of the selected property
-                FieldInfo selectedField = faultSystem.GetType().GetField(
-                    faultables[selectedFaultableIndex],
-                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                FaultableAttribute faultableAttr = selectedField.GetCustomAttribute<FaultableAttribute>();
-
-                // Filter the list of available Faults based on the FaultableAttribute
-                IEnumerable<Type> filteredFaultTypes = Factory<Fault>.GetAvailableTypes();
-                if (faultableAttr.UnsupportedFaults.Length > 0)
+                if (!foldoutStates.ContainsKey(uniqueKey))
                 {
-                    filteredFaultTypes = filteredFaultTypes.Except(faultableAttr.UnsupportedFaults);
-                }
-                else if (faultableAttr.SupportedFaults.Length > 0)
-                {
-                    filteredFaultTypes = filteredFaultTypes.Intersect(faultableAttr.SupportedFaults);
+                    foldoutStates[uniqueKey] = EditorPrefs.GetBool(editorPrefsKey, false);
                 }
 
-                string[] faultTypeNames = filteredFaultTypes.Select(t => t.Name).ToArray();
+                foldoutStates[uniqueKey] = EditorGUILayout.Foldout(foldoutStates[uniqueKey], "Fault Menu");
 
-                selectedFaultableIndex = EditorGUILayout.Popup("Faultable Properties", selectedFaultableIndex, faultables);
-                selectedFaultIndex = EditorGUILayout.Popup("Available Faults", selectedFaultIndex, faultTypeNames);
-
-                if (GUILayout.Button("Apply Fault"))
+                if (foldoutStates[uniqueKey])
                 {
-                    string selectedFaultableProperty = faultables[selectedFaultableIndex];
-                    Type selectedFaultType = filteredFaultTypes.ElementAt(selectedFaultIndex);
+                    // Draw the faults list using the default property drawer
+                    SerializedProperty faultsProperty = serializedObject.FindProperty("faults");
+                    EditorGUILayout.PropertyField(faultsProperty, new GUIContent("Faults"), true);
 
-                    AddFault(selectedFaultableProperty, selectedFaultType, serializedObject);
+                    // Determine the FaultableAttribute of the selected property
+                    FieldInfo selectedField = faultSystem.GetType().GetField(
+                        faultables[selectedFaultableIndex],
+                        BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                    FaultableAttribute faultableAttr = selectedField.GetCustomAttribute<FaultableAttribute>();
+
+                    // Initialize with all available fault types
+                    IEnumerable<Type> filteredFaultTypes = Factory<Fault>.GetAvailableTypes();
+
+                    // Get existing faults for the selected property and filter if not empty
+                    List<Fault> existingFaults = faultSystem.GetFaults(faultables[selectedFaultableIndex]);
+
+                    if (existingFaults != null && existingFaults.Count > 0)
+                    {
+                        HashSet<Type> existingFaultTypes = new(existingFaults.Select(f => f.GetType()));
+                        filteredFaultTypes = filteredFaultTypes.Where(faultType => !existingFaultTypes.Contains(faultType));
+                    }
+
+                    if (faultableAttr.UnsupportedFaults.Length > 0)
+                    {
+                        filteredFaultTypes = filteredFaultTypes.Except(faultableAttr.UnsupportedFaults);
+                    }
+                    else if (faultableAttr.SupportedFaults.Length > 0)
+                    {
+                        filteredFaultTypes = filteredFaultTypes.Intersect(faultableAttr.SupportedFaults);
+                    }
+
+                    string[] faultTypeNames = filteredFaultTypes.Select(t => t.Name).ToArray();
+
+                    selectedFaultableIndex = EditorGUILayout.Popup("Faultable Properties", selectedFaultableIndex, faultables);
+
+                    // Do not show available faults if empty
+                    if (faultTypeNames.Length > 0)
+                    {
+                        selectedFaultIndex = EditorGUILayout.Popup("Available Faults", selectedFaultIndex, faultTypeNames);
+                    }
+
+                    if (GUILayout.Button("Apply Fault"))
+                    {
+                        string selectedFaultableProperty = faultables[selectedFaultableIndex];
+                        Type selectedFaultType = filteredFaultTypes.ElementAt(selectedFaultIndex);
+
+                        AddFault(selectedFaultableProperty, selectedFaultType, serializedObject);
+                    }
                 }
             }
         }
