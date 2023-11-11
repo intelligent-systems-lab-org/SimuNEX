@@ -80,10 +80,10 @@ namespace SimuNEX
                 _angularPosition = rigidBody.angularPosition;
                 _position = rigidBody.position;
 
-                ApplyFault("velocity", ref _velocity);
-                ApplyFault("angularVelocity", ref _angularVelocity);
-                ApplyFault("angularPosition", ref _angularPosition);
-                ApplyFault("position", ref _position);
+                ApplyFaults("velocity", ref _velocity);
+                ApplyFaults("angularVelocity", ref _angularVelocity);
+                ApplyFaults("angularPosition", ref _angularPosition);
+                ApplyFaults("position", ref _position);
 
                 return new float[]
                 {

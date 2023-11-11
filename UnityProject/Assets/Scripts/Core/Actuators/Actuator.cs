@@ -61,5 +61,29 @@ namespace SimuNEX
             this.InitializeVariables<InputAttribute>(out inputs);
             this.InitializeVariables<ParameterAttribute>(out parameters);
         }
+
+        /// <summary>
+        /// Updates the current input values.
+        /// </summary>
+        public void Step()
+        {
+            ComputeStep();
+            if (faultables != null)
+            {
+                FaultStep();
+            }
+
+            ConstraintsStep();
+        }
+
+        /// <summary>
+        /// Computes the output values before faults and constraints are applied.
+        /// </summary>
+        protected abstract void ComputeStep();
+
+        /// <summary>
+        /// Applies constraints to the output values.
+        /// </summary>
+        protected abstract void ConstraintsStep();
     }
 }

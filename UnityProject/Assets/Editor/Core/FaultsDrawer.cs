@@ -60,7 +60,7 @@ namespace SimuNEX
             if (foldoutStates[uniqueKey])
             {
                 // Get list of Faultable properties
-                string[] faultables = faultSystem.GetPropertiesWithAttribute<Faultable>().Select(p => p.Name).ToArray();
+                string[] faultables = faultSystem.GetFieldsWithAttribute<Faultable>(includePrivate: true).Select(p => p.Name).ToArray();
 
                 // Get the list of available Faults
                 Type[] faultTypes = Factory<Fault>.GetAvailableTypes();

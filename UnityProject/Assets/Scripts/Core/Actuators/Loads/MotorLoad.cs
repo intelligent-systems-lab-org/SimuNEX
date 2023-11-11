@@ -52,7 +52,7 @@ namespace SimuNEX.Loads
 
         protected void Update()
         {
-            // Scale Time.deltaTime based on _speed
+            // Scale Time.deltaTime based on motorSpeed
             float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
 
             // Handle rotation animation

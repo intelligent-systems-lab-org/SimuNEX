@@ -1398,6 +1398,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: AUV
       objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[0].property
+      value: motorSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170975604604932]
+      value: SimuNEX.Core SimuNEX.Faults.Bias
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[0]
+      value: 1465170975604604932
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170975604604932]._value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

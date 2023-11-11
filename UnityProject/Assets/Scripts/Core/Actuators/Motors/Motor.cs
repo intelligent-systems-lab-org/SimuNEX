@@ -1,5 +1,5 @@
-using SimuNEX.Models;
 using SimuNEX.Loads;
+using SimuNEX.Models;
 using SimuNEX.Solvers;
 using System;
 using UnityEngine;
@@ -14,13 +14,8 @@ namespace SimuNEX
         /// <summary>
         /// Motor speed.
         /// </summary>
-        protected float _speed;
-
-        /// <summary>
-        /// Motor speed property.
-        /// </summary>
         [Faultable]
-        public float motorSpeed => _speed;
+        protected float motorSpeed;
 
         /// <summary>
         /// <see cref="MotorLoad"/> object that is attached to the motor.
@@ -124,15 +119,14 @@ namespace SimuNEX
         public float totalDamping =>
             (motorLoad != null) ? armatureDamping + motorLoad.loadDamping : armatureDamping;
 
-        /// <summary>
-        /// Updates the current motor speed.
-        /// </summary>
-        public void Step()
+        protected override void ComputeStep()
         {
-            _speed = MotorFunction(inputs, parameters);
-            ApplyFault("motorSpeed", ref _speed);
+            motorSpeed = MotorFunction(inputs, parameters);
+        }
 
-            integrator.input = _speed;
+        protected override void ConstraintsStep()
+        {
+            integrator.input = motorSpeed;
             integrator.Compute();
 
             float futurePosition = integrator.output;
@@ -144,11 +138,11 @@ namespace SimuNEX
                     positionLimits.min,
                     positionLimits.max
                 );
-                _speed = 0;
+                motorSpeed = 0;
             }
             else
             {
-                _speed = Mathf.Clamp(_speed, speedLimits.min, speedLimits.max);
+                motorSpeed = Mathf.Clamp(motorSpeed, speedLimits.min, speedLimits.max);
             }
         }
     }

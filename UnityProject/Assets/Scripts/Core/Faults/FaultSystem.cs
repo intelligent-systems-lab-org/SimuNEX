@@ -1,6 +1,7 @@
 using SimuNEX.Faults;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace SimuNEX
@@ -14,6 +15,16 @@ namespace SimuNEX
         /// List of faults present in the system.
         /// </summary>
         public List<FaultEntry> faults = new();
+
+        /// <summary>
+        /// Caches array of faulted properties at runtime.
+        /// </summary>
+        protected FieldInfo[] faultables;
+
+        protected void Start()
+        {
+            faultables = this.GetFieldsWithAttribute<Faultable>(includePrivate: true);
+        }
 
         /// <summary>
         /// Adds to the list of faults affecting the selected property.
@@ -50,7 +61,7 @@ namespace SimuNEX
         /// <param name="propertyName">The name of the property.</param>
         /// <param name="property">The property value to apply faults.</param>
         /// <exception cref="InvalidOperationException">Thrown for an unsupported tpye.</exception>
-        public void ApplyFault<T>(string propertyName, ref T property)
+        public void ApplyFaults<T>(string propertyName, ref T property)
         {
             List<Fault> faults = GetFaults(propertyName);
 
@@ -66,6 +77,19 @@ namespace SimuNEX
                         _ => throw new InvalidOperationException("Unsupported type"),
                     };
                 }
+            }
+        }
+
+        /// <summary>
+        /// Applies faults to the output values.
+        /// </summary>
+        protected void FaultStep()
+        {
+            foreach (FieldInfo field in faultables)
+            {
+                float fieldValue = (float)field.GetValue(this);
+                ApplyFaults(field.Name, ref fieldValue);
+                field.SetValue(this, fieldValue);
             }
         }
     }

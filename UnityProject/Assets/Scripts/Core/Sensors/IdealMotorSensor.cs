@@ -86,7 +86,11 @@ namespace SimuNEX
                 {
                     if (motor.inputs != null)
                     {
-                        _speed = motor.motorSpeed;
+                        if (motor.motorLoad != null)
+                        {
+                            _speed = motor.motorLoad._speed;
+                        }
+
                         float acceleration = (_speed - stateSpace.states[1, 0]) / Time.deltaTime;
 
                         stateSpace.inputs[0, 0] = acceleration;
@@ -97,22 +101,22 @@ namespace SimuNEX
                         // Compute torque using provided relationship
                         _torque = (motor.totalInertia * acceleration) + (motor.totalDamping * _speed);
 
-                        ApplyFault("motorSpeed", ref _speed);
+                        ApplyFaults("motorSpeed", ref _speed);
 
                         if (readPosition && readTorque)
                         {
-                            ApplyFault("motorPosition", ref _position);
-                            ApplyFault("motorTorque", ref _torque);
+                            ApplyFaults("motorPosition", ref _position);
+                            ApplyFaults("motorTorque", ref _torque);
                             return new float[] { motorSpeed, motorPosition, motorTorque };
                         }
                         else if (readTorque && !readPosition)
                         {
-                            ApplyFault("motorTorque", ref _torque);
+                            ApplyFaults("motorTorque", ref _torque);
                             return new float[] { motorSpeed, motorTorque };
                         }
                         else if (readPosition && !readTorque)
                         {
-                            ApplyFault("motorPosition", ref _position);
+                            ApplyFaults("motorPosition", ref _position);
                             return new float[] { motorSpeed, motorPosition };
                         }
                     }
@@ -129,8 +133,12 @@ namespace SimuNEX
                         return new float[1];
                     }
 
-                    _speed = motor.motorSpeed;
-                    ApplyFault("motorSpeed", ref _speed);
+                    if (motor.motorLoad != null)
+                    {
+                        _speed = motor.motorLoad._speed;
+                    }
+
+                    ApplyFaults("motorSpeed", ref _speed);
 
                     return new float[] { motorSpeed };
                 };

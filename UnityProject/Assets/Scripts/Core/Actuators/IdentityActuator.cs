@@ -66,8 +66,7 @@ namespace SimuNEX
             {
                 load.AttachActuator(() =>
                 {
-                    _output = inputs()[0];
-                    ApplyFault("output", ref _output);
+                    Step();
                     return _output;
                 });
             }
@@ -79,6 +78,15 @@ namespace SimuNEX
             {
                 load.DetachActuator();
             }
+        }
+
+        protected override void ComputeStep()
+        {
+            _output = inputs()[0];
+        }
+
+        protected override void ConstraintsStep()
+        {
         }
     }
 }
