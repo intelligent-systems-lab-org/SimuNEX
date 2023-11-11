@@ -11,10 +11,8 @@ namespace SimuNEX
         {
             serializedObject.Update();
 
-            // Parameters foldout
+            // Foldouts
             string[] parameterNames = serializedObject.DrawFoldout<ParameterAttribute>("ParametersExpanded", "Parameters");
-
-            // Inputs foldout
             string[] inputNames = serializedObject.DrawFoldout<InputAttribute>("InputsExpanded", "Inputs");
 
             // Other properties

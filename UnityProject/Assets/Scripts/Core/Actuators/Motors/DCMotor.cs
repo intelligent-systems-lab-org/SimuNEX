@@ -54,15 +54,6 @@ namespace SimuNEX
 
         protected override void Initialize()
         {
-            parameters = () => new float[]
-            {
-                armatureResistance,
-                backEMFConstant,
-                torqueConstant,
-                totalInertia,
-                totalDamping
-            };
-
             // Convert physical parameters to 1st order TF parameters
             float timeConstant()
             {
@@ -76,7 +67,6 @@ namespace SimuNEX
                 return timeConstant() * param[2] / (param[0] * param[3]);
             }
 
-            inputs = () => new float[] { voltage };
             stateSpace = new FirstOrderTF(timeConstant, DCGain, solverMethod: speedSolver);
 
             inputNames = motorLoad != null

@@ -66,18 +66,6 @@ namespace SimuNEX
 
         protected override void Initialize()
         {
-            parameters = () => new float[]
-            {
-                resistance,
-                inductance,
-                poles,
-                flux,
-                totalInertia,
-                totalDamping
-            };
-
-            inputs = () => new float[] { qAxisVoltage, dAxisVoltage };
-
             stateSpace = new LinearStateSpace
             (
                 A: () =>

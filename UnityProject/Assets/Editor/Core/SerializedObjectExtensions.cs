@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SimuNEX
 {
-    public static partial class SerializedObjectExtensions
+    public static class SerializedObjectExtensions
     {
         /// <summary>
         /// Static dictionary to store foldout states.

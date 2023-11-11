@@ -1,5 +1,6 @@
 using SimuNEX.Faults;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -29,8 +30,12 @@ namespace SimuNEX
         }
     }
 
-    public static partial class SerializedObjectExtensions
+    public static class FaultableExtensions
     {
+        /// <summary>
+        /// Static dictionary to store foldout states.
+        /// </summary>
+        private static readonly Dictionary<string, bool> foldoutStates = new();
         private static int selectedFaultableIndex;
         private static int selectedFaultIndex;
 

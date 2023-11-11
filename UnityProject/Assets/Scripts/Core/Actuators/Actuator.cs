@@ -1,5 +1,5 @@
-using System;
 using SimuNEX.Mechanical;
+using System;
 
 namespace SimuNEX
 {
@@ -52,5 +52,14 @@ namespace SimuNEX
         /// </summary>
         /// <param name="value">The input values to set.</param>
         public abstract void SetInput(float[] value);
+
+        /// <summary>
+        /// Initializes the <see cref="inputs"/> and <see cref="parameters"/> array.
+        /// </summary>
+        public void InitializeVariables()
+        {
+            this.InitializeVariables<InputAttribute>(out inputs);
+            this.InitializeVariables<ParameterAttribute>(out parameters);
+        }
     }
 }

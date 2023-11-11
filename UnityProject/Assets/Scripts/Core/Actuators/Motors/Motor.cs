@@ -67,20 +67,21 @@ namespace SimuNEX
 
         protected void OnValidate()
         {
-            InitializeBase();
+            SetUp();
             Initialize();
         }
 
         protected void Awake()
         {
-            InitializeBase();
+            SetUp();
+            InitializeVariables();
             Initialize();
         }
 
         /// <summary>
         /// Locates <see cref="RigidBody"/> and initializes <see cref="integrator"/>.
         /// </summary>
-        protected void InitializeBase()
+        protected void SetUp()
         {
             if (TryGetComponent(out motorLoad))
             {

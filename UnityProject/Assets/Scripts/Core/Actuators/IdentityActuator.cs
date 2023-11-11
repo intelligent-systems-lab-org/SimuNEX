@@ -48,13 +48,6 @@ namespace SimuNEX
                 load.rigidBody = rigidBody;
             }
 
-            inputs = () =>
-            {
-                _output = input;
-                ApplyFault("output", ref _output);
-                return new float[1] { _output };
-            };
-
             if (load != null)
             {
                 inputNames = new string[] { $"{load.gameObject.name} Actuator Input" };
@@ -69,7 +62,12 @@ namespace SimuNEX
         {
             if (load != null)
             {
-                load.AttachActuator(() => inputs()[0]);
+                load.AttachActuator(() =>
+                {
+                    _output = inputs()[0];
+                    ApplyFault("output", ref _output);
+                    return _output;
+                });
             }
         }
 

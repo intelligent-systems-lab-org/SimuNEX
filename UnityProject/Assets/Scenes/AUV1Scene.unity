@@ -1411,7 +1411,15 @@ PrefabInstance:
       value: velocity
       objectReference: {fileID: 0}
     - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[1].property
+      value: angularVelocity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: faults.Array.data[0].Faults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[1].Faults.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
@@ -1419,11 +1427,31 @@ PrefabInstance:
       value: SimuNEX.Core SimuNEX.Faults.Bias
       objectReference: {fileID: 0}
     - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170975604604928]
+      value: SimuNEX.Core SimuNEX.Faults.Bias
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170975604604929]
+      value: SimuNEX.Core SimuNEX.Faults.Bias
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465170957797687296
+      value: 1465170975604604928
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[1].Faults.Array.data[0]
+      value: 1465170975604604929
       objectReference: {fileID: 0}
     - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: managedReferences[1465170957797687296]._value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170975604604928]._value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170975604604929]._value
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
