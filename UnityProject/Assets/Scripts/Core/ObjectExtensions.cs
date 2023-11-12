@@ -94,6 +94,11 @@ namespace SimuNEX
                     return new float[] { quat.w, quat.x, quat.z, quat.y };
                 }
 
+                if (f.FieldType == typeof(float[]))
+                {
+                    return (float[])f.GetValue(obj);
+                }
+
                 return new float[] { Convert.ToSingle(f.GetValue(obj)) };
             })
                 .ToArray();
