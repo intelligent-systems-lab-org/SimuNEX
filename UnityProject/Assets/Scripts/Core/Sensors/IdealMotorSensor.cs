@@ -12,34 +12,26 @@ namespace SimuNEX.Sensors
     public class IdealMotorSensor : Sensor
     {
         /// <summary>
-        /// Motor speed property.
-        /// </summary>
-        public float motorSpeed => _speed;
-
-        /// <summary>
-        /// Motor position property.
-        /// </summary>
-        public float motorPosition => _position;
-
-        /// <summary>
-        /// Motor torque property.
-        /// </summary>
-        public float motorTorque => _torque;
-
-        /// <summary>
         /// Measured motor speed.
         /// </summary>
-        protected float _speed;
+        [Output]
+        [Faultable]
+        [SerializeField]
+        protected float motorSpeed;
 
         /// <summary>
         /// Measured motor position.
         /// </summary>
-        protected float _position;
+        [Output(omitFieldName: "readPosition")]
+        [SerializeField]
+        protected float motorPosition;
 
         /// <summary>
         /// Measured motor torque.
         /// </summary>
-        protected float _torque;
+        [Output(omitFieldName: "readTorque")]
+        [SerializeField]
+        protected float motorTorque;
 
         /// <summary>
         /// Enable position as a sensor reading.
@@ -69,8 +61,13 @@ namespace SimuNEX.Sensors
 
         protected override void Initialize()
         {
-            if (readPosition || readTorque)
+            if (motor != null)
             {
+                if (rigidBody == null)
+                {
+                    rigidBody = motor.rigidBody;
+                }
+
                 stateSpace = new();
                 stateSpace.Initialize(2, 1, new Matrix(2, 1), solver: solver);
                 stateSpace.DerivativeFcn = (states, inputs) =>
@@ -79,76 +76,7 @@ namespace SimuNEX.Sensors
                     // Derivative of position is speed, input is acceleration
                     return new Matrix(2, 1, new float[] { states[1, 0], inputs[0, 0] });
                 };
-
-                outputs = () =>
-                {
-                    if (motor.inputs != null)
-                    {
-                        if (motor.motorLoad != null)
-                        {
-                            _speed = motor.motorLoad._speed;
-                        }
-
-                        float acceleration = (_speed - stateSpace.states[1, 0]) / Time.deltaTime;
-
-                        stateSpace.inputs[0, 0] = acceleration;
-                        stateSpace.Compute();
-
-                        float _position = stateSpace.states[0, 0] % 2 * MathF.PI;
-
-                        // Compute torque using provided relationship
-                        _torque = (motor.totalInertia * acceleration) + (motor.totalDamping * _speed);
-
-                        ApplyFaults("motorSpeed", ref _speed);
-
-                        if (readPosition && readTorque)
-                        {
-                            ApplyFaults("motorPosition", ref _position);
-                            ApplyFaults("motorTorque", ref _torque);
-                            return new float[] { motorSpeed, motorPosition, motorTorque };
-                        }
-                        else if (readTorque && !readPosition)
-                        {
-                            ApplyFaults("motorTorque", ref _torque);
-                            return new float[] { motorSpeed, motorTorque };
-                        }
-                        else if (readPosition && !readTorque)
-                        {
-                            ApplyFaults("motorPosition", ref _position);
-                            return new float[] { motorSpeed, motorPosition };
-                        }
-                    }
-
-                    return (readPosition && readTorque) ? new float[3] : new float[2];
-                };
-            }
-            else
-            {
-                outputs = () =>
-                {
-                    if (motor.inputs == null)
-                    {
-                        return new float[1];
-                    }
-
-                    if (motor.motorLoad != null)
-                    {
-                        _speed = motor.motorLoad._speed;
-                    }
-
-                    ApplyFaults("motorSpeed", ref _speed);
-
-                    return new float[] { motorSpeed };
-                };
-            }
-
-            if (motor != null)
-            {
-                if (rigidBody == null)
-                {
-                    rigidBody = motor.rigidBody;
-                }
-
+                InitializeVariables();
                 SetOutputNames();
             }
         }
@@ -178,15 +106,17 @@ namespace SimuNEX.Sensors
                     $"{motorName} {loadName} Torque"
                 });
             }
+            else if (readPosition && !readTorque)
+            {
+                outputNames = (new string[]
+                {
+                    $"{motorName} {loadName} Speed",
+                    $"{motorName} {loadName} Position"
+                });
+            }
             else
             {
-                outputNames = readPosition && !readTorque
-                    ? (new string[]
-                    {
-                        $"{motorName} {loadName} Speed",
-                        $"{motorName} {loadName} Position"
-                    })
-                    : (new string[] { $"{motorName} {loadName} Speed" });
+                outputNames = (new string[] { $"{motorName} {loadName} Speed" });
             }
         }
 
@@ -202,7 +132,30 @@ namespace SimuNEX.Sensors
 
         protected override void ComputeStep()
         {
-            throw new NotImplementedException();
+            if (readPosition || readTorque)
+            {
+                if (motor.inputs != null)
+                {
+                    if (motor.motorLoad != null)
+                    {
+                        motorSpeed = motor.motorLoad._speed;
+                    }
+
+                    float acceleration = (motorSpeed - stateSpace.states[1, 0]) / Time.deltaTime;
+
+                    stateSpace.inputs[0, 0] = acceleration;
+                    stateSpace.Compute();
+
+                    motorPosition = stateSpace.states[0, 0] % 2 * MathF.PI;
+
+                    // Compute torque using provided relationship
+                    motorTorque = (motor.totalInertia * acceleration) + (motor.totalDamping * motorSpeed);
+                }
+            }
+            else
+            {
+                motorSpeed = motor.motorLoad != null ? motor.motorLoad._speed : 0;
+            }
         }
     }
 }

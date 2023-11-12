@@ -1,6 +1,6 @@
+using SimuNEX.Actuators;
 using System.Linq;
 using UnityEditor;
-using SimuNEX.Actuators;
 
 namespace SimuNEX
 {
@@ -17,6 +17,10 @@ namespace SimuNEX
             string[] inputNames = serializedObject.DrawFoldout<InputAttribute>("InputsExpanded", "Inputs");
             string[] constraintNames = serializedObject.DrawFoldout<ConstraintAttribute>("ConstraintsExpanded", "Constraints");
             string[] solverNames = serializedObject.DrawFoldout<SolverAttribute>("SolverExpanded", "Solvers");
+            string[] omittedNames = serializedObject.targetObject
+                .GetFieldsWithAttribute<OmittableAttribute>(includePrivate: true, applyOmitLogic: false)
+                .Select(f => f.Name)
+                .ToArray();
 
             // Other properties
             string[] removedProperties = new string[] { "m_Script", "faults" };
@@ -26,6 +30,7 @@ namespace SimuNEX
                     .Concat(removedProperties)
                     .Concat(constraintNames)
                     .Concat(solverNames)
+                    .Concat(omittedNames)
                     .ToArray());
 
             //// Draw fault addition UI

@@ -4,27 +4,56 @@ using UnityEngine;
 namespace SimuNEX
 {
     /// <summary>
+    /// Uses a boolean variable named <see cref="OmitFieldName"/> to mark a field as omittable.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    public class OmittableAttribute : PropertyAttribute
+    {
+        /// <summary>
+        /// Name of the boolean variable that controls visibility.
+        /// </summary>
+        public string OmitFieldName { get; }
+
+        public OmittableAttribute(string omitFieldName = null)
+        {
+            OmitFieldName = omitFieldName;
+        }
+    }
+
+    /// <summary>
     /// Marks the variable as a parameter to the system.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class ParameterAttribute : PropertyAttribute
+    public class ParameterAttribute : OmittableAttribute
     {
+        public ParameterAttribute(string omitFieldName = null)
+            : base(omitFieldName)
+        {
+        }
     }
 
     /// <summary>
     /// Marks the variable as an input to the system.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class InputAttribute : PropertyAttribute
+    public class InputAttribute : OmittableAttribute
     {
+        public InputAttribute(string omitFieldName = null)
+            : base(omitFieldName)
+        {
+        }
     }
 
     /// <summary>
     /// Marks the variable as an output to the system.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class OutputAttribute : PropertyAttribute
+    public class OutputAttribute : OmittableAttribute
     {
+        public OutputAttribute(string omitFieldName = null)
+            : base(omitFieldName)
+        {
+        }
     }
 
     /// <summary>

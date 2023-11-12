@@ -17,6 +17,7 @@ namespace SimuNEX
         /// <param name="obj">The object whose fields are being queried for the specified attribute.</param>
         /// <param name="includePrivate">A boolean value indicating whether to include private fields in the search.
         /// Defaults to false, which means only public and instance fields are considered by default.</param>
+        /// <param name="applyOmitLogic">If true, omit fields, otherwise find all fields.</param>
         /// <returns>An array of <see cref="FieldInfo"/> objects that are marked with the specified attribute <see cref="T"/>.
         /// The array includes private fields if <paramref name="includePrivate"/> is set to true.</returns>
         /// <remarks>
@@ -24,7 +25,10 @@ namespace SimuNEX
         /// encapsulation and lead to unintended side effects. It should be used only when necessary and with an understanding
         /// of the potential impact on class behavior.
         /// </remarks>
-        public static FieldInfo[] GetFieldsWithAttribute<T>(this object obj, bool includePrivate = false) where T : Attribute
+        public static FieldInfo[] GetFieldsWithAttribute<T>(
+            this object obj,
+            bool includePrivate = false,
+            bool applyOmitLogic = true) where T : PropertyAttribute
         {
             BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance;
             if (includePrivate)
@@ -32,9 +36,32 @@ namespace SimuNEX
                 bindingFlags |= BindingFlags.NonPublic;
             }
 
-            return obj.GetType()
-                .GetFields(bindingFlags)
-                .Where(f => Attribute.IsDefined(f, typeof(T)))
+            Type type = obj.GetType();
+
+            return type.GetFields(bindingFlags)
+                .Where(field =>
+                {
+                    T attr = field.GetCustomAttribute<T>();
+                    if (attr == null)
+                    {
+                        return false;
+                    }
+
+                    if (applyOmitLogic)
+                    {
+                        OmittableAttribute omitAttr = attr as OmittableAttribute;
+                        if (omitAttr?.OmitFieldName != null)
+                        {
+                            FieldInfo omitField = type.GetField(omitAttr.OmitFieldName, bindingFlags);
+                            if (omitField != null && omitField.FieldType == typeof(bool))
+                            {
+                                return (bool)omitField.GetValue(obj);
+                            }
+                        }
+                    }
+
+                    return true;
+                })
                 .ToArray();
         }
 
@@ -48,7 +75,7 @@ namespace SimuNEX
         public static void InitializeVariables<T>(
             this object obj,
             out Func<float[]> variableFunction,
-            Action updateFunction = null) where T : Attribute
+            Action updateFunction = null) where T : PropertyAttribute
         {
             FieldInfo[] fields = obj.GetFieldsWithAttribute<T>(includePrivate: true);
             variableFunction = () => fields.SelectMany(f =>

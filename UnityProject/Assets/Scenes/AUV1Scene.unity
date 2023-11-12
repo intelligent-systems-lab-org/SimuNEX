@@ -641,7 +641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606830624}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33331347, y: 0.0062563643, z: -0.0022118653, w: 0.9427927}
+  m_LocalRotation: {x: 0.33331347, y: 0.006256278, z: -0.0022118348, w: 0.9427927}
   m_LocalPosition: {x: -0.038133085, y: 4.5, z: -2.873095}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -739,7 +739,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016774524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33331344, y: 0.0062563377, z: -0.0022118555, w: 0.9427928}
+  m_LocalRotation: {x: 0.33331344, y: 0.006256305, z: -0.002211844, w: 0.9427928}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1404,7 +1404,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566193712669001726, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566193712669001726, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: motorTorque
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566193712669001726, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: motorPosition
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[0].property
+      value: velocity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170998252273669]
+      value: SimuNEX.Core SimuNEX.Faults.Bias
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170998252273670]
+      value: SimuNEX.Core SimuNEX.Faults.Bias
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[0]
+      value: 1465170998252273670
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170998252273669]._value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621679548720714149, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170998252273670]._value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5112610935768309211, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: faults.Array.size
@@ -1560,19 +1600,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: readTorque
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: motorTorque
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: readPosition
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: motorPosition
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: outputNames.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: outputNames.Array.data[1]
@@ -1592,23 +1640,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: faults.Array.data[0].Faults.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: managedReferences[1465170975604604932]
       value: SimuNEX.Core SimuNEX.Faults.Bias
       objectReference: {fileID: 0}
     - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170998252273671]
+      value: SimuNEX.Core SimuNEX.Faults.Bias
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170998252273672]
+      value: SimuNEX.Core SimuNEX.Faults.Gaussian
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465170975604604932
+      value: 1465170998252273671
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: faults.Array.data[0].Faults.Array.data[1]
+      value: 1465170998252273672
       objectReference: {fileID: 0}
     - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: managedReferences[1465170975604604932]._value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170998252273671]._value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947556496897487590, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: managedReferences[1465170998252273672].variance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7795851727195075924, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795851727195075924, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: motorTorque
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795851727195075924, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: readPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795851727195075924, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: motorPosition
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795851727195075924, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
+      propertyPath: outputNames.Array.size
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
