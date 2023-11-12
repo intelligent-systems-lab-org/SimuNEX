@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SimuNEX;
+using SimuNEX.Actuators;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;

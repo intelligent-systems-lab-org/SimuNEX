@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using SimuNEX.Mechanical;
+using SimuNEX.Actuators;
 
 namespace SimuNEX
 {

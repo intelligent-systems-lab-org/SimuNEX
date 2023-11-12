@@ -20,6 +20,14 @@ namespace SimuNEX
     }
 
     /// <summary>
+    /// Marks the variable as an output to the system.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    public class OutputAttribute : PropertyAttribute
+    {
+    }
+
+    /// <summary>
     /// Marks the variable as a constraint.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]

@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SimuNEX;
+using SimuNEX.Sensors;
 using System.Collections;
 using SimuNEX.Mechanical;
 using UnityEngine;
@@ -15,16 +16,24 @@ namespace CoreTests
 
         public class TestSensor : Sensor
         {
+            [Output]
             public float[] values;
 
             protected override void Initialize()
             {
-                outputs = () => values;
+                InitializeVariables();
             }
 
             public float[] Outputs
             {
                 set => values = value;
+            }
+
+            /// <summary>
+            /// Does not require computation as values are set manually.
+            /// </summary>
+            protected override void ComputeStep()
+            {
             }
 
             protected void OnValidate()

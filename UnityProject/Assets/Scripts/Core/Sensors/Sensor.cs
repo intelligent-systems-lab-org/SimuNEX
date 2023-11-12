@@ -1,7 +1,7 @@
 using SimuNEX.Mechanical;
 using System;
 
-namespace SimuNEX
+namespace SimuNEX.Sensors
 {
     /// <summary>
     /// Interface for implementing sensor-based systems.
@@ -45,6 +45,32 @@ namespace SimuNEX
         public float[] GetOutput()
         {
             return outputs();
+        }
+
+        /// <summary>
+        /// Updates the current output values.
+        /// </summary>
+        public void Step()
+        {
+            ComputeStep();
+            if (faultables != null)
+            {
+                FaultStep();
+            }
+        }
+
+        /// <summary>
+        /// Computes the output values before faults are applied.
+        /// </summary>
+        protected abstract void ComputeStep();
+
+        /// <summary>
+        /// Initializes the <see cref="outputs"/> and <see cref="parameters"/> array.
+        /// </summary>
+        public void InitializeVariables()
+        {
+            this.InitializeVariables<OutputAttribute>(out outputs, Step);
+            this.InitializeVariables<ParameterAttribute>(out parameters);
         }
     }
 }

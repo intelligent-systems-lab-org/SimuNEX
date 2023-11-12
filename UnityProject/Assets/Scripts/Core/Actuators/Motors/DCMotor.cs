@@ -3,7 +3,7 @@ using SimuNEX.Solvers;
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Actuators
 {
     /// <summary>
     /// Implements a DC motor modeled by a 1st-order transfer function.

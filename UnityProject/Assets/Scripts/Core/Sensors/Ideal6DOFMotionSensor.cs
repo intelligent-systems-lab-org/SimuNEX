@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Sensors
 {
     /// <summary>
     /// Implements an ideal sensor that measures velocities and positions of a <see cref="RigidBody"/>.
@@ -8,44 +8,36 @@ namespace SimuNEX
     public class Ideal6DOFMotionSensor : Sensor
     {
         /// <summary>
-        /// Velocity property.
-        /// </summary>
-        public Vector3 velocity => _velocity;
-
-        /// <summary>
-        /// Angular velocity property.
-        /// </summary>
-        public Vector3 angularVelocity => _angularVelocity;
-
-        /// <summary>
-        /// Angular position property.
-        /// </summary>
-        public Quaternion angularPosition => _angularPosition;
-
-        /// <summary>
-        /// Position property.
-        /// </summary>
-        public Vector3 position => _position;
-
-        /// <summary>
         /// Measured velocity value.
         /// </summary>
-        protected Vector3 _velocity;
+        [Output]
+        [Faultable]
+        [SerializeField]
+        protected Vector3 velocity;
 
         /// <summary>
         /// Measured angular velocity.
         /// </summary>
-        protected Vector3 _angularVelocity;
+        [Output]
+        [Faultable]
+        [SerializeField]
+        protected Vector3 angularVelocity;
 
         /// <summary>
         /// Measured angular position.
         /// </summary>
-        protected Quaternion _angularPosition;
+        [Output]
+        [Faultable]
+        [SerializeField]
+        protected Quaternion angularPosition;
 
         /// <summary>
         /// Measured position.
         /// </summary>
-        protected Vector3 _position;
+        [Output]
+        [Faultable]
+        [SerializeField]
+        protected Vector3 position;
 
         /// <summary>
         /// Default output names for <see cref="Ideal6DOFMotionSensor"/>.
@@ -69,36 +61,7 @@ namespace SimuNEX
 
         protected override void Initialize()
         {
-            outputs = () =>
-            {
-                _velocity = rigidBody.velocity.linear;
-                _angularVelocity = rigidBody.velocity.angular;
-                _angularPosition = rigidBody.angularPosition;
-                _position = rigidBody.position;
-
-                ApplyFaults("velocity", ref _velocity);
-                ApplyFaults("angularVelocity", ref _angularVelocity);
-                ApplyFaults("angularPosition", ref _angularPosition);
-                ApplyFaults("position", ref _position);
-
-                return new float[]
-                {
-                    velocity.x,
-                    velocity.z,
-                    velocity.y,
-                    angularVelocity.x,
-                    angularVelocity.z,
-                    angularVelocity.y,
-                    angularPosition.w,
-                    angularPosition.x,
-                    angularPosition.z,
-                    angularPosition.y,
-                    position.x,
-                    position.z,
-                    position.y
-                };
-            };
-
+            InitializeVariables();
             outputNames = GenerateOutputNames();
         }
 
@@ -133,6 +96,14 @@ namespace SimuNEX
         protected void Awake()
         {
             Initialize();
+        }
+
+        protected override void ComputeStep()
+        {
+            velocity = rigidBody.velocity.linear;
+            angularVelocity = rigidBody.velocity.angular;
+            angularPosition = rigidBody.angularPosition;
+            position = rigidBody.position;
         }
     }
 }

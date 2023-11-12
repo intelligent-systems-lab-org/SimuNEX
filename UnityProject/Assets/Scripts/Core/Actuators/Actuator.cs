@@ -1,7 +1,7 @@
 using SimuNEX.Mechanical;
 using System;
 
-namespace SimuNEX
+namespace SimuNEX.Actuators
 {
     /// <summary>
     /// Interface for implementing actuator-based systems.
@@ -63,7 +63,7 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// Updates the current input values.
+        /// Updates the current output values.
         /// </summary>
         public void Step()
         {

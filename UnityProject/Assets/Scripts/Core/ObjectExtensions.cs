@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using UnityEngine;
 
 namespace SimuNEX
 {
@@ -43,10 +44,32 @@ namespace SimuNEX
         /// <typeparam name="T"><see cref="Attribute"/> to query.</typeparam>
         /// <param name="obj">The object containing marked variables.</param>
         /// <param name="variableFunction">Output <see cref="Func{T}"/> array.</param>
-        public static void InitializeVariables<T>(this object obj, out Func<float[]> variableFunction) where T : Attribute
+        /// <param name="updateFunction">Function to run before returning variables.</param>
+        public static void InitializeVariables<T>(
+            this object obj,
+            out Func<float[]> variableFunction,
+            Action updateFunction = null) where T : Attribute
         {
-            FieldInfo[] fields = obj.GetFieldsWithAttribute<T>();
-            variableFunction = () => fields.Select(f => Convert.ToSingle(f.GetValue(obj))).ToArray();
+            FieldInfo[] fields = obj.GetFieldsWithAttribute<T>(includePrivate: true);
+            variableFunction = () => fields.SelectMany(f =>
+            {
+                updateFunction?.Invoke();
+
+                if (f.FieldType == typeof(Vector3))
+                {
+                    Vector3 vec = (Vector3)f.GetValue(obj);
+                    return new float[] { vec.x, vec.z, vec.y };
+                }
+
+                if (f.FieldType == typeof(Quaternion))
+                {
+                    Quaternion quat = (Quaternion)f.GetValue(obj);
+                    return new float[] { quat.w, quat.x, quat.z, quat.y };
+                }
+
+                return new float[] { Convert.ToSingle(f.GetValue(obj)) };
+            })
+                .ToArray();
         }
     }
 }

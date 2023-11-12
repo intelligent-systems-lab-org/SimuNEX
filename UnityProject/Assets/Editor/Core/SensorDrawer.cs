@@ -1,4 +1,6 @@
 using UnityEditor;
+using SimuNEX.Sensors;
+using System.Linq;
 
 namespace SimuNEX
 {
@@ -10,9 +12,19 @@ namespace SimuNEX
         {
             serializedObject.Update();
 
+            // Foldouts
+            string[] parameterNames = serializedObject.DrawFoldout<ParameterAttribute>("ParametersExpanded", "Parameters");
+            string[] outputNames = serializedObject.DrawFoldout<OutputAttribute>("InputsExpanded", "Outputs");
+            string[] solverNames = serializedObject.DrawFoldout<SolverAttribute>("SolverExpanded", "Solvers");
+
             string[] removedProperties = new string[] { "m_Script", "faults" };
 
-            DrawPropertiesExcluding(serializedObject, removedProperties);
+            DrawPropertiesExcluding(
+                serializedObject,
+                parameterNames.Concat(outputNames)
+                    .Concat(removedProperties)
+                    .Concat(solverNames)
+                    .ToArray());
 
             //// Draw fault addition UI
             serializedObject.DrawFaultAddition();

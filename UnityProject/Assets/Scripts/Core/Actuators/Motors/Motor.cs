@@ -4,7 +4,7 @@ using SimuNEX.Solvers;
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Actuators
 {
     /// <summary>
     /// Interface for implementing motors.

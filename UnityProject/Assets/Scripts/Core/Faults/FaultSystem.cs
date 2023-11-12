@@ -87,10 +87,34 @@ namespace SimuNEX
         {
             foreach (FieldInfo field in faultables)
             {
-                float fieldValue = (float)field.GetValue(this);
-                ApplyFaults(field.Name, ref fieldValue);
-                field.SetValue(this, fieldValue);
+                if (field.FieldType == typeof(float))
+                {
+                    ApplyFaultToField<float>(field);
+                }
+                else if (field.FieldType == typeof(Vector3))
+                {
+                    ApplyFaultToField<Vector3>(field);
+                }
+                else if (field.FieldType == typeof(Quaternion))
+                {
+                    ApplyFaultToField<Quaternion>(field);
+                }
             }
+        }
+
+        /// <summary>
+        /// Applies faults to a specified field of the object.
+        /// This method retrieves the current value of the field,
+        /// applies faults to it using the ApplyFaults method, and then sets the modified value back to the field.
+        /// </summary>
+        /// <typeparam name="T">The type of the field. This should be compatible with the types supported by the ApplyFaults method.</typeparam>
+        /// <param name="field">The field info of the field to which faults are to be applied.
+        /// This field should belong to the current instance of the class.</param>
+        private void ApplyFaultToField<T>(FieldInfo field)
+        {
+            T fieldValue = (T)field.GetValue(this);
+            ApplyFaults(field.Name, ref fieldValue);
+            field.SetValue(this, fieldValue);
         }
     }
 }

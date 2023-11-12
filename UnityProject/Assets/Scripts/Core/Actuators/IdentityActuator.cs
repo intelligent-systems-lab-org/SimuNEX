@@ -1,6 +1,6 @@
 using SimuNEX.Loads;
 
-namespace SimuNEX
+namespace SimuNEX.Actuators
 {
     /// <summary>
     /// Implements the identity function where output = input.

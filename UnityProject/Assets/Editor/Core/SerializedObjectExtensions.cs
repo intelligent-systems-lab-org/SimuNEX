@@ -26,7 +26,7 @@ namespace SimuNEX
             string editorPrefsKey,
             string foldoutLabelPrefix) where T : PropertyAttribute
         {
-            FieldInfo[] fields = serializedObject.targetObject.GetFieldsWithAttribute<T>();
+            FieldInfo[] fields = serializedObject.targetObject.GetFieldsWithAttribute<T>(includePrivate: true);
 
             int fieldCount = fields.Length;
             if (fieldCount == 0)
@@ -67,16 +67,24 @@ namespace SimuNEX
             foreach (FieldInfo field in fields)
             {
                 SerializedProperty prop = serializedObject.FindProperty(field.Name);
-                if (prop != null && prop.propertyType == SerializedPropertyType.Float)
+
+                if (prop == null)
+                {
+                    continue;
+                }
+
+                GUIContent label = new(ObjectNames.NicifyVariableName(field.Name));
+
+                if (prop.propertyType == SerializedPropertyType.Float)
                 {
                     _ = EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField(ObjectNames.NicifyVariableName(field.Name), GUILayout.ExpandWidth(true));
+                    EditorGUILayout.LabelField(label, GUILayout.ExpandWidth(true));
                     prop.floatValue = EditorGUILayout.FloatField(prop.floatValue, GUILayout.Width(100));
                     EditorGUILayout.EndHorizontal();
                 }
-                else if (prop != null)
+                else
                 {
-                    _ = EditorGUILayout.PropertyField(prop, new GUIContent(ObjectNames.NicifyVariableName(field.Name)));
+                    _ = EditorGUILayout.PropertyField(prop, label);
                 }
             }
         }

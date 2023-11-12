@@ -1,9 +1,10 @@
+using SimuNEX.Actuators;
 using SimuNEX.Models;
 using SimuNEX.Solvers;
 using System;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Sensors
 {
     /// <summary>
     /// Implements an ideal sensor that measures <see cref="Motor"/> object values.
@@ -197,6 +198,11 @@ namespace SimuNEX
         protected void Awake()
         {
             Initialize();
+        }
+
+        protected override void ComputeStep()
+        {
+            throw new NotImplementedException();
         }
     }
 }
