@@ -132,28 +132,26 @@ namespace SimuNEX.Sensors
 
         protected override void ComputeStep()
         {
-            if (readPosition || readTorque)
+            if (motor.inputs != null)
             {
-                if (motor.inputs != null)
+                if (readPosition || readTorque)
                 {
-                    if (motor.motorLoad != null)
+                    if (motor.inputs != null)
                     {
-                        motorSpeed = motor.motorLoad._speed;
+                        float acceleration = (motorSpeed - stateSpace.states[1, 0]) / Time.deltaTime;
+
+                        stateSpace.inputs[0, 0] = acceleration;
+                        stateSpace.Compute();
+
+                        motorPosition = motor.motorLoad != null ?
+                            motor.motorLoad.normalizedAngle
+                            : stateSpace.states[0, 0] % 2 * MathF.PI;
+
+                        // Compute torque using provided relationship
+                        motorTorque = (motor.totalInertia * acceleration) + (motor.totalDamping * motorSpeed);
                     }
-
-                    float acceleration = (motorSpeed - stateSpace.states[1, 0]) / Time.deltaTime;
-
-                    stateSpace.inputs[0, 0] = acceleration;
-                    stateSpace.Compute();
-
-                    motorPosition = stateSpace.states[0, 0] % 2 * MathF.PI;
-
-                    // Compute torque using provided relationship
-                    motorTorque = (motor.totalInertia * acceleration) + (motor.totalDamping * motorSpeed);
                 }
-            }
-            else
-            {
+
                 motorSpeed = motor.motorLoad != null ? motor.motorLoad._speed : 0;
             }
         }
