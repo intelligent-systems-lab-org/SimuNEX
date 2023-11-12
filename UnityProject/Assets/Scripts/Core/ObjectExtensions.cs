@@ -78,6 +78,7 @@ namespace SimuNEX
             Action updateFunction = null) where T : PropertyAttribute
         {
             FieldInfo[] fields = obj.GetFieldsWithAttribute<T>(includePrivate: true);
+
             variableFunction = () => fields.SelectMany(f =>
             {
                 updateFunction?.Invoke();

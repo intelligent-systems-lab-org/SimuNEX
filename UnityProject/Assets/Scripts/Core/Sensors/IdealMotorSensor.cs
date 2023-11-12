@@ -76,7 +76,6 @@ namespace SimuNEX.Sensors
                     // Derivative of position is speed, input is acceleration
                     return new Matrix(2, 1, new float[] { states[1, 0], inputs[0, 0] });
                 };
-                InitializeVariables();
                 SetOutputNames();
             }
         }
@@ -127,6 +126,7 @@ namespace SimuNEX.Sensors
 
         protected void Awake()
         {
+            InitializeVariables();
             Initialize();
         }
 

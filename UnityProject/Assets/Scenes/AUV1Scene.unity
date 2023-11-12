@@ -1608,7 +1608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: motorTorque
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: readPosition
@@ -1616,7 +1616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: motorPosition
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: outputNames.Array.size
