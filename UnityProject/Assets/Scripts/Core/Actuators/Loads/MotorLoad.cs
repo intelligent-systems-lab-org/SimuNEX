@@ -89,15 +89,11 @@ namespace SimuNEX.Loads
 
         protected void OnEnable()
         {
+            FindSpinnerTransforms();
             Activate();
         }
 
         protected void OnValidate()
-        {
-            FindSpinnerTransforms();
-        }
-
-        protected void Awake()
         {
             FindSpinnerTransforms();
         }

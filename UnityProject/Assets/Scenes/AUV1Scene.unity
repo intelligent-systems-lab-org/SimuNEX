@@ -1612,7 +1612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: readPosition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5452912407559438521, guid: dbfa85fd74de9744fa3e36a955597cfd, type: 3}
       propertyPath: motorPosition

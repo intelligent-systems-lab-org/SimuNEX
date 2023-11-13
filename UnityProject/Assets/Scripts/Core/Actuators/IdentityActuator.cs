@@ -26,12 +26,6 @@ namespace SimuNEX.Actuators
 
         public override void SetInput(float[] value) => input = value[0];
 
-        protected void OnValidate()
-        {
-            InitializeVariables();
-            Initialize();
-        }
-
         protected void Awake()
         {
             InitializeVariables();

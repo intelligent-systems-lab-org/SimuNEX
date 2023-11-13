@@ -65,14 +65,6 @@ namespace SimuNEX.Actuators
 
         protected void OnValidate()
         {
-            SetUp();
-            InitializeVariables();
-            Initialize();
-        }
-
-        protected void Awake()
-        {
-            SetUp();
             InitializeVariables();
             Initialize();
         }
@@ -80,18 +72,13 @@ namespace SimuNEX.Actuators
         /// <summary>
         /// Locates <see cref="RigidBody"/> and initializes <see cref="integrator"/>.
         /// </summary>
-        protected void SetUp()
+        public void SetUp()
         {
             if (TryGetComponent(out motorLoad))
             {
                 motorLoad.rigidBody = rigidBody;
             }
 
-            integrator = new(solverMethod: positionSolver);
-        }
-
-        protected void OnEnable()
-        {
             if (motorLoad != null)
             {
                 motorLoad.AttachActuator(() =>
@@ -100,6 +87,16 @@ namespace SimuNEX.Actuators
                     return motorSpeed;
                 });
             }
+
+            integrator = new(solverMethod: positionSolver);
+
+            InitializeVariables();
+            Initialize();
+        }
+
+        protected void OnEnable()
+        {
+            SetUp();
         }
 
         protected void OnDisable()

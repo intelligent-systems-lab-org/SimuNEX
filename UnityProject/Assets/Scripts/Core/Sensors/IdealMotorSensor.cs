@@ -119,12 +119,7 @@ namespace SimuNEX.Sensors
             }
         }
 
-        protected void OnValidate()
-        {
-            Initialize();
-        }
-
-        protected void Awake()
+        protected void OnEnable()
         {
             InitializeVariables();
             Initialize();
