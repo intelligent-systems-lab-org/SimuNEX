@@ -61,7 +61,6 @@ namespace SimuNEX.Sensors
 
         protected override void Initialize()
         {
-            InitializeVariables();
             outputNames = GenerateOutputNames();
         }
 
@@ -88,13 +87,15 @@ namespace SimuNEX.Sensors
             return generatedNames;
         }
 
-        protected void OnValidate()
+        protected void OnEnable()
         {
+            InitializeVariables();
             Initialize();
         }
 
-        protected void Awake()
+        protected void OnValidate()
         {
+            InitializeVariables();
             Initialize();
         }
 

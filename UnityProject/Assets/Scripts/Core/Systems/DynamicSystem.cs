@@ -59,23 +59,38 @@ namespace SimuNEX
                 actuatorSystem = GetComponent<ActuatorSystem>();
             }
 
+            if (actuatorSystem != null)
+            {
+                actuatorSystem.UpdateActuatorList();
+                receivedData = new float[actuatorSystem.inputs.Length];
+            }
+
             if (sensorSystem == null)
             {
                 sensorSystem = GetComponent<SensorSystem>();
+            }
+
+            if (sensorSystem != null)
+            {
+                sensorSystem.UpdateSensorList();
             }
 
             if (comSystem == null)
             {
                 comSystem = GetComponent<COMSystem>();
             }
-
-            if (actuatorSystem != null)
-            {
-                receivedData = new float[actuatorSystem.inputs.Length];
-            }
         }
 
         protected void FixedUpdate()
+        {
+            Step();
+        }
+
+        /// <summary>
+        /// Updates each component at the current timestep.
+        /// </summary>
+        /// <remarks>This function is to be called once per timestep.</remarks>
+        public void Step()
         {
             HandleSensors();
             HandleCommunication();
