@@ -12,34 +12,62 @@ namespace SimuNEX
         /// <summary>
         /// Dynamics object that represents the model's dynamic behavior.
         /// </summary>
-        private Dynamics dynamics;
+        public Dynamics dynamics;
 
         /// <summary>
         /// Represents the actuation system controlling the dynamics.
         /// </summary>
-        private ActuatorSystem actuatorSystem;
+        public ActuatorSystem actuatorSystem;
 
         /// <summary>
         /// Represents the sensing system reading states or outputs from the dynamics.
         /// </summary>
-        private SensorSystem sensorSystem;
+        public SensorSystem sensorSystem;
 
         /// <summary>
         /// Represents the communication interface for the dynamic system.
         /// </summary>
-        private COMSystem comSystem;
+        public COMSystem comSystem;
 
         /// <summary>
         /// Data received from the communication system to be passed to actuators.
         /// </summary>
         public float[] receivedData;
 
-        protected void Awake()
+        protected void OnEnable()
         {
-            dynamics = GetComponent<Dynamics>();
-            actuatorSystem = GetComponent<ActuatorSystem>();
-            sensorSystem = GetComponent<SensorSystem>();
-            comSystem = GetComponent<COMSystem>();
+            Setup();
+        }
+
+        protected void OnValidate()
+        {
+            Setup();
+        }
+
+        /// <summary>
+        /// Automatically attaches all found components to the system.
+        /// </summary>
+        public void Setup()
+        {
+            if (dynamics == null)
+            {
+                dynamics = GetComponent<Dynamics>();
+            }
+
+            if (actuatorSystem == null)
+            {
+                actuatorSystem = GetComponent<ActuatorSystem>();
+            }
+
+            if (sensorSystem == null)
+            {
+                sensorSystem = GetComponent<SensorSystem>();
+            }
+
+            if (comSystem == null)
+            {
+                comSystem = GetComponent<COMSystem>();
+            }
 
             if (actuatorSystem != null)
             {
