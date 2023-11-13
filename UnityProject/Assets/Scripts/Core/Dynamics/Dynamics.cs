@@ -9,7 +9,7 @@ namespace SimuNEX
     public abstract class Dynamics : MonoBehaviour
     {
         /// <summary>
-        /// Configures the system at the start of the physics simulation.
+        /// Applies initial conditions at the start of the physics simulation.
         /// </summary>
         protected abstract void Initialize();
 

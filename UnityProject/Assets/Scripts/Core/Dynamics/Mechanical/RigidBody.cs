@@ -57,21 +57,30 @@ namespace SimuNEX.Mechanical
         /// </summary>
         public Vector6DOF initialVelocity = new();
 
-        protected void Start()
+        protected void OnEnable()
         {
+            Setup();
             Initialize();
         }
 
         /// <summary>
-        /// Configures the system at the start of the physics simulation.
+        /// Applies initial conditions at the start of the physics simulation.
         /// </summary>
         protected override void Initialize()
         {
-            body.velocity = initialVelocity.linear;
-            body.angularVelocity = initialVelocity.angular;
+            body.AddForce(initialVelocity.linear, ForceMode.VelocityChange);
+            body.AddTorque(initialVelocity.angular, ForceMode.VelocityChange);
         }
 
         protected void OnValidate()
+        {
+            Setup();
+        }
+
+        /// <summary>
+        /// Configures the underlying physics engine for starting simulation.
+        /// </summary>
+        protected void Setup()
         {
             body = GetComponent<Rigidbody>();
             body.useGravity = false;
