@@ -32,8 +32,11 @@ namespace ForceFieldTests
         {
             gameObject = new("Test");
             rigidBody = gameObject.AddComponent<RigidBody>();
-            gameObject.AddComponent<TForce>();
             rigidCollider = gameObject.AddComponent<BoxCollider>();
+
+            rigidCollider.isTrigger = false;
+            rigidCollider.center = Vector3.zero;
+            rigidCollider.size = Vector3.one;
 
             environment = new GameObject("Environment").AddComponent<Environment>();
             environment.transform.position = Vector3.zero;
@@ -52,6 +55,12 @@ namespace ForceFieldTests
             ForceFieldTestsSetup.RegisterTest<TFField>();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            Object.DestroyImmediate(rigidBody.gameObject);
+        }
+
         [UnityTest]
         public IEnumerator TestField()
         {
@@ -66,7 +75,7 @@ namespace ForceFieldTests
             Assert.IsTrue(fields.Length == 1);
 
             // Inside field
-            rigidBody.body.transform.position = Vector3.zero;
+            rigidBody.body.transform.position = new(0, 1, 0);
             startTime = Time.realtimeSinceStartup;
 
             yield return new WaitUntil(
@@ -75,7 +84,7 @@ namespace ForceFieldTests
             Assert.IsNotNull(gameObject.GetComponent<TForce>());
 
             // Outside field
-            rigidBody.body.transform.position = environment.boxSize + (2f * Vector3.one);
+            rigidBody.body.transform.position = environment.boxSize + (10f * Vector3.one);
             startTime = Time.realtimeSinceStartup;
 
             yield return new WaitUntil(

@@ -248,6 +248,10 @@ MonoBehaviour:
   - AUV X Position
   - AUV Z Position
   - AUV Y Position
+  velocity: {x: 0, y: 0, z: 0}
+  angularVelocity: {x: 0, y: 0, z: 0}
+  angularPosition: {x: 0, y: 0, z: 0, w: 1}
+  position: {x: 0, y: 2, z: 0}
   references:
     version: 2
     RefIds: []
@@ -267,6 +271,10 @@ MonoBehaviour:
   rigidBody: {fileID: 1170835664730685151}
   outputNames:
   - Back Propeller Speed
+  - Back Propeller Position
+  motorSpeed: 0
+  motorPosition: 0
+  motorTorque: 0
   readPosition: 0
   readTorque: 0
   motor: {fileID: 5947556496897487590}
@@ -294,6 +302,9 @@ MonoBehaviour:
   outputNames:
   - Rudder Fins Speed
   - Rudder Fins Position
+  motorSpeed: 0
+  motorPosition: NaN
+  motorTorque: NaN
   readPosition: 1
   readTorque: 0
   motor: {fileID: 5112610935768309211}
@@ -321,6 +332,9 @@ MonoBehaviour:
   outputNames:
   - Stern Plane Fins Speed
   - Stern Plane Fins Position
+  motorSpeed: 0
+  motorPosition: NaN
+  motorTorque: NaN
   readPosition: 1
   readTorque: 0
   motor: {fileID: 1848095677856972004}
@@ -411,6 +425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1aa0ba328365ab40b5e2e4a2ed27b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dynamics: {fileID: 1170835664730685151}
+  actuatorSystem: {fileID: 8378987297206801634}
+  sensorSystem: {fileID: 2230904909486435595}
+  comSystem: {fileID: 0}
   receivedData: []
 --- !u!114 &1170835664730685151
 MonoBehaviour:
