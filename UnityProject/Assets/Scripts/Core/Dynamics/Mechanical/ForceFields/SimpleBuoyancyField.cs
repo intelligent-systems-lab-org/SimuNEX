@@ -1,9 +1,12 @@
+using UnityEngine;
+
 namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Applies a constant buoyant _force to all <see cref="RigidBody"/> objects within the field.
     /// Functions on <see cref="RigidBodyF"/> objects only.
     /// </summary>
+    [DisallowMultipleComponent]
     public class SimpleBuoyancyField : ForceField
     {
         /// <summary>
@@ -18,7 +21,6 @@ namespace SimuNEX.Mechanical
                 : rigidBody.gameObject.AddComponent<SimpleBuoyancy>();
 
             // Check for an existing SimpleBuoyancy component before adding
-
             simpleBuoyancy.fluidDensity = fluidDensity;
         }
 

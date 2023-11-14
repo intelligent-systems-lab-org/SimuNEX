@@ -1,8 +1,11 @@
+using UnityEngine;
+
 namespace SimuNEX.Mechanical
 {
     /// <summary>
     /// Applies a constant gravitational acceleration to all <see cref="RigidBody"/> objects within the field.
     /// </summary>
+    [DisallowMultipleComponent]
     public class SimpleGravityField : ForceField
     {
         public float acceleration = 9.81f;
