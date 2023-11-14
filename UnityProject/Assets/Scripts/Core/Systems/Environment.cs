@@ -47,7 +47,7 @@ namespace SimuNEX
         /// <summary>
         /// Initializes bounding box and <see cref="ForceField"/> objects.
         /// </summary>
-        private void Initialize()
+        public void Initialize()
         {
             InitializeBoundingBox();
             forceFields = new List<ForceField>(GetComponents<ForceField>());

@@ -9,14 +9,11 @@ namespace SimuNEX.Mechanical
 
         public override void Apply(RigidBody rigidBody)
         {
-            // Check for an existing SimpleGravity component before adding
-            if (rigidBody.gameObject.TryGetComponent(out SimpleGravity existingGravity))
-            {
-                // If there's an existing SimpleGravity, remove it first
-                Destroy(existingGravity);
-            }
+            SimpleGravity simpleGravity = rigidBody.gameObject.TryGetComponent(out SimpleGravity existingGravity)
+                ? existingGravity
+                : rigidBody.gameObject.AddComponent<SimpleGravity>();
 
-            SimpleGravity simpleGravity = rigidBody.gameObject.AddComponent<SimpleGravity>();
+            // Check for an existing SimpleGravity component before adding
             simpleGravity.acceleration = acceleration;
         }
 

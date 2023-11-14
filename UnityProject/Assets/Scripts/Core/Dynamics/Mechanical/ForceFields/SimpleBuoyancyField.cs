@@ -13,14 +13,12 @@ namespace SimuNEX.Mechanical
 
         public override void Apply(RigidBody rigidBody)
         {
-            // Check for an existing SimpleBuoyancy component before adding
-            if (rigidBody.gameObject.TryGetComponent(out SimpleBuoyancy existingBuoyancy))
-            {
-                // If there's an existing SimpleBuoyancy, remove it first
-                Destroy(existingBuoyancy);
-            }
+            SimpleBuoyancy simpleBuoyancy = rigidBody.gameObject.TryGetComponent(out SimpleBuoyancy existingBuoyancy)
+                ? existingBuoyancy
+                : rigidBody.gameObject.AddComponent<SimpleBuoyancy>();
 
-            SimpleBuoyancy simpleBuoyancy = rigidBody.gameObject.AddComponent<SimpleBuoyancy>();
+            // Check for an existing SimpleBuoyancy component before adding
+
             simpleBuoyancy.fluidDensity = fluidDensity;
         }
 
