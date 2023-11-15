@@ -13,16 +13,21 @@ project = 'SimuNEX'
 copyright = '2023, Lee Bissessar'
 author = 'Lee Bissessar'
 
-# Path to the package.json file
-# package_json_path = os.path.join(os.path.dirname(__file__), '../../..', 'package.json')
+# Check if running in docker
+running_in_docker = os.getenv('RUNNING_IN_DOCKER') == 'true'
 
-# # Read and parse the package.json file
-# with open(package_json_path, 'r') as f:
-#     package_json = json.load(f)
+# Adjust the paths based on the environment
+if running_in_docker:
+    package_json_path = '/package.json'
+else:
+    package_json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../package.json'))
+
+# Read and parse the package.json file
+with open(package_json_path, 'r') as f:
+    package_json = json.load(f)
 
 # Extract the version number and assign it to 'release'
-# release = package_json.get('version', 'unknown')
-release = '0.5.0'
+release = package_json.get('version', 'unknown')
 
 # The short X.Y version
 version = '.'.join(release.split('.')[:2]) 
@@ -30,10 +35,7 @@ version = '.'.join(release.split('.')[:2])
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['myst_parser']
-breathe_projects = { 'SimuNEX': './xml/output' }
-breathe_default_project = 'SimuNEX'
-
+extensions = ['myst_parser', 'sphinx.ext.ifconfig']
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
@@ -54,3 +56,6 @@ source_suffix = {
 }
 
 repo_name = 'SimuNEX'
+
+def setup(app):
+    app.add_config_value('RUNNING_IN_DOCKER', running_in_docker, 'env')

@@ -31,7 +31,7 @@ Clone the SimuNEX repository from GitHub to get the latest version of the projec
 #. You will find a new directory `SimuNEX` containing all project files.
 
 Opening the Project in Unity Editor
-----------------------------------
+-----------------------------------
 
 With Unity installed and the repository cloned, you're set to open the project in Unity Editor.
 

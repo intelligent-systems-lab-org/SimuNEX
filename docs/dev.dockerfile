@@ -5,7 +5,10 @@ FROM python:3.9
 WORKDIR /docs
 
 # Copy the requirements.txt file into the container at /docs
-COPY requirements.txt /docs/
+COPY docs/requirements.txt /docs/
+
+# Copy repo files to the root of the container's filesystem
+COPY package.json README.md /
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -18,6 +21,7 @@ EXPOSE 8000
 
 # Define environment variable
 ENV NAME Documentation
+ENV RUNNING_IN_DOCKER true
 
 # Use sphinx-autobuild to watch for changes and rebuild the documentation automatically
 CMD ["sphinx-autobuild", "/docs/source", "/docs/build/html", "--host", "0.0.0.0", "--port", "8000", "--watch", "/docs"]
