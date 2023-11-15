@@ -14,14 +14,15 @@ copyright = '2023, Lee Bissessar'
 author = 'Lee Bissessar'
 
 # Path to the package.json file
-package_json_path = os.path.join(os.path.dirname(__file__), '../../..', 'package.json')
+# package_json_path = os.path.join(os.path.dirname(__file__), '../../..', 'package.json')
 
-# Read and parse the package.json file
-with open(package_json_path, 'r') as f:
-    package_json = json.load(f)
+# # Read and parse the package.json file
+# with open(package_json_path, 'r') as f:
+#     package_json = json.load(f)
 
 # Extract the version number and assign it to 'release'
-release = package_json.get('version', 'unknown')
+# release = package_json.get('version', 'unknown')
+release = '0.5.0'
 
 # The short X.Y version
 version = '.'.join(release.split('.')[:2]) 
