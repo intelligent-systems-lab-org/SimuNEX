@@ -1,4 +1,4 @@
-![SimuNEX header image](docs/assets/SimuNEX.png)
+![SimuNEX header image](assets/SimuNEX.png)
 
 <p align="center">
   <a href="https://github.com/intelligent-systems-lab-org/SimuNEX/issues">
@@ -49,21 +49,21 @@ For upcoming plans and features, please check out the ongoing [projects](https:/
 <table>
   <tr>
     <td align="center">
-      <img src="docs/assets/examples/QuadcopterUnity.PNG" width="300" />
+      <img src="assets/examples/QuadcopterUnity.PNG" width="300" />
       <br />
       <i>Quadcopter</i>
       <br />
       <br />
     </td>
     <td align="center">
-      <img src="docs/assets/examples/AUVUnity.PNG" width="300" />
+      <img src="assets/examples/AUVUnity.PNG" width="300" />
       <br />
       <i>AUV</i>
       <br />
       <br />
     </td>
     <td align="center">
-      <img src="docs/assets/examples/RoverUnity.PNG" width="300" />
+      <img src="assets/examples/RoverUnity.PNG" width="300" />
       <br />
       <i>Mars Rover</i>
       <br />
@@ -72,7 +72,7 @@ For upcoming plans and features, please check out the ongoing [projects](https:/
   </tr>
   <tr>
     <td align="center">
-      <img src="docs/assets/examples/QuadrupedUnity.png" width="300" />
+      <img src="assets/examples/QuadrupedUnity.png" width="300" />
       <br />
       <i>Quadruped Robot</i>
       <br />
@@ -80,7 +80,7 @@ For upcoming plans and features, please check out the ongoing [projects](https:/
       <br />
     </td>
     <td align="center">
-      <img src="docs/assets/examples/RocketUnity.PNG" width="300" />
+      <img src="assets/examples/RocketUnity.PNG" width="300" />
       <br />
       <i>Multi-stage Rocket</i>
       <br />

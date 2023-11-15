@@ -14,7 +14,7 @@ copyright = '2023, Lee Bissessar'
 author = 'Lee Bissessar'
 
 # Path to the package.json file
-package_json_path = os.path.join(os.path.dirname(__file__), '../..', 'package.json')
+package_json_path = os.path.join(os.path.dirname(__file__), '../../..', 'package.json')
 
 # Read and parse the package.json file
 with open(package_json_path, 'r') as f:
@@ -29,7 +29,7 @@ version = '.'.join(release.split('.')[:2])
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['breathe', 'myst_parser']
+extensions = ['myst_parser']
 breathe_projects = { 'SimuNEX': './xml/output' }
 breathe_default_project = 'SimuNEX'
 

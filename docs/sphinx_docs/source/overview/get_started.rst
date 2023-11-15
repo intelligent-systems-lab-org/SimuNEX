@@ -26,7 +26,7 @@ Clone the SimuNEX repository from GitHub to get the latest version of the projec
 
    .. code-block:: bash
 
-      git clone https://github.com/YourUsername/SimuNEX.git
+      git clone https://github.com/intelligent-systems-lab-org/SimuNEX.git
 
 #. You will find a new directory `SimuNEX` containing all project files.
 
