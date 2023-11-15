@@ -20,4 +20,4 @@ EXPOSE 8000
 ENV NAME Documentation
 
 # Use sphinx-autobuild to watch for changes and rebuild the documentation automatically
-CMD ["sphinx-autobuild", "/docs/source", "/docs/build/html", "--port", "8000", "--watch", "/docs"]
+CMD ["sphinx-autobuild", "/docs/source", "/docs/build/html", "--host", "0.0.0.0", "--port", "8000", "--watch", "/docs"]
