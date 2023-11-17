@@ -1,4 +1,4 @@
-![SimuNEX header image](docs/assets/SimuNEX.png)
+![SimuNEX header image](https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/logo.png)
 
 <p align="center">
   <a href="https://github.com/intelligent-systems-lab-org/SimuNEX/issues">
@@ -31,9 +31,13 @@ For any additional details, configurations, or advanced setups, refer to the [do
 # Features 
 SimuNEX is in its early stages of development and is only usable through the Unity Editor, offering interfaces for building dynamic systems similar to an API. Currently, the following features are available:
 
-- Simulation of single rigid body systems like quadcopters or other aerial vehicles.
-- A generic interface that can be used to incorporate different actuators, sensors, and communication components into the system.
+- Simulation of single rigid body systems including quadcopters and AUVs (autonomous underwater vehicles).
+- Reactive and event-driven simulation - constructed objects can have their properties modified and the changes occur immediately during simulation.
+- Environment-based force system where forces are automatically applied to systems within a boundary and removed when exiting the boundary.
+- A generic interface that can be used to incorporate different actuators, sensors, loads, and communication components into the system.
 - Functional interfaces have been established for actuators such as motors and loads like propellers.
+- Automated detection of actuators and sensors with supervisory systems.
+- Fault injection for actuators and sensors, including a user-friendly menus for adding and removing faults.
 - Support for ROS 2 integration ensures compatibility with current robotics systems.
 - Interfaces have also been created for modeling state-space systems, which are widely employed in control theory.
 - Various integrating techniques including Euler, Heun, and RK4 steppers are implemented for accurate simulation of dynamical systems.
@@ -45,21 +49,21 @@ For upcoming plans and features, please check out the ongoing [projects](https:/
 <table>
   <tr>
     <td align="center">
-      <img src="docs/assets/examples/QuadcopterUnity.PNG" width="300" />
+      <img src="https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/examples/QuadcopterUnity.PNG" width="300" />
       <br />
       <i>Quadcopter</i>
       <br />
       <br />
     </td>
     <td align="center">
-      <img src="docs/assets/examples/AUVUnity.PNG" width="300" />
+      <img src="https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/examples/AUVUnity.PNG" width="300" />
       <br />
       <i>AUV</i>
       <br />
       <br />
     </td>
     <td align="center">
-      <img src="docs/assets/examples/RoverUnity.PNG" width="300" />
+      <img src="https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/examples/RoverUnity.PNG" width="300" />
       <br />
       <i>Mars Rover</i>
       <br />
@@ -68,7 +72,7 @@ For upcoming plans and features, please check out the ongoing [projects](https:/
   </tr>
   <tr>
     <td align="center">
-      <img src="docs/assets/examples/QuadrupedUnity.png" width="300" />
+      <img src="https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/examples/QuadrupedUnity.png" width="300" />
       <br />
       <i>Quadruped Robot</i>
       <br />
@@ -76,7 +80,7 @@ For upcoming plans and features, please check out the ongoing [projects](https:/
       <br />
     </td>
     <td align="center">
-      <img src="docs/assets/examples/RocketUnity.PNG" width="300" />
+      <img src="https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/examples/RocketUnity.PNG" width="300" />
       <br />
       <i>Multi-stage Rocket</i>
       <br />
@@ -97,6 +101,7 @@ Currently a work in progress. Will be implemented with GitHub Pages.
 | ROS2ForUnity  | 1.1.0   | Windows, Linux | Communication using ROS 2[^1]  | [link](https://github.com/RobotecAI/ros2-for-unity) |
 | Eigen         | 3.4.0   | Windows[^2] | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
 | ErrorProne.NET.CoreAnalyzers        | 0.1.2 | Windows | For code analysis and Roslyn support[^3] | [link](https://www.nuget.org/packages/ErrorProne.NET.CoreAnalyzers/) |
+| NSubstitute (**experimental**)   | 5.1.0   | Windows, Linux | For mock testing | [link](https://www.nuget.org/packages/NSubstitute) |
 
 [^1]: Currently on Foxy installations only.
 
@@ -112,4 +117,4 @@ SimuNEX© 2022-2023 by [Lee Bissessar](https://github.com/leebissessar5), [Intel
 
 Under this license, users may utilize the software for personal or educational purposes and are granted permission to modify and redistribute the software freely, subject to certain conditions outlined in the full license. These conditions include restrictions against commercial and military use, requirements for attribution, and guidelines for redistribution of altered versions.
 
-Please note that the SimuNEX License supersedes the previous CC-BY-NC-SA-4 International License. For a detailed overview of the terms and conditions, please refer to the [LICENSE](LICENSE.md) file.
+Please note that the SimuNEX License supersedes the previous CC-BY-NC-SA-4 International License. For a detailed overview of the terms and conditions, please refer to the [LICENSE](https://github.com/intelligent-systems-lab-org/simunex.github.io/blob/main/LICENSE.md) file.

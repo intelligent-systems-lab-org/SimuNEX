@@ -1,10 +1,11 @@
+using SimuNEX.Loads;
 using System.Linq;
-using System.Reflection;
 using UnityEditor;
 
 namespace SimuNEX
 {
     [CustomEditor(typeof(Load), true)]
+    [CanEditMultipleObjects]
     public class LoadEditor : Editor
     {
         public override void OnInspectorGUI()
@@ -12,14 +13,13 @@ namespace SimuNEX
             serializedObject.Update();
 
             // Parameters foldout
-            FieldInfo[] parameterFields = serializedObject.targetObject.GetFieldsWithAttribute<ParameterAttribute>();
-            serializedObject.DrawFoldout(parameterFields, "ParametersExpanded", "Parameters");
+            string[] parameterNames = serializedObject.DrawFoldout<ParameterAttribute>("ParametersExpanded", "Parameters");
 
             // Other properties
-            string[] parameterNames = parameterFields.Select(f => f.Name).ToArray();
-            DrawPropertiesExcluding(serializedObject, parameterNames.ToArray());
+            string[] removedProperties = new string[] { "m_Script" };
+            DrawPropertiesExcluding(serializedObject, parameterNames.Concat(removedProperties).ToArray());
 
-            serializedObject.ApplyModifiedProperties();
+            _ = serializedObject.ApplyModifiedProperties();
         }
     }
 }

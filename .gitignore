@@ -1,1 +1,3 @@
 **/.vscode/
+docs/sphinx/build
+docs/doxygen/html

@@ -15,7 +15,7 @@ public partial class Matrix : IDisposable
     /// Private constructor to initialize matrix from a pointer.
     /// </summary>
     /// <param name="ptr">Pointer to the Eigen matrix.</param>
-    private Matrix(IntPtr ptr)
+    private Matrix(in IntPtr ptr)
     {
         _matrixPtr = ptr;
     }
@@ -72,6 +72,7 @@ public partial class Matrix : IDisposable
                 flatData[(j * rows) + i] = data[i, j];
             }
         }
+
         _matrixPtr = Eigen3.CreateMatrix(rows, cols, flatData);
     }
 
@@ -95,7 +96,7 @@ public partial class Matrix : IDisposable
     /// <returns>An identity matrix of the given size.</returns>
     public static Matrix Eye(int size)
     {
-        var ptr = Eigen3.CreateIdentityMatrix(size);
+        IntPtr ptr = Eigen3.CreateIdentityMatrix(size);
         return new(ptr);
     }
 
@@ -106,7 +107,7 @@ public partial class Matrix : IDisposable
     /// <returns>A diagonal matrix with the given values.</returns>
     public static Matrix CreateDiagonal(params float[] values)
     {
-        var ptr = Eigen3.CreateDiagonalMatrix(values, values.Length);
+        IntPtr ptr = Eigen3.CreateDiagonalMatrix(values, values.Length);
         return new(ptr);
     }
 

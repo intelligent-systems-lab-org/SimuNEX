@@ -252,3 +252,12 @@ dotnet_diagnostic.RCS1038.severity = none
 
 # RCS1198: Avoid unnecessary boxing of value type.
 dotnet_diagnostic.RCS1198.severity = none
+
+# RCS1202: Avoid NullReferenceException
+dotnet_diagnostic.RCS1202.severity = none
+
+# RCS1158: Static member in generic type should use a type parameter
+dotnet_diagnostic.RCS1158.severity = none
+
+# RCS1223: Mark publicly visible type with DebuggerDisplay attribute
+dotnet_diagnostic.RCS1223.severity = none

@@ -168,7 +168,7 @@ namespace SimuNEX
         public float[] Select(string query)
         {
             string[] components = query.Split(' ');
-            var result = new float[components.Length];
+            float[] result = new float[components.Length];
 
             for (int i = 0; i < components.Length; i++)
             {
@@ -265,7 +265,7 @@ namespace SimuNEX
                 string[] vectorValues = value.Trim('[', ']').Split(';');
                 if (vectorValues.Length != components.Length)
                 {
-                    throw new InvalidOperationException($"Invalid vector string. Expected {components.Length.ToString()} elements.");
+                    throw new InvalidOperationException($"Invalid vector string. Expected {components.Length} elements.");
                 }
 
                 for (int i = 0; i < components.Length; i++)
