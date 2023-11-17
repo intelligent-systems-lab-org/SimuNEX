@@ -14,11 +14,6 @@ namespace SimuNEX.Mechanical
         public float fluidDensity = 1000f;
 
         /// <summary>
-        /// The center of buoyancy.
-        /// </summary>
-        public Transform centerOfBuoyancy;
-
-        /// <summary>
         /// Gravitational _force that is applied to the object.
         /// </summary>
         public SimpleGravity simpleGravity;

@@ -49,6 +49,8 @@ html_title = 'SimuNEX Documentation'
 
 html_sidebars = {"**": ["custom-toc-tree"]}
 
+html_favicon = "https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/favicon.png"
+
 # Add Markdown file support
 source_suffix = {
     '.rst': 'restructuredtext',
