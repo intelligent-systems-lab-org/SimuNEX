@@ -1,3 +1,7 @@
+## [0.5.1](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.5.0...v0.5.1) (2023-11-17)
+
+
+
 # [0.5.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.4.0...v0.5.0) (2023-11-03)
 
 
@@ -158,32 +162,6 @@
 * **motor:** add option to select integration method from editor. ([683c5b6](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/683c5b62d8e329fa10b82dc6b668d3639a521b66))
 * **motor:** automate MotorLoad with Motor connections. ([b0eb91c](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b0eb91cff979e4325e9ae6df39e881bd8be7207e))
 * **motor:** MotorFunction is now abstract instead of a delegate. ([2daaf62](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/2daaf62c9a14dca903f44a147a9866eb696ad609))
-
-
-
-# [0.2.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.1.0...v0.2.0) (2023-10-18)
-
-
-### Bug Fixes
-
-* **motor:** crash due to DCMotor initialization. ([471acdb](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/471acdb5af939b204b8f98076ef297a1b59b844d))
-* **motor:** fix jitter due to double activation ([07a01dc](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/07a01dcc5a32846b21ebed006ff961e3fc6fedbd))
-* **motor:** update speed if motorOutput exists ([a8cbcfa](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/a8cbcfa4b1c0802283513bb7512f889417f0b7ac))
-
-
-### Features
-
-* **motor:** Add FirstOrderTF ([f317868](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f3178681f076d4d6d513de1cb84b653d5683faec))
-* **motor:** add Integrator and StateSpace classes ([bc49551](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/bc4955170f8475eb2cc1b9b9fe62e9b40afd0079))
-* **motor:** add motor interface ([e6b821f](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/e6b821fb6ccd916a57131c55d98cb6e2ffeb5a6a))
-* **motor:** add test framework for integrators ([8d01117](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/8d01117eb4d5ca116f6c52195fb05fd5d2cbea16))
-* **motor:** change StateSpace to use delegate ([bf856c9](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/bf856c94365e2a698fb9cace263205b528797415))
-* **motor:** implement class for linear state spaces ([cf6ae80](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/cf6ae802e5ac1babcf9848043b00bad551c20624))
-* **motor:** implement DCMotor ([3592bf1](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/3592bf12d8f922ae6f61ba84296a240c5ca15394))
-* **motor:** implement PMSM ([73cac1b](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/73cac1b8523f167e332a75d6c1aa290121bd9e8c))
-* **motors:** add lineargrowth and sine integrator tests ([b281172](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/b281172090d309d61b526cc47d4d959d5c576a5e))
-* **motors:** add tests for Heun and RK4 ([33538aa](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/33538aaa0ee44d52fbea05f82fcfe33d4f89ee63))
-* **motor:** use 1st-order TF. ([6fbeeb1](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/6fbeeb1a3f9a29e8f9fdffcd79e8438f280b96ae))
 
 
 
