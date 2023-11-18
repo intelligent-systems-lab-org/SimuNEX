@@ -4,9 +4,9 @@ services:
   simunex-docs:
     image: simunex-docs:dev
     build:
-      context: ../../SimuNEX
-      dockerfile: docs/dev.dockerfile
+      context: ../../../SimuNEX
+      dockerfile: docs/sphinx/dev.Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./sphinx:/docs
+      - ./:/docs
