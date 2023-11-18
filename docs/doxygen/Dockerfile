@@ -14,4 +14,9 @@ COPY UnityProject/Assets/Scripts/ /docs/code/
 RUN sed -i 's|INPUT                  = ../../UnityProject/Assets/Scripts|INPUT = /docs/code|' Doxyfile
 
 # Command to run Doxygen
-CMD doxygen Doxyfile
+RUN doxygen Doxyfile
+
+# Host on port 80
+FROM nginx
+
+COPY --from=doxygen-build /docs/html /usr/share/nginx/html
