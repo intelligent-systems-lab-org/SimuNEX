@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  doxygen-server:
+    image: simunex-doxygen
+    build:
+      context: ../../SimuNEX
+      dockerfile: docs/doxygen/Dockerfile
+    volumes:
+      - doxygen-html:/docs/html
+    container_name: simunex-api
+
+  nginx:
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - doxygen-html:/usr/share/nginx/html/docs/api
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - doxygen-server
+
+volumes:
+  doxygen-html:
