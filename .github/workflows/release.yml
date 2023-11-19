@@ -42,15 +42,6 @@ jobs:
         git commit -m "Update documentation version [skip ci]"
         git push
 
-    - name: Tag Commit
-      if: ${{ steps.changelog.outputs.skipped == 'false' }}
-      run: |
-        TAG_NAME=v$(date +'%Y.%m.%d.%H%M%S')
-        git tag $TAG_NAME
-        git push origin $TAG_NAME
-      env:
-        GH_TOKEN: ${{ secrets.SIMUNEX_ACTION }}
-
     - name: create release
       # https://github.com/actions/create-release
       uses: softprops/action-gh-release@v1
