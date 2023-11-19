@@ -9,7 +9,7 @@ COPY docs/doxygen/Doxyfile /docs/
 COPY docs/doxygen/doxygen-awesome-css/ /docs/doxygen-awesome-css/
 COPY UnityProject/Assets/Scripts/ /docs/code/
 
-RUN sed -i 's|INPUT                  = ../../UnityProject/Assets/Scripts|INPUT = /docs/code|' Doxyfile
+RUN sed -i 's|../../UnityProject/Assets/Scripts|/docs/code|' Doxyfile
 RUN doxygen Doxyfile
 
 # ---- Sphinx Build Stage ----

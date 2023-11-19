@@ -95,8 +95,6 @@ For upcoming plans and features, please check out the ongoing [projects](https:/
 # Documentation
 Currently a work in progress. Will be implemented with GitHub Pages.
 
-
-
 ## Plugins
 | Name          | Version | Supported OS | Purpose | URL |
 |---------------|---------|--------------|---------|--------------------------|
