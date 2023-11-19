@@ -16,7 +16,7 @@ author = 'Lee Bissessar'
 running_in_docker = os.getenv('RUNNING_IN_DOCKER') == 'true'
 
 # Extract the version number and assign it to 'release'
-release = '0.5.2'
+release = '0.5.3'
 
 # The short X.Y version
 version = '0.5'
