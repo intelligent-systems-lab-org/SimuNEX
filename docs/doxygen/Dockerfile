@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y doxygen sed
 
 # Copy the necessary doxygen files
 COPY docs/doxygen/Doxyfile /docs/
+COPY docs/doxygen/doxygen-awesome-css/ /docs/doxygen-awesome-css/
 COPY UnityProject/Assets/Scripts/ /docs/code/
 
 # Modify the Doxyfile to set the correct INPUT path
