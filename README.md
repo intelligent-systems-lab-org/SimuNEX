@@ -116,7 +116,7 @@ To build the Docker image and run the container (making the documentation availa
   ./build_docs.sh --host
   ```
 
-1. **Accessing Documentation Locally**: Once the container is running, you can access the user documentation at [http://localhost](http://localhost) and the developer documentation at [http://localhost/dev/](http://localhost/dev/).
+4. **Accessing Documentation Locally**: Once the container is running, you can access the user documentation at [http://localhost](http://localhost) and the developer documentation at [http://localhost/dev/](http://localhost/dev/).
 
 ### Notes
 
