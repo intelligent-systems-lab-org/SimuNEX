@@ -1,3 +1,7 @@
+## [0.5.3](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.5.2...v0.5.3) (2023-11-19)
+
+
+
 ## [0.5.2](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.5.1...v0.5.2) (2023-11-19)
 
 
@@ -125,18 +129,6 @@
 * **SimuNEX:** test Matrix6DOF Conversions. ([21343a1](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/21343a17b62670902e159be03318f29712ed45e1))
 * **SimuNEX:** test Matrix6DOF Operations. ([ff0c639](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/ff0c639dc2d243d8811b7be000d7f2252c8d2117))
 * **SimuNEX:** test Matrix6DOF properties. ([e1b9042](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/e1b904286c18865dfe721d4438409f48a4a076ca))
-
-
-
-## [0.3.1](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.3.0...v0.3.1) (2023-10-25)
-
-
-### Bug Fixes
-
-* **dynamics:** actuators function without comSystem. ([0fe1339](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/0fe133945e29a3a1e7fe4b3103cf5c6f9e36066f))
-* **eigen3:** add exceptions for matrix operations ([f1cb9d6](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/f1cb9d64c0ac7103b010a4b5f750469ac6e2f109))
-* **eigen3:** add exceptions for matrix properties ([27e78b3](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/27e78b320ee49edb2fc914099c1a56408371a371))
-* **propeller:** use Func<float[]> instead. ([50e76e0](https://github.com/intelligent-systems-lab-org/SimuNEX/commit/50e76e0c1694dbfd7bd0e2591401f1925197ab09))
 
 
 
