@@ -1,4 +1,6 @@
-![SimuNEX header image](https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/logo.png)
+<img class="only-dark" width="100%" src="https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/logo-dark.png?raw=true#gh-dark-mode-only"/>
+
+<img class="only-light" width="100%" src="https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/logo.png?raw=true#gh-light-mode-only"/>
 
 <p align="center">
   <a href="https://github.com/intelligent-systems-lab-org/SimuNEX/issues">
