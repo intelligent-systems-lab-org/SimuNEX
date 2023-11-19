@@ -28,7 +28,7 @@ RUN sphinx-build -M html /docs/source /docs/build
 FROM nginx
 
 # Copy the Doxygen documentation
-COPY --from=doxygen-build /docs/html /usr/share/nginx/html/docs/api
+COPY --from=doxygen-build /docs/html /usr/share/nginx/html/docs/dev
 
 # Copy the Sphinx documentation
 COPY --from=sphinx-build /docs/build/html /usr/share/nginx/html/docs/main
