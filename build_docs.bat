@@ -41,20 +41,21 @@ powershell -Command "(gc '%DOXYFILE_PATH%') -replace '^PROJECT_NUMBER\s+=.+', 'P
 
 echo Updated Sphinx conf.py and Doxyfile with full version !FULL_VERSION! and version !VERSION!
 
-REM Building the Docker image
-echo Building the Docker image for SimuNEX Web...
-docker build -t simunex-web:latest -f docs\Dockerfile . -q
-
-REM Check if Docker build was successful
-IF NOT %ERRORLEVEL% == 0 (
-    echo Error: Docker build failed
-    exit /b 1
-)
-
-echo Docker image built successfully.
-
 REM Conditionally run the Docker container if --host or -h argument is provided
 IF %HOST_FLAG% == 1 (
+    
+    REM Building the Docker image
+    echo Building the Docker image for SimuNEX Web...
+    docker build -t simunex-web:latest -f docs\Dockerfile . -q
+
+    REM Check if Docker build was successful
+    IF NOT %ERRORLEVEL% == 0 (
+        echo Error: Docker build failed
+        exit /b 1
+    )
+
+    echo Docker image built successfully.
+    
     echo Running simunex-web Docker container...
     docker run --rm -it -p 80:80/tcp simunex-web:latest
 ) ELSE (
