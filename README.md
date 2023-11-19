@@ -3,12 +3,15 @@
 <img class="only-light" width="100%" src="https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/logo.png?raw=true#gh-light-mode-only"/>
 
 <p align="center">
-  <a href="https://github.com/intelligent-systems-lab-org/SimuNEX/issues">
-    <img src="https://img.shields.io/github/issues/intelligent-systems-lab-org/SimuNEX" alt="GitHub issues">
-  </a>
   <a href="https://unity.com/">
-    <img src="https://img.shields.io/badge/Unity-2022.3.10f1-blue.svg" alt="Unity Version">
+    <img src="https://img.shields.io/badge/Unity-2022.3.10f1-blue.svg?logo=unity&style=for-the-badge" alt="Unity version">
   </a>
+  <img src="https://img.shields.io/github/repo-size/intelligent-systems-lab-org/SimuNEX?style=for-the-badge&color=green&logo=github" alt="Repo size">
+  <a href="https://github.com/intelligent-systems-lab-org/SimuNEX/issues">
+    <img src="https://img.shields.io/github/issues/intelligent-systems-lab-org/SimuNEX?style=for-the-badge&logo=github" alt="GitHub issues">
+  </a>
+  <img src="https://img.shields.io/github/last-commit/intelligent-systems-lab-org/SimuNEX/development?style=for-the-badge&logo=github"
+  alt="GitHub last development commit">
 </p>
 
 -----
