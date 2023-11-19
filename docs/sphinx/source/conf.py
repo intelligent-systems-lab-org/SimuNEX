@@ -7,7 +7,6 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 import os
-import json
 
 project = 'SimuNEX'
 copyright = '2023, Lee Bissessar'
@@ -16,21 +15,11 @@ author = 'Lee Bissessar'
 # Check if running in docker
 running_in_docker = os.getenv('RUNNING_IN_DOCKER') == 'true'
 
-# Adjust the paths based on the environment
-if running_in_docker:
-    package_json_path = '/package.json'
-else:
-    package_json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../package.json'))
-
-# Read and parse the package.json file
-with open(package_json_path, 'r') as f:
-    package_json = json.load(f)
-
 # Extract the version number and assign it to 'release'
-release = package_json.get('version', 'unknown')
+release = '0.5.1' 
 
 # The short X.Y version
-version = '.'.join(release.split('.')[:2]) 
+version = '0.5' 
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -50,6 +39,8 @@ html_title = 'SimuNEX Documentation'
 html_sidebars = {"**": ["custom-toc-tree"]}
 
 html_favicon = "https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/favicon.png"
+
+html_show_sourcelink = False
 
 # Add Markdown file support
 source_suffix = {

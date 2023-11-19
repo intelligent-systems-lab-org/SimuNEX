@@ -22,6 +22,12 @@ jobs:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
         skip-on-empty: false
 
+    - name: Build Documentation
+      if: ${{ steps.changelog.outputs.skipped == 'false' }}
+      run: |
+        chmod +x ./build_docs.sh
+        ./build_docs.sh
+
     - name: create release
       # https://github.com/actions/create-release
       uses: softprops/action-gh-release@v1
