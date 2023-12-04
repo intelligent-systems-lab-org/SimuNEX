@@ -1,5 +1,5 @@
 Rationale
-===============
+=========
 
 | (a) Keeping it Real
 | What can we do to enable students to learn and adapt in the age of AI?

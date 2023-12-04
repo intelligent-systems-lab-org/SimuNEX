@@ -50,7 +50,7 @@ SimuNEX is in its early stages of development and is only usable through the Uni
 
 For upcoming plans and features, please check out the ongoing [projects](https://github.com/intelligent-systems-lab-org/SimuNEX/projects).
 
-## Examples
+## Model Examples
 <table>
   <tr>
     <td align="center">
