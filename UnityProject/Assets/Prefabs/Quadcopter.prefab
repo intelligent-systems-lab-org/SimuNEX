@@ -333,15 +333,19 @@ MonoBehaviour:
     min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  positionStepper: 0
-  speedStepper: 0
+  positionSolver:
+    rid: -2
+  speedSolver:
+    rid: -2
   voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &5639305362122881889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,15 +449,19 @@ MonoBehaviour:
     min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  positionStepper: 0
-  speedStepper: 0
+  positionSolver:
+    rid: -2
+  speedSolver:
+    rid: -2
   voltage: 131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &4390935632489885428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,6 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4f6052c56cb194ea732f9bebd47ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   outputNames:
   - Quadcopter X Velocity
@@ -620,6 +629,13 @@ MonoBehaviour:
   - Quadcopter X Position
   - Quadcopter Z Position
   - Quadcopter Y Position
+  velocity: {x: 0, y: 0, z: 0}
+  angularVelocity: {x: 0, y: 0, z: 0}
+  angularPosition: {x: 0, y: 0, z: 0, w: 1}
+  position: {x: 0, y: 0.20062344, z: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &3011489618110827443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,13 +648,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   outputNames:
   - Back Left Propeller Speed
+  motorSpeed: 0
+  motorPosition: 0
+  motorTorque: 0
   readPosition: 0
   readTorque: 0
   motor: {fileID: 3591390733453324182}
-  stepper: 0
+  solver:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &271912348052366067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,13 +677,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   outputNames:
   - Back Right Propeller Speed
+  motorSpeed: 0
+  motorPosition: 0
+  motorTorque: 0
   readPosition: 0
   readTorque: 0
   motor: {fileID: 2373451612687255671}
-  stepper: 0
+  solver:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &9020256483454760767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,13 +706,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   outputNames:
   - Front Left Propeller Speed
+  motorSpeed: 0
+  motorPosition: 0
+  motorTorque: 0
   readPosition: 0
   readTorque: 0
   motor: {fileID: 5290145487412587084}
-  stepper: 0
+  solver:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &4971806525275137639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,13 +735,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd76c4b0c86850f4cb6c329fc40a8650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faults: []
   rigidBody: {fileID: 5995511627637507719}
   outputNames:
   - Front Right Propeller Speed
+  motorSpeed: 0
+  motorPosition: 0
+  motorTorque: 0
   readPosition: 0
   readTorque: 0
   motor: {fileID: 6776586109098935137}
-  stepper: 0
+  solver:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &3847828993541165224
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,15 +866,19 @@ MonoBehaviour:
     min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  positionStepper: 0
-  speedStepper: 0
+  positionSolver:
+    rid: -2
+  speedSolver:
+    rid: -2
   voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &779299711875428922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,15 +1092,19 @@ MonoBehaviour:
     min: -Infinity
   armatureInertia: 0.5
   armatureDamping: 0
-  positionStepper: 0
-  speedStepper: 0
+  positionSolver:
+    rid: -2
+  speedSolver:
+    rid: -2
   voltage: -131
   armatureResistance: 20
   backEMFConstant: 1
   torqueConstant: 10
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &6615449208180139306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,12 +1338,11 @@ GameObject:
   m_Component:
   - component: {fileID: 48441827604248401}
   - component: {fileID: 8214148604704887133}
+  - component: {fileID: 3071117602607612381}
   - component: {fileID: 5995511627637507719}
   - component: {fileID: 932807715222619118}
-  - component: {fileID: 3071117602607612381}
-  - component: {fileID: 2611228371683169070}
-  - component: {fileID: 6500127127408246068}
   - component: {fileID: 6631078503300786394}
+  - component: {fileID: 2611228371683169070}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1332,6 +1395,23 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3071117602607612381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa0ba328365ab40b5e2e4a2ed27b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamics: {fileID: 5995511627637507719}
+  actuatorSystem: {fileID: 932807715222619118}
+  sensorSystem: {fileID: 6631078503300786394}
+  comSystem: {fileID: 0}
+  receivedData: []
 --- !u!114 &5995511627637507719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 8214148604704887133}
+  forces: []
   appliedForce:
     linear: {x: 0, y: 0, z: 0}
     angular: {x: 0, y: 0, z: 0}
@@ -1354,6 +1435,9 @@ MonoBehaviour:
   _kineticEnergy: 0
   _potentialEnergy: 0
   _power: 0
+  initialVelocity:
+    linear: {x: 0, y: 0, z: 0}
+    angular: {x: 0, y: 0, z: 0}
 --- !u!114 &932807715222619118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,7 +1456,7 @@ MonoBehaviour:
   - {fileID: 5290145487412587084}
   - {fileID: 6776586109098935137}
   inputs: []
---- !u!114 &3071117602607612381
+--- !u!114 &6631078503300786394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1381,10 +1465,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8898428389020535635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1aa0ba328365ab40b5e2e4a2ed27b3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  receivedData: []
+  sensors:
+  - {fileID: 4883061469072057648}
+  - {fileID: 3011489618110827443}
+  - {fileID: 271912348052366067}
+  - {fileID: 9020256483454760767}
+  - {fileID: 4971806525275137639}
+  outputs: []
 --- !u!114 &2611228371683169070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,6 +1487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6664d1774d0497e48969db05f09fb2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidBody: {fileID: 5995511627637507719}
   dragCoefficients:
     _matrix:
       _serializedData:
@@ -1438,36 +1529,3 @@ MonoBehaviour:
       - 0.05
       _serializedRows: 6
       _serializedCols: 6
---- !u!114 &6500127127408246068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3ac668907479140b436e06d3be84bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 9.81
-  centerOfGravity: {fileID: 7505561513377841643}
---- !u!114 &6631078503300786394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensors:
-  - {fileID: 4883061469072057648}
-  - {fileID: 3011489618110827443}
-  - {fileID: 271912348052366067}
-  - {fileID: 9020256483454760767}
-  - {fileID: 4971806525275137639}
-  outputs: []
