@@ -24,7 +24,7 @@ version = '0.5'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['myst_parser', 'sphinx.ext.ifconfig']
+extensions = ['myst_parser', 'sphinx_design', 'sphinx.ext.autosectionlabel', 'sphinx.ext.ifconfig']
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
