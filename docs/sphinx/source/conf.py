@@ -24,7 +24,7 @@ version = '0.5'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['myst_parser', 'sphinx_design', 'sphinx.ext.autosectionlabel', 'sphinx.ext.ifconfig']
+extensions = ['myst_parser', 'sphinx_design', 'sphinx.ext.autosectionlabel', 'sphinx.ext.ifconfig', 'sphinx.ext.mathjax']
 templates_path = ['_templates', "_html_templates"]
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
@@ -38,7 +38,7 @@ html_title = 'SimuNEX Documentation'
 
 html_sidebars = {"**": ["custom-toc-tree"]}
 
-# html_css_files = ['css/custom.css']
+html_css_files = ['css/custom.css']
 
 html_theme_options = {
     "navbar_center": ["nav-bar-middle"],
