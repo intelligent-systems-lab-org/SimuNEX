@@ -7,7 +7,7 @@ Rationale
 | (b) `Call for High-Fidelity <rationale/high_fidelity.html>`_
 | What can high-fidelity simulation do to offer authenticity?
 |
-| (c) Why SimuNEX?
+| (c) `Why SimuNEX? <rationale/why_simunex.html>`_
 | How does SimuNEX distinguish itself among the existing competition?
 
 .. toctree::
@@ -17,3 +17,4 @@ Rationale
 
     rationale/keeping_it_real.rst
     rationale/high_fidelity.rst
+    rationale/why_simunex.rst

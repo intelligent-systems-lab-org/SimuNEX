@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   height="800px"
+   width="800px"
+   version="1.1"
+   id="Layer_1"
+   viewBox="0 0 385.552 385.552"
+   xml:space="preserve"
+   sodipodi:docname="cube-svgrepo-com.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs9" /><sodipodi:namedview
+   id="namedview9"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="1"
+   inkscape:cx="399.5"
+   inkscape:cy="400"
+   inkscape:window-width="1920"
+   inkscape:window-height="991"
+   inkscape:window-x="-9"
+   inkscape:window-y="-9"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<g
+   id="g9"
+   style="fill:#00aad4">
+	<polygon
+   points="215.696,168.103 252.175,190.006 297.105,163.026 215.696,114.154  "
+   id="polygon1"
+   style="fill:#00aad4" />
+	<polygon
+   points="167.696,114.154 86.286,163.026 131.215,190.006 167.696,168.103  "
+   id="polygon2"
+   style="fill:#00aad4" />
+	<path
+   d="M385.278,345.281l-10.07-37.582c-1.144-4.268-5.525-6.798-9.798-5.657c-4.268,1.144-6.8,5.53-5.657,9.798l5.351,19.97   L199.696,231.144V46.129l13.855,13.855c1.562,1.562,3.609,2.343,5.657,2.343s4.095-0.781,5.657-2.343   c3.125-3.125,3.125-8.189,0-11.314l-27.512-27.512c-1.562-1.562-3.609-2.342-5.656-2.342s-4.095,0.781-5.657,2.342l-27.512,27.512   c-3.125,3.124-3.125,8.189,0,11.314c1.562,1.562,3.609,2.343,5.657,2.343c2.047,0,4.095-0.781,5.657-2.343l13.855-13.855v185.015   L20.875,330.215l4.924-18.376c1.144-4.268-1.389-8.654-5.657-9.798c-4.266-1.142-8.655,1.39-9.798,5.657l-10.07,37.582   c-1.101,4.109,1.211,8.32,5.194,9.648c0.136,0.052,0.287,0.102,0.463,0.149l37.582,10.07c0.694,0.186,1.39,0.274,2.076,0.274   c3.532,0,6.765-2.357,7.723-5.932c1.144-4.268-1.389-8.654-5.657-9.798l-19.447-5.211l163.488-99.478l164.126,99.886l-17.924,4.803   c-4.268,1.144-6.8,5.53-5.657,9.798c0.958,3.574,4.19,5.932,7.723,5.932c0.685,0,1.382-0.089,2.076-0.274l37.582-10.07   c0.201-0.054,0.37-0.111,0.523-0.169C384.09,353.559,386.373,349.369,385.278,345.281z"
+   id="path2"
+   style="fill:#00aad4" />
+	<polygon
+   points="264.615,251.922 304.645,276.284 304.645,177.156 264.615,201.196  "
+   id="polygon3"
+   style="fill:#00aad4" />
+	<polygon
+   points="199.695,312.786 199.695,366.736 280.865,318.004 236.238,290.844  "
+   id="polygon4"
+   style="fill:#00aad4" />
+	<polygon
+   points="102.516,317.998 183.695,366.736 183.695,312.786 147.147,290.841  "
+   id="polygon5"
+   style="fill:#00aad4" />
+	<polygon
+   points="118.776,201.196 78.746,177.156 78.746,276.274 118.776,251.917  "
+   id="polygon6"
+   style="fill:#00aad4" />
+	<polygon
+   points="134.776,242.181 167.696,222.15 167.696,186.766 135.335,206.196 134.776,206.536  "
+   id="polygon7"
+   style="fill:#00aad4" />
+	<polygon
+   points="215.696,222.15 248.615,242.185 248.615,206.536 248.055,206.196 215.696,186.767  "
+   id="polygon8"
+   style="fill:#00aad4" />
+	<polygon
+   points="191.694,263.735 162.586,281.447 191.695,298.926 220.801,281.449  "
+   id="polygon9"
+   style="fill:#00aad4" />
+</g>
+</svg>
