@@ -57,6 +57,14 @@ namespace SimuNEX
     }
 
     /// <summary>
+    /// Marks the variable as a sound property related to the system.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    public class SFXAttribute : PropertyAttribute
+    {
+    }
+
+    /// <summary>
     /// Marks the variable as a constraint.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
