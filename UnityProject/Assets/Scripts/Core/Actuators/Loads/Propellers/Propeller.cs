@@ -10,6 +10,67 @@ namespace SimuNEX.Loads
     public abstract class Propeller : MotorLoad
     {
         /// <summary>
+        /// Main SFX when the propeller is spinning.
+        /// </summary>
+        [SFX]
+        public AudioSource propellerSFX;
+
+        /// <summary>
+        /// SFX when the propeller is starting and shutting down.
+        /// </summary>
+        [SFX]
+        public AudioClip startupSFX, shutdownSFX;
+
+        /// <summary>
+        /// Audio gain multiplied by the propeller speed.
+        /// </summary>
+        [SFX]
+        private float volumeFactor = 1 / 200f;
+
+        /// <summary>
+        /// False is the propeller speed is 0, true otherwise. Active when SFX if enabled.
+        /// </summary>
+        [SFX]
+        private bool isSpinning = false;
+
+        new protected void OnValidate()
+        {
+            FindSpinnerTransforms();
+            propellerSFX = GetComponent<AudioSource>();
+        }
+
+        protected override void HandleSFX()
+        {
+            if (enableSFX)
+            {
+                if (_speed != 0)
+                {
+                    if (!isSpinning)
+                    {
+                        propellerSFX.PlayOneShot(startupSFX);
+                        propellerSFX.PlayScheduled(AudioSettings.dspTime + startupSFX.length);
+                    }
+                    isSpinning = true;
+                    propellerSFX.volume = Mathf.Abs(_speed) * volumeFactor;
+                }
+                else
+                {
+                    if (isSpinning)
+                    {
+                        propellerSFX.Stop();
+                        propellerSFX.PlayOneShot(shutdownSFX, 1f);
+                    }
+                    isSpinning = false;
+                }
+            }
+            else if (!enableSFX && isSpinning) 
+            {
+                propellerSFX.Stop();
+                isSpinning = false;
+            }
+        }
+
+        /// <summary>
         /// Specialized forces for propellers.
         /// </summary>
         public abstract class PropellerForce : Force
