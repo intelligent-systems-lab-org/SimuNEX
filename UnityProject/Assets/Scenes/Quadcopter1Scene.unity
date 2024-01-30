@@ -788,8 +788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da73876a9ba014f4e85b73eca28bc5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: 0, y: 10, z: 0}
-  boxSize: {x: 10, y: 20, z: 10}
+  center: {x: 0, y: 50, z: 0}
+  boxSize: {x: 100, y: 100, z: 100}
   forceFields:
   - {fileID: 1218382475}
 --- !u!65 &1218382477
@@ -811,8 +811,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 20, z: 10}
-  m_Center: {x: 0, y: 10, z: 0}
+  m_Size: {x: 100, y: 100, z: 100}
+  m_Center: {x: 0, y: 50, z: 0}
 --- !u!4 &1218382478
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,7 +1297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128264826}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000010094461, y: 0.952017, z: -0.30604526, w: 0.00000031400913}
+  m_LocalRotation: {x: 0.00000011583892, y: 0.952017, z: -0.30604526, w: 0.00000036034092}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1403,165 +1403,13 @@ PrefabInstance:
       propertyPath: inputs.Array.size
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].property
-      value: motorSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252163]
-      value: SimuNEX.Core SimuNEX.Faults.Gaussian
-      objectReference: {fileID: 0}
-    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252167]
-      value: SimuNEX.Core SimuNEX.Faults.Constant
-      objectReference: {fileID: 0}
-    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465171185340252167
-      objectReference: {fileID: 0}
-    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252167]._value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2373451612687255671, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252163].variance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3071117602607612381, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: comSystem
-      value: 
-      objectReference: {fileID: 1849268883717831458}
     - target: {fileID: 3071117602607612381, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: receivedData.Array.size
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].property
-      value: motorSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252162]
-      value: SimuNEX.Core SimuNEX.Faults.Gaussian
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465171185340252162
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591390733453324182, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252162].variance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].property
-      value: velocity
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252160]
-      value: SimuNEX.Core SimuNEX.Faults.Bias
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252161]
-      value: SimuNEX.Core SimuNEX.Faults.Bias
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252166]
-      value: SimuNEX.Core SimuNEX.Faults.Bias
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465171185340252166
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252160]._value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252161]._value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883061469072057648, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252166]._value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].property
-      value: motorSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252164]
-      value: SimuNEX.Core SimuNEX.Faults.Gaussian
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465171185340252164
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290145487412587084, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252164].variance
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 6631078503300786394, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: outputs.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6631078503300786394, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: sensors.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].property
-      value: motorSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252165]
-      value: SimuNEX.Core SimuNEX.Faults.Gaussian
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: faults.Array.data[0].Faults.Array.data[0]
-      value: 1465171185340252165
-      objectReference: {fileID: 0}
-    - target: {fileID: 6776586109098935137, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: managedReferences[1465171185340252165].variance
-      value: 0.1
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: m_Name
@@ -1570,64 +1418,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1849268883717831457}
-    - targetCorrespondingSourceObject: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1849268883717831456}
-    - targetCorrespondingSourceObject: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1849268883717831458}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
---- !u!1 &1849268883717831455 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-  m_PrefabInstance: {fileID: 1849268883717831454}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1849268883717831456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849268883717831455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cea4d0a9b68240b4c84d18e2e95c0722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ros2Unity: {fileID: 1849268883717831457}
-  outputNodeName: SimuNEXROS2Listener
-  inputNodeName: SimuNEXROS2Talker
-  publisherName: SystemOutputs
-  subscriberName: SystemInputs
---- !u!114 &1849268883717831457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849268883717831455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3695d7dbd512f9b41b9d46e9e651e8d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1849268883717831458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849268883717831455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e26d9785ee89d4ab9ec9b4172a4f54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  protocol: {fileID: 1849268883717831456}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -326,8 +326,8 @@ MonoBehaviour:
   - Back Left Propeller Voltage
   motorLoad: {fileID: 5639305362122881889}
   speedLimits:
-    max: Infinity
-    min: -Infinity
+    max: 250
+    min: 0
   positionLimits:
     max: Infinity
     min: -Infinity
@@ -442,8 +442,8 @@ MonoBehaviour:
   - Front Right Propeller Voltage
   motorLoad: {fileID: 4390935632489885428}
   speedLimits:
-    max: Infinity
-    min: -Infinity
+    max: 250
+    min: 0
   positionLimits:
     max: Infinity
     min: -Infinity
@@ -859,8 +859,8 @@ MonoBehaviour:
   - Back Right Propeller Voltage
   motorLoad: {fileID: 779299711875428922}
   speedLimits:
-    max: Infinity
-    min: -Infinity
+    max: 0
+    min: -250
   positionLimits:
     max: Infinity
     min: -Infinity
@@ -1085,8 +1085,8 @@ MonoBehaviour:
   - Front Left Propeller Voltage
   motorLoad: {fileID: 6615449208180139306}
   speedLimits:
-    max: Infinity
-    min: -Infinity
+    max: 0
+    min: -250
   positionLimits:
     max: Infinity
     min: -Infinity
@@ -1343,6 +1343,9 @@ GameObject:
   - component: {fileID: 932807715222619118}
   - component: {fileID: 6631078503300786394}
   - component: {fileID: 2611228371683169070}
+  - component: {fileID: 3557526124541540560}
+  - component: {fileID: 4129175050938211646}
+  - component: {fileID: 1834080306364851028}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1410,7 +1413,7 @@ MonoBehaviour:
   dynamics: {fileID: 5995511627637507719}
   actuatorSystem: {fileID: 932807715222619118}
   sensorSystem: {fileID: 6631078503300786394}
-  comSystem: {fileID: 0}
+  comSystem: {fileID: 1834080306364851028}
   receivedData: []
 --- !u!114 &5995511627637507719
 MonoBehaviour:
@@ -1529,3 +1532,45 @@ MonoBehaviour:
       - 0.05
       _serializedRows: 6
       _serializedCols: 6
+--- !u!114 &3557526124541540560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3695d7dbd512f9b41b9d46e9e651e8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4129175050938211646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea4d0a9b68240b4c84d18e2e95c0722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ros2Unity: {fileID: 3557526124541540560}
+  outputNodeName: SimuNEXROS2Listener
+  inputNodeName: SimuNEXROS2Talker
+  publisherName: SystemOutputs
+  subscriberName: SystemInputs
+--- !u!114 &1834080306364851028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e26d9785ee89d4ab9ec9b4172a4f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  protocol: {fileID: 4129175050938211646}
