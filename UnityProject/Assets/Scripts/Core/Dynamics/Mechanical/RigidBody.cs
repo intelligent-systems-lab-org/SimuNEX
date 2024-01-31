@@ -57,6 +57,11 @@ namespace SimuNEX.Mechanical
         /// </summary>
         public Vector6DOF initialVelocity = new();
 
+        /// <summary>
+        /// Pose at the start of simulation.
+        /// </summary>
+        public Pose initialPose = new();
+
         protected void OnEnable()
         {
             Setup();
@@ -86,6 +91,8 @@ namespace SimuNEX.Mechanical
             body.useGravity = false;
             body.drag = 0;
             body.angularDrag = 0;
+
+            initialPose = new(position, angularPosition);
         }
 
         public float mass
@@ -241,5 +248,15 @@ namespace SimuNEX.Mechanical
         public float power
             => Vector3.Dot(appliedForce.linear, _velocity.linear) +
                 Vector3.Dot(appliedForce.angular, _velocity.angular);
+
+        /// <summary>
+        /// Resets position, rotation, and velocities to their defaults.
+        /// </summary>
+        public override void Reset()
+        {
+            body.velocity = initialVelocity.linear;
+            body.angularVelocity = initialVelocity.angular;
+            transform.SetPositionAndRotation(initialPose.position, initialPose.rotation);
+        }
     }
 }

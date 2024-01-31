@@ -17,5 +17,10 @@ namespace SimuNEX
         /// Applys the accumulated inputs to the system.
         /// </summary>
         public abstract void Step();
+
+        /// <summary>
+        /// Resets all states to their defaults.
+        /// </summary>
+        public abstract void Reset();
     }
 }
