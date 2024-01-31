@@ -88,5 +88,17 @@ namespace SimuNEX
                 idx += currentActuatorInputs.Length;
             }
         }
+
+        /// <summary>
+        /// Sets all <see cref="Actuator"/> objects to their default values.
+        /// </summary>
+        public void ResetAll()
+        {
+            for (int i = 0; i < NumInputs; i++)
+            {
+                inputs[i] = 0;
+            }
+            SetActuatorInputs();
+        }
     }
 }
