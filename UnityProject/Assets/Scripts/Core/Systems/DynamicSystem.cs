@@ -161,5 +161,24 @@ namespace SimuNEX
                 dynamics.Step();
             }
         }
+
+        /// <summary>
+        /// Resets all actuators, system states, and message data to their defaults.
+        /// </summary>
+        public void Reset()
+        {
+            if (actuatorSystem != null)
+            {
+                actuatorSystem.ResetAll();
+            }
+            if (dynamics != null)
+            {
+                dynamics.Reset();
+            }
+            for (int i = 0; i < receivedData.Length; i++)
+            {
+                receivedData[i] = 0;
+            }
+        }
     }
 }
