@@ -90,6 +90,7 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
+  enableSFX: 0
   flowDirection: 3
   forceCoefficient: -9.64
   torqueCoefficient: -6.15
@@ -145,6 +146,10 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
+  enableSFX: 0
+  propellerSFX: {fileID: 0}
+  startupSFX: {fileID: 0}
+  shutdownSFX: {fileID: 0}
   thrustCoefficient: 0.00001
   torqueCoefficient: 0.000000001
 --- !u!114 &5947556496897487590
@@ -358,6 +363,7 @@ GameObject:
   - component: {fileID: 95786566618168691}
   - component: {fileID: 1170835664730685151}
   - component: {fileID: 5601625684026374144}
+  - component: {fileID: 6135439329010100772}
   - component: {fileID: 8378987297206801634}
   - component: {fileID: 2230904909486435595}
   m_Layer: 0
@@ -456,6 +462,9 @@ MonoBehaviour:
   initialVelocity:
     linear: {x: 0, y: 0, z: 0}
     angular: {x: 0, y: 0, z: 0}
+  initialPose:
+    position: {x: 0, y: 2, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
   addedMass:
     _matrix:
       _serializedData:
@@ -556,6 +565,113 @@ MonoBehaviour:
       - 188
       _serializedRows: 6
       _serializedCols: 6
+--- !u!114 &6135439329010100772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352934492587307473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cbb6c9e5040fb47a4109fb70725495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 1170835664730685151}
+  dragCoefficients:
+    _serializedData:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - -35.5
+    - 0
+    - 35.5
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - -28.6
+    - 0
+    - 5.22
+    - 0
+    - 0
+    - 35.5
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1.93
+    - 0
+    - -28.6
+    - 0
+    - 0
+    - 0
+    - -5.22
+    - 0
+    - 0
+    - 0
+    - 0
+    - -35.5
+    - 0
+    - 0
+    - 1.93
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 24
+    - 0
+    - 0
+    - 0
+    - -2
+    - 0
+    - 0
+    - 0
+    - 0
+    - -1.93
+    - 0
+    - 0
+    - 4.86
+    - 0
+    - 0
+    - 0
+    - -24
+    - 0
+    - -2
+    - 0
+    - 0
+    - -1.93
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - -4.86
+    - 0
+    _serializedRows: 6
+    _serializedCols: 15
 --- !u!114 &8378987297206801634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,6 +1174,7 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
+  enableSFX: 0
   flowDirection: 3
   forceCoefficient: 9.64
   torqueCoefficient: -6.15
