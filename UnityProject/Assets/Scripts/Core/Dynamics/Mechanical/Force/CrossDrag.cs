@@ -15,6 +15,9 @@ namespace SimuNEX.Mechanical
         /// </summary>
         public Matrix dragCoefficients = new(6, 15);
 
+        /// <summary>
+        /// <see cref="RigidBody"/> velocity product pairs expressed as a column vector.
+        /// </summary>
         private Matrix pairwise_velocities = new(15, 1);
 
         public override void ApplyForce()
