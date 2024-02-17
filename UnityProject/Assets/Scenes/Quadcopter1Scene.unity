@@ -756,7 +756,6 @@ GameObject:
   - component: {fileID: 1218382477}
   - component: {fileID: 1218382476}
   - component: {fileID: 1218382475}
-  - component: {fileID: 1218382479}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -793,7 +792,6 @@ MonoBehaviour:
   boxSize: {x: 100, y: 100, z: 100}
   forceFields:
   - {fileID: 1218382475}
-  - {fileID: 1218382479}
 --- !u!65 &1218382477
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -830,22 +828,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1218382479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218382474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42916a561566a6749bd189b0338a05f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sourcePosition: {x: 0, y: 0, z: 0}
-  windDirection: {x: 0, y: 1, z: 0}
-  windStrength: 5
-  variance: 2
 --- !u!1 &1586860477
 GameObject:
   m_ObjectHideFlags: 3
@@ -1315,7 +1297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128264826}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000010094461, y: 0.952017, z: -0.30604526, w: 0.00000031400913}
+  m_LocalRotation: {x: 0.00000011583892, y: 0.952017, z: -0.30604526, w: 0.00000036034092}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1421,13 +1403,29 @@ PrefabInstance:
       propertyPath: inputs.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2611228371683169070, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: dragCoefficients._matrix._serializedData.Array.data[0]
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611228371683169070, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: dragCoefficients._matrix._serializedData.Array.data[7]
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611228371683169070, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: dragCoefficients._matrix._serializedData.Array.data[21]
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611228371683169070, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: dragCoefficients._matrix._serializedData.Array.data[28]
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611228371683169070, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
+      propertyPath: dragCoefficients._matrix._serializedData.Array.data[35]
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3071117602607612381, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: receivedData.Array.size
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6631078503300786394, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
-      propertyPath: outputs.Array.size
-      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8898428389020535635, guid: 3b07a0b3433b8724c816494a6bac937a, type: 3}
       propertyPath: m_Name

@@ -33,6 +33,11 @@ namespace SimuNEX.Loads
         [SFX]
         private bool isSpinning = false;
 
+        /// <summary>
+        /// Direction that the fluid acts across the moving body.
+        /// </summary>
+        public Direction flowDirection;
+
         new protected void OnValidate()
         {
             FindSpinnerTransforms();
@@ -76,6 +81,11 @@ namespace SimuNEX.Loads
         public abstract class PropellerForce : Force
         {
             /// <summary>
+            /// Returns the current direction that fluid flows across the moving body.
+            /// </summary>
+            protected Func<Direction> flowDirection;
+
+            /// <summary>
             /// Propeller rotational speed.
             /// </summary>
             protected Func<float> propellerSpeed;
@@ -113,8 +123,12 @@ namespace SimuNEX.Loads
             {
                 Vector3 _normal = normal();
                 outputs = PropellerFunction(propellerSpeed, parameters);
+
+                // Determine the _torque direction based on the flow direction, transformed to the body frame
+                Vector3 torqueDirection = rigidBody.transform.TransformDirection(flowDirection().ToVector());
+
                 rigidBody.AddLinearForceAtPosition(_normal * outputs[0], positionCallback());
-                rigidBody.AddTorque(_normal * outputs[1]);
+                rigidBody.AddTorque(torqueDirection * outputs[1]);
             }
 
             /// <summary>
@@ -126,6 +140,7 @@ namespace SimuNEX.Loads
                 normal = () => propeller.normal;
                 positionCallback = () => propeller.transform.position;
                 propellerSpeed = () => propeller.motorOutput;
+                flowDirection = () => propeller.flowDirection;
             }
         }
     }
