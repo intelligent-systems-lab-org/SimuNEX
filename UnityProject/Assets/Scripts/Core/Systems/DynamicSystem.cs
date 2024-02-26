@@ -165,7 +165,7 @@ namespace SimuNEX
         /// <summary>
         /// Resets all actuators, system states, and message data to their defaults.
         /// </summary>
-        public void Reset()
+        protected void Reset()
         {
             if (actuatorSystem != null)
             {
