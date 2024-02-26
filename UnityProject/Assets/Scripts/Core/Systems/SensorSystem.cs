@@ -32,21 +32,19 @@ namespace SimuNEX
         /// </summary>
         private int NumOutputs;
 
-        protected void OnValidate()
-        {
-            UpdateSensorList();
-        }
-
-        protected void Awake()
-        {
-            UpdateSensorList();
-        }
+        protected void OnValidate() => UpdateSensorList();
+        protected void Awake() => UpdateSensorList();
 
         /// <summary>
         /// Obtains the current list of attached <see cref="Sensor"/> objects.
         /// </summary>
         public void UpdateSensorList()
         {
+            if (TryGetComponent(out DynamicSystem dyn))
+            {
+                dyn.sensorSystem = this;
+            }
+
             rigidBody = GetComponent<RigidBody>();
             sensors = new List<Sensor>(GetComponentsInChildren<Sensor>());
 

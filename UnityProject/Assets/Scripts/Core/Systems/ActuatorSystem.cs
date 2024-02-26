@@ -33,21 +33,19 @@ namespace SimuNEX
         /// </summary>
         private int NumInputs;
 
-        protected void OnValidate()
-        {
-            UpdateActuatorList();
-        }
-
-        protected void Awake()
-        {
-            UpdateActuatorList();
-        }
+        protected void OnValidate() => UpdateActuatorList();
+        protected void Awake() => UpdateActuatorList();
 
         /// <summary>
         /// Obtains the current list of attached <see cref="Actuator"/> objects.
         /// </summary>
         public void UpdateActuatorList()
         {
+            if (TryGetComponent(out DynamicSystem dyn))
+            {
+                dyn.actuatorSystem = this;
+            }
+
             rigidBody = GetComponent<RigidBody>();
             actuators = new List<Actuator>(GetComponentsInChildren<Actuator>());
 

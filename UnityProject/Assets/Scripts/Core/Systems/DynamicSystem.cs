@@ -34,15 +34,8 @@ namespace SimuNEX
         /// </summary>
         public float[] receivedData;
 
-        protected void OnEnable()
-        {
-            Setup();
-        }
-
-        protected void OnValidate()
-        {
-            Setup();
-        }
+        protected void Awake() => Setup();
+        protected void OnValidate() => Setup();
 
         /// <summary>
         /// Automatically attaches all found components to the system.
@@ -81,10 +74,7 @@ namespace SimuNEX
             }
         }
 
-        protected void FixedUpdate()
-        {
-            Step();
-        }
+        protected void FixedUpdate() => Step();
 
         /// <summary>
         /// Updates each component at the current timestep.
