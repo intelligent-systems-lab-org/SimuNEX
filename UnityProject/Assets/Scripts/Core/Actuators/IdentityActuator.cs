@@ -24,7 +24,7 @@ namespace SimuNEX.Actuators
         /// </summary>
         public Load load;
 
-        public override void SetInput(float[] value) => input = value[0];
+        public override void SetInputs(float[] value) => input = value[0];
 
         protected void Awake()
         {

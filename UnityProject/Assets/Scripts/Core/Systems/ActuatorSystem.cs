@@ -69,7 +69,7 @@ namespace SimuNEX
             foreach (Actuator actuator in actuators)
             {
                 float[] slice = inputs.Skip(idx).Take(actuator.inputSize).ToArray();
-                actuator.SetInput(slice);
+                actuator.SetInputs(slice);
                 idx += actuator.inputSize;
             }
         }
@@ -82,7 +82,7 @@ namespace SimuNEX
             int idx = 0;
             foreach (Actuator actuator in actuators)
             {
-                float[] currentActuatorInputs = actuator.GetInput();
+                float[] currentActuatorInputs = actuator.Input;
                 Array.Copy(currentActuatorInputs, 0, inputs, idx, currentActuatorInputs.Length);
                 idx += currentActuatorInputs.Length;
             }

@@ -48,7 +48,7 @@ namespace SimuNEX.Actuators
         /// </summary>
         private FirstOrderTF stateSpace;
 
-        public override void SetInput(float[] value)
+        public override void SetInputs(float[] value)
         {
             voltage = value[0];
         }

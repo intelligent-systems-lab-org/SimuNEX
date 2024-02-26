@@ -59,7 +59,7 @@ namespace SimuNEX.Actuators
         /// </summary>
         private LinearStateSpace stateSpace;
 
-        public override void SetInput(float[] value)
+        public override void SetInputs(float[] value)
         {
             qAxisVoltage = value[0];
             dAxisVoltage = value[1];

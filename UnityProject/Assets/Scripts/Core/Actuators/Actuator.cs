@@ -42,16 +42,13 @@ namespace SimuNEX.Actuators
         /// Gets all inputs specific to the <see cref="Actuator"/>.
         /// </summary>
         /// <returns>The current input values.</returns>
-        public float[] GetInput()
-        {
-            return inputs();
-        }
+        public float[] Input => inputs();
 
         /// <summary>
         /// Sets all inputs specific to the <see cref="Actuator"/>.
         /// </summary>
         /// <param name="value">The input values to set.</param>
-        public abstract void SetInput(float[] value);
+        public abstract void SetInputs(float[] value);
 
         /// <summary>
         /// Initializes the <see cref="inputs"/> and <see cref="parameters"/> array.
