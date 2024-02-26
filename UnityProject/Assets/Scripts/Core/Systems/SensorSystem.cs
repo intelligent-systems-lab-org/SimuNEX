@@ -40,11 +40,6 @@ namespace SimuNEX
         /// </summary>
         public void UpdateSensorList()
         {
-            if (TryGetComponent(out DynamicSystem dyn))
-            {
-                dyn.sensorSystem = this;
-            }
-
             rigidBody = GetComponent<RigidBody>();
             sensors = new List<Sensor>(GetComponentsInChildren<Sensor>());
 
@@ -56,6 +51,11 @@ namespace SimuNEX
             }
 
             outputs = new float[NumOutputs];
+
+            if (TryGetComponent(out DynamicSystem dyn))
+            {
+                dyn.sensorSystem = this;
+            }
         }
 
         /// <summary>

@@ -41,11 +41,6 @@ namespace SimuNEX
         /// </summary>
         public void UpdateActuatorList()
         {
-            if (TryGetComponent(out DynamicSystem dyn))
-            {
-                dyn.actuatorSystem = this;
-            }
-
             rigidBody = GetComponent<RigidBody>();
             actuators = new List<Actuator>(GetComponentsInChildren<Actuator>());
 
@@ -57,6 +52,12 @@ namespace SimuNEX
             }
 
             inputs = new float[NumInputs];
+
+            if (TryGetComponent(out DynamicSystem dyn))
+            {
+                dyn.actuatorSystem = this;
+                dyn.receivedData = new float[inputs.Length];
+            }
         }
 
         /// <summary>
