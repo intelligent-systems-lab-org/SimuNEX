@@ -51,6 +51,7 @@ namespace SimuNEX
             {
                 this.actuatorSystem = actuatorSystem;
                 this.actuatorSystem.UpdateActuatorList();
+                receivedData = new float[actuatorSystem.inputs.Length];
             }
 
             if (TryGetComponent(out SensorSystem sensorSystem))
