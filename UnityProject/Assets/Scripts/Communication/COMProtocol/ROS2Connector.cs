@@ -1,14 +1,12 @@
 using ROS2;
 using std_msgs.msg;
 using System;
-using UnityEngine;
 
 namespace SimuNEX.Communication.Protocols
 {
     /// <summary>
     /// Provides an interface for SimuNEX to connect and communicate with ROS2.
     /// </summary>
-    [ExecuteInEditMode]
     public class ROS2Connector : COMProtocol
     {
         /// <summary>
@@ -19,12 +17,12 @@ namespace SimuNEX.Communication.Protocols
         /// <summary>
         /// Node dedicated to sending out ROS2 messages.
         /// </summary>
-        public ROS2Node outputNode;
+        private ROS2Node outputNode;
 
         /// <summary>
         /// Node dedicated to listening to incoming ROS2 messages.
         /// </summary>
-        public ROS2Node inputNode;
+        private ROS2Node inputNode;
 
         /// <summary>
         /// Name of the node responsible for listening to ROS2 messages.
@@ -59,7 +57,7 @@ namespace SimuNEX.Communication.Protocols
         /// <summary>
         /// Adds the necessary components to the game object if they do not already exist.
         /// </summary>
-        public void Setup()
+        public override void Setup()
         {
             if (TryGetComponent(out ROS2UnityComponent ros2UnityComponent))
             {
@@ -73,14 +71,10 @@ namespace SimuNEX.Communication.Protocols
 
         public override void Initialize()
         {
-            Setup();
-
-            if (Application.isPlaying) {
-                if (ros2Unity.Ok())
-                {
-                    outputNode ??= ros2Unity.CreateNode(outputNodeName);
-                    inputNode ??= ros2Unity.CreateNode(inputNodeName);
-                }
+            if (ros2Unity.Ok())
+            {
+                outputNode ??= ros2Unity.CreateNode(outputNodeName);
+                inputNode ??= ros2Unity.CreateNode(inputNodeName);
             }
         }
 

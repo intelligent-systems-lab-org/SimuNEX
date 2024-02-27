@@ -12,7 +12,17 @@ namespace SimuNEX.Communication
         /// </summary>
         public abstract void Initialize();
 
-        protected void Start() => Initialize();
+        /// <summary>
+        /// Adds the necessary components if they do not already exist.
+        /// </summary>
+        public abstract void Setup();
+
+        protected void OnValidate() => Setup();
+
+        protected void Start() {
+            Setup();
+            Initialize();
+        }
 
         /// <summary>
         /// Sends data using the talker.
