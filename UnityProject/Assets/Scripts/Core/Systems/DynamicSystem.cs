@@ -1,6 +1,4 @@
 using System.Text;
-using SimuNEX.Actuators;
-using SimuNEX.Sensors;
 using UnityEngine;
 
 namespace SimuNEX
@@ -166,6 +164,10 @@ namespace SimuNEX
             }
         }
 
+        /// <summary>
+        /// Outputs a detailed description of the <see cref="DynamicSystem"/> object.
+        /// </summary>
+        /// <returns>The outputted info which contains details about the <see cref="DynamicSystem"/>.</returns>
         public override string ToString()
         {
             StringBuilder builder = new();
@@ -174,20 +176,17 @@ namespace SimuNEX
 
             if (actuatorSystem != null)
             {
-                builder.AppendLine($"   - ActuatorSystem ({actuatorSystem.actuators.Count})");
-                foreach (Actuator actuator in actuatorSystem.actuators)
-                {
-                    builder.AppendLine($"         - {actuator.GetType().Name}");
-                }
+                // Using ActuatorSystem's ToString method
+                // adding indentation for hierarchical display 
+                // and adjusting indentation for nested structure
+                builder.Append("   ");
+                builder.AppendLine(actuatorSystem.ToString().Replace("\n", "\n   ")); 
             }
 
             if (sensorSystem != null)
             {
-                builder.AppendLine($"   - SensorSystem ({sensorSystem.sensors.Count})");
-                foreach (Sensor sensor in sensorSystem.sensors)
-                {
-                    builder.AppendLine($"         - {sensor.GetType().Name}");
-                }
+                builder.Append("   ");
+                builder.AppendLine(sensorSystem.ToString().Replace("\n", "\n   "));
             }
 
             if (dynamics != null)

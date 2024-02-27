@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using SimuNEX.Mechanical;
 using SimuNEX.Actuators;
@@ -93,5 +94,19 @@ namespace SimuNEX
             }
             SetActuatorInputs();
         }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new();
+            builder.AppendLine($"ActuatorSystem ({actuators.Count} actuators):");
+
+            foreach (Actuator actuator in actuators)
+            {
+                builder.AppendLine($"   - {actuator.GetType().Name}, InputSize: {actuator.inputSize}");
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
     }
 }

@@ -2,6 +2,7 @@ using SimuNEX.Mechanical;
 using SimuNEX.Sensors;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace SimuNEX
@@ -65,6 +66,23 @@ namespace SimuNEX
                 Array.Copy(currentSensorOutputs, 0, outputs, idx, currentSensorOutputs.Length);
                 idx += currentSensorOutputs.Length;
             }
+        }
+
+        /// <summary>
+        /// Outputs a detailed description of the SensorSystem object.
+        /// </summary>
+        /// <returns>The outputted info which contains details about the SensorSystem.</returns>
+        public override string ToString()
+        {
+            StringBuilder builder = new();
+            builder.AppendLine($"SensorSystem ({sensors.Count} sensors):");
+
+            foreach (Sensor sensor in sensors)
+            {
+                builder.AppendLine($"   - {sensor.GetType().Name}, OutputSize: {sensor.outputSize}");
+            }
+
+            return builder.ToString().TrimEnd();
         }
     }
 }
