@@ -1,3 +1,6 @@
+using System.Text;
+using SimuNEX.Actuators;
+using SimuNEX.Sensors;
 using UnityEngine;
 
 namespace SimuNEX
@@ -161,6 +164,45 @@ namespace SimuNEX
             {
                 receivedData[i] = 0;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new();
+
+            builder.AppendLine("- DynamicSystem");
+
+            if (actuatorSystem != null)
+            {
+                builder.AppendLine($"   - ActuatorSystem ({actuatorSystem.actuators.Count})");
+                foreach (Actuator actuator in actuatorSystem.actuators)
+                {
+                    builder.AppendLine($"         - {actuator.GetType().Name}");
+                }
+            }
+
+            if (sensorSystem != null)
+            {
+                builder.AppendLine($"   - SensorSystem ({sensorSystem.sensors.Count})");
+                foreach (Sensor sensor in sensorSystem.sensors)
+                {
+                    builder.AppendLine($"         - {sensor.GetType().Name}");
+                }
+            }
+
+            if (dynamics != null)
+            {
+                builder.AppendLine($"   - Dynamics - {dynamics.GetType().Name}");
+            }
+
+            if (comSystem != null)
+            {
+                builder.AppendLine("   - COMSystem");
+                string protocolType = comSystem.protocol != null ? comSystem.protocol.GetType().Name : "None";
+                builder.AppendLine($"      - COMProtocol - {protocolType}");
+            }
+
+            return builder.ToString();
         }
     }
 }
