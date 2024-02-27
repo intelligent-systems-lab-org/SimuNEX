@@ -51,11 +51,6 @@ namespace SimuNEX
             }
 
             outputs = new float[NumOutputs];
-
-            if (TryGetComponent(out DynamicSystem dyn))
-            {
-                dyn.sensorSystem = this;
-            }
         }
 
         /// <summary>

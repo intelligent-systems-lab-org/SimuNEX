@@ -6,6 +6,7 @@ namespace SimuNEX
     /// <summary>
     /// Supervisory component for communication.
     /// </summary>
+    [DisallowMultipleComponent]
     public class COMSystem : MonoBehaviour
     {
         /// <summary>

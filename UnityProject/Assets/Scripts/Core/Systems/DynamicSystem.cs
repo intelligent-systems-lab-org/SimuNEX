@@ -42,35 +42,26 @@ namespace SimuNEX
         /// </summary>
         public void Setup()
         {
-            if (dynamics == null)
+            if (TryGetComponent(out Dynamics dynamics))
             {
-                dynamics = GetComponent<Dynamics>();
+                this.dynamics = dynamics;
             }
 
-            if (actuatorSystem == null)
+            if (TryGetComponent(out ActuatorSystem actuatorSystem))
             {
-                actuatorSystem = GetComponent<ActuatorSystem>();
+                this.actuatorSystem = actuatorSystem;
+                this.actuatorSystem.UpdateActuatorList();
             }
 
-            if (actuatorSystem != null)
+            if (TryGetComponent(out SensorSystem sensorSystem))
             {
-                actuatorSystem.UpdateActuatorList();
-                receivedData = new float[actuatorSystem.inputs.Length];
+                this.sensorSystem = sensorSystem;
+                this.sensorSystem.UpdateSensorList();
             }
 
-            if (sensorSystem == null)
+            if (TryGetComponent(out COMSystem comSystem))
             {
-                sensorSystem = GetComponent<SensorSystem>();
-            }
-
-            if (sensorSystem != null)
-            {
-                sensorSystem.UpdateSensorList();
-            }
-
-            if (comSystem == null)
-            {
-                comSystem = GetComponent<COMSystem>();
+                this.comSystem = comSystem;
             }
         }
 

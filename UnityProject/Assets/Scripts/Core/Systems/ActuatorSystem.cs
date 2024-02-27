@@ -52,12 +52,6 @@ namespace SimuNEX
             }
 
             inputs = new float[NumInputs];
-
-            if (TryGetComponent(out DynamicSystem dyn))
-            {
-                dyn.actuatorSystem = this;
-                dyn.receivedData = new float[inputs.Length];
-            }
         }
 
         /// <summary>
