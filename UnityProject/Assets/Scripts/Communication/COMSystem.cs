@@ -13,7 +13,13 @@ namespace SimuNEX
         /// </summary>
         public COMProtocol protocol;
 
-        protected void OnValidate()
+        protected void OnValidate() => Setup();
+        protected void OnEnable() => Setup();
+
+        /// <summary>
+        /// Sets up the <see cref="protocol"/> object.
+        /// </summary>
+        public void Setup() 
         {
             protocol = GetComponent<COMProtocol>();
         }

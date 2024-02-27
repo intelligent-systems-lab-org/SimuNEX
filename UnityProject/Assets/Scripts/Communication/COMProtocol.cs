@@ -12,10 +12,7 @@ namespace SimuNEX.Communication
         /// </summary>
         public abstract void Initialize();
 
-        protected void Awake()
-        {
-            Initialize();
-        }
+        protected void Start() => Initialize();
 
         /// <summary>
         /// Sends data using the talker.

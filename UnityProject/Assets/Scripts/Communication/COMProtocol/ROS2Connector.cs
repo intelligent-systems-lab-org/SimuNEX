@@ -8,7 +8,7 @@ namespace SimuNEX.Communication.Protocols
     /// <summary>
     /// Provides an interface for SimuNEX to connect and communicate with ROS2.
     /// </summary>
-    [RequireComponent(typeof(ROS2UnityComponent))]
+    [ExecuteInEditMode]
     public class ROS2Connector : COMProtocol
     {
         /// <summary>
@@ -56,14 +56,31 @@ namespace SimuNEX.Communication.Protocols
         /// </summary>
         private ISubscription<Float32MultiArray> inputSubscriber;
 
+        /// <summary>
+        /// Adds the necessary components to the game object if they do not already exist.
+        /// </summary>
+        public void Setup()
+        {
+            if (TryGetComponent(out ROS2UnityComponent ros2UnityComponent))
+            {
+                ros2Unity = ros2UnityComponent;
+            }
+            else
+            {
+                ros2Unity = gameObject.AddComponent<ROS2UnityComponent>();
+            }
+        }
+
         public override void Initialize()
         {
-            ros2Unity = GetComponent<ROS2UnityComponent>();
+            Setup();
 
-            if (ros2Unity.Ok())
-            {
-                outputNode ??= ros2Unity.CreateNode(outputNodeName);
-                inputNode ??= ros2Unity.CreateNode(inputNodeName);
+            if (Application.isPlaying) {
+                if (ros2Unity.Ok())
+                {
+                    outputNode ??= ros2Unity.CreateNode(outputNodeName);
+                    inputNode ??= ros2Unity.CreateNode(inputNodeName);
+                }
             }
         }
 
