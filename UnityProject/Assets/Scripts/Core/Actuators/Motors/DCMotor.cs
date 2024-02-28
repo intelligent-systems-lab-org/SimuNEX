@@ -53,7 +53,7 @@ namespace SimuNEX.Actuators
             voltage = value[0];
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             // Convert physical parameters to 1st order TF parameters
             float timeConstant()

@@ -14,7 +14,7 @@ namespace SimuNEX
 
             // Foldouts
             string[] parameterNames = serializedObject.DrawFoldout<ParameterAttribute>("ParametersExpanded", "Parameters");
-            string[] outputNames = serializedObject.DrawFoldout<OutputAttribute>("InputsExpanded", "Outputs");
+            string[] outputNames = serializedObject.DrawFoldout<OutputAttribute>("OutputsExpanded", "Outputs");
             string[] solverNames = serializedObject.DrawFoldout<SolverAttribute>("SolverExpanded", "Solvers");
             string[] omittedNames = serializedObject.targetObject
                 .GetFieldsWithAttribute<OmittableAttribute>(includePrivate: true, applyOmitLogic: false)

@@ -364,6 +364,11 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
+  enableSFX: 0
+  propellerSFX: {fileID: 0}
+  startupSFX: {fileID: 0}
+  shutdownSFX: {fileID: 0}
+  flowDirection: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
 --- !u!1 &2561734333488696745
@@ -480,6 +485,11 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
+  enableSFX: 0
+  propellerSFX: {fileID: 0}
+  startupSFX: {fileID: 0}
+  shutdownSFX: {fileID: 0}
+  flowDirection: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
 --- !u!1 &2818866878331278515
@@ -615,7 +625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faults: []
   rigidBody: {fileID: 5995511627637507719}
-  outputNames:
+  <OutputNames>k__BackingField:
   - Quadcopter X Velocity
   - Quadcopter Z Velocity
   - Quadcopter Y Velocity
@@ -650,7 +660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faults: []
   rigidBody: {fileID: 5995511627637507719}
-  outputNames:
+  <OutputNames>k__BackingField:
   - Back Left Propeller Speed
   motorSpeed: 0
   motorPosition: 0
@@ -679,7 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faults: []
   rigidBody: {fileID: 5995511627637507719}
-  outputNames:
+  <OutputNames>k__BackingField:
   - Back Right Propeller Speed
   motorSpeed: 0
   motorPosition: 0
@@ -708,7 +718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faults: []
   rigidBody: {fileID: 5995511627637507719}
-  outputNames:
+  <OutputNames>k__BackingField:
   - Front Left Propeller Speed
   motorSpeed: 0
   motorPosition: 0
@@ -737,7 +747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faults: []
   rigidBody: {fileID: 5995511627637507719}
-  outputNames:
+  <OutputNames>k__BackingField:
   - Front Right Propeller Speed
   motorSpeed: 0
   motorPosition: 0
@@ -897,6 +907,11 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
+  enableSFX: 0
+  propellerSFX: {fileID: 0}
+  startupSFX: {fileID: 0}
+  shutdownSFX: {fileID: 0}
+  flowDirection: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
 --- !u!1 &5282863310284906046
@@ -1123,6 +1138,11 @@ MonoBehaviour:
   _speed: 0
   loadInertia: 0.5
   loadDamping: 0
+  enableSFX: 0
+  propellerSFX: {fileID: 0}
+  startupSFX: {fileID: 0}
+  shutdownSFX: {fileID: 0}
+  flowDirection: 0
   thrustCoefficient: 0.0000188865
   torqueCoefficient: 0.000011
 --- !u!1 &6506281918243838403
@@ -1340,12 +1360,12 @@ GameObject:
   - component: {fileID: 8214148604704887133}
   - component: {fileID: 3071117602607612381}
   - component: {fileID: 5995511627637507719}
-  - component: {fileID: 932807715222619118}
-  - component: {fileID: 6631078503300786394}
   - component: {fileID: 2611228371683169070}
-  - component: {fileID: 3557526124541540560}
-  - component: {fileID: 4129175050938211646}
-  - component: {fileID: 1834080306364851028}
+  - component: {fileID: 7534727243376232461}
+  - component: {fileID: 6218095635778948785}
+  - component: {fileID: 4117635829452782997}
+  - component: {fileID: 9093345583303915897}
+  - component: {fileID: 4590964141766732646}
   m_Layer: 0
   m_Name: Quadcopter
   m_TagString: Untagged
@@ -1382,7 +1402,7 @@ Rigidbody:
   m_Mass: 0.13
   m_Drag: 0
   m_AngularDrag: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_CenterOfMass: {x: 0, y: 0.16062343, z: 0}
   m_InertiaTensor: {x: 0.005, y: 0.009, z: 0.005}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -1391,7 +1411,7 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
+  m_ImplicitCom: 0
   m_ImplicitTensor: 0
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -1411,9 +1431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dynamics: {fileID: 5995511627637507719}
-  actuatorSystem: {fileID: 932807715222619118}
-  sensorSystem: {fileID: 6631078503300786394}
-  comSystem: {fileID: 1834080306364851028}
+  actuatorSystem: {fileID: 6218095635778948785}
+  sensorSystem: {fileID: 7534727243376232461}
+  comSystem: {fileID: 4590964141766732646}
   receivedData: []
 --- !u!114 &5995511627637507719
 MonoBehaviour:
@@ -1428,6 +1448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 8214148604704887133}
+  COM: {fileID: 7505561513377841643}
   forces: []
   appliedForce:
     linear: {x: 0, y: 0, z: 0}
@@ -1441,43 +1462,9 @@ MonoBehaviour:
   initialVelocity:
     linear: {x: 0, y: 0, z: 0}
     angular: {x: 0, y: 0, z: 0}
---- !u!114 &932807715222619118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1691c3dbc2e659d4c8a019d249bebc2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actuators:
-  - {fileID: 3591390733453324182}
-  - {fileID: 2373451612687255671}
-  - {fileID: 5290145487412587084}
-  - {fileID: 6776586109098935137}
-  inputs: []
---- !u!114 &6631078503300786394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898428389020535635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensors:
-  - {fileID: 4883061469072057648}
-  - {fileID: 3011489618110827443}
-  - {fileID: 271912348052366067}
-  - {fileID: 9020256483454760767}
-  - {fileID: 4971806525275137639}
-  outputs: []
+  initialPose:
+    position: {x: 0, y: 0.20062344, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!114 &2611228371683169070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,24 +1502,24 @@ MonoBehaviour:
       - 0
       - 0
       - 0
-      - 0.05
+      - 0.1
       - 0
       - 0
       - 0
       - 0
       - 0
       - 0
-      - 0.05
+      - 0.1
       - 0
       - 0
       - 0
       - 0
       - 0
       - 0
-      - 0.05
+      - 0.1
       _serializedRows: 6
       _serializedCols: 6
---- !u!114 &3557526124541540560
+--- !u!114 &7534727243376232461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1541,10 +1528,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 8898428389020535635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3695d7dbd512f9b41b9d46e9e651e8d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 130d84d26d12cfd4f9bfef18adbeed7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4129175050938211646
+  sensors:
+  - {fileID: 4883061469072057648}
+  - {fileID: 3011489618110827443}
+  - {fileID: 271912348052366067}
+  - {fileID: 9020256483454760767}
+  - {fileID: 4971806525275137639}
+  outputs: []
+--- !u!114 &6218095635778948785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1691c3dbc2e659d4c8a019d249bebc2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actuators:
+  - {fileID: 3591390733453324182}
+  - {fileID: 2373451612687255671}
+  - {fileID: 5290145487412587084}
+  - {fileID: 6776586109098935137}
+  inputs: []
+--- !u!114 &4117635829452782997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1556,12 +1568,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea4d0a9b68240b4c84d18e2e95c0722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ros2Unity: {fileID: 3557526124541540560}
+  ros2Unity: {fileID: 9093345583303915897}
   outputNodeName: SimuNEXROS2Listener
   inputNodeName: SimuNEXROS2Talker
   publisherName: SystemOutputs
   subscriberName: SystemInputs
---- !u!114 &1834080306364851028
+--- !u!114 &9093345583303915897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898428389020535635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3695d7dbd512f9b41b9d46e9e651e8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4590964141766732646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1573,4 +1597,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e26d9785ee89d4ab9ec9b4172a4f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  protocol: {fileID: 4129175050938211646}
+  protocol: {fileID: 4117635829452782997}

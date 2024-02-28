@@ -1,4 +1,5 @@
 using System.Text;
+using SimuNEX.Mechanical;
 using UnityEngine;
 
 namespace SimuNEX
@@ -11,9 +12,9 @@ namespace SimuNEX
     public class DynamicSystem : MonoBehaviour
     {
         /// <summary>
-        /// Dynamics object that represents the model's dynamic behavior.
+        /// System that represents the model's dynamic behavior.
         /// </summary>
-        public Dynamics dynamics;
+        public RigidBody rigidBody;
 
         /// <summary>
         /// Represents the actuation system controlling the dynamics.
@@ -35,7 +36,7 @@ namespace SimuNEX
         /// </summary>
         public float[] receivedData;
 
-        protected void Awake() => Setup();
+        protected void Start() => Setup();
         protected void OnValidate() => Setup();
 
         /// <summary>
@@ -43,9 +44,9 @@ namespace SimuNEX
         /// </summary>
         public void Setup()
         {
-            if (TryGetComponent(out Dynamics dynamics))
+            if (TryGetComponent(out RigidBody rigidBody))
             {
-                this.dynamics = dynamics;
+                this.rigidBody = rigidBody;
             }
 
             if (TryGetComponent(out ActuatorSystem actuatorSystem))
@@ -139,9 +140,9 @@ namespace SimuNEX
         /// </summary>
         private void HandleDynamics()
         {
-            if (dynamics != null)
+            if (rigidBody != null)
             {
-                dynamics.Step();
+                rigidBody.Step();
             }
         }
 
@@ -153,19 +154,19 @@ namespace SimuNEX
             if (actuatorSystem != null)
             {
                 actuatorSystem.ResetAll();
+                for (int i = 0; i < receivedData.Length; i++)
+                {
+                    receivedData[i] = 0;
+                }
             }
-            if (dynamics != null)
+            if (rigidBody != null)
             {
-                dynamics.Reset();
-            }
-            for (int i = 0; i < receivedData.Length; i++)
-            {
-                receivedData[i] = 0;
+                rigidBody.ResetAll();
             }
         }
 
         /// <summary>
-        /// Outputs a detailed description of the <see cref="DynamicSystem"/> object.
+        /// Outputs a detailed description of the <see cref="DynamicSystem"/>.
         /// </summary>
         /// <returns>The outputted info which contains details about the <see cref="DynamicSystem"/>.</returns>
         public override string ToString()
@@ -189,9 +190,9 @@ namespace SimuNEX
                 builder.AppendLine(sensorSystem.ToString().Replace("\n", "\n   "));
             }
 
-            if (dynamics != null)
+            if (rigidBody != null)
             {
-                builder.AppendLine($"   - Dynamics - {dynamics.GetType().Name}");
+                builder.AppendLine($"   - Dynamics - {rigidBody.GetType().Name}");
             }
 
             if (comSystem != null)

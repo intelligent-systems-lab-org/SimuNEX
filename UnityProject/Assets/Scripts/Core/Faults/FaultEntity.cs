@@ -7,9 +7,9 @@ using UnityEngine;
 namespace SimuNEX
 {
     /// <summary>
-    /// Adds faults to a supported system.
+    /// Adds fault functionality to a <see cref="MonoBehaviour"/>.
     /// </summary>
-    public class FaultSystem : MonoBehaviour
+    public class FaultEntity : MonoBehaviour
     {
         /// <summary>
         /// List of faults present in the system.
@@ -21,7 +21,7 @@ namespace SimuNEX
         /// </summary>
         protected FieldInfo[] faultables;
 
-        protected void Start()
+        protected void Awake()
         {
             faultables = this.GetFieldsWithAttribute<FaultableAttribute>(includePrivate: true);
         }

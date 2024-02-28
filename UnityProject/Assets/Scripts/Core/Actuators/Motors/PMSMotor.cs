@@ -65,7 +65,7 @@ namespace SimuNEX.Actuators
             dAxisVoltage = value[1];
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             stateSpace = new LinearStateSpace
             (

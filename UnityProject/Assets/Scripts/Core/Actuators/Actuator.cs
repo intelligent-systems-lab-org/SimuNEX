@@ -6,7 +6,7 @@ namespace SimuNEX.Actuators
     /// <summary>
     /// Interface for implementing actuator-based systems.
     /// </summary>
-    public abstract class Actuator : FaultSystem
+    public abstract class Actuator : FaultEntity, IDynamics
     {
         /// <summary>
         /// <see cref="RigidBody"/> object that the actuator is attached to.
@@ -14,7 +14,7 @@ namespace SimuNEX.Actuators
         public RigidBody rigidBody;
 
         /// <summary>
-        /// Inputs to the actuator.
+        /// Inputs to the <see cref="Actuator"/>.
         /// </summary>
         public Func<float[]> inputs;
 
@@ -24,7 +24,7 @@ namespace SimuNEX.Actuators
         public string[] inputNames;
 
         /// <summary>
-        /// Parameters specific to the actuator.
+        /// Parameters specific to the <see cref="Actuator"/>.
         /// </summary>
         public Func<float[]> parameters;
 
@@ -36,7 +36,7 @@ namespace SimuNEX.Actuators
         /// <summary>
         /// Sets up properties and defines the actuator's function for simulation.
         /// </summary>
-        protected abstract void Initialize();
+        public abstract void Initialize();
 
         /// <summary>
         /// Gets all inputs specific to the <see cref="Actuator"/>.
@@ -53,10 +53,22 @@ namespace SimuNEX.Actuators
         /// <summary>
         /// Initializes the <see cref="inputs"/> and <see cref="parameters"/> array.
         /// </summary>
-        public void InitializeVariables()
+        public void MapVariables()
         {
             this.InitializeVariables<InputAttribute>(out inputs);
             this.InitializeVariables<ParameterAttribute>(out parameters);
+        }
+
+        protected void OnValidate()
+        {
+            MapVariables();
+            Initialize();
+        }
+
+        protected void Start()
+        {
+            MapVariables();
+            Initialize();
         }
 
         /// <summary>
@@ -82,5 +94,13 @@ namespace SimuNEX.Actuators
         /// Applies constraints to the output values.
         /// </summary>
         protected abstract void ConstraintsStep();
+
+        /// <summary>
+        /// Work in progress
+        /// </summary>
+        public void ResetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

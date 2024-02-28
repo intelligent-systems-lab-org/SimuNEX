@@ -6,12 +6,17 @@ namespace SimuNEX.Mechanical
 {
     [RequireComponent(typeof(Rigidbody))]
     [DisallowMultipleComponent]
-    public class RigidBody : Dynamics
+    public class RigidBody : MonoBehaviour, IDynamics
     {
         /// <summary>
         /// Handles physics simulation.
         /// </summary>
         public Rigidbody body;
+
+        /// <summary>
+        /// Center of mass of the <see cref="RigidBody"/>.
+        /// </summary>
+        public Transform COM = default;
 
         /// <summary>
         /// Active forces that are attached to the <see cref="RigidBody"/>
@@ -71,7 +76,7 @@ namespace SimuNEX.Mechanical
         /// <summary>
         /// Applies initial conditions at the start of the physics simulation.
         /// </summary>
-        protected override void Initialize()
+        public void Initialize()
         {
             body.AddForce(initialVelocity.linear, ForceMode.VelocityChange);
             body.AddTorque(initialVelocity.angular, ForceMode.VelocityChange);
@@ -91,6 +96,11 @@ namespace SimuNEX.Mechanical
             body.useGravity = false;
             body.drag = 0;
             body.angularDrag = 0;
+
+            if (COM != null) 
+            { 
+                body.centerOfMass = COM.position;
+            }
 
             initialPose = new(position, angularPosition);
         }
@@ -166,7 +176,7 @@ namespace SimuNEX.Mechanical
             AddTorque(Vector3.Cross(f, transform.InverseTransformPoint(pos)));
         }
 
-        public override void Step()
+        public void Step()
         {
             _velocity = new Vector6DOF(body.velocity, body.angularVelocity).ToBCF(transform);
             _kineticEnergy = kineticEnergy;
@@ -252,7 +262,7 @@ namespace SimuNEX.Mechanical
         /// <summary>
         /// Resets position, rotation, and velocities to their defaults.
         /// </summary>
-        public override void Reset()
+        public void ResetAll()
         {
             body.velocity = initialVelocity.linear;
             body.angularVelocity = initialVelocity.angular;

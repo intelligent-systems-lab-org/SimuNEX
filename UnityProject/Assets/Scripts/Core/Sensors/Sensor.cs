@@ -1,12 +1,13 @@
 using SimuNEX.Mechanical;
 using System;
+using UnityEngine;
 
 namespace SimuNEX.Sensors
 {
     /// <summary>
     /// Interface for implementing sensor-based systems.
     /// </summary>
-    public abstract class Sensor : FaultSystem
+    public abstract class Sensor : FaultEntity, IDynamics
     {
         /// <summary>
         /// <see cref="RigidBody"/> object that the sensor is attached to.
@@ -14,17 +15,18 @@ namespace SimuNEX.Sensors
         public RigidBody rigidBody;
 
         /// <summary>
-        /// Inputs to the sensor.
+        /// Outputs of the <see cref="Sensor"/>.
         /// </summary>
         protected Func<float[]> outputs;
 
         /// <summary>
         /// Names of output values.
         /// </summary>
-        public string[] outputNames;
+        [field: SerializeField]
+        public string[] OutputNames { get; set; }
 
         /// <summary>
-        /// Parameters specific to the sensor.
+        /// Parameters specific to the <see cref="Sensor"/>.
         /// </summary>
         public Func<float[]> parameters;
 
@@ -36,7 +38,19 @@ namespace SimuNEX.Sensors
         /// <summary>
         /// Sets up properties and defines the sensor's function for simulation.
         /// </summary>
-        protected abstract void Initialize();
+        public abstract void Initialize();
+
+        protected void OnValidate() 
+        {
+            MapVariables();
+            Initialize();
+        }
+
+        protected void Start()
+        {
+            MapVariables();
+            Initialize();
+        }
 
         /// <summary>
         /// Gets all outputs specific to the <see cref="Sensor"/>.
@@ -67,10 +81,18 @@ namespace SimuNEX.Sensors
         /// <summary>
         /// Initializes the <see cref="outputs"/> and <see cref="parameters"/> array.
         /// </summary>
-        public void InitializeVariables()
+        public void MapVariables()
         {
             this.InitializeVariables<OutputAttribute>(out outputs, Step);
             this.InitializeVariables<ParameterAttribute>(out parameters);
+        }
+
+        /// <summary>
+        /// Work in progress
+        /// </summary>
+        public void ResetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

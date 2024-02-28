@@ -63,16 +63,7 @@ namespace SimuNEX.Actuators
         /// <returns>The output angular velocity.</returns>
         public abstract float MotorFunction(Func<float[]> inputs, Func<float[]> parameters);
 
-        protected void OnValidate()
-        {
-            InitializeVariables();
-            Initialize();
-        }
-
-        /// <summary>
-        /// Locates <see cref="RigidBody"/> and initializes <see cref="integrator"/>.
-        /// </summary>
-        public void SetUp()
+        protected void OnEnable()
         {
             if (TryGetComponent(out motorLoad))
             {
@@ -89,14 +80,6 @@ namespace SimuNEX.Actuators
             }
 
             integrator = new(solverMethod: positionSolver);
-
-            InitializeVariables();
-            Initialize();
-        }
-
-        protected void OnEnable()
-        {
-            SetUp();
         }
 
         protected void OnDisable()

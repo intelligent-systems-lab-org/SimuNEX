@@ -34,7 +34,7 @@ namespace SimuNEX
         private int NumOutputs;
 
         protected void OnValidate() => UpdateSensorList();
-        protected void Awake() => UpdateSensorList();
+        protected void OnEnable() => UpdateSensorList();
 
         /// <summary>
         /// Obtains the current list of attached <see cref="Sensor"/> objects.
@@ -69,9 +69,9 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// Outputs a detailed description of the SensorSystem object.
+        /// Outputs a detailed description of the <see cref="SensorSystem"/>.
         /// </summary>
-        /// <returns>The outputted info which contains details about the SensorSystem.</returns>
+        /// <returns>The outputted info which contains details about the <see cref="SensorSystem"/>.</returns>
         public override string ToString()
         {
             StringBuilder builder = new();

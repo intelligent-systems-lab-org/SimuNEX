@@ -35,7 +35,7 @@ namespace SimuNEX
         private int NumInputs;
 
         protected void OnValidate() => UpdateActuatorList();
-        protected void Awake() => UpdateActuatorList();
+        protected void OnEnable() => UpdateActuatorList();
 
         /// <summary>
         /// Obtains the current list of attached <see cref="Actuator"/> objects.
@@ -95,6 +95,10 @@ namespace SimuNEX
             SetActuatorInputs();
         }
 
+        /// <summary>
+        /// Outputs a detailed description of the <see cref="ActuatorSystem"/>.
+        /// </summary>
+        /// <returns>The outputted info which contains details about the <see cref="ActuatorSystem"/>.</returns>
         public override string ToString()
         {
             StringBuilder builder = new();
