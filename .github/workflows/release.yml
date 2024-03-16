@@ -47,7 +47,6 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: ${{steps.changelog.outputs.skipped == 'false'}}
       env:
-        # This token is provided by Actions, you do not need to create your own token
         GITHUB_TOKEN: ${{ env.GH_TOKEN }}
       with:
           tag_name: ${{ steps.changelog.outputs.tag }}
