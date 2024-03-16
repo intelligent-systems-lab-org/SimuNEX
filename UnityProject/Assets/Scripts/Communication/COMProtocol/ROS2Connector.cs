@@ -1,14 +1,12 @@
 using ROS2;
 using std_msgs.msg;
 using System;
-using UnityEngine;
 
 namespace SimuNEX.Communication.Protocols
 {
     /// <summary>
     /// Provides an interface for SimuNEX to connect and communicate with ROS2.
     /// </summary>
-    [RequireComponent(typeof(ROS2UnityComponent))]
     public class ROS2Connector : COMProtocol
     {
         /// <summary>
@@ -19,12 +17,12 @@ namespace SimuNEX.Communication.Protocols
         /// <summary>
         /// Node dedicated to sending out ROS2 messages.
         /// </summary>
-        public ROS2Node outputNode;
+        private ROS2Node outputNode;
 
         /// <summary>
         /// Node dedicated to listening to incoming ROS2 messages.
         /// </summary>
-        public ROS2Node inputNode;
+        private ROS2Node inputNode;
 
         /// <summary>
         /// Name of the node responsible for listening to ROS2 messages.
@@ -56,10 +54,23 @@ namespace SimuNEX.Communication.Protocols
         /// </summary>
         private ISubscription<Float32MultiArray> inputSubscriber;
 
+        /// <summary>
+        /// Adds the necessary components to the game object if they do not already exist.
+        /// </summary>
+        public override void Setup()
+        {
+            if (TryGetComponent(out ROS2UnityComponent ros2UnityComponent))
+            {
+                ros2Unity = ros2UnityComponent;
+            }
+            else
+            {
+                ros2Unity = gameObject.AddComponent<ROS2UnityComponent>();
+            }
+        }
+
         public override void Initialize()
         {
-            ros2Unity = GetComponent<ROS2UnityComponent>();
-
             if (ros2Unity.Ok())
             {
                 outputNode ??= ros2Unity.CreateNode(outputNodeName);

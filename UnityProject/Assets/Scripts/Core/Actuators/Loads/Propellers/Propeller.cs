@@ -10,10 +10,81 @@ namespace SimuNEX.Loads
     public abstract class Propeller : MotorLoad
     {
         /// <summary>
+        /// Main SFX when the propeller is spinning.
+        /// </summary>
+        [SFX]
+        public AudioSource propellerSFX;
+
+        /// <summary>
+        /// SFX when the propeller is starting and shutting down.
+        /// </summary>
+        [SFX]
+        public AudioClip startupSFX, shutdownSFX;
+
+        /// <summary>
+        /// Audio gain multiplied by the propeller speed.
+        /// </summary>
+        [SFX]
+        private float volumeFactor = 1 / 200f;
+
+        /// <summary>
+        /// False is the propeller speed is 0, true otherwise. Active when SFX if enabled.
+        /// </summary>
+        [SFX]
+        private bool isSpinning = false;
+
+        /// <summary>
+        /// Direction that the fluid acts across the moving body.
+        /// </summary>
+        public Direction flowDirection;
+
+        new protected void OnValidate()
+        {
+            FindSpinnerTransforms();
+            propellerSFX = GetComponent<AudioSource>();
+        }
+
+        protected override void HandleSFX()
+        {
+            if (enableSFX)
+            {
+                if (_speed != 0)
+                {
+                    if (!isSpinning)
+                    {
+                        propellerSFX.PlayOneShot(startupSFX);
+                        propellerSFX.PlayScheduled(AudioSettings.dspTime + startupSFX.length);
+                    }
+                    isSpinning = true;
+                    propellerSFX.volume = Mathf.Abs(_speed) * volumeFactor;
+                }
+                else
+                {
+                    if (isSpinning)
+                    {
+                        propellerSFX.Stop();
+                        propellerSFX.PlayOneShot(shutdownSFX, 1f);
+                    }
+                    isSpinning = false;
+                }
+            }
+            else if (!enableSFX && isSpinning) 
+            {
+                propellerSFX.Stop();
+                isSpinning = false;
+            }
+        }
+
+        /// <summary>
         /// Specialized forces for propellers.
         /// </summary>
         public abstract class PropellerForce : Force
         {
+            /// <summary>
+            /// Returns the current direction that fluid flows across the moving body.
+            /// </summary>
+            protected Func<Direction> flowDirection;
+
             /// <summary>
             /// Propeller rotational speed.
             /// </summary>
@@ -52,8 +123,12 @@ namespace SimuNEX.Loads
             {
                 Vector3 _normal = normal();
                 outputs = PropellerFunction(propellerSpeed, parameters);
+
+                // Determine the _torque direction based on the flow direction, transformed to the body frame
+                Vector3 torqueDirection = rigidBody.transform.TransformDirection(flowDirection().ToVector());
+
                 rigidBody.AddLinearForceAtPosition(_normal * outputs[0], positionCallback());
-                rigidBody.AddTorque(_normal * outputs[1]);
+                rigidBody.AddTorque(torqueDirection * outputs[1]);
             }
 
             /// <summary>
@@ -65,6 +140,7 @@ namespace SimuNEX.Loads
                 normal = () => propeller.normal;
                 positionCallback = () => propeller.transform.position;
                 propellerSpeed = () => propeller.motorOutput;
+                flowDirection = () => propeller.flowDirection;
             }
         }
     }

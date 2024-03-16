@@ -15,9 +15,12 @@ namespace SimuNEX
             // Parameters foldout
             string[] parameterNames = serializedObject.DrawFoldout<ParameterAttribute>("ParametersExpanded", "Parameters");
 
+            // SFX foldout
+            string[] sfxNames = serializedObject.DrawFoldout<SFXAttribute>("SFXExpanded", "SFX");
+
             // Other properties
             string[] removedProperties = new string[] { "m_Script" };
-            DrawPropertiesExcluding(serializedObject, parameterNames.Concat(removedProperties).ToArray());
+            DrawPropertiesExcluding(serializedObject, parameterNames.Concat(sfxNames).Concat(removedProperties).ToArray());
 
             _ = serializedObject.ApplyModifiedProperties();
         }

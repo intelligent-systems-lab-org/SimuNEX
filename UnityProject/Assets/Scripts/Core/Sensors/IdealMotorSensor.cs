@@ -59,7 +59,7 @@ namespace SimuNEX.Sensors
         [SerializeReference]
         public ODESolver solver;
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             if (motor != null)
             {
@@ -90,7 +90,7 @@ namespace SimuNEX.Sensors
 
             if (readPosition && readTorque)
             {
-                outputNames = (new string[]
+                OutputNames = (new string[]
                 {
                     $"{motorName} {loadName} Speed",
                     $"{motorName} {loadName} Position",
@@ -99,7 +99,7 @@ namespace SimuNEX.Sensors
             }
             else
             {
-                outputNames = readTorque && !readPosition
+                OutputNames = readTorque && !readPosition
                     ? (new string[]
                                 {
                                     $"{motorName} {loadName} Speed",
@@ -113,12 +113,6 @@ namespace SimuNEX.Sensors
                                                 })
                                     : (new string[] { $"{motorName} {loadName} Speed" });
             }
-        }
-
-        protected void OnEnable()
-        {
-            InitializeVariables();
-            Initialize();
         }
 
         protected override void ComputeStep()

@@ -86,12 +86,12 @@ internal class ROS2ForUnity
         string appDataPath = Application.dataPath;
         string pluginPath = appDataPath;
 
+        pluginPath += separator + "Plugins";
+
         if (InEditor()) {
             // Ros2ForUnity is now inside the Plugins folder
-            pluginPath += separator + "Plugins";
+            pluginPath += separator + ros2ForUnityAssetFolderName;
         }
-
-        pluginPath += separator + ros2ForUnityAssetFolderName;
 
         if (InEditor()) {
             pluginPath += separator + GetOSName();

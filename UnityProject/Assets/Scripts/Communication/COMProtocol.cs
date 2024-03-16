@@ -12,8 +12,15 @@ namespace SimuNEX.Communication
         /// </summary>
         public abstract void Initialize();
 
-        protected void Awake()
-        {
+        /// <summary>
+        /// Adds the necessary components if they do not already exist.
+        /// </summary>
+        public abstract void Setup();
+
+        protected void OnValidate() => Setup();
+
+        protected void Start() {
+            Setup();
             Initialize();
         }
 

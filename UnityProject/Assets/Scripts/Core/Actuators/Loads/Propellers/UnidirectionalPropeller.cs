@@ -48,7 +48,7 @@ namespace SimuNEX.Loads
             {
                 float _speed = speed();
                 float thrust = parameters()[0] * _speed * _speed;
-                float torque = parameters()[1] * _speed * Mathf.Abs(_speed);
+                float torque = -parameters()[1] * _speed * Mathf.Abs(_speed);
                 return new float[] { thrust, torque };
             }
         }

@@ -1,5 +1,5 @@
 Get Started
-===============
+===========
 
 To begin using SimuNEX for building and simulating dynamic systems, follow the steps outlined below. Make sure Unity is installed on your machine and get ready to clone the repository to start.
 
