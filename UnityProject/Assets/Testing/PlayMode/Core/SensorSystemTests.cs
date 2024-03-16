@@ -19,9 +19,9 @@ namespace CoreTests
             [Output]
             public float[] values;
 
-            protected override void Initialize()
+            public override void Initialize()
             {
-                InitializeVariables();
+                MapVariables();
             }
 
             public float[] Outputs
@@ -34,16 +34,6 @@ namespace CoreTests
             /// </summary>
             protected override void ComputeStep()
             {
-            }
-
-            protected void OnValidate()
-            {
-                Initialize();
-            }
-
-            protected void Awake()
-            {
-                Initialize();
             }
         }
 

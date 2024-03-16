@@ -59,9 +59,9 @@ namespace SimuNEX.Sensors
             "Y Position"
         };
 
-        protected override void Initialize()
+        public override void Initialize()
         {
-            outputNames = GenerateOutputNames();
+            OutputNames = GenerateOutputNames();
         }
 
         /// <summary>
@@ -85,18 +85,6 @@ namespace SimuNEX.Sensors
             }
 
             return generatedNames;
-        }
-
-        protected void OnEnable()
-        {
-            InitializeVariables();
-            Initialize();
-        }
-
-        protected void OnValidate()
-        {
-            InitializeVariables();
-            Initialize();
         }
 
         protected override void ComputeStep()

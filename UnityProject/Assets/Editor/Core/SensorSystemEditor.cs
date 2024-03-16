@@ -35,14 +35,14 @@ namespace SimuNEX
                     int outputIndex = 0;
                     foreach (Sensor sensor in sensorSystem.sensors)
                     {
-                        if (sensor.outputNames != null)
+                        if (sensor.OutputNames != null)
                         {
-                            for (int i = 0; i < sensor.outputNames.Length; i++)
+                            for (int i = 0; i < sensor.OutputNames.Length; i++)
                             {
                                 if (outputIndex < sensorSystem.outputs.Length)
                                 {
                                     EditorGUILayout.BeginHorizontal();
-                                    EditorGUILayout.LabelField(sensor.outputNames[i], GUILayout.ExpandWidth(true));
+                                    EditorGUILayout.LabelField(sensor.OutputNames[i], GUILayout.ExpandWidth(true));
                                     sensorSystem.outputs[outputIndex] = EditorGUILayout.FloatField
                                     (
                                         sensorSystem.outputs[outputIndex],

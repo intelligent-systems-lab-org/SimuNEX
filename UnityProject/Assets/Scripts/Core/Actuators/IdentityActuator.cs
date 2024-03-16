@@ -1,3 +1,4 @@
+using System;
 using SimuNEX.Loads;
 
 namespace SimuNEX.Actuators
@@ -24,15 +25,9 @@ namespace SimuNEX.Actuators
         /// </summary>
         public Load load;
 
-        public override void SetInput(float[] value) => input = value[0];
+        public override void SetInputs(float[] value) => input = value[0];
 
-        protected void Awake()
-        {
-            InitializeVariables();
-            Initialize();
-        }
-
-        protected override void Initialize()
+        public override void Initialize()
         {
             if (TryGetComponent(out load))
             {
@@ -76,6 +71,7 @@ namespace SimuNEX.Actuators
 
         protected override void ConstraintsStep()
         {
+            throw new NotImplementedException();
         }
     }
 }

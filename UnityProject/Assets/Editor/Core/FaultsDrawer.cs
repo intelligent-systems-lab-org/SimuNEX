@@ -42,7 +42,7 @@ namespace SimuNEX
 
         public static void DrawFaultAddition(this SerializedObject serializedObject)
         {
-            FaultSystem faultSystem = serializedObject.targetObject as FaultSystem;
+            FaultEntity faultSystem = serializedObject.targetObject as FaultEntity;
 
             const string editorPrefsKey = "FaultsExpanded";
             string uniqueKey = serializedObject.GetHashCode() + editorPrefsKey;
@@ -120,7 +120,7 @@ namespace SimuNEX
             Debug.Log("Adding fault of type: " + faultType.Name);
 
             Fault newFault = Factory<Fault>.Create(faultType);
-            FaultSystem faultSystem = serializedObject.targetObject as FaultSystem;
+            FaultEntity faultSystem = serializedObject.targetObject as FaultEntity;
 
             if (faultSystem != null)
             {

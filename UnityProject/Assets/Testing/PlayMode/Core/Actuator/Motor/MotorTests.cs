@@ -70,7 +70,6 @@ namespace ActuatorTests.Motors
         public IEnumerator BaseTests()
         {
             dynamicSystem.Setup();
-            testMotor.SetUp();
             testLoad.enabled = false;
 
             InitializeMotor();

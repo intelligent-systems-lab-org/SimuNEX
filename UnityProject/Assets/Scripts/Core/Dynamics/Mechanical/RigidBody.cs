@@ -6,12 +6,17 @@ namespace SimuNEX.Mechanical
 {
     [RequireComponent(typeof(Rigidbody))]
     [DisallowMultipleComponent]
-    public class RigidBody : Dynamics
+    public class RigidBody : MonoBehaviour, IDynamics
     {
         /// <summary>
         /// Handles physics simulation.
         /// </summary>
         public Rigidbody body;
+
+        /// <summary>
+        /// Center of mass of the <see cref="RigidBody"/>.
+        /// </summary>
+        public Transform COM = default;
 
         /// <summary>
         /// Active forces that are attached to the <see cref="RigidBody"/>
@@ -57,6 +62,11 @@ namespace SimuNEX.Mechanical
         /// </summary>
         public Vector6DOF initialVelocity = new();
 
+        /// <summary>
+        /// Pose at the start of simulation.
+        /// </summary>
+        public Pose initialPose = new();
+
         protected void OnEnable()
         {
             Setup();
@@ -66,7 +76,7 @@ namespace SimuNEX.Mechanical
         /// <summary>
         /// Applies initial conditions at the start of the physics simulation.
         /// </summary>
-        protected override void Initialize()
+        public void Initialize()
         {
             body.AddForce(initialVelocity.linear, ForceMode.VelocityChange);
             body.AddTorque(initialVelocity.angular, ForceMode.VelocityChange);
@@ -86,6 +96,13 @@ namespace SimuNEX.Mechanical
             body.useGravity = false;
             body.drag = 0;
             body.angularDrag = 0;
+
+            if (COM != null) 
+            { 
+                body.centerOfMass = COM.position;
+            }
+
+            initialPose = new(position, angularPosition);
         }
 
         public float mass
@@ -159,7 +176,7 @@ namespace SimuNEX.Mechanical
             AddTorque(Vector3.Cross(f, transform.InverseTransformPoint(pos)));
         }
 
-        public override void Step()
+        public void Step()
         {
             _velocity = new Vector6DOF(body.velocity, body.angularVelocity).ToBCF(transform);
             _kineticEnergy = kineticEnergy;
@@ -241,5 +258,15 @@ namespace SimuNEX.Mechanical
         public float power
             => Vector3.Dot(appliedForce.linear, _velocity.linear) +
                 Vector3.Dot(appliedForce.angular, _velocity.angular);
+
+        /// <summary>
+        /// Resets position, rotation, and velocities to their defaults.
+        /// </summary>
+        public void ResetAll()
+        {
+            body.velocity = initialVelocity.linear;
+            body.angularVelocity = initialVelocity.angular;
+            transform.SetPositionAndRotation(initialPose.position, initialPose.rotation);
+        }
     }
 }

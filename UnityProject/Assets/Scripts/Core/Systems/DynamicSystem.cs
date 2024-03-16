@@ -1,3 +1,5 @@
+using System.Text;
+using SimuNEX.Mechanical;
 using UnityEngine;
 
 namespace SimuNEX
@@ -10,9 +12,9 @@ namespace SimuNEX
     public class DynamicSystem : MonoBehaviour
     {
         /// <summary>
-        /// Dynamics object that represents the model's dynamic behavior.
+        /// System that represents the model's dynamic behavior.
         /// </summary>
-        public Dynamics dynamics;
+        public RigidBody rigidBody;
 
         /// <summary>
         /// Represents the actuation system controlling the dynamics.
@@ -34,57 +36,39 @@ namespace SimuNEX
         /// </summary>
         public float[] receivedData;
 
-        protected void OnEnable()
-        {
-            Setup();
-        }
-
-        protected void OnValidate()
-        {
-            Setup();
-        }
+        protected void Start() => Setup();
+        protected void OnValidate() => Setup();
 
         /// <summary>
         /// Automatically attaches all found components to the system.
         /// </summary>
         public void Setup()
         {
-            if (dynamics == null)
+            if (TryGetComponent(out RigidBody rigidBody))
             {
-                dynamics = GetComponent<Dynamics>();
+                this.rigidBody = rigidBody;
             }
 
-            if (actuatorSystem == null)
+            if (TryGetComponent(out ActuatorSystem actuatorSystem))
             {
-                actuatorSystem = GetComponent<ActuatorSystem>();
-            }
-
-            if (actuatorSystem != null)
-            {
-                actuatorSystem.UpdateActuatorList();
+                this.actuatorSystem = actuatorSystem;
+                this.actuatorSystem.UpdateActuatorList();
                 receivedData = new float[actuatorSystem.inputs.Length];
             }
 
-            if (sensorSystem == null)
+            if (TryGetComponent(out SensorSystem sensorSystem))
             {
-                sensorSystem = GetComponent<SensorSystem>();
+                this.sensorSystem = sensorSystem;
+                this.sensorSystem.UpdateSensorList();
             }
 
-            if (sensorSystem != null)
+            if (TryGetComponent(out COMSystem comSystem))
             {
-                sensorSystem.UpdateSensorList();
-            }
-
-            if (comSystem == null)
-            {
-                comSystem = GetComponent<COMSystem>();
+                this.comSystem = comSystem;
             }
         }
 
-        protected void FixedUpdate()
-        {
-            Step();
-        }
+        protected void FixedUpdate() => Step();
 
         /// <summary>
         /// Updates each component at the current timestep.
@@ -156,10 +140,69 @@ namespace SimuNEX
         /// </summary>
         private void HandleDynamics()
         {
-            if (dynamics != null)
+            if (rigidBody != null)
             {
-                dynamics.Step();
+                rigidBody.Step();
             }
+        }
+
+        /// <summary>
+        /// Resets all actuators, system states, and message data to their defaults.
+        /// </summary>
+        protected void Reset()
+        {
+            if (actuatorSystem != null)
+            {
+                actuatorSystem.ResetAll();
+                for (int i = 0; i < receivedData.Length; i++)
+                {
+                    receivedData[i] = 0;
+                }
+            }
+            if (rigidBody != null)
+            {
+                rigidBody.ResetAll();
+            }
+        }
+
+        /// <summary>
+        /// Outputs a detailed description of the <see cref="DynamicSystem"/>.
+        /// </summary>
+        /// <returns>The outputted info which contains details about the <see cref="DynamicSystem"/>.</returns>
+        public override string ToString()
+        {
+            StringBuilder builder = new();
+
+            builder.AppendLine("- DynamicSystem");
+
+            if (actuatorSystem != null)
+            {
+                // Using ActuatorSystem's ToString method
+                // adding indentation for hierarchical display 
+                // and adjusting indentation for nested structure
+                builder.Append("   ");
+                builder.AppendLine(actuatorSystem.ToString().Replace("\n", "\n   ")); 
+            }
+
+            if (sensorSystem != null)
+            {
+                builder.Append("   ");
+                builder.AppendLine(sensorSystem.ToString().Replace("\n", "\n   "));
+            }
+
+            if (rigidBody != null)
+            {
+                builder.AppendLine($"   - Dynamics - {rigidBody.GetType().Name}");
+            }
+
+            if (comSystem != null)
+            {
+                builder.AppendLine("   - COMSystem");
+                string protocolType = comSystem.protocol != null ? comSystem.protocol.GetType().Name : "None";
+                builder.AppendLine($"      - COMProtocol - {protocolType}");
+            }
+
+            return builder.ToString();
         }
     }
 }

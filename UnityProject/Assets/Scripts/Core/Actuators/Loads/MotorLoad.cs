@@ -46,11 +46,26 @@ namespace SimuNEX.Loads
         public float loadDamping;
 
         /// <summary>
+        /// Turns SFX on or off.
+        /// </summary>
+        [SFX]
+        public bool enableSFX;
+
+        /// <summary>
         /// Set up forces, properties, etc. for simulation.
         /// </summary>
         protected abstract void Initialize();
 
         protected void Update()
+        {
+            HandleAnimation();
+            HandleSFX();
+        }
+
+        /// <summary>
+        /// Animates spinner associated with the <see cref="MotorLoad"/>.
+        /// </summary>
+        protected virtual void HandleAnimation()
         {
             // Scale Time.deltaTime based on motorSpeed
             float scaledDeltaTime = Time.deltaTime * Mathf.Abs(_speed);
@@ -59,6 +74,11 @@ namespace SimuNEX.Loads
             Quaternion increment = Quaternion.Euler(_speed * rad2deg * scaledDeltaTime * spinnerNormal);
             spinnerObject.localRotation *= increment;
         }
+
+        /// <summary>
+        /// Handles SFX associated with the <see cref="MotorLoad"/>.
+        /// </summary>
+        protected virtual void HandleSFX() { }
 
         /// <summary>
         /// Attaches a <see cref="Force"/> to the <see cref="RigidBody"/>.
@@ -106,7 +126,7 @@ namespace SimuNEX.Loads
         /// <summary>
         /// Locates mesh of spinning object which should be an immediate child of the GameObject this script would be attached to.
         /// </summary>
-        private void FindSpinnerTransforms()
+        protected void FindSpinnerTransforms()
         {
             Transform[] transforms = GetComponentsInChildren<Transform>();
             if (transforms.Length > 1)

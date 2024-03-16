@@ -89,7 +89,6 @@ namespace SensorTests
             testLoad.enabled = false;
             testLoad.enabled = true;
 
-            testMotor.SetUp();
             testMotor.voltage = inputVoltage;
 
             motorSensor.enabled = true;
