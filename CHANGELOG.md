@@ -1,3 +1,7 @@
+## [0.6.0](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.5.3...v0.6.0) (2023-3-16)
+
+
+
 ## [0.5.3](https://github.com/intelligent-systems-lab-org/SimuNEX/compare/v0.5.2...v0.5.3) (2023-11-19)
 
 
