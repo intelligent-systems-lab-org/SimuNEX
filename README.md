@@ -131,14 +131,10 @@ To build the Docker image and run the container (making the documentation availa
 |---------------|---------|--------------|---------|--------------------------|
 | ROS2ForUnity  | 1.1.0   | Windows, Linux | Communication using ROS 2[^1]  | [link](https://github.com/RobotecAI/ros2-for-unity) |
 | Eigen         | 3.4.0   | Windows[^2] | For matrix operations      | [link](https://gitlab.com/libeigen/eigen)           |
-| ErrorProne.NET.CoreAnalyzers        | 0.1.2 | Windows | For code analysis and Roslyn support[^3] | [link](https://www.nuget.org/packages/ErrorProne.NET.CoreAnalyzers/) |
-| NSubstitute (**experimental**)   | 5.1.0   | Windows, Linux | For mock testing | [link](https://www.nuget.org/packages/NSubstitute) |
 
 [^1]: Currently on Foxy installations only.
 
 [^2]: Custom C# bindings that only currently support Windows. Separately maintained in another repository. See [here](https://github.com/intelligent-systems-lab-org/eigen).
-
-[^3]: Functions with Visual Studio 2022.
 
 ### ROS on Windows
  ROS 2 was tested on Windows, the ROSOnWindows binary was installed, which can be found [here](https://ms-iot.github.io/ROSOnWindows/GettingStarted/SetupRos2.html). This binary is provided by Microsoft's IoT team and is designed to simplify the installation process for ROS 2 on Windows. Credit should be given to the ms-iot team for their work on the binary, and their repository can be found [here](https://github.com/ms-iot/rosonwindows/).
