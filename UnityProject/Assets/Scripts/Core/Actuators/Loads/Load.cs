@@ -1,3 +1,5 @@
+using SimuNEX.Mechanical;
+using SimuNEX.Actuators;
 using System;
 using UnityEngine;
 
@@ -16,7 +18,7 @@ namespace SimuNEX.Loads
         /// <summary>
         /// Attached <see cref="RigidBody"/> to apply forces to.
         /// </summary>
-        public Mechanical.RigidBody rigidBody;
+        public RigidBody rigidBody;
 
         /// <summary>
         /// Attaches an <see cref="Actuator"/>.

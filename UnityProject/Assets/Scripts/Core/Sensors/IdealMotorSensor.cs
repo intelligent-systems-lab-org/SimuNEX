@@ -126,6 +126,8 @@ namespace SimuNEX.Sensors
                     stateSpace.inputs[0, 0] = acceleration;
                     stateSpace.Compute();
 
+                    // If a MotorLoad object is provided, use its position as the measured position
+                    // Otherwise, use the position from the state space (position of the motor's EM field's rotation)
                     motorPosition = motor.motorLoad != null ?
                         motor.motorLoad.normalizedAngle
                         : stateSpace.states[0, 0] % 2 * MathF.PI;
