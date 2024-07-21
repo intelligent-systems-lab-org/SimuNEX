@@ -29,7 +29,7 @@ namespace SimuNEX
         public static Type[] GetAvailableTypes(bool includeNested = true, bool includeOnlyPublic = false)
         {
             return Assembly.GetAssembly(typeof(T)).GetTypes()
-                .Where(t => t.IsSubclassOf(typeof(T))
+                .Where(t => typeof(T).IsAssignableFrom(t)
                     && !t.IsAbstract
                     && (!includeOnlyPublic || t.IsPublic)
                     && (includeNested || !t.IsNested))
