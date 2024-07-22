@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,86 +5,39 @@ namespace SimuNEX
 {
     public interface IModel
     {
-        IModelPort[] ports { get; }
+        IEnumerable<IModelOutput> outports { get; }
+        IEnumerable<IModelInput> inports { get; }
         IBehavioral behavorial { get; }
     }
 
     public abstract class Model : MonoBehaviour, IModel
     {
         /// <summary>
-        /// Ports associated with the model.
+        /// Inputs to the <see cref="Model"/>.
         /// </summary>
-        protected List<IModelPort> _ports = new();
+        protected List<IModelInput> _inports = new();
 
-        private bool _portsInitialized;
+        /// <summary>
+        /// Outputs to the <see cref="Model"/>.
+        /// </summary>
+        protected List<IModelOutput> _outports = new();
 
         /// <summary>
         /// Returns all output ports.
         /// </summary>
-        public IEnumerable<IModelOutput> outports
-        {
-            get
-            {
-                foreach (IModelPort port in _ports)
-                {
-                    if (port is IModelOutput outport)
-                    {
-                        yield return outport;
-                    }
-                }
-            }
-        }
+        public IEnumerable<IModelOutput> outports => _outports.AsReadOnly();
 
         /// <summary>
         /// Returns all input ports.
         /// </summary>
-        public IEnumerable<IModelInput> inports
-        {
-            get
-            {
-                foreach (IModelPort port in _ports)
-                {
-                    if (port is IModelInput inport)
-                    {
-                        yield return inport;
-                    }
-                }
-            }
-        }
+        public IEnumerable<IModelInput> inports => _inports.AsReadOnly();
 
-        /// <summary>
-        /// Defines the ports the <see cref="Model"/> has.
-        /// </summary>
-        public abstract IModelPort[] ports { get; }
+        protected void PortMap()
+        {
+            _outports.AddRange(behavorial.states);
+            _inports.AddRange(behavorial.inputs);
+        }
 
         public abstract IBehavioral behavorial { get; }
-
-        public void Init()
-        {
-            InitPorts();
-        }
-
-        /// <summary>
-        /// Initializes the ports for the model.
-        /// </summary>
-        /// <exception cref="InvalidOperationException">Throws if no ports are specified.</exception>
-        public void InitPorts()
-        {
-            if (!_portsInitialized)
-            {
-                if (ports == null || ports.Length == 0)
-                {
-                    throw new InvalidOperationException("Derived classes must specify at least one port.");
-                }
-
-                _ports.AddRange(ports);
-                _portsInitialized = true;
-            }
-        }
-
-        protected void Awake()
-        {
-            Init();
-        }
     }
 }
