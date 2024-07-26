@@ -32,16 +32,31 @@ namespace SimuNEX
         /// </summary>
         Signal signal { get; set; }
 
+        /// <summary>
+        /// The data in the port.
+        /// </summary>
         object data { get; set; }
     }
 
+    /// <summary>
+    /// Interface for implementing output ports in <see cref="Model"/>.
+    /// </summary>
     public interface IModelOutput
     {
+        /// <summary>
+        /// The data in the port.
+        /// </summary>
         object data { get; set; }
     }
 
+    /// <summary>
+    /// Interface for implementing input ports in <see cref="Model"/>.
+    /// </summary>
     public interface IModelInput
     {
+        /// <summary>
+        /// The data in the port.
+        /// </summary>
         object data { get; set; }
     }
 }

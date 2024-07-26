@@ -3,41 +3,30 @@ using UnityEngine;
 
 namespace SimuNEX
 {
-    public interface IModel
-    {
-        IEnumerable<IModelOutput> outports { get; }
-        IEnumerable<IModelInput> inports { get; }
-        IBehavioral behavorial { get; }
-    }
-
     public abstract class Model : MonoBehaviour, IModel
     {
         /// <summary>
-        /// Inputs to the <see cref="Model"/>.
-        /// </summary>
-        protected List<IModelInput> _inports = new();
-
-        /// <summary>
-        /// Outputs to the <see cref="Model"/>.
-        /// </summary>
-        protected List<IModelOutput> _outports = new();
-
-        /// <summary>
         /// Returns all output ports.
         /// </summary>
-        public IEnumerable<IModelOutput> outports => _outports.AsReadOnly();
+        public IModelOutput[] outports => outputs.ToArray();
 
         /// <summary>
         /// Returns all input ports.
         /// </summary>
-        public IEnumerable<IModelInput> inports => _inports.AsReadOnly();
+        public IModelInput[] inports => inputs.ToArray();
 
-        protected void PortMap()
-        {
-            _outports.AddRange(behavorial.states);
-            _inports.AddRange(behavorial.inputs);
-        }
+        /// <summary>
+        /// The outputs of the <see cref="Model"/>.
+        /// </summary>
+        protected List<IModelOutput> outputs = new();
 
-        public abstract IBehavioral behavorial { get; }
+        /// <summary>
+        /// The inputs to the <see cref="Model"/>.
+        /// </summary>
+        protected List<IModelInput> inputs = new();
+
+        public delegate void ModelFunction(IModelInput[] inputs, ref IModelOutput[] outputs);
+
+        protected abstract ModelFunction modelFunction { get; }
     }
 }

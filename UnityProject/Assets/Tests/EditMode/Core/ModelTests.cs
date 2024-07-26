@@ -1,8 +1,6 @@
-using SimuNEX;
 using NUnit.Framework;
-using System.Collections.Generic;
+using SimuNEX;
 using UnityEngine;
-using System.Linq;
 
 namespace CoreTests
 {
@@ -10,17 +8,30 @@ namespace CoreTests
     {
         public class TestModel : Model
         {
-            public override IModelPort[] ports => new IModelPort[]
+            public TestModel()
             {
-                new ModelOutput<float>("floatO"),
-                new ModelOutput<int>("intO"),
-                new ModelOutput<Vector3>("Vector3O"),
-                new ModelOutput<Quaternion>("QuaternionO"),
-                new ModelInput<float>("floatI"),
-                new ModelInput<int>("intI")
-            };
+                outputs = new
+                (
+                    new IModelOutput[]
+                    {
+                        new ModelOutput<float>("floatO"),
+                        new ModelOutput<int>("intO"),
+                        new ModelOutput<Vector3>("Vector3O"),
+                        new ModelOutput<Quaternion>("QuaternionO")
+                    }
+                );
 
-            public override IBehavioral behavorial => null;
+                inputs = new
+                (
+                    new IModelInput[]
+                    {
+                        new ModelInput<float>("floatI"),
+                        new ModelInput<int>("intI")
+                    }
+                );
+            }
+
+            protected override ModelFunction modelFunction => throw new System.NotImplementedException();
         }
 
         [Test]
@@ -29,18 +40,17 @@ namespace CoreTests
             // Assign
             GameObject gameObject = new();
             TestModel model = gameObject.AddComponent<TestModel>();
-            model.Init();
 
             // Act
-            List<IModelOutput> outports = model.outports.ToList();
-            List<IModelInput> inports = model.inports.ToList();
+            IModelOutput[] outports = model.outports;
+            IModelInput[] inports = model.inports;
 
             // Assert
             // Verify number of added outputs
-            Assert.AreEqual(4, outports.Count);
+            Assert.AreEqual(4, outports.Length);
 
             // Verify number of added inputs
-            Assert.AreEqual(2, inports.Count);
+            Assert.AreEqual(2, inports.Length);
 
             // Verify ports
             Assert.IsTrue(outports[0] is ModelOutput<float>);

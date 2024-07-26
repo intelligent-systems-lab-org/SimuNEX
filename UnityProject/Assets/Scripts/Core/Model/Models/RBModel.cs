@@ -1,3 +1,5 @@
+using SimuNEX.Mechanical;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SimuNEX
@@ -8,13 +10,62 @@ namespace SimuNEX
     [RequireComponent(typeof(Rigidbody))]
     public class RBModel : Model
     {
-        public override IBehavioral behavorial => new RB(this);
+        public List<Force> forces = new();
 
-        public RB rigidBody;
+        public Rigidbody body;
 
-        protected void OnEnable()
+        protected void Awake()
         {
-            rigidBody = behavorial as RB;
+            if (TryGetComponent(out Rigidbody body))
+            {
+                this.body = body;
+            }
+        }
+
+        public RBModel()
+        {
+            outputs = new
+            (
+                new IModelOutput[]
+                {
+                    new ModelOutput<Vector3>("velocity", Signal.Mechanical),
+                    new ModelOutput<Vector3>("angular_velocity", Signal.Mechanical),
+                    new ModelOutput<Vector3>("position", Signal.Mechanical),
+                    new ModelOutput<Quaternion>("angular_position", Signal.Mechanical)
+                }
+            );
+
+            inputs = new
+            (
+                new IModelInput[] { new ModelInput<Vector6DOF>("forces", Signal.Mechanical) }
+            );
+        }
+
+        protected override ModelFunction modelFunction =>
+            (IModelInput[] _, ref IModelOutput[] outputs) =>
+            {
+                outputs[0].data = body.velocity;
+                outputs[1].data = body.angularVelocity;
+                outputs[2].data = body.transform.position;
+                outputs[3].data = body.transform.rotation;
+            };
+
+        /// <summary>
+        /// Attaches a force to the <see cref="RBModel"/>.
+        /// </summary>
+        /// <param name="force">Force to be attached.</param>
+        public void AttachForce(Force force)
+        {
+            forces.Add(force);
+        }
+
+        /// <summary>
+        /// Removes a force to the <see cref="RBModel"/>.
+        /// </summary>
+        /// <param name="force">Force to be removed.</param>
+        public void RemoveForce(Force force)
+        {
+            _ = forces.Remove(force);
         }
     }
 }
