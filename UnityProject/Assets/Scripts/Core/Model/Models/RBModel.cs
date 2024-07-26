@@ -42,7 +42,7 @@ namespace SimuNEX
         }
 
         protected override ModelFunction modelFunction =>
-            (IModelInput[] _, ref IModelOutput[] outputs) =>
+            (IModelInput[] _, IModelOutput[] outputs) =>
             {
                 outputs[0].data = body.velocity;
                 outputs[1].data = body.angularVelocity;

@@ -25,7 +25,7 @@ namespace SimuNEX
         /// </summary>
         protected List<IModelInput> inputs = new();
 
-        public delegate void ModelFunction(IModelInput[] inputs, ref IModelOutput[] outputs);
+        public delegate void ModelFunction(IModelInput[] inputs, IModelOutput[] outputs);
 
         protected abstract ModelFunction modelFunction { get; }
     }

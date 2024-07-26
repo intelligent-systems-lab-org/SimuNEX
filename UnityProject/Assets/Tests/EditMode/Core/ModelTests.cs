@@ -6,8 +6,12 @@ namespace CoreTests
 {
     public class ModelTests
     {
+        TestModel model;
+
         public class TestModel : Model
         {
+            public void RunModel() => modelFunction(inports, outports);
+
             public TestModel()
             {
                 outputs = new
@@ -31,16 +35,25 @@ namespace CoreTests
                 );
             }
 
-            protected override ModelFunction modelFunction => throw new System.NotImplementedException();
+            protected override ModelFunction modelFunction =>
+                (IModelInput[] inputs, IModelOutput[] outputs) =>
+                {
+                    outputs[0].data = inputs[0].data;
+                    outputs[1].data = (int)inputs[1].data == 1 ? 1 : 0;
+                };
+        }
+
+        [SetUp]
+        public void Setup()
+        {
+            // Assign
+            GameObject gameObject = new();
+            model = gameObject.AddComponent<TestModel>();
         }
 
         [Test]
         public void TestPorts()
         {
-            // Assign
-            GameObject gameObject = new();
-            TestModel model = gameObject.AddComponent<TestModel>();
-
             // Act
             IModelOutput[] outports = model.outports;
             IModelInput[] inports = model.inports;
@@ -60,6 +73,31 @@ namespace CoreTests
 
             Assert.IsTrue(inports[0] is ModelInput<float>);
             Assert.IsTrue(inports[1] is ModelInput<int>);
+        }
+
+        [Test]
+        public void TestModelFunction()
+        {
+            // Assign
+            model.inports[0].data = 31f;
+            model.inports[1].data = 1;
+
+            // Act
+            model.RunModel();
+
+            // Assert
+            Assert.AreEqual(model.outports[0].data, 31f);
+            Assert.AreEqual(model.outports[1].data, 1);
+
+            // Second Run
+            System.Random rand = new();
+            model.inports[0].data = (float)rand.NextDouble();
+            model.inports[1].data = rand.Next(1, 100);
+
+            model.RunModel();
+
+            Assert.AreEqual(model.outports[0].data, model.inports[0].data);
+            Assert.AreEqual(model.outports[1].data, 0);
         }
     }
 }
