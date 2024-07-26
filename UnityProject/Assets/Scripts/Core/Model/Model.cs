@@ -28,5 +28,32 @@ namespace SimuNEX
         public delegate void ModelFunction(IModelInput[] inputs, IModelOutput[] outputs);
 
         protected abstract ModelFunction modelFunction { get; }
+
+        /// <summary>
+        /// Gets a test model for testing .
+        /// </summary>
+        /// <returns>TestModel instance.</returns>
+        public TestModel GetTestModel()
+        {
+            return new TestModel(this);
+        }
+
+        public class TestModel
+        {
+            private readonly Model model;
+
+            internal TestModel(Model model)
+            {
+                this.model = model;
+            }
+
+            /// <summary>
+            /// Tests the model function.
+            /// </summary>
+            public void TestModelFunction()
+            {
+                model.modelFunction(model.inports, model.outports);
+            }
+        }
     }
 }

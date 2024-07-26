@@ -6,13 +6,11 @@ namespace CoreTests
 {
     public class ModelTests
     {
-        TestModel model;
+        ExampleModel model;
 
-        public class TestModel : Model
+        public class ExampleModel : Model
         {
-            public void RunModel() => modelFunction(inports, outports);
-
-            public TestModel()
+            public ExampleModel()
             {
                 outputs = new
                 (
@@ -48,7 +46,7 @@ namespace CoreTests
         {
             // Assign
             GameObject gameObject = new();
-            model = gameObject.AddComponent<TestModel>();
+            model = gameObject.AddComponent<ExampleModel>();
         }
 
         [Test]
@@ -82,8 +80,10 @@ namespace CoreTests
             model.inports[0].data = 31f;
             model.inports[1].data = 1;
 
+            Model.TestModel testModel = model.GetTestModel();
+
             // Act
-            model.RunModel();
+            testModel.TestModelFunction();
 
             // Assert
             Assert.AreEqual(model.outports[0].data, 31f);
@@ -94,7 +94,7 @@ namespace CoreTests
             model.inports[0].data = (float)rand.NextDouble();
             model.inports[1].data = rand.Next(1, 100);
 
-            model.RunModel();
+            testModel.TestModelFunction();
 
             Assert.AreEqual(model.outports[0].data, model.inports[0].data);
             Assert.AreEqual(model.outports[1].data, 0);
