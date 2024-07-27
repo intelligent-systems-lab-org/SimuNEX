@@ -9,7 +9,7 @@ namespace SimuNEX
     /// Represents a 6-degree-of-freedom vector in 3D space.
     /// </summary>
     [Serializable]
-    public partial class Vector6DOF
+    public partial struct Vector6DOF
     {
         /// <summary>
         /// Gets or sets the linear component of the vector.

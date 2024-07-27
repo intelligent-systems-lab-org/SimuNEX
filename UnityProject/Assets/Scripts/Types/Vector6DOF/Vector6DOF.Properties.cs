@@ -2,7 +2,7 @@ using System;
 
 namespace SimuNEX
 {
-    public partial class Vector6DOF
+    public partial struct Vector6DOF
     {
         /// <summary>
         /// Returns the transpose of the vector as a row matrix.

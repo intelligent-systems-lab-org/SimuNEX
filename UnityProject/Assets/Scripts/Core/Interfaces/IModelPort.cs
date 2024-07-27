@@ -23,11 +23,6 @@ namespace SimuNEX
         string name { get; }
 
         /// <summary>
-        /// Data size of the signal.
-        /// </summary>
-        int size { get; }
-
-        /// <summary>
         /// The domain of the data.
         /// </summary>
         Signal signal { get; set; }
@@ -35,7 +30,7 @@ namespace SimuNEX
         /// <summary>
         /// The data in the port.
         /// </summary>
-        object data { get; set; }
+        float[] data { get; set; }
     }
 
     /// <summary>
@@ -46,7 +41,7 @@ namespace SimuNEX
         /// <summary>
         /// The data in the port.
         /// </summary>
-        object data { get; set; }
+        float[] data { get; set; }
     }
 
     /// <summary>
@@ -57,6 +52,6 @@ namespace SimuNEX
         /// <summary>
         /// The data in the port.
         /// </summary>
-        object data { get; set; }
+        float[] data { get; set; }
     }
 }

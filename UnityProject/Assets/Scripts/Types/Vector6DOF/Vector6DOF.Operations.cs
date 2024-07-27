@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SimuNEX
 {
-    public partial class Vector6DOF
+    public partial struct Vector6DOF
     {
         /// <summary>
         /// Adds two <see cref="Vector6DOF"/> instances together.

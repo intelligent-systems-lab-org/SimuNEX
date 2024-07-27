@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SimuNEX
 {
-    public partial class Vector6DOF
+    public partial struct Vector6DOF
     {
         /// <summary>
         /// Returns a string representation of the vector in the format of a 6-element float vector.

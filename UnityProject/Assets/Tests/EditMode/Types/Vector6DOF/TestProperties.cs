@@ -170,7 +170,7 @@ namespace Vector6DOFTests
             _ = Assert.Throws<InvalidOperationException>(() => v3["u v w p q r"] = "[1; 2; 3; 4; 5; 6; 7]");
 
             Vector6DOF v4 = new();
-            _ = Assert.Throws<NotSupportedException>(() => v3["u v w x q r"] = "[1; 2; 3; 4; 5; 6]");
+            _ = Assert.Throws<NotSupportedException>(() => v4["u v w x q r"] = "[1; 2; 3; 4; 5; 6]");
         }
 
         [Test]

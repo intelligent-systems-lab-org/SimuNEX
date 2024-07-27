@@ -16,10 +16,10 @@ namespace CoreTests
                 (
                     new IModelOutput[]
                     {
-                        new ModelOutput<float>("floatO"),
-                        new ModelOutput<int>("intO"),
-                        new ModelOutput<Vector3>("Vector3O"),
-                        new ModelOutput<Quaternion>("QuaternionO")
+                        new ModelOutput("floatOO"),
+                        new ModelOutput("floatO1"),
+                        new ModelOutput("floatO2"),
+                        new ModelOutput("floatO3")
                     }
                 );
 
@@ -27,8 +27,8 @@ namespace CoreTests
                 (
                     new IModelInput[]
                     {
-                        new ModelInput<float>("floatI"),
-                        new ModelInput<int>("intI")
+                        new ModelInput("floatI1"),
+                        new ModelInput("intI2")
                     }
                 );
             }
@@ -37,7 +37,7 @@ namespace CoreTests
                 (IModelInput[] inputs, IModelOutput[] outputs) =>
                 {
                     outputs[0].data = inputs[0].data;
-                    outputs[1].data = (int)inputs[1].data == 1 ? 1 : 0;
+                    outputs[1].data[0] = (int)inputs[1].data[0] == 1 ? 1 : 0;
                 };
         }
 
@@ -62,23 +62,14 @@ namespace CoreTests
 
             // Verify number of added inputs
             Assert.AreEqual(2, inports.Length);
-
-            // Verify ports
-            Assert.IsTrue(outports[0] is ModelOutput<float>);
-            Assert.IsTrue(outports[1] is ModelOutput<int>);
-            Assert.IsTrue(outports[2] is ModelOutput<Vector3>);
-            Assert.IsTrue(outports[3] is ModelOutput<Quaternion>);
-
-            Assert.IsTrue(inports[0] is ModelInput<float>);
-            Assert.IsTrue(inports[1] is ModelInput<int>);
         }
 
         [Test]
         public void TestModelFunction()
         {
             // Assign
-            model.inports[0].data = 31f;
-            model.inports[1].data = 1;
+            model.inports[0].data[0] = 31f;
+            model.inports[1].data[0] = 1;
 
             Model.TestModel testModel = model.GetTestModel();
 
@@ -86,18 +77,18 @@ namespace CoreTests
             testModel.TestModelFunction();
 
             // Assert
-            Assert.AreEqual(model.outports[0].data, 31f);
-            Assert.AreEqual(model.outports[1].data, 1);
+            Assert.AreEqual(model.outports[0].data[0], 31f);
+            Assert.AreEqual(model.outports[1].data[0], 1);
 
             // Second Run
             System.Random rand = new();
-            model.inports[0].data = (float)rand.NextDouble();
-            model.inports[1].data = rand.Next(1, 100);
+            model.inports[0].data[0] = (float)rand.NextDouble();
+            model.inports[1].data[0] = rand.Next(1, 100);
 
             testModel.TestModelFunction();
 
-            Assert.AreEqual(model.outports[0].data, model.inports[0].data);
-            Assert.AreEqual(model.outports[1].data, 0);
+            Assert.AreEqual(model.outports[0].data[0], model.inports[0].data[0]);
+            Assert.AreEqual(model.outports[1].data[0], 0);
         }
     }
 }

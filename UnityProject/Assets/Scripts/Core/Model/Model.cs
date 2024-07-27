@@ -25,8 +25,16 @@ namespace SimuNEX
         /// </summary>
         protected List<IModelInput> inputs = new();
 
+        /// <summary>
+        /// Models the relationship between the model's inputs and outputs.
+        /// </summary>
+        /// <param name="inputs">The inputs (read-only) to the function.</param>
+        /// <param name="outputs">The outputs (read and write) to the function.</param>
         public delegate void ModelFunction(IModelInput[] inputs, IModelOutput[] outputs);
 
+        /// <summary>
+        /// Defines the relationship of the <see cref="Model"/> with respect to its inputs and outputs.
+        /// </summary>
         protected abstract ModelFunction modelFunction { get; }
 
         /// <summary>
