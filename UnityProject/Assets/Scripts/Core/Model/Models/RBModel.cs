@@ -13,6 +13,11 @@ namespace SimuNEX
         /// </summary>
         public Rigidbody body;
 
+        /// <summary>
+        /// Applied forces in the BCF in the current timestep.
+        /// </summary>
+        protected Vector6DOF appliedForce;
+
         protected void Awake()
         {
             if (TryGetComponent(out Rigidbody body))
@@ -25,24 +30,25 @@ namespace SimuNEX
         {
             outputs = new
             (
-                new IModelOutput[]
+                new ModelOutput[]
                 {
-                    new ModelOutput("velocity", 3, Signal.Mechanical),
-                    new ModelOutput("angular_velocity", 3,Signal.Mechanical),
-                    new ModelOutput("position", 3, Signal.Mechanical),
-                    new ModelOutput("angular_position", 4, Signal.Mechanical)
+                    new("velocity", 3, Signal.Mechanical),
+                    new("angular_velocity", 3,Signal.Mechanical),
+                    new("position", 3, Signal.Mechanical),
+                    new("angular_position", 4, Signal.Mechanical)
                 }
             );
 
             inputs = new
             (
-                new IModelInput[] { new ModelInput("forces", 6, Signal.Mechanical) }
+                new ModelInput[] { new("forces", 6, Signal.Mechanical) }
             );
         }
 
         protected override ModelFunction modelFunction =>
-            (IModelInput[] _, IModelOutput[] outputs) =>
+            (ModelInput[] inputs, ModelOutput[] outputs) =>
             {
+                // Update states
                 outputs[0].data[0] = body.velocity.x;
                 outputs[0].data[1] = body.velocity.z;
                 outputs[0].data[2] = body.velocity.y;
@@ -59,6 +65,27 @@ namespace SimuNEX
                 outputs[3].data[1] = body.transform.rotation.z;
                 outputs[3].data[2] = body.transform.rotation.y;
                 outputs[3].data[3] = body.transform.rotation.w;
+
+                // Synchronize inputs with applied force
+                appliedForce.linear.x = inputs[0].data[0];
+                appliedForce.linear.z = inputs[0].data[1];
+                appliedForce.linear.y = inputs[0].data[2];
+
+                appliedForce.angular.x = inputs[0].data[3];
+                appliedForce.angular.z = inputs[0].data[4];
+                appliedForce.angular.y = inputs[0].data[5];
             };
+
+        protected virtual void PhysicsUpdate()
+        {
+            body.AddForce(appliedForce.linear);
+            body.AddTorque(appliedForce.angular);
+        }
+
+        protected void FixedUpdate()
+        {
+            modelFunction(inports, outports);
+            PhysicsUpdate();
+        }
     }
 }

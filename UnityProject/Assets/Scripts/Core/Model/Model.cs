@@ -1,36 +1,40 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SimuNEX
 {
-    public abstract class Model : MonoBehaviour, IModel
+    [Serializable]
+    public abstract class Model : MonoBehaviour
     {
         /// <summary>
         /// Returns all output ports.
         /// </summary>
-        public IModelOutput[] outports => outputs.ToArray();
+        public ModelOutput[] outports => outputs.ToArray();
 
         /// <summary>
         /// Returns all input ports.
         /// </summary>
-        public IModelInput[] inports => inputs.ToArray();
+        public ModelInput[] inports => inputs.ToArray();
 
         /// <summary>
         /// The outputs of the <see cref="Model"/>.
         /// </summary>
-        protected List<IModelOutput> outputs = new();
+        [SerializeField]
+        protected List<ModelOutput> outputs = new();
 
         /// <summary>
         /// The inputs to the <see cref="Model"/>.
         /// </summary>
-        protected List<IModelInput> inputs = new();
+        [SerializeField]
+        protected List<ModelInput> inputs = new();
 
         /// <summary>
         /// Models the relationship between the model's inputs and outputs.
         /// </summary>
         /// <param name="inputs">The inputs (read-only) to the function.</param>
         /// <param name="outputs">The outputs (read and write) to the function.</param>
-        public delegate void ModelFunction(IModelInput[] inputs, IModelOutput[] outputs);
+        public delegate void ModelFunction(ModelInput[] inputs, ModelOutput[] outputs);
 
         /// <summary>
         /// Defines the relationship of the <see cref="Model"/> with respect to its inputs and outputs.

@@ -1795,7 +1795,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab23e78cd79d2d4eae3d570ddbdc7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outputs:
+  - _name: velocity
+    _data:
+    - 0
+    - 0
+    - 0
+    _signal: 1
+  - _name: angular_velocity
+    _data:
+    - 0
+    - 0
+    - 0
+    _signal: 1
+  - _name: position
+    _data:
+    - 0
+    - 0
+    - 0
+    _signal: 1
+  - _name: angular_position
+    _data:
+    - 0
+    - 0
+    - 0
+    - 0
+    _signal: 1
+  inputs:
+  - _name: forces
+    _data:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    _signal: 1
   body: {fileID: 8898428387826002285}
+  appliedForce:
+    linear: {x: 0, y: 0, z: 0}
+    angular: {x: 0, y: 0, z: 0}
 --- !u!33 &8951832729068279438
 MeshFilter:
   m_ObjectHideFlags: 0

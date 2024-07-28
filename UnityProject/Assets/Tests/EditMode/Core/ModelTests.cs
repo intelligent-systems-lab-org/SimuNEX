@@ -14,27 +14,27 @@ namespace CoreTests
             {
                 outputs = new
                 (
-                    new IModelOutput[]
+                    new ModelOutput[]
                     {
-                        new ModelOutput("floatOO"),
-                        new ModelOutput("floatO1"),
-                        new ModelOutput("floatO2"),
-                        new ModelOutput("floatO3")
+                        new("floatOO"),
+                        new("floatO1"),
+                        new("floatO2"),
+                        new("floatO3")
                     }
                 );
 
                 inputs = new
                 (
-                    new IModelInput[]
+                    new ModelInput[]
                     {
-                        new ModelInput("floatI1"),
-                        new ModelInput("intI2")
+                        new("floatI1"),
+                        new("intI2")
                     }
                 );
             }
 
             protected override ModelFunction modelFunction =>
-                (IModelInput[] inputs, IModelOutput[] outputs) =>
+                (ModelInput[] inputs, ModelOutput[] outputs) =>
                 {
                     outputs[0].data = inputs[0].data;
                     outputs[1].data[0] = (int)inputs[1].data[0] == 1 ? 1 : 0;
@@ -53,8 +53,8 @@ namespace CoreTests
         public void TestPorts()
         {
             // Act
-            IModelOutput[] outports = model.outports;
-            IModelInput[] inports = model.inports;
+            ModelOutput[] outports = model.outports;
+            ModelInput[] inports = model.inports;
 
             // Assert
             // Verify number of added outputs

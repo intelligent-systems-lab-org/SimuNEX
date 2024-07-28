@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace SimuNEX
 {
     /// <summary>
@@ -5,20 +8,41 @@ namespace SimuNEX
     /// </summary>
     public abstract class ModelPort : IModelPort
     {
+        [SerializeField]
+        private string _name;
+
+        [SerializeField]
+        private float[] _data;
+
+        [SerializeField]
+        private Signal _signal;
+
         /// <summary>
         /// Unique name assigned to the port.
         /// </summary>
-        public string name { get; set; }
+        public string name
+        {
+            get => _name;
+            set => _name = value;
+        }
 
         /// <summary>
         /// Returns data stored in the port.
         /// </summary>
-        public float[] data { get; set; }
+        public float[] data
+        {
+            get => _data;
+            set => _data = value;
+        }
 
         /// <summary>
         /// The domain of the data.
         /// </summary>
-        public Signal signal { get; set; }
+        public Signal signal
+        {
+            get => _signal;
+            set => _signal = value;
+        }
 
         /// <summary>
         /// Creates a <see cref="ModelPort{T}"/> with the given name and data domain.
@@ -38,7 +62,8 @@ namespace SimuNEX
     /// <summary>
     /// Defines an output port in a <see cref="Model"/> object.
     /// </summary>
-    public class ModelOutput : ModelPort, IModelOutput
+    [Serializable]
+    public class ModelOutput : ModelPort
     {
         /// <summary>
         /// Creates a <see cref="ModelOutput{T}"/> with the given name and data domain.
@@ -54,7 +79,8 @@ namespace SimuNEX
     /// <summary>
     /// Defines an input port in a <see cref="Model"/> object.
     /// </summary>
-    public class ModelInput: ModelPort, IModelInput
+    [Serializable]
+    public class ModelInput : ModelPort
     {
         /// <summary>
         /// Creates a <see cref="ModelInput{T}"/> with the given name and data domain.
