@@ -45,6 +45,11 @@ namespace SimuNEX
         }
 
         /// <summary>
+        /// The size of the data.
+        /// </summary>
+        public int size => _data.Length;
+
+        /// <summary>
         /// Creates a <see cref="ModelPort{T}"/> with the given name and data domain.
         /// </summary>
         /// <param name="name">The name assigned to the port.</param>

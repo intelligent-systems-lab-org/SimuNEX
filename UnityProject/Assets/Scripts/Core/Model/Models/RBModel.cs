@@ -82,7 +82,7 @@ namespace SimuNEX
             body.AddTorque(appliedForce.angular);
         }
 
-        protected void FixedUpdate()
+        public override void Step()
         {
             modelFunction(inports, outports);
             PhysicsUpdate();

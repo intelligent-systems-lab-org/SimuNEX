@@ -71,10 +71,8 @@ namespace CoreTests
             model.inports[0].data[0] = 31f;
             model.inports[1].data[0] = 1;
 
-            Model.TestModel testModel = model.GetTestModel();
-
             // Act
-            testModel.TestModelFunction();
+            model.Step();
 
             // Assert
             Assert.AreEqual(model.outports[0].data[0], 31f);
@@ -85,7 +83,7 @@ namespace CoreTests
             model.inports[0].data[0] = (float)rand.NextDouble();
             model.inports[1].data[0] = rand.Next(1, 100);
 
-            testModel.TestModelFunction();
+            model.Step();
 
             Assert.AreEqual(model.outports[0].data[0], model.inports[0].data[0]);
             Assert.AreEqual(model.outports[1].data[0], 0);

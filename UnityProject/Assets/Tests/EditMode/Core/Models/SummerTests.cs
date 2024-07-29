@@ -48,10 +48,8 @@ namespace CoreTests
             summer.inports[1].data[0] = 1f;
             summer.inports[2].data[0] = 2f;
 
-            Model.TestModel testModel = summer.GetTestModel();
-
             // Act
-            testModel.TestModelFunction();
+            summer.Step();
 
             // Assert
             Assert.AreEqual(summer.outports[0].data[0], 10f);
