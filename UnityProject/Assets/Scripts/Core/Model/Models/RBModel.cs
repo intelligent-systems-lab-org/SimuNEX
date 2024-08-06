@@ -5,7 +5,6 @@ namespace SimuNEX
     /// <summary>
     /// Models a single Rigidbody.
     /// </summary>
-    [RequireComponent(typeof(Rigidbody))]
     public class RBModel : Model
     {
         /// <summary>
@@ -32,10 +31,10 @@ namespace SimuNEX
             (
                 new ModelOutput[]
                 {
-                    new("velocity", 3, Signal.Mechanical),
-                    new("angular_velocity", 3,Signal.Mechanical),
-                    new("position", 3, Signal.Mechanical),
-                    new("angular_position", 4, Signal.Mechanical)
+                    new("velocity", 3, Signal.Mechanical, this),
+                    new("angular_velocity", 3,Signal.Mechanical, this),
+                    new("position", 3, Signal.Mechanical, this),
+                    new("angular_position", 4, Signal.Mechanical, this)
                 }
             );
 

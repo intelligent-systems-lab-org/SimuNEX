@@ -5,7 +5,7 @@ namespace SimuNEX
     /// <summary>
     /// Defines behavior where the outputs are a sum of the inputs.
     /// </summary>
-    public class Summer : Model
+    public class Adder : Model
     {
         private int _dataSize = 1;
 
@@ -24,9 +24,9 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// Creates a <see cref="Summer"/> model.
+        /// Creates a <see cref="Adder"/> model.
         /// </summary>
-        public Summer()
+        public Adder()
         {
             outputs = new
             (
@@ -49,7 +49,7 @@ namespace SimuNEX
             };
 
         /// <summary>
-        /// Adds inputs to the <see cref="Summer"/>.
+        /// Adds inputs to the <see cref="Adder"/>.
         /// </summary>
         /// <param name="inputs">Inputs to add.</param>
         /// <exception cref="ArgumentException">Thrown when input dimensions do not match output dimensions.</exception>

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace SimuNEX
 {
+    [DisallowMultipleComponent]
     public class SimuNEX : MonoBehaviour
     {
         [SerializeField]
@@ -11,6 +12,13 @@ namespace SimuNEX
 
         [SerializeField]
         private List<Model> models;
+
+        [SerializeField]
+        private List<ModelInput> inports;
+
+        [SerializeField]
+        private List<ModelOutput> outports;
+
 
         public float SampleTime
         {
@@ -23,10 +31,13 @@ namespace SimuNEX
             }
         }
 
-        protected void Start()
+        public (ModelInput[], ModelOutput[]) ports => (inports.ToArray(), outports.ToArray());
+
+        protected void OnValidate()
         {
             models = new(GetComponentsInChildren<Model>());
-            Time.fixedDeltaTime = _sampleTime; // Ensure initial setting is applied
+            inports = new();
+            outports = new();
 
             // Filter out models contained in ModelSystem instances
             List<Model> modelsToRemove = new();
@@ -37,9 +48,17 @@ namespace SimuNEX
                 {
                     modelsToRemove.AddRange(modelSystem.models);
                 }
+
+                inports.AddRange(model.inports);
+                outports.AddRange(model.outports);
             }
 
             models.RemoveAll(m => modelsToRemove.Contains(m));
+        }
+
+        protected void Start()
+        {
+            Time.fixedDeltaTime = _sampleTime; // Ensure initial setting is applied
         }
 
         protected void FixedUpdate()

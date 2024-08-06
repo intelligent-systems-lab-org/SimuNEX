@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Unity.Mathematics;
 
 namespace SimuNEX
 {
@@ -14,12 +15,12 @@ namespace SimuNEX
         /// <summary>
         /// Gets or sets the linear component of the vector.
         /// </summary>
-        public Vector3 linear;
+        public float3 linear;
 
         /// <summary>
         /// Gets or sets the angular component of the vector.
         /// </summary>
-        public Vector3 angular;
+        public float3 angular;
 
         /// <summary>
         /// Initializes a new instance of the Vector6DOF class with the specified linear and angular components.
@@ -32,8 +33,8 @@ namespace SimuNEX
         /// <param name="r">The angular component around the z-axis.</param>
         public Vector6DOF(float u = 0, float v = 0, float w = 0, float p = 0, float q = 0, float r = 0)
         {
-            linear = new Vector3(u, v, w);
-            angular = new Vector3(p, q, r);
+            linear = new float3(u, v, w);
+            angular = new float3(p, q, r);
         }
 
         /// <summary>
@@ -69,8 +70,8 @@ namespace SimuNEX
                 throw new ArgumentException("Number of elements must be 6.");
             }
 
-            linear = new Vector3(v[0], v[1], v[2]);
-            angular = new Vector3(v[3], v[4], v[5]);
+            linear = new float3(v[0], v[1], v[2]);
+            angular = new float3(v[3], v[4], v[5]);
         }
 
         /// <summary>
@@ -97,8 +98,8 @@ namespace SimuNEX
                 throw new ArgumentException("The enumerable must contain exactly 6 elements.");
             }
 
-            linear = new Vector3(enumerable[0], enumerable[1], enumerable[2]);
-            angular = new Vector3(enumerable[3], enumerable[4], enumerable[5]);
+            linear = new float3(enumerable[0], enumerable[1], enumerable[2]);
+            angular = new float3(enumerable[3], enumerable[4], enumerable[5]);
         }
     }
 }

@@ -152,7 +152,7 @@ namespace SimuNEX
         /// <returns>True if the two vectors are equal; otherwise, false.</returns>
         public static bool operator ==(Vector6DOF v1, Vector6DOF v2)
         {
-            return v1.linear == v2.linear && v1.angular == v2.angular;
+            return v1.linear.Equals(v2.linear) && v1.angular.Equals(v2.angular);
         }
 
         /// <summary>

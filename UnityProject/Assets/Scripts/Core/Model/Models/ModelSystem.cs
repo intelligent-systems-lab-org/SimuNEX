@@ -7,9 +7,9 @@ namespace SimuNEX
     public class ModelSystem : Model
     {
         public List<Model> models = new();
-        private readonly Dictionary<ModelOutput, List<ModelOutput>> outputMappings = new();
-        private readonly Dictionary<ModelInput, List<ModelInput>> inputMappings = new();
-        private readonly Dictionary<ModelOutput, List<ModelInput>> internalMappings = new();
+        public Dictionary<ModelOutput, List<ModelOutput>> outputMappings = new();
+        public Dictionary<ModelInput, List<ModelInput>> inputMappings = new();
+        public Dictionary<ModelOutput, List<ModelInput>> internalMappings = new();
 
         protected override ModelFunction modelFunction => throw new ArgumentException("ModelSystems do not have model functions.");
 

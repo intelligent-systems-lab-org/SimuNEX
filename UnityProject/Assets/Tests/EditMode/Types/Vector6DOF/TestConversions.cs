@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using SimuNEX;
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Vector6DOFTests
@@ -101,8 +102,8 @@ namespace Vector6DOFTests
             Vector6DOF result = matrix;
 
             // Assert
-            Assert.AreEqual(new Vector3(1, 2, 3), result.linear);
-            Assert.AreEqual(new Vector3(4, 5, 6), result.angular);
+            Assert.AreEqual(new float3(1, 2, 3), result.linear);
+            Assert.AreEqual(new float3(4, 5, 6), result.angular);
         }
 
         [Test]
@@ -121,8 +122,8 @@ namespace Vector6DOFTests
             Vector6DOF result = matrix;
 
             // Assert
-            Assert.AreEqual(new Vector3(1, 2, 3), result.linear);
-            Assert.AreEqual(new Vector3(4, 5, 6), result.angular);
+            Assert.AreEqual(new float3(1, 2, 3), result.linear);
+            Assert.AreEqual(new float3(4, 5, 6), result.angular);
         }
 
         [Test]

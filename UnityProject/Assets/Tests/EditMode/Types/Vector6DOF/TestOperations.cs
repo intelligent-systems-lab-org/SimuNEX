@@ -1,6 +1,6 @@
-
 using NUnit.Framework;
 using SimuNEX;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Vector6DOFTests
@@ -13,14 +13,14 @@ namespace Vector6DOFTests
             // Arrange
             Vector6DOF v1 = new()
             {
-                linear = new Vector3(1f, 2f, 3f),
-                angular = new Vector3(4f, 5f, 6f)
+                linear = new float3(1f, 2f, 3f),
+                angular = new float3(4f, 5f, 6f)
             };
 
             Vector6DOF v2 = new()
             {
-                linear = new Vector3(2f, 3f, 4f),
-                angular = new Vector3(5f, 6f, 7f)
+                linear = new float3(2f, 3f, 4f),
+                angular = new float3(5f, 6f, 7f)
             };
 
             // Act
@@ -49,8 +49,8 @@ namespace Vector6DOFTests
                     { 0f, 0f, 0f, 0f, 0f, 2f }
                 });
 
-            Vector6DOF v = new(new Vector3(1f, 2f, 3f), new Vector3(4f, 5f, 6f));
-            Vector6DOF expected = new(new Vector3(2f, 4f, 6f), new Vector3(8f, 10f, 12f));
+            Vector6DOF v = new(new float3(1f, 2f, 3f), new float3(4f, 5f, 6f));
+            Vector6DOF expected = new(new float3(2f, 4f, 6f), new float3(8f, 10f, 12f));
 
             // Act
             Vector6DOF result = matrix * v;
@@ -196,15 +196,27 @@ namespace Vector6DOFTests
         [Test]
         public void TestVector6DOFApply()
         {
-            Vector6DOF v = new(new Vector3(1f, 2f, 3f), new Vector3(0.5f, 1f, 1.5f));
+            Vector6DOF v = new(new float3(1f, 2f, 3f), new float3(0.5f, 1f, 1.5f));
 
             // Applying different functions to linear and angular components
             Vector6DOF result1 = v.Apply(x => x * 2f, y => Mathf.Sin(y));
-            Assert.AreEqual(new Vector6DOF(new Vector3(2f, 4f, 6f), new Vector3(0.4794255f, 0.8414709f, 0.9974949f)), result1);
+            Assert.AreEqual(
+                new Vector6DOF
+            (
+                new float3(2f, 4f, 6f),
+                new float3(Mathf.Sin(0.5f), Mathf.Sin(1f), Mathf.Sin(1.5f))),
+                result1
+            );
 
             // Applying the same function to linear and angular components
             Vector6DOF result2 = v.Apply(x => Mathf.Sqrt(x));
-            Assert.AreEqual(new Vector6DOF(new Vector3(1f, 1.4142135f, 1.732051f), new Vector3(0.7071068f, 1f, 1.224745f)), result2);
+            Assert.AreEqual(
+                new Vector6DOF
+            (
+                new float3(Mathf.Sqrt(1f), Mathf.Sqrt(2f), Mathf.Sqrt(3f)),
+                new float3(Mathf.Sqrt(0.5f), Mathf.Sqrt(1f), Mathf.Sqrt(1.5f))),
+                result2
+            );
         }
     }
 }

@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using SimuNEX;
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Vector6DOFTests
@@ -12,8 +13,8 @@ namespace Vector6DOFTests
         {
             Vector6DOF zero = Vector6DOF.zero;
 
-            Assert.AreEqual(Vector3.zero, zero.linear);
-            Assert.AreEqual(Vector3.zero, zero.angular);
+            Assert.AreEqual(float3.zero, zero.linear);
+            Assert.AreEqual(float3.zero, zero.angular);
         }
 
         [Test]
@@ -103,7 +104,7 @@ namespace Vector6DOFTests
         [Test]
         public void TestGetComponent()
         {
-            Vector6DOF v = new(new Vector3(1, 2, 3), new Vector3(4, 5, 6));
+            Vector6DOF v = new(new float3(1, 2, 3), new float3(4, 5, 6));
 
             // Test getting individual components
             Assert.AreEqual(1, v.Select("u")[0]);
@@ -136,11 +137,11 @@ namespace Vector6DOFTests
             v.Alter("q", new float[] { 5 });
             v.Alter("r", new float[] { 6 });
 
-            Assert.AreEqual(new Vector6DOF(new Vector3(1, 2, 3), new Vector3(4, 5, 6)), v);
+            Assert.AreEqual(new Vector6DOF(new float3(1, 2, 3), new float3(4, 5, 6)), v);
 
             // Test setting multiple components
             v.Alter("u w q", new float[] { 10, 20, 30 });
-            Assert.AreEqual(new Vector6DOF(new Vector3(10, 2, 20), new Vector3(4, 30, 6)), v);
+            Assert.AreEqual(new Vector6DOF(new float3(10, 2, 20), new float3(4, 30, 6)), v);
 
             // Test invalid component
             _ = Assert.Throws<NotSupportedException>(() => v.Alter("x", new float[] { 1 }));
@@ -178,8 +179,8 @@ namespace Vector6DOFTests
         {
             Vector6DOF one = Vector6DOF.one;
 
-            Assert.AreEqual(Vector3.one, one.linear);
-            Assert.AreEqual(Vector3.one, one.angular);
+            Assert.AreEqual(new float3(1, 1, 1), one.linear);
+            Assert.AreEqual(new float3(1, 1, 1), one.angular);
         }
     }
 }

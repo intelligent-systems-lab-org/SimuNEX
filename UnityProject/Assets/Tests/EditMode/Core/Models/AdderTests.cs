@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace CoreTests
 {
-    public class SummerTests
+    public class AdderTests
     {
-        Summer summer;
+        Adder adder;
 
         [SetUp]
         public void Setup()
         {
             // Assign
             GameObject gameObject = new();
-            summer = gameObject.AddComponent<Summer>();
+            adder = gameObject.AddComponent<Adder>();
 
             ModelInput[] inputs = new ModelInput[]
             {
@@ -22,15 +22,15 @@ namespace CoreTests
                 new("input3")
             };
 
-            summer.Add(inputs);
+            adder.Add(inputs);
         }
 
         [Test]
         public void TestPorts()
         {
             // Act
-            ModelOutput[] outports = summer.outports;
-            ModelInput[] inports = summer.inports;
+            ModelOutput[] outports = adder.outports;
+            ModelInput[] inports = adder.inports;
 
             // Assert
             // Verify number of added outputs
@@ -44,15 +44,15 @@ namespace CoreTests
         public void TestModelFunction()
         {
             // Assign
-            summer.inports[0].data[0] = 7f;
-            summer.inports[1].data[0] = 1f;
-            summer.inports[2].data[0] = 2f;
+            adder.inports[0].data[0] = 7f;
+            adder.inports[1].data[0] = 1f;
+            adder.inports[2].data[0] = 2f;
 
             // Act
-            summer.Step();
+            adder.Step();
 
             // Assert
-            Assert.AreEqual(summer.outports[0].data[0], 10f);
+            Assert.AreEqual(adder.outports[0].data[0], 10f);
         }
     }
 }

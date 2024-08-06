@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SimuNEX
 {
     [Serializable]
-    public abstract class Model : MonoBehaviour
+    public abstract class Model : MonoBehaviour, IBlock
     {
         /// <summary>
         /// Returns all output ports.

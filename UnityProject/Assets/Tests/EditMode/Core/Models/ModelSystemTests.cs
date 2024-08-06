@@ -387,7 +387,6 @@ namespace CoreTests
             systemInputA.data[0] = 15f;
             systemInputB.data[0] = 25f;
 
-            //Debug.Log(string.Join(", ", modelSystem.TopologicalSort()));
             modelSystem.models = modelSystem.TopologicalSort();
             modelSystem.Step();
 

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace SimuNEX
 {
@@ -14,7 +15,7 @@ namespace SimuNEX
         /// Returns the magnitudes of the linear and angular components as a tuple.
         /// </summary>
         /// <returns>A tuple containing the magnitudes of the linear and angular components.</returns>
-        public (float, float) magnitude => (linear.magnitude, angular.magnitude);
+        public readonly (float, float) magnitude => (((Vector3)linear).magnitude, ((Vector3)angular).magnitude);
 
         /// <summary>
         /// Determines whether the current <see cref="Vector6DOF"/> instance is equal to a specified object.

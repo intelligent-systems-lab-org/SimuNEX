@@ -26,6 +26,8 @@ namespace SimuNEX
             set => _name = value;
         }
 
+        public IBlock connectedBlock { get; }
+
         /// <summary>
         /// Returns data stored in the port.
         /// </summary>
@@ -55,12 +57,14 @@ namespace SimuNEX
         /// <param name="name">The name assigned to the port.</param>
         /// <param name="size">The data size of the port.</param>
         /// <param name="signal">The domain of the port data. Is <see cref="Signal.Virtual"/> by default.</param>
-        protected ModelPort(string name, int size = 1, Signal signal = Signal.Virtual)
+        /// <param name="connectedBlock">The block this port is associated with.</param>
+        protected ModelPort(string name, int size = 1, Signal signal = Signal.Virtual, IBlock connectedBlock = null)
         {
             this.name = name;
             this.signal = signal;
 
             data = new float[size];
+            this.connectedBlock = connectedBlock;
         }
     }
 
@@ -76,7 +80,9 @@ namespace SimuNEX
         /// <param name="name">The name assigned to the port.</param>
         /// <param name="size">The data size of the port.</param>
         /// <param name="signal">The domain of the port data. Is <see cref="Signal.Virtual"/> by default.</param>
-        public ModelOutput(string name, int size = 1, Signal signal = Signal.Virtual) : base(name, size, signal)
+        /// <param name="connectedBlock">The block this port is associated with.</param>
+        public ModelOutput(string name, int size = 1, Signal signal = Signal.Virtual, IBlock connectedBlock = null)
+            : base(name, size, signal, connectedBlock)
         {
         }
     }
@@ -93,7 +99,9 @@ namespace SimuNEX
         /// <param name="name">The name assigned to the port.</param>
         /// <param name="size">The data size of the port.</param>
         /// <param name="signal">The domain of the port data. Is <see cref="Signal.Virtual"/> by default.</param>
-        public ModelInput(string name, int size = 1, Signal signal = Signal.Virtual) : base(name, size, signal)
+        /// <param name="connectedBlock">The block this port is associated with.</param>
+        public ModelInput(string name, int size = 1, Signal signal = Signal.Virtual, IBlock connectedBlock = null)
+            : base(name, size, signal, connectedBlock)
         {
         }
     }

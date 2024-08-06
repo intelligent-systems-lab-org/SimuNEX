@@ -1,3 +1,4 @@
+using SimuNEX.Communication;
 using System;
 using UnityEngine;
 
@@ -28,6 +29,17 @@ namespace SimuNEX
         {
             SupportedFaults = supportedFaults ?? Array.Empty<Type>();
             UnsupportedFaults = unsupportedFaults ?? Array.Empty<Type>();
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class COMTypeAttribute : PropertyAttribute
+    {
+        public Streaming StreamingMode { get; }
+
+        public COMTypeAttribute(Streaming streamingMode)
+        {
+            StreamingMode = streamingMode;
         }
     }
 }
