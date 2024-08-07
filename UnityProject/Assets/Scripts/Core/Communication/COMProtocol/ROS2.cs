@@ -5,7 +5,7 @@ using System;
 namespace SimuNEX.Communication
 {
     /// <summary>
-    /// Provides an interface for SimuNEX to connect and communicate with ROS2.
+    /// Provides an interface for SimuNEX to connect and communicate with ROS2 systems.
     /// </summary>
     [Serializable]
     public class ROS2 : COMProtocol
@@ -55,7 +55,7 @@ namespace SimuNEX.Communication
         /// </summary>
         public ISubscription<Float32MultiArray> subscriber;
 
-        public override void Receive(ref float[] data)
+        public override void Receive(float[] data)
         {
             throw new System.NotImplementedException();
         }

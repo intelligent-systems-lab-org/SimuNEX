@@ -51,8 +51,8 @@ namespace SimuNEX.Communication
 
         public void Init()
         {
-            sendStreams = streams.FindAll(m => m.streaming == Streaming.S || m.streaming == Streaming.SR);
-            receiveStreams = streams.FindAll(m => m.streaming == Streaming.R || m.streaming == Streaming.SR);
+            sendStreams = streams.FindAll(m => m.direction is Streaming.S or Streaming.SR);
+            receiveStreams = streams.FindAll(m => m.direction is Streaming.R or Streaming.SR);
         }
 
         protected void OnValidate()
@@ -66,12 +66,25 @@ namespace SimuNEX.Communication
             if (streams.Count == 0)
             {
                 dataInputs.Add(new("test1", 1, this));
-                dataInputs.Add(new("test2", 1, this));
+                dataInputs.Add(new("test2", 5, this));
 
                 streams.Add(gameObject.AddComponent<DataStream>());
                 streams.Add(gameObject.AddComponent<DataStream>());
-                streams[0].Setup(new SelfConnect(), Streaming.S, dataInputs[0], modelPorts.Item2, new (int, int)[] { (1, 1) });
-                streams[1].Setup(new SelfConnect(), Streaming.SR, dataInputs[1], modelPorts.Item2, new (int, int)[] { (1, 1) });
+                streams[0].Setup(
+                    new SelfConnect(),
+                    Streaming.S,
+                    dataInputs[0],
+                    modelOutputs: modelPorts.Item2
+                    );
+                streams[0].Map(new DataMappings { InputIndices = new (int, int)[] { (1, 1) } });
+
+                streams[1].Setup(
+                    new SelfConnect(),
+                    Streaming.SR,
+                    dataInputs[1],
+                    modelOutputs: modelPorts.Item2
+                    );
+                streams[1].Map(new DataMappings { InputIndices = new (int, int)[] { (1, 1) } });
             }
 
             Init();

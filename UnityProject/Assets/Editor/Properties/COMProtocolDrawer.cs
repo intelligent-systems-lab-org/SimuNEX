@@ -30,7 +30,7 @@ namespace SimuNEX.Editors
 
             // Draw the protocol dropdown
             Rect dropdownRect = new(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-            int newSelectedProtocolIndex = EditorGUI.Popup(dropdownRect, "Settings", selectedProtocolIndex, availableProtocols);
+            int newSelectedProtocolIndex = EditorGUI.Popup(dropdownRect, "Protocol", selectedProtocolIndex, availableProtocols);
 
             // Check if the selected protocol has changed
             if (newSelectedProtocolIndex != selectedProtocolIndex)
@@ -76,7 +76,7 @@ namespace SimuNEX.Editors
             DataStream parent = property.serializedObject.targetObject as DataStream;
             if (parent != null)
             {
-                return parent.streaming;
+                return parent.direction;
             }
 
             return Streaming.SR; // Default to SR if not found
