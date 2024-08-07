@@ -266,25 +266,18 @@ MonoBehaviour:
   streams:
   - {fileID: 553883351}
   - {fileID: 553883350}
-  sendStreams:
-  - {fileID: 553883351}
-  - {fileID: 553883350}
-  receiveStreams:
-  - {fileID: 553883350}
   dataInputs:
-  - _name: test1
+  - _name: test
     _data:
     - 0
     _signal: 4
-  - _name: test2
+  dataOutputs:
+  - _name: test
     _data:
     - 0
     - 0
     - 0
-    - 0
-    - 0
     _signal: 4
-  dataOutputs: []
 --- !u!114 &553883350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,19 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f454049854995448676826182d28ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 1
   modelOutputs:
-  - _name: velocity
-    _data:
-    - 0
-    - 0
-    - 0
-    _signal: 1
-  - _name: angular_velocity
-    _data:
-    - 0
-    - 0
-    - 0
-    _signal: 1
   - _name: position
     _data:
     - 0
@@ -323,30 +305,25 @@ MonoBehaviour:
     - 0
     - 0
     _signal: 1
+  modelInputs: []
   inputData:
-    _name: test2
+    _name: test
     _data:
     - 0
-    - 0
-    - 0
-    - 0
-    - 0
     _signal: 4
+  outputData:
+    _name: 
+    _data: []
+    _signal: 0
   protocol:
-    rid: 3425041549438746637
-  direction: 2
+    rid: 3425041565619585041
   references:
     version: 2
     RefIds:
-    - rid: 3425041549438746637
+    - rid: 3425041565619585041
       type: {class: SelfConnect, ns: SimuNEX.Communication, asm: SimuNEX.Core}
       data:
-        sentData:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        sentData: []
         receivedData: []
 --- !u!114 &553883351
 MonoBehaviour:
@@ -360,19 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f454049854995448676826182d28ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 2
   modelOutputs:
-  - _name: velocity
-    _data:
-    - 0
-    - 0
-    - 0
-    _signal: 1
-  - _name: angular_velocity
-    _data:
-    - 0
-    - 0
-    - 0
-    _signal: 1
   - _name: position
     _data:
     - 0
@@ -386,22 +352,37 @@ MonoBehaviour:
     - 0
     - 0
     _signal: 1
+  modelInputs:
+  - _name: forces
+    _data:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    _signal: 1
   inputData:
-    _name: test1
+    _name: test
     _data:
     - 0
     _signal: 4
+  outputData:
+    _name: test
+    _data:
+    - 0
+    - 0
+    - 0
+    _signal: 4
   protocol:
-    rid: 3425041549438746636
-  direction: 0
+    rid: 3425041565619585040
   references:
     version: 2
     RefIds:
-    - rid: 3425041549438746636
+    - rid: 3425041565619585040
       type: {class: SelfConnect, ns: SimuNEX.Communication, asm: SimuNEX.Core}
       data:
-        sentData:
-        - 0
+        sentData: []
         receivedData: []
 --- !u!1 &1714550208
 GameObject:

@@ -10,10 +10,7 @@ namespace SimuNEX.Communication
         [SerializeReference]
         public List<DataStream> streams = new();
 
-        [SerializeReference]
         private List<DataStream> sendStreams = new();
-
-        [SerializeReference]
         private List<DataStream> receiveStreams = new();
 
         public List<COMInput> dataInputs = new();
@@ -61,33 +58,6 @@ namespace SimuNEX.Communication
             {
                 modelPorts = simunex.ports;
             }
-
-            // Test code
-            if (streams.Count == 0)
-            {
-                dataInputs.Add(new("test1", 1, this));
-                dataInputs.Add(new("test2", 5, this));
-
-                streams.Add(gameObject.AddComponent<DataStream>());
-                streams.Add(gameObject.AddComponent<DataStream>());
-                streams[0].Setup(
-                    new SelfConnect(),
-                    Streaming.S,
-                    dataInputs[0],
-                    modelOutputs: modelPorts.Item2
-                    );
-                streams[0].Map(new DataMappings { InputIndices = new (int, int)[] { (1, 1) } });
-
-                streams[1].Setup(
-                    new SelfConnect(),
-                    Streaming.SR,
-                    dataInputs[1],
-                    modelOutputs: modelPorts.Item2
-                    );
-                streams[1].Map(new DataMappings { InputIndices = new (int, int)[] { (1, 1) } });
-            }
-
-            Init();
         }
 
         public void SendAll()
