@@ -226,8 +226,6 @@ GameObject:
   m_Component:
   - component: {fileID: 553883348}
   - component: {fileID: 553883349}
-  - component: {fileID: 553883351}
-  - component: {fileID: 553883350}
   m_Layer: 0
   m_Name: Network
   m_TagString: Untagged
@@ -262,96 +260,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82135e451e15de14aa281ce676408b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simunex: {fileID: 8898428387826002287}
-  streams:
-  - {fileID: 553883351}
-  - {fileID: 553883350}
+  streams: []
+  sendStreams:
+  - {fileID: 0}
+  - {fileID: 0}
+  receiveStreams: []
   dataInputs:
-  - _name: test
+  - _name: test1
     _data:
+    - 0
+    - 0
     - 0
     _signal: 4
   dataOutputs:
-  - _name: test
+  - _name: test1
     _data:
     - 0
     - 0
     - 0
     _signal: 4
---- !u!114 &553883350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553883347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25f454049854995448676826182d28ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 1
-  modelOutputs:
-  - _name: position
-    _data:
-    - 0
-    - 0
-    - 0
-    _signal: 1
-  - _name: angular_position
-    _data:
-    - 0
-    - 0
-    - 0
-    - 0
-    _signal: 1
-  modelInputs: []
-  inputData:
-    _name: test
-    _data:
-    - 0
-    _signal: 4
-  outputData:
-    _name: 
-    _data: []
-    _signal: 0
-  protocol:
-    rid: 3425041565619585041
-  references:
-    version: 2
-    RefIds:
-    - rid: 3425041565619585041
-      type: {class: SelfConnect, ns: SimuNEX.Communication, asm: SimuNEX.Core}
-      data:
-        sentData: []
-        receivedData: []
---- !u!114 &553883351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553883347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25f454049854995448676826182d28ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 2
-  modelOutputs:
-  - _name: position
-    _data:
-    - 0
-    - 0
-    - 0
-    _signal: 1
-  - _name: angular_position
-    _data:
-    - 0
-    - 0
-    - 0
-    - 0
-    _signal: 1
   modelInputs:
   - _name: forces
     _data:
@@ -362,28 +289,32 @@ MonoBehaviour:
     - 0
     - 0
     _signal: 1
-  inputData:
-    _name: test
-    _data:
-    - 0
-    _signal: 4
-  outputData:
-    _name: test
+  modelOutputs:
+  - _name: velocity
     _data:
     - 0
     - 0
     - 0
-    _signal: 4
-  protocol:
-    rid: 3425041565619585040
-  references:
-    version: 2
-    RefIds:
-    - rid: 3425041565619585040
-      type: {class: SelfConnect, ns: SimuNEX.Communication, asm: SimuNEX.Core}
-      data:
-        sentData: []
-        receivedData: []
+    _signal: 1
+  - _name: angular_velocity
+    _data:
+    - 0
+    - 0
+    - 0
+    _signal: 1
+  - _name: position
+    _data:
+    - 0
+    - 0
+    - 0
+    _signal: 1
+  - _name: angular_position
+    _data:
+    - 0
+    - 0
+    - 0
+    - 0
+    _signal: 1
 --- !u!1 &1714550208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,6 +1522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sampleTime: 0.02
+  communication: {fileID: 553883349}
   models:
   - {fileID: 1893409841}
   inports:

@@ -5,8 +5,6 @@ namespace SimuNEX.Communication
 {
     public class COM : MonoBehaviour, IBlock
     {
-        public SimuNEX simunex;
-
         [SerializeReference]
         public List<DataStream> streams = new();
 
@@ -15,7 +13,8 @@ namespace SimuNEX.Communication
 
         public List<COMInput> dataInputs = new();
         public List<COMOutput> dataOutputs = new();
-        public (ModelInput[], ModelOutput[]) modelPorts;
+        public ModelInput[] modelInputs;
+        public ModelOutput[] modelOutputs;
 
         public void AddPort(string name, bool isInput, int size = 1, int copies = 1)
         {
@@ -46,18 +45,38 @@ namespace SimuNEX.Communication
             }
         }
 
-        public void Init()
+        public void Init(SimuNEX simuNEX)
         {
+            modelInputs = simuNEX.Inports.ToArray();
+            modelOutputs = simuNEX.Outports.ToArray();
+
+            // test code
+            dataInputs = new(new COMInput[] { new("test1", 3, this) });
+            dataOutputs = new(new COMOutput[] { new("test1", 3, this) });
+
+            while (streams.Count < 2)
+            {
+                streams.Add(gameObject.AddComponent<DataStream>());
+            }
+
+            streams[0].Setup(
+                new SelfConnect(),
+                Streaming.S,
+                inputData: dataInputs[0],
+                modelOutputs: modelOutputs
+                );
+            streams[0].Map(new DataMappings { InputIndices = new (int, int)[] { (2, 0), (2, 1), (2, 2) } });
+
+            streams[1].Setup(
+                new SelfConnect(),
+                Streaming.R,
+                outputData: dataOutputs[0],
+                modelInputs: modelInputs
+                );
+            streams[1].Map(new DataMappings { OutputIndices = new (int, int)[] { (0, 0), (0, 1), (0, 2) } });
+
             sendStreams = streams.FindAll(m => m.direction is Streaming.S or Streaming.SR);
             receiveStreams = streams.FindAll(m => m.direction is Streaming.R or Streaming.SR);
-        }
-
-        protected void OnValidate()
-        {
-            if (simunex != null)
-            {
-                modelPorts = simunex.ports;
-            }
         }
 
         public void SendAll()

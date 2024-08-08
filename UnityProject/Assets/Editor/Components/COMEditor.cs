@@ -81,7 +81,7 @@ namespace SimuNEX.Editors
                                 GUILayout.Width(EditorGUIUtility.fieldWidth)))
                             {
                                 ModelOutputSelectorWindow.ShowWindow(
-                                    com.modelPorts.Item2.ToList(),
+                                    com.modelOutputs.ToList(),
                                     selectedOutputs => selectedModelOutputs = selectedOutputs);
                             }
 
@@ -107,7 +107,7 @@ namespace SimuNEX.Editors
                                 GUILayout.Width(EditorGUIUtility.fieldWidth)))
                             {
                                 ModelInputSelectorWindow.ShowWindow(
-                                    com.modelPorts.Item1.ToList(),
+                                    com.modelInputs.ToList(),
                                     selectedInputs => selectedModelInputs = selectedInputs);
                             }
 

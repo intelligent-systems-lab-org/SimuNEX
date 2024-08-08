@@ -1,3 +1,4 @@
+using SimuNEX.Communication;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace SimuNEX
         [Range(0.001f, 0.1f)]
         private float _sampleTime = 0.02f;
 
+        public COM communication;
+
         [SerializeField]
         private List<Model> models;
 
@@ -19,6 +22,8 @@ namespace SimuNEX
         [SerializeField]
         private List<ModelOutput> outports;
 
+        public List<ModelInput> Inports => inports;
+        public List<ModelOutput> Outports => outports;
 
         public float SampleTime
         {
@@ -33,7 +38,7 @@ namespace SimuNEX
 
         public (ModelInput[], ModelOutput[]) ports => (inports.ToArray(), outports.ToArray());
 
-        protected void OnValidate()
+        public void Init()
         {
             models = new(GetComponentsInChildren<Model>());
             inports = new();
@@ -54,19 +59,31 @@ namespace SimuNEX
             }
 
             models.RemoveAll(m => modelsToRemove.Contains(m));
+
+            Debug.Log($"Init Successful, found {models.Count} models (s).");
+
+            if (communication != null)
+            {
+                communication.Init(this);
+            }
         }
 
         protected void Start()
         {
             Time.fixedDeltaTime = _sampleTime; // Ensure initial setting is applied
+            Init();
         }
 
         protected void FixedUpdate()
         {
+            communication.ReceiveAll();
+
             foreach (Model model in models)
             {
                 model.Step();
             }
+
+            communication.SendAll();
         }
     }
 }

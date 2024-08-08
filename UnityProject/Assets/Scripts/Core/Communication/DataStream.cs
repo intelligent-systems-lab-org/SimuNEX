@@ -17,14 +17,12 @@ namespace SimuNEX.Communication
         /// <summary>
         /// The <see cref="ModelOutput"/> ports the stream uses for access.
         /// </summary>
-        [SerializeField]
-        private ModelOutput[] modelOutputs;
+        public ModelOutput[] modelOutputs;
 
         /// <summary>
         /// The <see cref="ModelInput"/> ports the stream uses for access.
         /// </summary>
-        [SerializeField]
-        private ModelInput[] modelInputs;
+        public ModelInput[] modelInputs;
 
         /// <summary>
         /// The <see cref="COMInput"/> port this stream associates with.
@@ -42,7 +40,6 @@ namespace SimuNEX.Communication
         /// Maps COM indices to ModelPort indices.
         /// </summary>
         private DataMappings mappings = new();
-
 
         /// <summary>
         /// The <see cref="COMProtocol"/> the stream uses for data communication.
@@ -100,13 +97,13 @@ namespace SimuNEX.Communication
 
         public void Receive()
         {
+            protocol.Receive(outputData.data);
+
             for (int i = 0; i < outputData.data.Length; i++)
             {
                 (int inputIdx, int subIdx) = mappings.OutputIndices[i];
                 modelInputs[inputIdx].data[subIdx] = outputData.data[i];
             }
-
-            protocol.Receive(outputData.data);
         }
     }
 
