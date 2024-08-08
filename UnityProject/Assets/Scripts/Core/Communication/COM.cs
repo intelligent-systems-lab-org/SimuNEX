@@ -5,7 +5,6 @@ namespace SimuNEX.Communication
 {
     public class COM : MonoBehaviour, IBlock
     {
-        [SerializeReference]
         public List<DataStream> streams = new();
 
         private List<DataStream> sendStreams = new();
@@ -60,6 +59,7 @@ namespace SimuNEX.Communication
             }
 
             streams[0].Setup(
+                this,
                 new SelfConnect(),
                 Streaming.S,
                 inputData: dataInputs[0],
@@ -68,6 +68,7 @@ namespace SimuNEX.Communication
             streams[0].Map(new DataMappings { InputIndices = new (int, int)[] { (2, 0), (2, 1), (2, 2) } });
 
             streams[1].Setup(
+                this,
                 new SelfConnect(),
                 Streaming.R,
                 outputData: dataOutputs[0],
@@ -75,8 +76,8 @@ namespace SimuNEX.Communication
                 );
             streams[1].Map(new DataMappings { OutputIndices = new (int, int)[] { (0, 0), (0, 1), (0, 2) } });
 
-            sendStreams = streams.FindAll(m => m.direction is Streaming.S or Streaming.SR);
-            receiveStreams = streams.FindAll(m => m.direction is Streaming.R or Streaming.SR);
+            sendStreams = streams.FindAll(m => (m.direction is Streaming.S or Streaming.SR) && m.isMapped);
+            receiveStreams = streams.FindAll(m => (m.direction is Streaming.R or Streaming.SR) && m.isMapped);
         }
 
         public void SendAll()

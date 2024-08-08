@@ -137,7 +137,7 @@ namespace SimuNEX.Editors
                             COMOutput comOutput = (selectedModelInputs == null || selectedModelInputs.Count == 0) ?
                                 null : com.dataOutputs[selectedOutputIndex];
 
-                            Streaming streaming = Streaming.S;
+                            Streaming streaming = Streaming.R;
 
                             if (comInput != null && comOutput != null)
                             {
@@ -145,11 +145,12 @@ namespace SimuNEX.Editors
                             }
                             else if (comInput != null && comOutput == null)
                             {
-                                streaming = Streaming.R;
+                                streaming = Streaming.S;
                             }
 
                             DataStream dataStream = com.gameObject.AddComponent<DataStream>();
                             dataStream.Setup(
+                                com,
                                 protocolInstance,
                                 streaming,
                                 comInput,

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SimuNEX.Communication
@@ -9,20 +10,26 @@ namespace SimuNEX.Communication
     public class DataStream : MonoBehaviour
     {
         /// <summary>
+        /// The communication system this stream is managed by.
+        /// </summary>
+        public COM communication;
+
+        /// <summary>
         /// Sets the mode of streaming.
         /// </summary>
         /// <remarks>Send (S), Receive (R), Send/Receive (SR)</remarks>
         public Streaming direction;
 
         /// <summary>
-        /// The <see cref="ModelOutput"/> ports the stream uses for access.
+        /// Maps stream outputs to COM outputs.
         /// </summary>
-        public ModelOutput[] modelOutputs;
+        private readonly Dictionary<int, int> _comOutputMappings = new();
 
         /// <summary>
-        /// The <see cref="ModelInput"/> ports the stream uses for access.
+        /// Maps stream inputs to COM inputs.
         /// </summary>
-        public ModelInput[] modelInputs;
+        private readonly Dictionary<int, int> _comInputMappings = new();
+
 
         /// <summary>
         /// The <see cref="COMInput"/> port this stream associates with.
@@ -47,8 +54,27 @@ namespace SimuNEX.Communication
         [SerializeReference]
         public COMProtocol protocol;
 
+        public bool isMapped => direction switch
+        {
+            Streaming.S => mappings.InputIndices != null,
+            Streaming.R => mappings.OutputIndices != null,
+            _ => mappings.OutputIndices != null && mappings.InputIndices != null
+        };
+
+        /// <summary>
+        /// Setups the <see cref="DataStream"/> with the given settings.
+        /// </summary>
+        /// <param name="communication">The component used to manage the stream.</param>
+        /// <param name="protocol">The protocol used to handle communcation.</param>
+        /// <param name="direction">The direction of streaming.</param>
+        /// <param name="inputData">The input port this stream associates with.</param>
+        /// <param name="outputData">The output port this stream associates with.</param>
+        /// <param name="modelOutputs">The model output ports the stream uses for access.</param>
+        /// <param name="modelInputs">The model input ports the stream uses for access.</param>
+        /// <exception cref="ArgumentException">Throws if required ports are missing.</exception>
         public void Setup
         (
+            COM communication,
             COMProtocol protocol,
             Streaming direction,
             COMInput inputData = null,
@@ -73,13 +99,28 @@ namespace SimuNEX.Communication
                 throw new ArgumentException("modelInputs cannot be null or empty if outputData is specified.");
             }
 
-            this.protocol = protocol ?? throw new ArgumentNullException(nameof(protocol));
+            this.communication = communication;
+            this.protocol = protocol;
             this.direction = direction;
 
             this.inputData = inputData;
             this.outputData = outputData;
-            this.modelOutputs = modelOutputs;
-            this.modelInputs = modelInputs;
+
+            if (modelOutputs != null)
+            {
+                for (int i = 0; i < modelOutputs.Length; i++)
+                {
+                    _comOutputMappings[i] = Array.IndexOf(communication.modelOutputs, modelOutputs[i]);
+                }
+            }
+
+            if (modelInputs != null)
+            {
+                for (int i = 0; i < modelInputs.Length; i++)
+                {
+                    _comInputMappings[i] = Array.IndexOf(communication.modelInputs, modelInputs[i]);
+                }
+            }
         }
 
         public void Map(DataMappings mappings) => this.mappings = mappings;
@@ -89,7 +130,7 @@ namespace SimuNEX.Communication
             for (int i = 0; i < inputData.data.Length; i++)
             {
                 (int outputIdx, int subIdx) = mappings.InputIndices[i];
-                inputData.data[i] = modelOutputs[outputIdx].data[subIdx];
+                inputData.data[i] = communication.modelOutputs[_comOutputMappings[outputIdx]].data[subIdx];
             }
 
             protocol.Send(inputData.data);
@@ -102,7 +143,7 @@ namespace SimuNEX.Communication
             for (int i = 0; i < outputData.data.Length; i++)
             {
                 (int inputIdx, int subIdx) = mappings.OutputIndices[i];
-                modelInputs[inputIdx].data[subIdx] = outputData.data[i];
+                communication.modelInputs[_comInputMappings[inputIdx]].data[subIdx] = outputData.data[i];
             }
         }
     }
