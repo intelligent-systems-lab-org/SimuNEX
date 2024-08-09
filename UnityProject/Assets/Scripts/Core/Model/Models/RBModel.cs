@@ -40,7 +40,7 @@ namespace SimuNEX
 
             inputs = new
             (
-                new ModelInput[] { new("forces", 6, Signal.Mechanical) }
+                new ModelInput[] { new("forces", 6, Signal.Mechanical, this) }
             );
         }
 
@@ -67,12 +67,12 @@ namespace SimuNEX
 
                 // Synchronize inputs with applied force
                 appliedForce.linear.x = inputs[0].data[0];
-                appliedForce.linear.z = inputs[0].data[1];
-                appliedForce.linear.y = inputs[0].data[2];
+                appliedForce.linear.y = inputs[0].data[1];
+                appliedForce.linear.z = inputs[0].data[2];
 
                 appliedForce.angular.x = inputs[0].data[3];
-                appliedForce.angular.z = inputs[0].data[4];
-                appliedForce.angular.y = inputs[0].data[5];
+                appliedForce.angular.y = inputs[0].data[4];
+                appliedForce.angular.z = inputs[0].data[5];
             };
 
         protected virtual void PhysicsUpdate()

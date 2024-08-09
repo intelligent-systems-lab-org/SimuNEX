@@ -2,7 +2,7 @@ using NUnit.Framework;
 using SimuNEX;
 using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
+using UnityEngine;
 
 namespace Vector6DOFTests
 {
@@ -15,16 +15,16 @@ namespace Vector6DOFTests
             Vector6DOF v = new();
 
             // Assert
-            Assert.AreEqual(float3.zero, v.linear);
-            Assert.AreEqual(float3.zero, v.angular);
+            Assert.AreEqual(Vector3.zero, v.linear);
+            Assert.AreEqual(Vector3.zero, v.angular);
         }
 
         [Test]
         public void Constructor_WithLinearAndAngular_VectorsAssignedCorrectly()
         {
             // Arrange
-            float3 linear = new(1f, 2f, 3f);
-            float3 angular = new(4f, 5f, 6f);
+            Vector3 linear = new(1f, 2f, 3f);
+            Vector3 angular = new(4f, 5f, 6f);
 
             // Act
             Vector6DOF v = new(linear, angular);
@@ -44,8 +44,8 @@ namespace Vector6DOFTests
             Vector6DOF result = new(v);
 
             // Assert
-            Assert.AreEqual(new float3(1f, 2f, 3f), result.linear);
-            Assert.AreEqual(new float3(4f, 5f, 6f), result.angular);
+            Assert.AreEqual(new Vector3(1f, 2f, 3f), result.linear);
+            Assert.AreEqual(new Vector3(4f, 5f, 6f), result.angular);
         }
 
         [Test]
@@ -55,8 +55,8 @@ namespace Vector6DOFTests
 
             Vector6DOF v = new(vectorString);
 
-            Assert.AreEqual(new float3(1, 2, 3), v.linear);
-            Assert.AreEqual(new float3(4, 5, 6), v.angular);
+            Assert.AreEqual(new Vector3(1, 2, 3), v.linear);
+            Assert.AreEqual(new Vector3(4, 5, 6), v.angular);
         }
 
         [Test]
@@ -148,8 +148,8 @@ namespace Vector6DOFTests
             Vector6DOF result = new(matrix);
 
             // Assert
-            Assert.AreEqual(new float3(1, 2, 3), result.linear);
-            Assert.AreEqual(new float3(4, 5, 6), result.angular);
+            Assert.AreEqual(new Vector3(1, 2, 3), result.linear);
+            Assert.AreEqual(new Vector3(4, 5, 6), result.angular);
         }
 
         [Test]
@@ -168,8 +168,8 @@ namespace Vector6DOFTests
             Vector6DOF result = new(matrix);
 
             // Assert
-            Assert.AreEqual(new float3(1, 2, 3), result.linear);
-            Assert.AreEqual(new float3(4, 5, 6), result.angular);
+            Assert.AreEqual(new Vector3(1, 2, 3), result.linear);
+            Assert.AreEqual(new Vector3(4, 5, 6), result.angular);
         }
     }
 }

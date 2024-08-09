@@ -51,20 +51,17 @@ namespace SimuNEX
         /// <summary>
         /// Adds inputs to the <see cref="Adder"/>.
         /// </summary>
+        /// <param name="signal">Signal type.</param>
         /// <param name="inputs">Inputs to add.</param>
         /// <exception cref="ArgumentException">Thrown when input dimensions do not match output dimensions.</exception>
-        public void Add(params ModelInput[] inputs)
+        public void Add(Signal signal = Signal.Virtual, params string[] inputs)
         {
-            foreach (ModelInput input in inputs)
+            foreach (string input in inputs)
             {
-                if (input.data.Length != _dataSize)
-                {
-                    throw new ArgumentException(
-                        $"All inputs must have the same dimension as the output ({_dataSize}). Input dimension: {input.data.Length}");
-                }
+                this.inputs.Add(new(input, size, signal, this));
             }
 
-            this.inputs.AddRange(inputs);
+            outputs[0].signal = signal;
         }
     }
 }

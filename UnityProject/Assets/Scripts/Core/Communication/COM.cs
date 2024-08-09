@@ -50,31 +50,31 @@ namespace SimuNEX.Communication
             modelOutputs = simuNEX.Outports.ToArray();
 
             // test code
-            dataInputs = new(new COMInput[] { new("test1", 3, this) });
-            dataOutputs = new(new COMOutput[] { new("test1", 3, this) });
+            //dataInputs = new(new COMInput[] { new("test1", 3, this) });
+            //dataOutputs = new(new COMOutput[] { new("test1", 3, this) });
 
-            while (streams.Count < 2)
-            {
-                streams.Add(gameObject.AddComponent<DataStream>());
-            }
+            //while (streams.Count < 2)
+            //{
+            //    streams.Add(gameObject.AddComponent<DataStream>());
+            //}
 
-            streams[0].Setup(
-                this,
-                new SelfConnect(),
-                Streaming.S,
-                inputData: dataInputs[0],
-                modelOutputs: modelOutputs
-                );
-            streams[0].Map(new DataMappings { InputIndices = new (int, int)[] { (2, 0), (2, 1), (2, 2) } });
+            //streams[0].Setup(
+            //    this,
+            //    new SelfConnect(),
+            //    Streaming.S,
+            //    inputData: dataInputs[0],
+            //    modelOutputs: modelOutputs
+            //    );
+            //streams[0].Map(new DataMappings { InputIndices = new (int, int)[] { (2, 0), (2, 1), (2, 2) } });
 
-            streams[1].Setup(
-                this,
-                new SelfConnect(),
-                Streaming.R,
-                outputData: dataOutputs[0],
-                modelInputs: modelInputs
-                );
-            streams[1].Map(new DataMappings { OutputIndices = new (int, int)[] { (0, 0), (0, 1), (0, 2) } });
+            //streams[1].Setup(
+            //    this,
+            //    new SelfConnect(),
+            //    Streaming.R,
+            //    outputData: dataOutputs[0],
+            //    modelInputs: modelInputs
+            //    );
+            //streams[1].Map(new DataMappings { OutputIndices = new (int, int)[] { (0, 0), (0, 1), (0, 2) } });
 
             sendStreams = streams.FindAll(m => (m.direction is Streaming.S or Streaming.SR) && m.isMapped);
             receiveStreams = streams.FindAll(m => (m.direction is Streaming.R or Streaming.SR) && m.isMapped);

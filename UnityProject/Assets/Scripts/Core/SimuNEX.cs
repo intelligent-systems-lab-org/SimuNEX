@@ -36,8 +36,6 @@ namespace SimuNEX
             }
         }
 
-        public (ModelInput[], ModelOutput[]) ports => (inports.ToArray(), outports.ToArray());
-
         public void Init()
         {
             models = new(GetComponentsInChildren<Model>());
@@ -51,6 +49,7 @@ namespace SimuNEX
             {
                 if (model is ModelSystem modelSystem)
                 {
+                    modelSystem.Link();
                     modelsToRemove.AddRange(modelSystem.models);
                 }
 

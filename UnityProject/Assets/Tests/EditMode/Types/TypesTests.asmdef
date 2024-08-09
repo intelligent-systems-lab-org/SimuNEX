@@ -5,8 +5,7 @@
         "SimuNEX.Types",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "eigen3",
-        "Unity.Mathematics"
+        "eigen3"
     ],
     "includePlatforms": [
         "Editor"

@@ -1,8 +1,8 @@
 {
-    "name": "SimuNEX.Types",
+    "name": "SimuNEX.Examples",
     "rootNamespace": "",
     "references": [
-        "GUID:e69e5b0eedcadc743a87e1fc2c3972ed"
+        "GUID:b50f9ea90c845a2478bcbb9f6046359f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

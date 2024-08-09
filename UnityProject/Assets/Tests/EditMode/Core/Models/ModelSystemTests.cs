@@ -110,7 +110,8 @@ namespace CoreTests
             modelD = gameObject.AddComponent<ModelD>();
             modelE = gameObject.AddComponent<ModelE>();
 
-            modelSystem.models.AddRange(new Model[] { modelC, modelE, modelA, modelD, modelB });
+            // Order must be A -> B -> D -> E -> C
+            modelSystem.models.AddRange(new Model[] { modelA, modelB, modelD, modelE, modelC });
         }
 
         [Test]
@@ -124,6 +125,7 @@ namespace CoreTests
             // Act
             modelSystem.MapOutput(modelA.outports[0], systemOutputA);
             modelSystem.MapOutput(modelB.outports[0], systemOutputB);
+            modelSystem.Link();
 
             modelA.inports[0].data[0] = 5f;
             modelB.inports[0].data[0] = 3f;
@@ -145,6 +147,8 @@ namespace CoreTests
             modelSystem.AddPorts(systemOutputA);
 
             modelSystem.MapOutput(modelA.outports[0], systemOutputA);
+            modelSystem.Link();
+
             modelA.inports[0].data[0] = 5f;
             modelSystem.Step();
             Assert.AreEqual(10f, systemOutputA.data[0]);
@@ -230,6 +234,7 @@ namespace CoreTests
 
             // Act
             modelSystem.MapInput(systemInputA, modelA.inports[0], modelB.inports[0]);
+            modelSystem.Link();
 
             systemInputA.data[0] = 5f;
             modelSystem.Step();
@@ -247,6 +252,7 @@ namespace CoreTests
             modelSystem.AddPorts(systemInputA);
 
             modelSystem.MapInput(systemInputA, modelA.inports[0]);
+            modelSystem.Link();
             systemInputA.data[0] = 5f;
             modelSystem.Step();
             Assert.AreEqual(5f, modelA.inports[0].data[0]);
@@ -337,6 +343,7 @@ namespace CoreTests
             modelSystem.MapInput(systemInputA, modelA.inports[0]);  // M -> A
             modelSystem.MapInternal(modelOutputA, modelB.inports[0]); // M -> A -> B
             modelSystem.MapOutput(modelB.outports[0], systemOutputA); // M -> A -> B -> M
+            modelSystem.Link();
 
             systemInputA.data[0] = 5f;
             modelSystem.Step();
@@ -383,11 +390,11 @@ namespace CoreTests
             modelSystem.MapInternal(modelD.outports[0], modelE.inports[1]); // M1 -> A2 -> D1 -> E1
 
             modelSystem.MapInternal(modelE.outports[0], modelC.inports[1]); // M1 -> A2 -> D1 -> E1 -> C2
+            modelSystem.Link();
 
             systemInputA.data[0] = 15f;
             systemInputB.data[0] = 25f;
 
-            modelSystem.models = modelSystem.TopologicalSort();
             modelSystem.Step();
 
             // A = 2*M[0], 2+M[0]

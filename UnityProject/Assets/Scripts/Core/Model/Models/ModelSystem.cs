@@ -13,6 +13,36 @@ namespace SimuNEX
 
         protected override ModelFunction modelFunction => throw new ArgumentException("ModelSystems do not have model functions.");
 
+        public virtual void Link()
+        {
+            // Assign references for output mappings
+            foreach (KeyValuePair<ModelOutput, List<ModelOutput>> kvp in outputMappings)
+            {
+                foreach (ModelOutput systemOutput in kvp.Value)
+                {
+                    systemOutput.data = kvp.Key.data;
+                }
+            }
+
+            // Assign references for input mappings
+            foreach (KeyValuePair<ModelInput, List<ModelInput>> kvp in inputMappings)
+            {
+                foreach (ModelInput modelInput in kvp.Value)
+                {
+                    modelInput.data = kvp.Key.data;
+                }
+            }
+
+            // Assign references for internal mappings
+            foreach (KeyValuePair<ModelOutput, List<ModelInput>> kvp in internalMappings)
+            {
+                foreach (ModelInput modelInput in kvp.Value)
+                {
+                    modelInput.data = kvp.Key.data;
+                }
+            }
+        }
+
         public override void Step()
         {
             foreach (Model model in models)
@@ -38,7 +68,7 @@ namespace SimuNEX
 
         private bool IsPartOfModelSystem(ModelPort port)
         {
-            return models.SelectMany(model => model.inports).Contains(port) 
+            return models.SelectMany(model => model.inports).Contains(port)
                 || models.SelectMany(model => model.outports).Contains(port);
         }
 
@@ -84,7 +114,6 @@ namespace SimuNEX
                 }
 
                 outputMappings[modelOutput].Add(systemOutput);
-                systemOutput.data = modelOutput.data; // Directly assign the reference
             }
         }
 
@@ -149,7 +178,6 @@ namespace SimuNEX
                 }
 
                 inputMappings[systemInput].Add(modelInput);
-                modelInput.data = systemInput.data; // Directly assign the reference
             }
         }
 
@@ -202,7 +230,7 @@ namespace SimuNEX
                 }
 
                 // Ensure model input is not already mapped
-                if (inputMappings.Any(kvp => kvp.Value.Contains(modelInput)) 
+                if (inputMappings.Any(kvp => kvp.Value.Contains(modelInput))
                     || internalMappings.Any(kvp => kvp.Value.Contains(modelInput)))
                 {
                     throw new InvalidOperationException("This model input is already mapped to another system input or model output.");
@@ -214,66 +242,7 @@ namespace SimuNEX
                 }
 
                 internalMappings[modelOutput].Add(modelInput);
-                modelInput.data = modelOutput.data;
             }
-        }
-
-        /// <summary>
-        /// Topological sort to determine the order of model processing.
-        /// </summary>
-        /// <returns>Sorted list of models based on dependencies.</returns>
-        /// <exception cref="InvalidOperationException"></exception>
-        public List<Model> TopologicalSort()
-        {
-            Dictionary<Model, int> inDegree = new();
-            Dictionary<Model, List<Model>> adjList = new();
-
-            foreach (Model model in models)
-            {
-                inDegree[model] = 0;
-                adjList[model] = new List<Model>();
-            }
-
-            foreach (KeyValuePair<ModelOutput, List<ModelInput>> mapping in internalMappings)
-            {
-                foreach (ModelInput modelInput in mapping.Value)
-                {
-                    Model fromModel = models.First(m => m.outports.Contains(mapping.Key));
-                    Model toModel = models.First(m => m.inports.Contains(modelInput));
-
-                    adjList[fromModel].Add(toModel);
-                    inDegree[toModel]++;
-                }
-            }
-
-            Queue<Model> queue = new();
-            foreach (Model model in inDegree.Where(kvp => kvp.Value == 0).Select(kvp => kvp.Key))
-            {
-                queue.Enqueue(model);
-            }
-
-            List<Model> sortedModels = new();
-            while (queue.Count > 0)
-            {
-                Model model = queue.Dequeue();
-                sortedModels.Add(model);
-
-                foreach (Model dependentModel in adjList[model])
-                {
-                    inDegree[dependentModel]--;
-                    if (inDegree[dependentModel] == 0)
-                    {
-                        queue.Enqueue(dependentModel);
-                    }
-                }
-            }
-
-            if (sortedModels.Count != models.Count)
-            {
-                throw new InvalidOperationException("The graph has a cycle.");
-            }
-
-            return sortedModels;
         }
     }
 }

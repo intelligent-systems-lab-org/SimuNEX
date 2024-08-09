@@ -6,7 +6,7 @@ namespace CoreTests
 {
     public class AdderTests
     {
-        Adder adder;
+        private Adder adder;
 
         [SetUp]
         public void Setup()
@@ -15,14 +15,12 @@ namespace CoreTests
             GameObject gameObject = new();
             adder = gameObject.AddComponent<Adder>();
 
-            ModelInput[] inputs = new ModelInput[]
+            string[] inputs = new string[]
             {
-                new("input1"),
-                new("input2"),
-                new("input3")
+                "input1", "input2", "input3"
             };
 
-            adder.Add(inputs);
+            adder.Add(Signal.Virtual, inputs);
         }
 
         [Test]
