@@ -6,7 +6,6 @@ namespace SimuNEX.Examples
     {
         public RBModel RB;
         public Adder adder;
-
         public List<PropellerModel> propellers;
 
         public Multicopter()

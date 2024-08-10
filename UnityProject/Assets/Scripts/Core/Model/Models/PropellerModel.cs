@@ -5,6 +5,11 @@ namespace SimuNEX
     public class PropellerModel : Model
     {
         /// <summary>
+        /// Radians to Degrees conversion factor.
+        /// </summary>
+        protected readonly float rad2deg = Mathf.Rad2Deg;
+
+        /// <summary>
         /// The <see cref="RBModel"/> body where forces are applied.
         /// </summary>
         public RBModel RB;
@@ -28,6 +33,24 @@ namespace SimuNEX
         /// Speed to torque factor.
         /// </summary>
         public float torqueCoefficient = 1.1e-5f;
+
+        protected void Update()
+        {
+            HandleAnimation();
+        }
+
+        /// <summary>
+        /// Animates spinner associated with the <see cref="spinnerObject"/>.
+        /// </summary>
+        protected void HandleAnimation()
+        {
+            // Scale Time.deltaTime based on motorSpeed
+            float scaledDeltaTime = Time.deltaTime * Mathf.Abs(inputs[0].data[0]);
+
+            // Handle rotation animation
+            Quaternion increment = Quaternion.Euler(inputs[0].data[0] * rad2deg * scaledDeltaTime * spinAxis.ToVector());
+            spinnerObject.localRotation *= increment;
+        }
 
         public PropellerModel()
         {
@@ -53,14 +76,12 @@ namespace SimuNEX
                 // use propeller normal for reaction torque direction for now
                 totalForce.angular +=  torqueCoefficient * speedProd * normal;
 
-                totalForce = totalForce.Apply(x => Mathf.Abs(x) < 1e-6 ? 0f : x);
-
                 outputs[0].data[0] = totalForce.u;
-                outputs[0].data[1] = totalForce.v;
-                outputs[0].data[2] = totalForce.w;
+                outputs[0].data[1] = totalForce.w;
+                outputs[0].data[2] = totalForce.v;
                 outputs[0].data[3] = totalForce.p;
-                outputs[0].data[4] = totalForce.q;
-                outputs[0].data[5] = totalForce.r;
+                outputs[0].data[4] = totalForce.r;
+                outputs[0].data[5] = totalForce.q;
             };
 
         protected Vector6DOF ForceAtPosition(Vector3 force, Vector3 pos) => new()

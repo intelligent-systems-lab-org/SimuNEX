@@ -60,19 +60,19 @@ namespace SimuNEX
                 outputs[2].data[1] = body.transform.position.z;
                 outputs[2].data[2] = body.transform.position.y;
 
-                outputs[3].data[0] = body.transform.rotation.x;
-                outputs[3].data[1] = body.transform.rotation.z;
-                outputs[3].data[2] = body.transform.rotation.y;
-                outputs[3].data[3] = body.transform.rotation.w;
+                outputs[3].data[0] = body.transform.rotation.w;
+                outputs[3].data[1] = body.transform.rotation.x;
+                outputs[3].data[2] = body.transform.rotation.z;
+                outputs[3].data[3] = body.transform.rotation.y;
 
                 // Synchronize inputs with applied force
                 appliedForce.linear.x = inputs[0].data[0];
-                appliedForce.linear.y = inputs[0].data[1];
-                appliedForce.linear.z = inputs[0].data[2];
+                appliedForce.linear.z = inputs[0].data[1];
+                appliedForce.linear.y = inputs[0].data[2];
 
                 appliedForce.angular.x = inputs[0].data[3];
-                appliedForce.angular.y = inputs[0].data[4];
-                appliedForce.angular.z = inputs[0].data[5];
+                appliedForce.angular.z = inputs[0].data[4];
+                appliedForce.angular.y = inputs[0].data[5];
             };
 
         protected virtual void PhysicsUpdate()

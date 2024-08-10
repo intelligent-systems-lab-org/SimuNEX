@@ -1,6 +1,7 @@
 using ROS2;
 using std_msgs.msg;
 using System;
+using UnityEngine;
 
 namespace SimuNEX.Communication
 {
@@ -8,61 +9,78 @@ namespace SimuNEX.Communication
     /// Provides an interface for SimuNEX to connect and communicate with ROS2 systems.
     /// </summary>
     [Serializable]
-    public class ROS2 : COMProtocol
+    public class ROS2 : COMProtocol, IProtocolInitialization
     {
         /// <summary>
         /// Reference to the attached ROS2 Unity component for managing ROS2 operations.
         /// </summary>
-        public ROS2UnityComponent ros2;
+        public ROS2UnityComponent Component;
 
         /// <summary>
         /// Node dedicated to sending out ROS2 messages.
         /// </summary>
-        private ROS2Node outputNode;
+        private ROS2Node _node;
+
 
         /// <summary>
-        /// Node dedicated to listening to incoming ROS2 messages.
+        /// Name of the ROS2 node.
         /// </summary>
-        private ROS2Node inputNode;
-
-        /// <summary>
-        /// Name of the node responsible for listening to ROS2 messages.
-        /// </summary>
-        public string outputNodeName = "SimuNEXROS2Listener";
-
-        /// <summary>
-        /// Name of the node responsible for sending out ROS2 messages.
-        /// </summary>
-        public string inputNodeName = "SimuNEXROS2Talker";
+        public string node = "SimuNEXROS2Node";
 
         /// <summary>
         /// Name of the publisher for system outputs.
         /// </summary>
+        [COMType(Streaming.S)]
         public string publisherName = "SystemOutputs";
 
         /// <summary>
         /// Name of the subscriber for system inputs.
         /// </summary>
+        [COMType(Streaming.R)]
         public string subscriberName = "SystemInputs";
 
         /// <summary>
         /// Publisher responsible for sending out ROS2 messages.
         /// </summary>
+        [COMType(Streaming.S)]
         public IPublisher<Float32MultiArray> publisher;
 
         /// <summary>
         /// Subscriber responsible for listening to incoming ROS2 messages.
         /// </summary>
+        [COMType(Streaming.R)]
         public ISubscription<Float32MultiArray> subscriber;
+
+        public void Initialize()
+        {
+            if (Component.Ok())
+            {
+                _node ??= Component.CreateNode(node);
+                Debug.Log($"Success: ROS2 Node {_node.name} created");
+            }
+        }
 
         public override void Receive(float[] data)
         {
-            throw new System.NotImplementedException();
+            if (Component.Ok())
+            {
+                subscriber ??= _node
+                    .CreateSubscription<Float32MultiArray>
+                    (
+                        subscriberName,
+                        msg => Array.Copy(msg.Data, data, msg.Data.Length)
+                    );
+            }
         }
 
         public override void Send(in float[] data)
         {
-            throw new System.NotImplementedException();
+            if (Component.Ok())
+            {
+                publisher ??= _node.CreatePublisher<Float32MultiArray>(publisherName);
+                Float32MultiArray msg = new() { Data = data };
+                publisher.Publish(msg);
+            }
         }
     }
 }

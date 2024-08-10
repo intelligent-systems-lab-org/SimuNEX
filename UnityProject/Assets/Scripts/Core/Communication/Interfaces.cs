@@ -9,6 +9,11 @@ namespace SimuNEX.Communication
         SR
     }
 
+    public interface IProtocolInitialization
+    {
+        void Initialize();
+    }
+
     [Serializable]
     public abstract class COMProtocol
     {
