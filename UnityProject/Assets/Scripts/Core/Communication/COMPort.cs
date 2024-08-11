@@ -3,19 +3,19 @@ using System;
 namespace SimuNEX.Communication
 {
     [Serializable]
-    public class COMInput : ModelInput
+    public class COMInput : Port
     {
-        public COMInput(string name, int size = 1, IBlock connectedBlock = null)
-            : base(name, size, Signal.Data, connectedBlock)
+        public COMInput(string name, int size = 1)
+            : base(name, size, Signal.Data)
         {
         }
     }
 
     [Serializable]
-    public class COMOutput : ModelOutput
+    public class COMOutput : Port
     {
-        public COMOutput(string name, int size = 1, IBlock connectedBlock = null)
-            : base(name, size, Signal.Data, connectedBlock)
+        public COMOutput(string name, int size = 1)
+            : base(name, size, Signal.Data)
         {
         }
     }

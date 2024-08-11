@@ -12,19 +12,16 @@ namespace SimuNEX
         Data
     }
 
-    public interface IBlock
-    {
-    }
-
     /// <summary>
-    /// Interface for defining ports in a <see cref="Model"/>.
+    /// Interface for defining ports in a system.
     /// </summary>
-    public interface IModelPort
+    public interface IPort
     {
         /// <summary>
         /// The name of the port.
         /// </summary>
         string name { get; }
+
         /// <summary>
         /// The domain of the data.
         /// </summary>

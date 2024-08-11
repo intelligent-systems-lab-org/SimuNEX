@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SimuNEX
 {
     [Serializable]
-    public abstract class Model : MonoBehaviour, IBlock
+    public abstract class Model : MonoBehaviour
     {
         /// <summary>
         /// Returns all output ports.
@@ -44,6 +44,22 @@ namespace SimuNEX
         /// <summary>
         /// Function that updates the model.
         /// </summary>
-        public virtual void Step() => modelFunction(inports, outports);
+        public virtual void Step()
+        {
+            modelFunction(inports, outports);
+        }
+
+        public void Setup()
+        {
+            foreach (ModelInput input in inports)
+            {
+                input.connectedModel = this;
+            }
+
+            foreach (ModelOutput output in outports)
+            {
+                output.connectedModel = this;
+            }
+        }
     }
 }

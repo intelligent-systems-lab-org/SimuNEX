@@ -18,7 +18,7 @@ namespace SimuNEX
                 _dataSize = value;
                 outputs = new
                 (
-                    new ModelOutput[] { new("output", _dataSize) }
+                    new ModelOutput[] { new("output", _dataSize, outputs[0].signal, this) }
                 );
             }
         }
@@ -30,7 +30,7 @@ namespace SimuNEX
         {
             outputs = new
             (
-                new ModelOutput[] { new("output", _dataSize) }
+                new ModelOutput[] { new("output", _dataSize, Signal.Virtual, this) }
             );
         }
 
@@ -51,17 +51,16 @@ namespace SimuNEX
         /// <summary>
         /// Adds inputs to the <see cref="Adder"/>.
         /// </summary>
-        /// <param name="signal">Signal type.</param>
         /// <param name="inputs">Inputs to add.</param>
         /// <exception cref="ArgumentException">Thrown when input dimensions do not match output dimensions.</exception>
-        public void Add(Signal signal = Signal.Virtual, params string[] inputs)
+        public void Create(params string[] inputs)
         {
+            this.inputs = new();
+
             foreach (string input in inputs)
             {
-                this.inputs.Add(new(input, size, signal, this));
+                this.inputs.Add(new(input, size, Signal.Virtual, this));
             }
-
-            outputs[0].signal = signal;
         }
     }
 }

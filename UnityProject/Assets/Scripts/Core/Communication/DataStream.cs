@@ -23,36 +23,40 @@ namespace SimuNEX.Communication
         /// <summary>
         /// Maps stream outputs to COM outputs.
         /// </summary>
-        private readonly Dictionary<int, int> _comOutputMappings = new();
+        [HideInInspector]
+        [SerializeField]
+        private List<int> _comOutputMappings = new();
 
         /// <summary>
         /// Maps stream inputs to COM inputs.
         /// </summary>
-        private readonly Dictionary<int, int> _comInputMappings = new();
+        [HideInInspector]
+        [SerializeField]
+        private List<int> _comInputMappings = new();
 
 
         /// <summary>
         /// The <see cref="COMInput"/> port this stream associates with.
         /// </summary>
-        [SerializeField]
-        private COMInput inputData;
+        public COMInput inputData;
 
         /// <summary>
         /// The <see cref="COMOutput"/> port this stream associates with.
         /// </summary>
-        [SerializeField]
-        private COMOutput outputData;
+        public COMOutput outputData;
 
         /// <summary>
         /// Maps COM indices to ModelPort indices.
         /// </summary>
+        [HideInInspector]
+        [SerializeField]
         private DataMappings mappings = new();
 
         /// <summary>
         /// The <see cref="COMProtocol"/> the stream uses for data communication.
         /// </summary>
         [SerializeReference]
-        public COMProtocol protocol;
+        public COMProtocol protocol = new SelfConnect();
 
         public bool isMapped => direction switch
         {
@@ -65,22 +69,22 @@ namespace SimuNEX.Communication
         /// Setups the <see cref="DataStream"/> with the given settings.
         /// </summary>
         /// <param name="communication">The component used to manage the stream.</param>
-        /// <param name="protocol">The protocol used to handle communcation.</param>
         /// <param name="direction">The direction of streaming.</param>
         /// <param name="inputData">The input port this stream associates with.</param>
         /// <param name="outputData">The output port this stream associates with.</param>
         /// <param name="modelOutputs">The model output ports the stream uses for access.</param>
         /// <param name="modelInputs">The model input ports the stream uses for access.</param>
+        /// <param name="protocol">The protocol used to handle communcation.</param>
         /// <exception cref="ArgumentException">Throws if required ports are missing.</exception>
         public void Setup
         (
             COM communication,
-            COMProtocol protocol,
             Streaming direction,
             COMInput inputData = null,
             COMOutput outputData = null,
             ModelOutput[] modelOutputs = null,
-            ModelInput[] modelInputs = null
+            ModelInput[] modelInputs = null,
+            COMProtocol protocol = null
         )
         {
             // Validate the constraints
@@ -100,17 +104,20 @@ namespace SimuNEX.Communication
             }
 
             this.communication = communication;
-            this.protocol = protocol;
+            this.protocol = protocol ?? new SelfConnect();
             this.direction = direction;
 
             this.inputData = inputData;
             this.outputData = outputData;
 
+            _comInputMappings = new();
+            _comOutputMappings = new();
+
             if (modelOutputs != null)
             {
                 for (int i = 0; i < modelOutputs.Length; i++)
                 {
-                    _comOutputMappings[i] = Array.IndexOf(communication.modelOutputs, modelOutputs[i]);
+                    _comOutputMappings.Add(Array.IndexOf(communication.modelOutputs, modelOutputs[i]));
                 }
             }
 
@@ -118,7 +125,7 @@ namespace SimuNEX.Communication
             {
                 for (int i = 0; i < modelInputs.Length; i++)
                 {
-                    _comInputMappings[i] = Array.IndexOf(communication.modelInputs, modelInputs[i]);
+                    _comInputMappings.Add(Array.IndexOf(communication.modelInputs, modelInputs[i]));
                 }
             }
         }
@@ -149,9 +156,71 @@ namespace SimuNEX.Communication
     }
 
     [Serializable]
-    public struct DataMappings
+    public struct DataMappings : ISerializationCallbackReceiver
     {
         public (int, int)[] InputIndices { get; set; }
         public (int, int)[] OutputIndices { get; set; }
+
+        [SerializeField]
+        private int[] inputIndicesFirstElements;
+        [SerializeField]
+        private int[] inputIndicesSecondElements;
+
+        [SerializeField]
+        private int[] outputIndicesFirstElements;
+        [SerializeField]
+        private int[] outputIndicesSecondElements;
+
+        public void OnBeforeSerialize()
+        {
+            // Ensure arrays are initialized
+            if (InputIndices != null)
+            {
+                inputIndicesFirstElements = new int[InputIndices.Length];
+                inputIndicesSecondElements = new int[InputIndices.Length];
+
+                for (int i = 0; i < InputIndices.Length; i++)
+                {
+                    inputIndicesFirstElements[i] = InputIndices[i].Item1;
+                    inputIndicesSecondElements[i] = InputIndices[i].Item2;
+                }
+            }
+
+            if (OutputIndices != null)
+            {
+                outputIndicesFirstElements = new int[OutputIndices.Length];
+                outputIndicesSecondElements = new int[OutputIndices.Length];
+
+                for (int i = 0; i < OutputIndices.Length; i++)
+                {
+                    outputIndicesFirstElements[i] = OutputIndices[i].Item1;
+                    outputIndicesSecondElements[i] = OutputIndices[i].Item2;
+                }
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+            // Reconstruct the tuple arrays from the serialized data
+            if (inputIndicesFirstElements != null && inputIndicesSecondElements != null)
+            {
+                InputIndices = new (int, int)[inputIndicesFirstElements.Length];
+
+                for (int i = 0; i < inputIndicesFirstElements.Length; i++)
+                {
+                    InputIndices[i] = (inputIndicesFirstElements[i], inputIndicesSecondElements[i]);
+                }
+            }
+
+            if (outputIndicesFirstElements != null && outputIndicesSecondElements != null)
+            {
+                OutputIndices = new (int, int)[outputIndicesFirstElements.Length];
+
+                for (int i = 0; i < outputIndicesFirstElements.Length; i++)
+                {
+                    OutputIndices[i] = (outputIndicesFirstElements[i], outputIndicesSecondElements[i]);
+                }
+            }
+        }
     }
 }

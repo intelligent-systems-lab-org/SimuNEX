@@ -4,9 +4,9 @@ using UnityEngine;
 namespace SimuNEX
 {
     /// <summary>
-    /// Defines a port in a <see cref="Model"/> object, holding data.
+    /// Defines a port, holding data.
     /// </summary>
-    public abstract class ModelPort : IModelPort
+    public abstract class Port : IPort
     {
         [SerializeField]
         private string _name;
@@ -25,8 +25,6 @@ namespace SimuNEX
             get => _name;
             set => _name = value;
         }
-
-        public IBlock connectedBlock { get; }
 
         /// <summary>
         /// Returns data stored in the port.
@@ -57,14 +55,36 @@ namespace SimuNEX
         /// <param name="name">The name assigned to the port.</param>
         /// <param name="size">The data size of the port.</param>
         /// <param name="signal">The domain of the port data. Is <see cref="Signal.Virtual"/> by default.</param>
-        /// <param name="connectedBlock">The block this port is associated with.</param>
-        protected ModelPort(string name, int size = 1, Signal signal = Signal.Virtual, IBlock connectedBlock = null)
+        protected Port(string name, int size = 1, Signal signal = Signal.Virtual)
         {
             this.name = name;
             this.signal = signal;
 
             data = new float[size];
-            this.connectedBlock = connectedBlock;
+        }
+    }
+
+    /// <summary>
+    /// Defines a port in a <see cref="Model"/> object, holding data.
+    /// </summary>
+    public abstract class ModelPort : Port
+    {
+        /// <summary>
+        /// The model this port is associated with.
+        /// </summary>
+        public Model connectedModel;
+
+        /// <summary>
+        /// Creates a <see cref="ModelPort{T}"/> with the given name and data domain.
+        /// </summary>
+        /// <param name="name">The name assigned to the port.</param>
+        /// <param name="size">The data size of the port.</param>
+        /// <param name="signal">The domain of the port data. Is <see cref="Signal.Virtual"/> by default.</param>
+        /// <param name="model">The model this port will be associated with.</param>
+        protected ModelPort(string name, int size = 1, Signal signal = Signal.Virtual, Model model = null)
+            : base(name, size, signal)
+        {
+            connectedModel = model;
         }
     }
 
@@ -80,9 +100,9 @@ namespace SimuNEX
         /// <param name="name">The name assigned to the port.</param>
         /// <param name="size">The data size of the port.</param>
         /// <param name="signal">The domain of the port data. Is <see cref="Signal.Virtual"/> by default.</param>
-        /// <param name="connectedBlock">The block this port is associated with.</param>
-        public ModelOutput(string name, int size = 1, Signal signal = Signal.Virtual, IBlock connectedBlock = null)
-            : base(name, size, signal, connectedBlock)
+        /// <param name="model">The model this port will be associated with.</param>
+        public ModelOutput(string name, int size = 1, Signal signal = Signal.Virtual, Model model = null)
+            : base(name, size, signal, model)
         {
         }
     }
@@ -99,9 +119,9 @@ namespace SimuNEX
         /// <param name="name">The name assigned to the port.</param>
         /// <param name="size">The data size of the port.</param>
         /// <param name="signal">The domain of the port data. Is <see cref="Signal.Virtual"/> by default.</param>
-        /// <param name="connectedBlock">The block this port is associated with.</param>
-        public ModelInput(string name, int size = 1, Signal signal = Signal.Virtual, IBlock connectedBlock = null)
-            : base(name, size, signal, connectedBlock)
+        /// <param name="model">The model this port will be associated with.</param>
+        public ModelInput(string name, int size = 1, Signal signal = Signal.Virtual, Model model = null)
+            : base(name, size, signal, model)
         {
         }
     }

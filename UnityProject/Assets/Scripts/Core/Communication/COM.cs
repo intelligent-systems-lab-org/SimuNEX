@@ -1,16 +1,18 @@
-using ROS2;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace SimuNEX.Communication
 {
-    public class COM : MonoBehaviour, IBlock
+    public class COM : MonoBehaviour
     {
         public List<DataStream> streams = new();
         private List<DataStream> sendStreams = new();
         private List<DataStream> receiveStreams = new();
+
         public List<COMInput> dataInputs = new();
         public List<COMOutput> dataOutputs = new();
+
         public ModelInput[] modelInputs;
         public ModelOutput[] modelOutputs;
 
@@ -20,11 +22,11 @@ namespace SimuNEX.Communication
             {
                 if (isInput)
                 {
-                    dataInputs.Add(new COMInput(name, size, this));
+                    dataInputs.Add(new COMInput(name, size));
                 }
                 else
                 {
-                    dataOutputs.Add(new COMOutput(name, size, this));
+                    dataOutputs.Add(new COMOutput(name, size));
                 }
             }
             else
@@ -33,90 +35,70 @@ namespace SimuNEX.Communication
                 {
                     if (isInput)
                     {
-                        dataInputs.Add(new COMInput($"{name}_{i + 1}", size, this));
+                        dataInputs.Add(new COMInput($"{name}_{i + 1}", size));
                     }
                     else
                     {
-                        dataOutputs.Add(new COMOutput($"{name}_{i + 1}", size, this));
+                        dataOutputs.Add(new COMOutput($"{name}_{i + 1}", size));
                     }
                 }
             }
         }
 
-        public void Init(SimuNEX simuNEX)
+        public void Init()
         {
-            modelInputs = simuNEX.Inports.ToArray();
-            modelOutputs = simuNEX.Outports.ToArray();
+            streams = new(GetComponents<DataStream>());
 
-            dataInputs = new
-            (
-                new COMInput[] { new("inputs", 17, this) }
-            );
+            dataInputs = new();
+            dataOutputs = new();
 
-            dataOutputs = new
-            (
-                new COMOutput[] { new("outputs", 4, this) }
-            );
-
-            streams = new() { gameObject.AddComponent<DataStream>() };
-            streams[0].Setup
-            (
-                this,
-                new ROS2(),
-                Streaming.SR,
-                dataInputs[0],
-                dataOutputs[0],
-                new ModelOutput[] {
-                    modelOutputs[9],// velocity
-                    modelOutputs[10], // angular velocity
-                    modelOutputs[11], // position
-                    modelOutputs[12], // angular position
-                    modelOutputs[0], // force_BL
-                    modelOutputs[1], // force_BR
-                    modelOutputs[2], // force_FL
-                    modelOutputs[3] }, // force_FR
-                new ModelInput[] { modelInputs[5], modelInputs[6], modelInputs[7], modelInputs[8] }
-            );
-
-            if (streams[0].protocol is ROS2 ros2)
+            foreach (DataStream stream in streams)
             {
-                ros2.Component = GetComponent<ROS2UnityComponent>();
-                ros2.Initialize();
+                if (stream.protocol is IProtocolInitialization protocol)
+                {
+                    protocol.Initialize();
+                }
+
+                if (stream.direction is Streaming.S or Streaming.SR)
+                {
+                    dataInputs.Add(stream.inputData);
+                }
+
+                if (stream.direction is Streaming.S or Streaming.SR)
+                {
+                    dataOutputs.Add(stream.outputData);
+                }
             }
 
-            streams[0].Map
-            (
-                new DataMappings
-                {
-                    InputIndices = new (int, int)[]
-                    {
-                        (0, 0),
-                        (0,  1),
-                        (0, 2),
-                        (1, 0),
-                        (1, 1),
-                        (1, 2),
-                        (2, 0),
-                        (2, 1),
-                        (2, 2),
-                        (3, 0),
-                        (3, 1),
-                        (3, 2),
-                        (3, 3),
-                        (4, 5),
-                        (5, 5),
-                        (6, 5),
-                        (7, 5)
-                    },
-                    OutputIndices = new (int, int)[]
-                    {
-                        (0, 0), (1, 0), (2, 0), (3, 0)
-                    }
-                }
-            );
+            Link();
 
             sendStreams = streams.FindAll(m => (m.direction is Streaming.S or Streaming.SR) && m.isMapped && m.enabled);
             receiveStreams = streams.FindAll(m => (m.direction is Streaming.R or Streaming.SR) && m.isMapped && m.enabled);
+        }
+
+        private void LinkPorts<T>(T[] ports, Func<Model, T[]> getPorts) where T : ModelPort
+        {
+            for (int i = 0; i < ports.Length; i++)
+            {
+                T port = ports[i];
+                Model model = port.connectedModel;
+
+                if (model != null)
+                {
+                    T matched = Array.Find(getPorts(model), p => p.name == port.name && p.connectedModel == port.connectedModel);
+
+                    if (matched != null)
+                    {
+                        port.data = matched.data;
+                    }
+                }
+            }
+        }
+
+        private void Link()
+        {
+            LinkPorts(modelInputs, m => m.inports);
+            LinkPorts(modelOutputs, m => m.outports);
         }
 
         public void SendAll()

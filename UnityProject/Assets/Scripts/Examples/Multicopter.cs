@@ -35,16 +35,17 @@ namespace SimuNEX.Examples
 
         public override void Link()
         {
-            models = new ();
+            models = new();
             models.AddRange(propellers);
             models.AddRange(new Model[] { adder, RB });
 
             adder.size = 6;
 
-            adder.Add(
-                Signal.Mechanical,
-                new string[] { "force_BL", "force_BR", "force_FL", "force_BR" }
-            );
+            adder.Create(new string[] { "force_BL", "force_BR", "force_FL", "force_BR" });
+
+            outputMappings = new();
+            inputMappings = new();
+            internalMappings = new();
 
             // speed(s) => speed(s)
             MapInput(inputs[0], models[0].inports[0]);

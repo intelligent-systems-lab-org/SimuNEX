@@ -15,12 +15,13 @@ namespace CoreTests
             GameObject gameObject = new();
             adder = gameObject.AddComponent<Adder>();
 
-            string[] inputs = new string[]
-            {
-                "input1", "input2", "input3"
-            };
-
-            adder.Add(Signal.Virtual, inputs);
+            adder.Create
+            (
+                new string[]
+                {
+                    "input1", "input2", "input3"
+                }
+            );
         }
 
         [Test]

@@ -47,6 +47,7 @@ namespace SimuNEX
 
             foreach (Model model in models)
             {
+                model.Setup();
                 if (model is ModelSystem modelSystem)
                 {
                     modelSystem.Link();
@@ -63,7 +64,7 @@ namespace SimuNEX
 
             if (communication != null)
             {
-                communication.Init(this);
+                communication.Init();
             }
         }
 

@@ -151,12 +151,12 @@ namespace SimuNEX.Editors
                             DataStream dataStream = com.gameObject.AddComponent<DataStream>();
                             dataStream.Setup(
                                 com,
-                                protocolInstance,
                                 streaming,
                                 comInput,
                                 comOutput,
                                 selectedModelOutputs.ToArray(),
-                                selectedModelInputs.ToArray()
+                                selectedModelInputs.ToArray(),
+                                protocolInstance
                             );
 
                             com.streams.Add(dataStream);
