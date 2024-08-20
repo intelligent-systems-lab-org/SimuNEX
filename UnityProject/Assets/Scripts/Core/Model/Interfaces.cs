@@ -26,6 +26,7 @@ namespace SimuNEX
         /// The domain of the data.
         /// </summary>
         Signal signal { get; set; }
+
         /// <summary>
         /// The data in the port.
         /// </summary>

@@ -8,17 +8,26 @@ namespace SimuNEX
     /// </summary>
     public abstract class Port : IPort
     {
+        /// <summary>
+        /// The name of the port.
+        /// </summary>
         [SerializeField]
         private string _name;
 
+        /// <summary>
+        /// The data in the port.
+        /// </summary>
         [SerializeField]
         private float[] _data;
 
+        /// <summary>
+        /// The domain of the data.
+        /// </summary>
         [SerializeField]
         private Signal _signal;
 
         /// <summary>
-        /// Unique name assigned to the port.
+        /// (Property) Unique name assigned to the port.
         /// </summary>
         public string name
         {
@@ -27,7 +36,7 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// Returns data stored in the port.
+        /// (Property) The data stored in the port.
         /// </summary>
         public float[] data
         {
@@ -36,7 +45,7 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// The domain of the data.
+        /// (Property) The domain of the data.
         /// </summary>
         public Signal signal
         {
@@ -45,7 +54,7 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// The size of the data.
+        /// (Property) The size of the data.
         /// </summary>
         public int size => _data.Length;
 
@@ -95,7 +104,7 @@ namespace SimuNEX
     public class ModelOutput : ModelPort
     {
         /// <summary>
-        /// Creates a <see cref="ModelOutput{T}"/> with the given name and data domain.
+        /// Creates a <see cref="ModelOutput"/> with the given name and data domain.
         /// </summary>
         /// <param name="name">The name assigned to the port.</param>
         /// <param name="size">The data size of the port.</param>
@@ -114,7 +123,7 @@ namespace SimuNEX
     public class ModelInput : ModelPort
     {
         /// <summary>
-        /// Creates a <see cref="ModelInput{T}"/> with the given name and data domain.
+        /// Creates a <see cref="ModelInput"/> with the given name and data domain.
         /// </summary>
         /// <param name="name">The name assigned to the port.</param>
         /// <param name="size">The data size of the port.</param>

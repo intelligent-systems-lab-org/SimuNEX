@@ -70,7 +70,8 @@ namespace SimuNEX.Communication
                 }
             }
 
-            Link();
+            LinkPorts(modelInputs, m => m.inports);
+            LinkPorts(modelOutputs, m => m.outports);
 
             sendStreams = streams.FindAll(m => (m.direction is Streaming.S or Streaming.SR) && m.isMapped && m.enabled);
             receiveStreams = streams.FindAll(m => (m.direction is Streaming.R or Streaming.SR) && m.isMapped && m.enabled);
@@ -93,12 +94,6 @@ namespace SimuNEX.Communication
                     }
                 }
             }
-        }
-
-        private void Link()
-        {
-            LinkPorts(modelInputs, m => m.inports);
-            LinkPorts(modelOutputs, m => m.outports);
         }
 
         public void SendAll()
