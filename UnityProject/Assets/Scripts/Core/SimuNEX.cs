@@ -76,6 +76,12 @@ namespace SimuNEX
             foreach (Model model in models)
             {
                 model.Setup();
+
+                if (model is IModelInitialization modelInitialization)
+                {
+                    modelInitialization.Init();
+                }
+
                 if (model is ModelSystem modelSystem)
                 {
                     modelSystem.Link();

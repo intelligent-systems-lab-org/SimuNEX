@@ -54,4 +54,12 @@ namespace SimuNEX
         /// </summary>
         float[] data { get; set; }
     }
+
+    /// <summary>
+    /// Interface for defining models that require initialization.
+    /// </summary>
+    public interface IModelInitialization
+    {
+        public void Init();
+    }
 }
