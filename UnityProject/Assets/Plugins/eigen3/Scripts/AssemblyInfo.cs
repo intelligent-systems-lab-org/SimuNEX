@@ -1,3 +1,3 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("MatrixTests")]
+[assembly: InternalsVisibleTo("eigen3Tests")]

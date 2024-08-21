@@ -6,8 +6,19 @@ namespace SimuNEX.Communication
 {
     public class COM : MonoBehaviour
     {
+        /// <summary>
+        /// All streams attached to this system.
+        /// </summary>
         public List<DataStream> streams = new();
+
+        /// <summary>
+        /// All streams that have send data.
+        /// </summary>
         private List<DataStream> sendStreams = new();
+
+        /// <summary>
+        /// All streams that have receive data.
+        /// </summary>
         private List<DataStream> receiveStreams = new();
 
         public List<COMInput> dataInputs = new();

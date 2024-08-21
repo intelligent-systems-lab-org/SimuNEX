@@ -7,24 +7,49 @@ namespace SimuNEX
     [DisallowMultipleComponent]
     public class SimuNEX : MonoBehaviour
     {
+        /// <summary>
+        /// The minimum timestep ran by <see cref="FixedUpdate"/>.
+        /// </summary>
         [SerializeField]
         [Range(0.001f, 0.1f)]
         private float _sampleTime = 0.02f;
 
+        /// <summary>
+        /// <see cref="COM"/> system connected to SimuNEX.
+        /// </summary>
         public COM communication;
 
+        /// <summary>
+        /// Collection of all models that will be simulated at runtime.
+        /// </summary>
         [SerializeField]
         private List<Model> models;
 
+        /// <summary>
+        /// All input ports found, counting internal connections of <see cref="ModelSystem"/> entities.
+        /// </summary>
         [SerializeField]
         private List<ModelInput> inports;
 
+        /// <summary>
+        /// All output ports found, counting internal connections of <see cref="ModelSystem"/> entities.
+        /// </summary>
         [SerializeField]
         private List<ModelOutput> outports;
 
+        /// <summary>
+        /// (Property) All input ports found, counting internal connections of <see cref="ModelSystem"/> entities.
+        /// </summary>
         public List<ModelInput> Inports => inports;
+
+        /// <summary>
+        /// (Property) All output ports found, counting internal connections of <see cref="ModelSystem"/> entities.
+        /// </summary>
         public List<ModelOutput> Outports => outports;
 
+        /// <summary>
+        /// (Property) The minimum timestep ran by <see cref="FixedUpdate"/>.
+        /// </summary>
         public float SampleTime
         {
             get => _sampleTime;
@@ -36,6 +61,9 @@ namespace SimuNEX
             }
         }
 
+        /// <summary>
+        /// Initializes SimuNEX, locating all models and ports.
+        /// </summary>
         public void Init()
         {
             models = new(GetComponentsInChildren<Model>());
