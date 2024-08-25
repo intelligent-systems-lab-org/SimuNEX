@@ -1,10 +1,9 @@
 {
-    "name": "SimuNEX.Examples",
+    "name": "SimuNEX.Mechanical",
     "rootNamespace": "",
     "references": [
-        "GUID:b50f9ea90c845a2478bcbb9f6046359f",
-        "GUID:625f5aa6b749b4b479743aeb6513aa7c",
-        "GUID:33cf9cfb9925a6d4e82a209d6cf2b721"
+        "GUID:e69e5b0eedcadc743a87e1fc2c3972ed",
+        "GUID:b50f9ea90c845a2478bcbb9f6046359f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

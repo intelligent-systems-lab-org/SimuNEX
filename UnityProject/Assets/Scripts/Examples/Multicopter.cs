@@ -1,3 +1,4 @@
+using SimuNEX.Mechanical;
 using System.Collections.Generic;
 
 namespace SimuNEX.Examples
