@@ -96,10 +96,7 @@ namespace SimuNEX
 
             Debug.Log($"Init Successful, found {models.Count} models (s).");
 
-            if (communication != null)
-            {
-                communication.Init();
-            }
+            InitializeSimulation();
         }
 
         protected void Start()
@@ -108,16 +105,40 @@ namespace SimuNEX
             Init();
         }
 
-        protected void FixedUpdate()
+        protected void FixedUpdate() => simulateStep();
+
+        public delegate void SimulationStep();
+
+        private SimulationStep simulateStep;
+
+        private void InitializeSimulation()
         {
-            communication.ReceiveAll();
-
-            foreach (Model model in models)
+            if (communication == null)
             {
-                model.Step();
+                simulateStep = () =>
+                {
+                    foreach (Model model in models)
+                    {
+                        model.Step();
+                    }
+                };
             }
+            else
+            {
+                communication.Init();
 
-            communication.SendAll();
+                simulateStep = () =>
+                {
+                    communication.ReceiveAll();
+
+                    foreach (Model model in models)
+                    {
+                        model.Step();
+                    }
+
+                    communication.SendAll();
+                };
+            }
         }
     }
 }
