@@ -10,7 +10,6 @@ FOR %%a IN (%*) DO (
 
 REM Path to package.json, conf.py, and Doxyfile (adjust these paths as needed)
 SET PACKAGE_JSON_PATH=.\package.json
-SET CONF_PY_PATH=docs\sphinx\source\conf.py
 SET DOXYFILE_PATH=docs\doxygen\Doxyfile
 
 REM Extract version from package.json
@@ -30,16 +29,10 @@ FOR /F "tokens=1,2 delims=." %%a IN ("!FULL_VERSION!") DO (
     SET VERSION=%%a.%%b
 )
 
-REM Update 'release' in conf.py
-powershell -Command "(gc '%CONF_PY_PATH%') -replace '^release = .+', 'release = ''!FULL_VERSION!'' ' | Out-File -encoding ASCII '%CONF_PY_PATH%'"
-
-REM Update 'version' in conf.py
-powershell -Command "(gc '%CONF_PY_PATH%') -replace '^version = .+', 'version = ''!VERSION!'' ' | Out-File -encoding ASCII '%CONF_PY_PATH%'"
-
 REM Update 'PROJECT_NUMBER' in Doxyfile
 powershell -Command "(gc '%DOXYFILE_PATH%') -replace '^PROJECT_NUMBER\s+=.+', 'PROJECT_NUMBER         = !FULL_VERSION!' | Out-File -encoding ASCII '%DOXYFILE_PATH%'"
 
-echo Updated Sphinx conf.py and Doxyfile with full version !FULL_VERSION! and version !VERSION!
+echo Updated Doxyfile with full version !FULL_VERSION! and version !VERSION!
 
 REM Conditionally run the Docker container if --host or -h argument is provided
 IF %HOST_FLAG% == 1 (
