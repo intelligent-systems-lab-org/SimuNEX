@@ -320,6 +320,8 @@ GameObject:
   - component: {fileID: 1971218347}
   - component: {fileID: 1971218346}
   - component: {fileID: 1971218345}
+  - component: {fileID: 1971218351}
+  - component: {fileID: 1971218352}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -414,6 +416,119 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1971218351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971218344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bae9a9ba0e980a4287904c0d908a98b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sampleTime: 0.02
+  communication: {fileID: 0}
+  models:
+  - {fileID: 0}
+  inports:
+  - _name: body_velocities
+    _data:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    _signal: 1
+    connectedModel: {fileID: 0}
+  outports:
+  - _name: drag_forces
+    _data:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    _signal: 1
+    connectedModel: {fileID: 0}
+--- !u!114 &1971218352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971218344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58e47c932a4c0fc419b26173f7333964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outputs:
+  - _name: drag_forces
+    _data:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    _signal: 1
+    connectedModel: {fileID: 1971218352}
+  inputs:
+  - _name: body_velocities
+    _data:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    _signal: 1
+    connectedModel: {fileID: 1971218352}
+  dragCoefficients:
+    _matrix:
+      _serializedData:
+      - 0.05
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.05
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.05
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.01
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.01
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.01
+      _serializedRows: 6
+      _serializedCols: 6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
