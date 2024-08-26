@@ -1,5 +1,13 @@
 ![SimuNEX Logo](https://raw.githubusercontent.com/intelligent-systems-lab-org/simunex.github.io/main/img/logo.png)
 
+-----
+
+<p align = "center">
+<b>A modular high-fidelity dynamic simulation framework </b>
+<i>that runs on top of Unity.</i>
+</p>
+
+-----
 
 <p align="center">
   <a href="https://unity.com/">
@@ -12,15 +20,6 @@
   <img src="https://img.shields.io/github/last-commit/intelligent-systems-lab-org/SimuNEX/development?style=for-the-badge&logo=github"
   alt="GitHub last development commit">
 </p>
-
------
-
-<p align = "center">
-<b>A modular high-fidelity dynamic simulation framework </b>
-<i>that runs on top of Unity.</i>
-</p>
-
------
 
 # SimuNEX
 SimuNEX is a high-fidelity dynamic simulation framework designed as a modular platform to simulate dynamic systems across various domains. It serves as a powerful tool for researchers, engineering students, and members of the Intelligent Systems Lab, offering a versatile environment for simulating complex systems and phenomena.

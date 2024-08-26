@@ -26,14 +26,17 @@ public partial class Matrix
             {
                 throw new ArgumentOutOfRangeException("Row and column indices must be non-negative.");
             }
+
             return Eigen3.GetElement(_matrixPtr, row, col);
         }
+
         set
         {
             if (row < 0 || col < 0)
             {
                 throw new ArgumentOutOfRangeException("Row and column indices must be non-negative.");
             }
+
             Eigen3.SetElement(_matrixPtr, row, col, value);
         }
     }
@@ -54,8 +57,7 @@ public partial class Matrix
     /// <summary>
     /// Returns the inverse of the matrix.
     /// </summary>
-    /// <exception cref="InvalidOperationException">Thrown when matrix is
-    /// singular or non-square.</exception>
+    /// <exception cref="InvalidOperationException">Thrown when matrix is singular or non-square.</exception>
     public Matrix Inverse
     {
         get
@@ -79,6 +81,7 @@ public partial class Matrix
     /// <summary>
     /// Returns the determinant of the matrix.
     /// </summary>
+    /// <exception cref="InvalidOperationException">Throws if matrix is non-square.</exception>
     public float Determinant
     {
         get {
@@ -86,6 +89,7 @@ public partial class Matrix
             {
                 throw new InvalidOperationException("Determinant is undefined for non-square matrices");
             }
+
             return Eigen3.GetDeterminant(_matrixPtr);
         }
     }

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SimuNEX
+namespace SimuNEX.Editors
 {
     [CustomPropertyDrawer(typeof(Matrix6DOF))]
     public class Matrix6DOFDrawer : PropertyDrawer
