@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Reflection;
 
 namespace SimuNEX
 {
@@ -21,14 +20,15 @@ namespace SimuNEX
         }
 
         /// <summary>
-        /// Returns all types derived from <see cref="T"/>.
+        /// Returns all types derived from <see cref="T"/> across all loaded assemblies.
         /// </summary>
         /// <param name="includeNested">Whether to include nested classes.</param>
         /// <param name="includeOnlyPublic">Whether to include only public classes.</param>
         /// <returns>List of all types derived from <see cref="T"/>.</returns>
         public static Type[] GetAvailableTypes(bool includeNested = true, bool includeOnlyPublic = false)
         {
-            return Assembly.GetAssembly(typeof(T)).GetTypes()
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
                 .Where(t => typeof(T).IsAssignableFrom(t)
                     && !t.IsAbstract
                     && (!includeOnlyPublic || t.IsPublic)
