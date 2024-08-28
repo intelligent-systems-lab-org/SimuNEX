@@ -21,7 +21,6 @@ namespace SimuNEX.Communication
         /// </summary>
         private ROS2Node _node;
 
-
         /// <summary>
         /// Name of the ROS2 node.
         /// </summary>
@@ -43,13 +42,13 @@ namespace SimuNEX.Communication
         /// Publisher responsible for sending out ROS2 messages.
         /// </summary>
         [COMType(Streaming.S)]
-        public IPublisher<Float32MultiArray> publisher;
+        private IPublisher<Float32MultiArray> publisher;
 
         /// <summary>
         /// Subscriber responsible for listening to incoming ROS2 messages.
         /// </summary>
         [COMType(Streaming.R)]
-        public ISubscription<Float32MultiArray> subscriber;
+        private ISubscription<Float32MultiArray> subscriber;
 
         public void Initialize()
         {

@@ -104,11 +104,12 @@ namespace SimuNEX.Communication
             }
 
             this.communication = communication;
-            this.protocol = protocol ?? new SelfConnect();
+
             this.direction = direction;
 
             this.inputData = inputData;
             this.outputData = outputData;
+            this.protocol = COMProtocol.With(protocol ?? new SelfConnect(), inputData.size, outputData.size);
 
             _comInputMappings = new();
             _comOutputMappings = new();
@@ -163,11 +164,13 @@ namespace SimuNEX.Communication
 
         [SerializeField]
         private int[] inputIndicesFirstElements;
+
         [SerializeField]
         private int[] inputIndicesSecondElements;
 
         [SerializeField]
         private int[] outputIndicesFirstElements;
+
         [SerializeField]
         private int[] outputIndicesSecondElements;
 

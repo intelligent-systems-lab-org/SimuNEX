@@ -18,6 +18,32 @@ namespace SimuNEX.Communication
     public abstract class COMProtocol
     {
         /// <summary>
+        /// Size of the data being sent.
+        /// </summary>
+        [COMType(Streaming.S)]
+        public int sendDataSize;
+
+        /// <summary>
+        /// Size of the data being received.
+        /// </summary>
+        [COMType(Streaming.R)]
+        public int receiveDataSize;
+
+        /// <summary>
+        /// Creates the <see cref="COMProtocol"/> with the selected settings.
+        /// </summary>
+        /// <param name="protocol">The communication protocol to use.</param>
+        /// <param name="sendDataSize">The size of the data being sent.</param>
+        /// <param name="receiveDataSize">The size of the data being received.</param>
+        /// <returns>The <see cref="COMProtocol"/> with the selected settings.</returns>
+        public static COMProtocol With(COMProtocol protocol, int sendDataSize, int receiveDataSize)
+        {
+            protocol.sendDataSize = sendDataSize;
+            protocol.receiveDataSize = receiveDataSize;
+            return protocol;
+        }
+
+        /// <summary>
         /// Sends data using the talker.
         /// </summary>
         /// <param name="data">The data to be sent.</param>
