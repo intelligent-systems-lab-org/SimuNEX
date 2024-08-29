@@ -14,7 +14,7 @@
     "versionDefines": [
         {
             "name": "com.intelsyslab.simunex",
-            "expression": "",
+            "expression": "0.6.0",
             "define": "SIMUNEX_INSTALLED"
         }
     ],
