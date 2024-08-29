@@ -11,12 +11,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [
-        {
-            "name": "com.intelsyslab.simunex",
-            "expression": "0.6.0",
-            "define": "SIMUNEX_INSTALLED"
-        }
-    ],
+    "versionDefines": [],
     "noEngineReferences": false
 }

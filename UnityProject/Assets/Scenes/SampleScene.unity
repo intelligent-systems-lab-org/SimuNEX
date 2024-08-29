@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 397362741}
+  - component: {fileID: 397362742}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -153,6 +154,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &397362742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397362740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f454049854995448676826182d28ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  communication: {fileID: 0}
+  direction: 0
+  _comOutputMappings: 
+  _comInputMappings: 
+  inputData:
+    _name: 
+    _data: []
+    _signal: 0
+  outputData:
+    _name: 
+    _data: []
+    _signal: 0
+  mappings:
+    inputIndicesFirstElements: 
+    inputIndicesSecondElements: 
+    outputIndicesFirstElements: 
+    outputIndicesSecondElements: 
+  protocol:
+    rid: 3425042070477471745
+  references:
+    version: 2
+    RefIds:
+    - rid: 3425042070477471745
+      type: {class: SelfConnect, ns: SimuNEX.Communication, asm: SimuNEX.Core}
+      data:
+        sendDataSize: 0
+        receiveDataSize: 0
+        sentData: []
+        receivedData: []
 --- !u!1 &509548415
 GameObject:
   m_ObjectHideFlags: 0
