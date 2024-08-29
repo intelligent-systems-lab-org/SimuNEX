@@ -1,10 +1,10 @@
 {
-    "name": "SimuNEXTests",
+    "name": "SimuNEX.Eigen.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "SimuNEX.Core"
+        "SimuNEX.Eigen"
     ],
     "includePlatforms": [
         "Editor"

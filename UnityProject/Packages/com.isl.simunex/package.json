@@ -1,0 +1,17 @@
+{
+  "name": "com.intelsyslab.simunex",
+  "version": "0.6.0",
+  "displayName": "SimuNEX",
+  "description": "High-fidelity 3D simulator.",
+  "unity": "2022.3",
+  "author": {
+    "name": "Lee Bissessar",
+    "email": "leebissessar@gmail.com",
+    "url": "https://intelsyslab.com/"
+  },
+  "keywords": [
+    "simulator",
+    "engineering",
+    "unity"
+  ]
+}

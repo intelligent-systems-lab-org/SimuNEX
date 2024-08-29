@@ -1,13 +1,13 @@
 {
-    "name": "DynamicsTests",
+    "name": "SimuNEX.Dynamics.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "SimuNEX.Core",
         "SimuNEX.Dynamics",
-        "eigen3",
-        "SimuNEXTests"
+        "SimuNEX.Tests",
+        "SimuNEX.Eigen"
     ],
     "includePlatforms": [
         "Editor"

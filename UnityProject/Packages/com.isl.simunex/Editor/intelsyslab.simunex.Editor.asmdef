@@ -1,0 +1,20 @@
+{
+    "name": "SimuNEX.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b50f9ea90c845a2478bcbb9f6046359f",
+        "GUID:33cf9cfb9925a6d4e82a209d6cf2b721",
+        "GUID:9546048ae9c9d9f4888398311d8cf5b5"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

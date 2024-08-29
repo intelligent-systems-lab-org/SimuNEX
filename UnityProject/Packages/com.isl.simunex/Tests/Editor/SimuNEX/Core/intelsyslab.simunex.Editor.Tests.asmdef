@@ -1,11 +1,10 @@
 {
-    "name": "MechanicalTests",
+    "name": "SimuNEX.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "eigen3",
-        "SimuNEX.Mechanical"
+        "SimuNEX.Core"
     ],
     "includePlatforms": [
         "Editor"
