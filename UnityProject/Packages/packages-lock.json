@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.intelsyslab.simunex": {
-      "version": "file:com.isl.simunex",
+      "version": "file:com.intelsyslab.simunex",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
