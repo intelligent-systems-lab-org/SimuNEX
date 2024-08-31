@@ -81,10 +81,16 @@ namespace SimuNEX.Mechanical
             body.AddTorque(appliedForce.angular);
         }
 
-        public override void Step()
+        public override void Step(float tickRate)
         {
-            modelFunction(inports, outports);
-            PhysicsUpdate();
+            timeSinceLastTick += tickRate;
+
+            if (timeSinceLastTick >= sampleTime)
+            {
+                modelFunction(inports, outports);
+                PhysicsUpdate();
+                timeSinceLastTick = 0;
+            }
         }
     }
 }

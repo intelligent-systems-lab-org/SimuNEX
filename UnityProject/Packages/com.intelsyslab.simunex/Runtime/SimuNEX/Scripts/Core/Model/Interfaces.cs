@@ -56,10 +56,13 @@ namespace SimuNEX
     }
 
     /// <summary>
-    /// Interface for defining models that require initialization.
+    /// Interface for defining models that require initialization callbacks.
     /// </summary>
     public interface IModelInitialization
     {
+        /// <summary>
+        /// Initialization callback function for <see cref="SimuNEX"/>.
+        /// </summary>
         public void Init();
     }
 }

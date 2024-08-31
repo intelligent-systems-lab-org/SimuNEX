@@ -30,6 +30,22 @@ namespace SimuNEX
         protected List<ModelInput> inputs = new();
 
         /// <summary>
+        /// The sample rate.
+        /// </summary>
+        [Range(0.001f, 1f)]
+        public float sampleTime = 0.02f;
+
+        /// <summary>
+        /// The sample rate at runtime.
+        /// </summary>
+        protected float _sampleTime;
+
+        /// <summary>
+        /// Time elapsed since the last simulation tick.
+        /// </summary>
+        protected float timeSinceLastTick;
+
+        /// <summary>
         /// Models the relationship between the model's inputs and outputs.
         /// </summary>
         /// <param name="inputs">The inputs (read-only) to the function.</param>
@@ -44,13 +60,25 @@ namespace SimuNEX
         /// <summary>
         /// Function that updates the model.
         /// </summary>
-        public virtual void Step()
+        /// <param name="tickRate">The simulation tick rate set by <see cref="SimuNEX"/>.</param>
+        public virtual void Step(float tickRate = Mathf.Infinity)
         {
-            modelFunction(inports, outports);
+            timeSinceLastTick += tickRate;
+
+            if (timeSinceLastTick >= sampleTime)
+            {
+                modelFunction(inports, outports);
+                timeSinceLastTick = 0; // Reset accumulator
+            }
         }
 
+        /// <summary>
+        /// Initializes model properties for simulation.
+        /// </summary>
         public void Setup()
         {
+            _sampleTime = sampleTime;
+
             foreach (ModelInput input in inports)
             {
                 input.connectedModel = this;

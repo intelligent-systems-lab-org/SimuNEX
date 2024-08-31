@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace SimuNEX
 {
@@ -43,11 +44,11 @@ namespace SimuNEX
             }
         }
 
-        public override void Step()
+        public override void Step(float tickRate = Mathf.Infinity)
         {
             foreach (Model model in models)
             {
-                model.Step();
+                model.Step(tickRate);
             }
         }
 

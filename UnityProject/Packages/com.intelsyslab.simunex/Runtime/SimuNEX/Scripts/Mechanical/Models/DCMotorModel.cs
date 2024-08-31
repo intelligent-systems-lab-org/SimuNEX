@@ -2,7 +2,7 @@ using SimuNEX.Dynamics;
 
 namespace SimuNEX.Mechanical
 {
-    public class DCMotorModel : DynamicModel
+    public class DCMotorModel : DynamicModel, IModelInitialization
     {
         public float dcGain = 1.0f;
         public float timeConstant = 0.5f;
@@ -18,7 +18,10 @@ namespace SimuNEX.Mechanical
             (
                 new ModelInput[] { new("voltages", 1, Signal.Electrical, this) }
             );
+        }
 
+        public void Init()
+        {
             stateSpace = new FirstOrderTF(timeConstant, dcGain);
         }
 

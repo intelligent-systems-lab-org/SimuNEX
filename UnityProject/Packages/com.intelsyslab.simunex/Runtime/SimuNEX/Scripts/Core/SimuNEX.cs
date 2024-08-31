@@ -119,7 +119,7 @@ namespace SimuNEX
                 {
                     foreach (Model model in models)
                     {
-                        model.Step();
+                        model.Step(SampleTime);
                     }
                 };
             }
@@ -133,7 +133,7 @@ namespace SimuNEX
 
                     foreach (Model model in models)
                     {
-                        model.Step();
+                        model.Step(SampleTime);
                     }
 
                     communication.SendAll();
