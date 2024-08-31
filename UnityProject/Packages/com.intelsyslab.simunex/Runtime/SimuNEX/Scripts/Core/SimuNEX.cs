@@ -12,7 +12,7 @@ namespace SimuNEX
         /// </summary>
         [SerializeField]
         [Range(0.001f, 0.1f)]
-        private float _sampleTime = 0.02f;
+        private float _tickRate = 0.02f;
 
         /// <summary>
         /// <see cref="COM"/> system connected to SimuNEX.
@@ -50,14 +50,14 @@ namespace SimuNEX
         /// <summary>
         /// (Property) The minimum timestep ran by <see cref="FixedUpdate"/>.
         /// </summary>
-        public float SampleTime
+        public float TickRate
         {
-            get => _sampleTime;
+            get => _tickRate;
 
             set
             {
-                _sampleTime = Mathf.Clamp(value, 0.001f, 0.1f);
-                Time.fixedDeltaTime = _sampleTime;
+                _tickRate = Mathf.Clamp(value, 0.001f, 0.1f);
+                Time.fixedDeltaTime = _tickRate;
             }
         }
 
@@ -69,6 +69,8 @@ namespace SimuNEX
             models = new(GetComponentsInChildren<Model>());
             inports = new();
             outports = new();
+
+            AdjustSampleTimes();
 
             // Filter out models contained in ModelSystem instances
             List<Model> modelsToRemove = new();
@@ -101,7 +103,7 @@ namespace SimuNEX
 
         protected void Start()
         {
-            Time.fixedDeltaTime = _sampleTime; // Ensure initial setting is applied
+            Time.fixedDeltaTime = _tickRate; // Ensure initial setting is applied
             Init();
         }
 
@@ -119,7 +121,7 @@ namespace SimuNEX
                 {
                     foreach (Model model in models)
                     {
-                        model.Step(SampleTime);
+                        model.Step(TickRate);
                     }
                 };
             }
@@ -133,11 +135,34 @@ namespace SimuNEX
 
                     foreach (Model model in models)
                     {
-                        model.Step(SampleTime);
+                        model.Step(TickRate);
                     }
 
                     communication.SendAll();
                 };
+            }
+        }
+
+        /// <summary>
+        /// Adjusts the sample time of each model to ensure it's a valid multiple of the SimuNEX sample time.
+        /// </summary>
+        private void AdjustSampleTimes()
+        {
+            foreach (Model model in models)
+            {
+                float modelSampleTime = model.sampleTime;
+
+                // Saturate if the model's sample time exceeds SimuNEX's sample time
+                if (modelSampleTime < TickRate)
+                {
+                    model.sampleTime = TickRate;
+                }
+                else
+                {
+                    // Round to the closest higher multiple of SimuNEX's sample time
+                    float multiplier = Mathf.Ceil(modelSampleTime / TickRate);
+                    model.sampleTime = multiplier * TickRate;
+                }
             }
         }
     }
