@@ -73,6 +73,11 @@ namespace SimuNEX
                 // Subtract from the accumulated time instead of a full reset
                 // to account for any potential drift
                 timeSinceLastTick -= sampleTime;
+
+                if (this is IModelPostStepCB cb)
+                {
+                    cb.PostStepFcn();
+                }
             }
         }
 

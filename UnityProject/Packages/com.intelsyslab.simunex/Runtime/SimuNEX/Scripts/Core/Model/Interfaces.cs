@@ -43,4 +43,15 @@ namespace SimuNEX
         /// </summary>
         public void Init();
     }
+
+    /// <summary>
+    /// Interface for defining models that require post-step callbacks.
+    /// </summary>
+    public interface IModelPostStepCB
+    {
+        /// <summary>
+        /// Callback function for <see cref="Runner"/>.
+        /// </summary>
+        public void PostStepFcn();
+    }
 }

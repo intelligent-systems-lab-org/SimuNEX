@@ -5,7 +5,7 @@ namespace SimuNEX.Mechanical
     /// <summary>
     /// Models a single Rigidbody.
     /// </summary>
-    public class RBModel : Model
+    public class RBModel : Model, IModelPostStepCB
     {
         /// <summary>
         /// Handles physics simulation.
@@ -81,16 +81,6 @@ namespace SimuNEX.Mechanical
             body.AddTorque(appliedForce.angular);
         }
 
-        public override void Step(float tickRate)
-        {
-            timeSinceLastTick += tickRate;
-
-            if (timeSinceLastTick >= sampleTime)
-            {
-                modelFunction(inports, outports);
-                PhysicsUpdate();
-                timeSinceLastTick = 0;
-            }
-        }
+        public void PostStepFcn() => PhysicsUpdate();
     }
 }
