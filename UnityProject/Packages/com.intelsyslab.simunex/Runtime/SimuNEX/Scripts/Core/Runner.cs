@@ -4,8 +4,15 @@ using UnityEngine;
 
 namespace SimuNEX
 {
+    /// <summary>
+    /// The core component of SimuNEX. Responsible for initializing and running the simulation.
+    /// </summary>
+    /// <remarks>
+    /// This component is a singleton and should only be present once in the scene.
+    /// </remarks>
+    [HelpURL(URLConfig.baseURL + "/learn/core/simulation")]
     [DisallowMultipleComponent]
-    public class SimuNEX : MonoBehaviour
+    public class Runner : MonoBehaviour
     {
         /// <summary>
         /// The minimum timestep ran by <see cref="FixedUpdate"/>.

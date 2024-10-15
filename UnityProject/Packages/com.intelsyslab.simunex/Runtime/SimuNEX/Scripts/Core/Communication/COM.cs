@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SimuNEX.Communication
 {
+    [HelpURL(URLConfig.baseURL + "/learn/core/communication")]
     public class COM : MonoBehaviour
     {
         /// <summary>

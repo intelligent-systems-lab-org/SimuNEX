@@ -5,6 +5,7 @@ using UnityEngine;
 namespace SimuNEX
 {
     [Serializable]
+    [HelpURL(URLConfig.baseURL + "/learn/core/model")]
     public abstract class Model : MonoBehaviour
     {
         /// <summary>
@@ -60,7 +61,7 @@ namespace SimuNEX
         /// <summary>
         /// Function that updates the model.
         /// </summary>
-        /// <param name="tickRate">The simulation tick rate set by <see cref="SimuNEX"/>.</param>
+        /// <param name="tickRate">The simulation tick rate set by <see cref="Runner"/>.</param>
         public virtual void Step(float tickRate = Mathf.Infinity)
         {
             timeSinceLastTick += tickRate;

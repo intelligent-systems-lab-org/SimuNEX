@@ -3,14 +3,14 @@ using UnityEditor;
 
 namespace SimuNEX.Editors
 {
-    [CustomEditor(typeof(SimuNEX))]
+    [CustomEditor(typeof(Runner))]
     public class SimuNEXEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            SimuNEX simuNEX = (SimuNEX)target;
+            Runner simuNEX = (Runner)target;
             if (GUILayout.Button("Init"))
             {
                 simuNEX.Init();

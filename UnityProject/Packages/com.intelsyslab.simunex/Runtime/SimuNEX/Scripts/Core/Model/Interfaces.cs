@@ -34,34 +34,12 @@ namespace SimuNEX
     }
 
     /// <summary>
-    /// Interface for implementing output ports in <see cref="Model"/>.
-    /// </summary>
-    public interface IModelOutput
-    {
-        /// <summary>
-        /// The data in the port.
-        /// </summary>
-        float[] data { get; set; }
-    }
-
-    /// <summary>
-    /// Interface for implementing input ports in <see cref="Model"/>.
-    /// </summary>
-    public interface IModelInput
-    {
-        /// <summary>
-        /// The data in the port.
-        /// </summary>
-        float[] data { get; set; }
-    }
-
-    /// <summary>
     /// Interface for defining models that require initialization callbacks.
     /// </summary>
     public interface IModelInitialization
     {
         /// <summary>
-        /// Initialization callback function for <see cref="SimuNEX"/>.
+        /// Initialization callback function for <see cref="Runner"/>.
         /// </summary>
         public void Init();
     }
