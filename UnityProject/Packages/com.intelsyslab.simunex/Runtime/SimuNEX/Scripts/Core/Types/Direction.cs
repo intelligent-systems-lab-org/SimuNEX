@@ -38,5 +38,24 @@ namespace SimuNEX
                 _ => Vector3.zero
             };
         }
+
+        /// <summary>
+        /// Returns the opposite direction of the specified direction.
+        /// </summary>
+        /// <param name="dir">The direction to get the opposite of.</param>
+        /// <returns>The opposite direction of the specified direction.</returns>
+        public static Direction Opposite(this Direction dir)
+        {
+            return dir switch
+            {
+                Direction.Left => Direction.Right,
+                Direction.Right => Direction.Left,
+                Direction.Forward => Direction.Backward,
+                Direction.Backward => Direction.Forward,
+                Direction.Up => Direction.Down,
+                Direction.Down => Direction.Up,
+                _ => Direction.Up
+            };
+        }
     }
 }
