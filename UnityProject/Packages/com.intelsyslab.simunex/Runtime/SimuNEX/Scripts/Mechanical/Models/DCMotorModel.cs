@@ -26,9 +26,9 @@ namespace SimuNEX.Mechanical
         }
 
         protected override OutputFunction outputFunction =>
-            (ModelInput[] _, ModelOutput[] outputs, StateSpace states) => outputs[0].data[0] = states.states[0, 0];
+            (ModelInput[] _, ModelOutput[] outputs, StateSpace states) => outputs[0][0] = states.states[0, 0];
 
         protected override InputFunction inputFunction =>
-            (ModelInput[] inputs, StateSpace states) => states.inputs[0, 0] = inputs[0].data[0];
+            (ModelInput[] inputs, StateSpace states) => states.inputs[0, 0] = inputs[0][0];
     }
 }

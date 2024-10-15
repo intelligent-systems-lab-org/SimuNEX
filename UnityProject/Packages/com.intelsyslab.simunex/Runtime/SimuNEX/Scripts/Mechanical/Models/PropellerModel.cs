@@ -68,7 +68,7 @@ namespace SimuNEX.Mechanical
         protected override ModelFunction modelFunction =>
             (ModelInput[] inputs, ModelOutput[] outputs) =>
             {
-                float speedProd = inputs[0].data[0] * Mathf.Abs(inputs[0].data[0]);
+                float speedProd = inputs[0][0] * Mathf.Abs(inputs[0][0]);
                 Vector3 normal = transform.TransformDirection(spinAxis.ToVector());
 
                 Vector6DOF totalForce = Force.
@@ -77,12 +77,12 @@ namespace SimuNEX.Mechanical
                 // use propeller normal for reaction torque direction for now
                 totalForce.angular += torqueCoefficient * speedProd * normal;
 
-                outputs[0].data[0] = totalForce.u;
-                outputs[0].data[1] = totalForce.w;
-                outputs[0].data[2] = totalForce.v;
-                outputs[0].data[3] = totalForce.p;
-                outputs[0].data[4] = totalForce.r;
-                outputs[0].data[5] = totalForce.q;
+                outputs[0][0] = totalForce.u;
+                outputs[0][1] = totalForce.w;
+                outputs[0][2] = totalForce.v;
+                outputs[0][3] = totalForce.p;
+                outputs[0][4] = totalForce.r;
+                outputs[0][5] = totalForce.q;
             };
     }
 }

@@ -37,13 +37,13 @@ namespace SimuNEX
         protected override ModelFunction modelFunction =>
             (ModelInput[] inputs, ModelOutput[] outputs) =>
             {
-                Array.Clear(outputs[0].data, 0, outputs[0].data.Length); // Clear the output data array
+                outputs[0].Clear(); // Clear the output data array
 
                 for (int i = 0; i < inputs.Length; ++i)
                 {
-                    for (int j = 0; j < outputs[0].data.Length; ++j)
+                    for (int j = 0; j < outputs[0].size; ++j)
                     {
-                        outputs[0].data[j] += inputs[i].data[j];
+                        outputs[0][j] += inputs[i][j];
                     }
                 }
             };

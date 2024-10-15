@@ -45,6 +45,25 @@ namespace SimuNEX
         }
 
         /// <summary>
+        /// (Indexer) The data stored in the port.
+        /// </summary>
+        /// <param name="index">The index of the data to get or set.</param>
+        /// <returns>The data at the given index.</returns>
+        public float this[int index]
+        {
+            get => _data[index];
+            set => _data[index] = value;
+        }
+
+        /// <summary>
+        /// Clears the data in the port.
+        /// </summary>
+        public void Clear()
+        {
+            Array.Clear(_data, 0, _data.Length);
+        }
+
+        /// <summary>
         /// (Property) The domain of the data.
         /// </summary>
         public Signal signal

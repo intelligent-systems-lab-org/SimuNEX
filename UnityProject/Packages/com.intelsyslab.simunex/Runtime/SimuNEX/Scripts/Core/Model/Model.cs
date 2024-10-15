@@ -69,7 +69,10 @@ namespace SimuNEX
             if (timeSinceLastTick >= sampleTime)
             {
                 modelFunction(inports, outports);
-                timeSinceLastTick = 0; // Reset accumulator
+
+                // Subtract from the accumulated time instead of a full reset
+                // to account for any potential drift
+                timeSinceLastTick -= sampleTime;
             }
         }
 
